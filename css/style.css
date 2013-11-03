@@ -56,10 +56,12 @@
 	}
 
 	.embed-container {
+		width: 880px!important;
 		height: 650px!important;
 	}
 
 	.embed-container iframe {
+		width: 880px!important;
 		height: 650px!important;
 	}
 }

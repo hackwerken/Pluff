@@ -86,13 +86,27 @@ else {
 					</ul>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="small-12 large-4 columns">
+					<a href="index.php?week=<?php echo $weeknr_vorige; ?>&klas=<?php echo $klas_naam; ?>" class="button alert vorige-week">&laquo; Vorige week</a>
+				</div>
+				<div class="small-12 large-4 text-center-large columns">
+					<?php if ($weeknr_echt != $weeknr) : ?>
+						<a href="index.php?week=<?php echo $weeknr_echt; ?>&klas=<?php echo $klas_naam; ?>" class="button huidige-week">Huidige week</a>
+					<?php endif; ?>
+				</div>
+				<div class="small-12 large-4 columns">
+					<a href="index.php?week=<?php echo $weeknr_volgende; ?>&klas=<?php echo $klas_naam; ?>" class="button success volgende-week">Volgende week &raquo;</a>
+				</div>
+			</div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="large-12 columns">
 			<div class="embed-container">
-				<iframe src="https://www.fhict.nl/Roosters/<?php echo $kwartaal; ?>kwartaal/<?php echo $weeknr; ?>/c/<?php echo $klas_code; ?>.htm" frameborder="0" width="884" height="380"></iframe>
+				<iframe src="https://www.fhict.nl/Roosters/<?php echo $kwartaal; ?>kwartaal/<?php echo $weeknr; ?>/c/<?php echo $klas_code; ?>.htm" frameborder="0"></iframe>
 			</div>
 		</div>
 	</div>
