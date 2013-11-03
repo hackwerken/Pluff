@@ -66,18 +66,24 @@ else {
 
 	<div class="row">
 		<div class="large-12 columns">
-			<h1 class="header">IMD <a href="index.php?klas=<?php echo $klas_naam; ?>" class="klas-wisselen" title=""><?php echo $klas_naam; ?></a> Rooster - Week <?php echo $weeknr; ?></h1>
-			<div class="row">
-				<div class="small-12 large-4 columns">
-					<a href="index.php?week=<?php echo $weeknr_vorige; ?>&klas=<?php echo $klas_naam; ?>" class="button alert vorige-week">&laquo; Vorige week</a>
-				</div>
-				<div class="small-12 large-4 text-center-large columns">
-					<?php if ($weeknr_echt != $weeknr) : ?>
-						<a href="index.php?week=<?php echo $weeknr_echt; ?>&klas=<?php echo $klas_naam; ?>" class="button huidige-week">Huidige week</a>
-					<?php endif; ?>
-				</div>
-				<div class="small-12 large-4 columns">
-					<a href="index.php?week=<?php echo $weeknr_volgende; ?>&klas=<?php echo $klas_naam; ?>" class="button success volgende-week">Volgende week &raquo;</a>
+			<div class="header">
+				IMD <a href="index.php?klas=<?php echo $klas_naam; ?>" class="klas-wisselen" title=""><?php echo $klas_naam; ?></a>
+				Rooster - Week
+				<a href="#" class="week-select-button"><?php echo $weeknr; ?></a>
+
+				<div class="week-select">
+					<ul>
+						<?php
+						$weeknr_select_begin = 35;
+						$weeknr_select_eind = 52;
+						while ($weeknr_select_begin <= $weeknr_select_eind) {
+							echo '<li>
+									<a href="index.php?week='.$weeknr_select_begin.'&klas='.$klas_naam.'">Week '.$weeknr_select_begin.'</a>
+								</li>';
+							$weeknr_select_begin++;
+						}
+						?>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -145,5 +151,8 @@ else {
 			&copy; <a href="http://webduck.nl">Kees Kluskens</a>
 		</p>
 	</footer>
+
+	<script src="js/vendor/jquery.js"></script>
+ 	<script src="js/general.js"></script>
 </body>
 </html>
