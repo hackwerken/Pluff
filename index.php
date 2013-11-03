@@ -43,7 +43,7 @@
 						$weeknr_select_eind = 52;
 						while ($weeknr_select_begin <= $weeknr_select_eind) {
 							echo '<li>
-									<a href="index.php?week='.$weeknr_select_begin.'&klas='.$klas_naam.'">Week '.$weeknr_select_begin.'</a>
+									<a href="index.php?week='.$weeknr_select_begin.'&klas='.$klas_naam.'" class="'.(($weeknr == $weeknr_select_begin) ? 'dropdown-actief' : '').'">Week '.$weeknr_select_begin.'</a>
 								</li>';
 							$weeknr_select_begin++;
 						}

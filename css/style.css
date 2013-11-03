@@ -55,6 +55,10 @@
 	color: #339933;
 }
 
+.dropdown-actief {
+	font-weight: bold;
+}
+
 @media only screen and (max-width: 768px) {
 	.vorige-week, .volgende-week, .huidige-week {
 		width: 100%;
