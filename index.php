@@ -1,6 +1,6 @@
 <?php
 /*
- * Deze code is zo snel mogelijk gemaakt en is slordig. Je bent gewaarschuwd.
+ * Deze code is zo snel als mogelijk gemaakt en is slordig. Je bent gewaarschuwd.
  */
 
 
@@ -39,6 +39,7 @@ else {
 }
 
 // Door het hartstikke goede roostersysteem moet ik deze 'hack' toepassen.
+// Moet wss binnenkort verwijderd worden als ze de links weer aanpassen.
 if ($weeknr <= 45) {
 	$kwartaal = 'Huidig';
 }
@@ -144,16 +145,5 @@ else {
 			&copy; <a href="http://webduck.nl">Kees Kluskens</a>
 		</p>
 	</footer>
-
-  <!--
-  <script>
-  document.write('<script src=' +
-  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
-  '.js><\/script>')
-  </script>
-
-  <script src="js/foundation.min.js"></script>
-  <script src="js/general.js"></script>
-  -->
 </body>
 </html>
