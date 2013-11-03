@@ -21,7 +21,10 @@ else
 $weeknr_vorige = $weeknr - 1;
 $weeknr_volgende = $weeknr + 1;
 
-// Ik ben te lui om ze allemaal toe te voegen.
+// Het roostersysteem kent een code toe aan elke klas.
+// Je kunt deze opzoeken door naar de roostersite te gaan, je rooster te zoeken,
+// en dan Rechtsklik -> Framebron weergeven en daarna de code na 'c' in de url te kopieeren.
+// Ik ben te lui om ze allemaal zelf toe te voegen.
 $klassen = array(
 	'M21' => 'c00095',
 	'M22' => 'c00096'
@@ -63,6 +66,7 @@ else {
 
 </head>
 <body>
+	<div class="wegklikken"></div>
 
 	<div class="row">
 		<div class="large-12 columns">
@@ -70,6 +74,18 @@ else {
 				IMD <a href="index.php?klas=<?php echo $klas_naam; ?>" class="klas-wisselen" title=""><?php echo $klas_naam; ?></a>
 				Rooster - Week
 				<a href="#" class="week-select-button"><?php echo $weeknr; ?></a>
+
+				<div class="klas-select">
+					<ul>
+						<?php
+						foreach ($klassen as $klasnaam => $klascode) {
+							echo '<li>
+									<a href="index.php?week='.$weeknr.'&klas='.$klasnaam.'">Klas '.$klasnaam.'</a>
+								</li>';
+						}
+						?>
+					</ul>
+				</div>
 
 				<div class="week-select">
 					<ul>
