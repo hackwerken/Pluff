@@ -1,0 +1,62 @@
+.header {
+	text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+	.vorige-week, .volgende-week, .huidige-week {
+		width: 100%;
+	}
+
+	.embed-container {
+		height: 650px!important;
+	}
+
+	.embed-container iframe {
+		height: 650px!important;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+
+	.volgende-week {
+		float: right;
+	}
+
+	.text-center-large {
+		text-align: center;
+	}
+
+}
+
+
+.klas-wisselen {
+	color: #000;
+}
+
+.list-margin {
+	margin-left: 20px;
+}
+
+footer {
+	text-align: center;
+}
+
+/* iframe embedden */
+.embed-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 1.25em;
+}
+
+.embed-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
