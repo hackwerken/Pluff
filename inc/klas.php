@@ -10,16 +10,21 @@ if (date('N') == 5 && date('H') > 18 OR date('N') == 6 OR date('N') == 7)
 else
 	$weeknr_echt = date('W');
 
+
 // Als er een weeknummer is ingevuld die ook numeriek is, deze gebruiken.
 // Anders het huidige weeknr
 if (isset($_GET['week']) && is_numeric($_GET['week']))
-	$weeknr = $_GET['week'];
+	$weeknr = sprintf("%02s", $_GET['week']);
 else
-	$weeknr = $weeknr_echt;
+	$weeknr = sprintf("%02s", $weeknr_echt);
 
 // Vorige en volgende weeknr's :)
 $weeknr_vorige = $weeknr - 1;
 $weeknr_volgende = $weeknr + 1;
+if ($weeknr_volgende == 53)
+	$weeknr_volgende = '01';
+if ($weeknr_vorige == 00)
+	$weeknr_vorige = 52;
 
 // Het roostersysteem kent een code toe aan elke klas.
 // Je kunt deze opzoeken door naar de roostersite te gaan, je rooster te zoeken,

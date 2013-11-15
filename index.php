@@ -39,7 +39,7 @@
 				<div class="week-select">
 					<ul>
 						<?php
-						$weeknr_select_begin = 35;
+						$weeknr_select_begin = 01;
 						$weeknr_select_eind = 52;
 						while ($weeknr_select_begin <= $weeknr_select_eind) {
 							echo '<li>
