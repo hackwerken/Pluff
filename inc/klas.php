@@ -30,9 +30,10 @@ if ($weeknr_vorige == 00)
 // Je kunt deze opzoeken door naar de roostersite te gaan, je rooster te zoeken,
 // en dan Rechtsklik -> Framebron weergeven en daarna de code na 'c' in de url te kopieeren.
 // Ik ben te lui om ze allemaal zelf toe te voegen.
+// Kennelijk verandert deze code ook soms. M22 was eerst *96, nu *93
 $klassen = array(
-	'M21' => 'c00095',
-	'M22' => 'c00096'
+	'M21' => 'c00092',
+	'M22' => 'c00093'
 );
 
 // Als er een klas is ingevuld die in bovenstaande array staat, die klas selecteren.
@@ -52,6 +53,6 @@ if ($weeknr <= 45) {
 	$kwartaal = 'Huidig';
 }
 else {
-	$kwartaal = 'Volgend';
+	$kwartaal = 'Huidig';
 }
 ?>
