@@ -32,6 +32,8 @@ if ($weeknr_vorige == 00)
 // Ik ben te lui om ze allemaal zelf toe te voegen.
 // Kennelijk verandert deze code ook soms. M22 was eerst *96, nu *93
 $klassen = array(
+	'M32' => 'c00081',
+	'IMS42' => 'c00070',
 	'M21' => 'c00074',
 	'M22' => 'c00075',
 	'M23' => 'c00076'
