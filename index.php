@@ -1,8 +1,7 @@
 <?php require('inc/klas.php') ?>
 
 <!DOCTYPE html>
-<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="nl" > <!--<![endif]-->
+<html class="no-js" lang="nl" >
 
 <head>
 	<meta charset="utf-8">
