@@ -36,7 +36,9 @@ $klassen = array(
 	'IMS42' => 'c00070',
 	'M21' => 'c00074',
 	'M22' => 'c00075',
-	'M23' => 'c00076'
+	'M23' => 'c00076',
+	'GD41' => 'c00066',
+	'SM41' => 'c00111'
 );
 
 // Als er een klas is ingevuld die in bovenstaande array staat, die klas selecteren.
@@ -46,8 +48,8 @@ if (isset($_GET['klas']) && array_key_exists($_GET['klas'], $klassen)) {
 	$klas_code = $klassen[$_GET['klas']];
 }
 else {
-	$klas_naam = 'M22';
-	$klas_code = $klassen['M22'];
+	$klas_naam = 'M32';
+	$klas_code = $klassen['M32'];
 }
 
 // Door het hartstikke goede roostersysteem moet ik deze 'hack' toepassen.
