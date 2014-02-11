@@ -24,6 +24,10 @@
   position: relative;
 }
 
+.button {
+  border-radius: 3px;
+}
+
 .vorige-week, .volgende-week, .huidige-week {
   width: 100%;
 }

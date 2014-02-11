@@ -25,6 +25,7 @@ Maak verder een folder genaamd `cache` aan in de root van het project en chmod d
 
 ## Lage prioriteit
 
+- Aparte kleuren per vak; voor meer overzicht
 - Klassenlijst; hoewel klas intypen ook heel snel is. Misschien suggesties tijdens typen?
 - Mogelijkheid tot inzien vorige weken (nu kun je alleen nog vandaag + 3 weken inzien)
 - Grunt toevoegen om bestanden automatisch te verkleinen
