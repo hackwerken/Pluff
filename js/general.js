@@ -18,10 +18,19 @@ $(function() {
 
     console.log('Laden...');
     $.get('rooster.php?klas=' + klasOrig + '&week=' + weeknr, function(data) {
+      // Opgehaalde rooster in de DOM zetten
       $('.hetrooster').html(data);
 
+      // Weeknummer en klas vervangen in de header
       $('.js-weeknr-show').text(weeknr);
       $('.js-klas-show').text(klasOrig.replace(/;/g , ', '));
+
+      // Permalink laten zien
+      $('.js-permalink-toggle').show();
+      $('.js-permalink').text('http://pluff.nl/?klas=' + klasOrig);
+
+      // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
+      history.pushState(null, null, 'index.php?klas=' + klasOrig + '&week=' + weeknr);
 
       getStatus();
     });
