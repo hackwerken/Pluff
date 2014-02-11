@@ -21,22 +21,20 @@ require 'inc/header.php';
   <div class="row">
     <div class="small-15 columns">
       <div class="header">
-        <?php if (!empty($_GET['klas'])) : ?>
-          Klas <?php echo $klasHuman ?> &ndash;
-        <?php endif; ?>
-        Week <?php echo $weeknr ?>
+          Klas <span class="js-klas-show"><?php echo (!empty($klasHuman)) ? $klasHuman : '' ?></span> &ndash;
+          Week <span class="js-weeknr-show"><?php echo $weeknr ?></span>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="small-15 large-5 columns">
-      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_vorige ?>" class="button alert vorige-week js-week">&laquo; Vorige week</a>
+    <div class="small-15 medium-5 columns">
+      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_vorige ?>" class="button alert vorige-week js-vorige">&laquo; Vorige week</a>
     </div>
-    <div class="small-15 large-5 text-center-large columns">
-      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_huidig ?>" class="button huidige-week js-week">Huidige week</a>
+    <div class="small-15 medium-5 text-center-large columns">
+      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_huidig ?>" class="button huidige-week js-huidige">Huidige week</a>
     </div>
-    <div class="small-15 large-5 columns">
-      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_volgende ?>" class="button success volgende-week js-week">Volgende week &raquo;</a>
+    <div class="small-15 medium-5 columns">
+      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_volgende ?>" class="button success volgende-week js-volgende">Volgende week &raquo;</a>
     </div>
   </div>
   <div class="row">
@@ -58,6 +56,13 @@ require 'inc/header.php';
   </footer>
 
   <script src="js/vendor/jquery.js"></script>
+  <script>
+    window.weeknr = <?php echo $weeknr ?>;
+    window.weeknr_volgende = <?php echo $weeknr_volgende ?>;
+    window.weeknr_vorige = <?php echo $weeknr_vorige ?>;
+    window.weeknr_huidig = <?php echo $weeknr_huidig ?>;
+    window.klasOrig = "<?php echo $klasOrig ?>";
+  </script>
   <script src="js/general.js"></script>
 </body>
 </html>

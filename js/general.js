@@ -1,34 +1,65 @@
 $(function() {
 
-  function roosterLaden(url) {
+  // Lees status van de javascript variabelen op (handig om te testen)
+  function getStatus() {
+    console.log('KlasOrig: ' + klasOrig);
+    console.log('Weeknr: ' + weeknr);
+    console.log('Weeknr volgende: ' + weeknr_volgende);
+    console.log('Weeknr vorige: ' + weeknr_vorige);
+  }
+
+  // Standaard status
+  getStatus();
+
+  // Het daadwerkelijk laden van het rooster
+  function roosterLaden(klasOrig, weeknr) {
+    weeknr_volgende = weeknr + 1;
+    weeknr_vorige = weeknr - 1;
+
     console.log('Laden...');
-    $.get(url, function(data) {
+    $.get('rooster.php?klas=' + klasOrig + '&week=' + weeknr, function(data) {
       $('.hetrooster').html(data);
-      var jData = $(data);
 
-      var weekie = jData.find('.js-week');
+      $('.js-weeknr-show').text(weeknr);
+      $('.js-klas-show').text(klasOrig.replace(/;/g , ', '));
 
-      console.log(weekie);
-      console.log('Week:' + weekie);
-
-      console.log('Rooster is succesvol ingeladen.');
+      getStatus();
     });
   }
 
-  $('.js-klas').keyup(function() {
+  $('.js-klas').on('keyup change', function() {
     // Haal de ingevoerde klassen op, haal alle spaties weg en vervang komma's door puntkomma's
     var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';');
     console.log(input);
 
-    if (input.length >= 2)
-      roosterLaden('rooster.php?klas=' + input);
+    if (input.length >= 2) {
+      klasOrig = input;
+      roosterLaden(klasOrig, weeknr_huidig);
+    }
   });
 
-  $('.js-week').on('click', function(e) {
+  $('.js-vorige').on('click', function(e) {
     e.preventDefault();
 
-    var input = $(this).attr('href');
-    roosterLaden(input);
+    weeknr = weeknr - 1;
+
+    roosterLaden(klasOrig, weeknr);
+  });
+
+  $('.js-huidige').on('click', function(e) {
+    e.preventDefault();
+
+    weeknr = weeknr_huidig;
+
+    roosterLaden(klasOrig, weeknr);
+  });
+
+  $('.js-volgende').on('click', function(e) {
+    e.preventDefault();
+
+    weeknr = weeknr + 1;
+
+    roosterLaden(klasOrig, weeknr);
   });
 
 });
