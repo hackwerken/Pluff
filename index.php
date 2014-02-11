@@ -19,7 +19,7 @@ require 'inc/header.php';
 </head>
 <body>
   <div class="row">
-    <div class="small-12 columns">
+    <div class="small-15 columns">
       <div class="header">
         <?php if (!empty($_GET['klas'])) : ?>
           Klas <?php echo $klasHuman ?> &ndash;
@@ -29,18 +29,18 @@ require 'inc/header.php';
     </div>
   </div>
   <div class="row">
-    <div class="small-12 large-4 columns">
+    <div class="small-15 large-5 columns">
       <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_vorige ?>" class="button alert vorige-week js-week">&laquo; Vorige week</a>
     </div>
-    <div class="small-12 large-4 text-center-large columns">
+    <div class="small-15 large-5 text-center-large columns">
       <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_huidig ?>" class="button huidige-week js-week">Huidige week</a>
     </div>
-    <div class="small-12 large-4 columns">
+    <div class="small-15 large-5 columns">
       <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_volgende ?>" class="button success volgende-week js-week">Volgende week &raquo;</a>
     </div>
   </div>
   <div class="row">
-    <div class="small-12 columns">
+    <div class="small-15 columns">
       <?php if (empty($_GET['klas'])) : ?>
         <h3>Klas</h3>
         <input type="text" value="" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
