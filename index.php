@@ -45,6 +45,10 @@ require 'inc/header.php';
       <div class="hetrooster">
         <?php require('rooster.php') ?>
       </div>
+      <?php if (!empty($_GET['klas'])) : ?>
+        <h3>Klas</h3>
+        <input type="text" value="" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
+      <?php endif; ?>
     </div>
   </div>
   <div class="row">

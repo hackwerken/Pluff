@@ -3,9 +3,28 @@
  * Dit bestand haalt het daadwerkelijk rooster via JSON op en verwerkt het.
  */
 
-function getFile($url) {
-  // cache files are created like cache/abcdef123456...
+$klas_whitelist_bestand = file_get_contents('klaswhitelist.json');
+$klas_whitelist = json_decode($klas_whitelist_bestand, true);
+
+// Accepteert array met klassen
+function getFile($klas) {
+  global $klas_whitelist;
+
+  // Controleer of de ingevoerde klas(sen) in de toegestane lijst zitten, indien niet het geval helemaal niks doen.
+  // Dit zit er in om zowel een 'DDoS' aan Fontys kant te voorkomen, maar ook aan onze kant.
+  if (array_diff($klas, $klas_whitelist)) {
+    return array();
+    exit;
+  }
+
+  // Array weer samenvoegen met extra tekst ertussen. (array) voorkomt een foutmelding als er maar 1 klas is opgegeven.
+  $url = '&klas='.implode('&klas=', (array)$klas);
+
+  // Cache bestanden worden in de 'cache/' folder gemaakt en met md5 gehashed
   $cacheFile = 'cache' . DIRECTORY_SEPARATOR . md5($url);
+
+  if (strlen($url) > 35)
+    print('Te lang.');
 
   if (file_exists($cacheFile)) {
     $fh = fopen($cacheFile, 'r');
@@ -38,12 +57,10 @@ function getFile($url) {
   return json_decode($json, true);
 
   curl_close($ch);
-  // $json = file_get_contents('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
-
 }
 
 function getDag($weekNummer, $dagNummer, $klas) {
-  $remote = getFile('&klas='.$klas);
+  $remote = getFile($klas);
 
   // Dag is gevonden
   if ($remote) {

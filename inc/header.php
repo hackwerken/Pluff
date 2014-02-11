@@ -11,8 +11,6 @@ if (!empty($_GET['klas']) && preg_match('/^[A-Za-z0-9;]+$/i', $_GET['klas'])) {
   $klasOrig = $_GET['klas'];
   $klasArray = explode(';', $_GET['klas']);
   $klasHuman = implode(', ', (array)$klasArray);
-  // Array weer samenvoegen met extra tekst ertussen. (array) voorkomt een foutmelding als er maar 1 klas is opgegeven.
-  $klasArray = implode('&klas=', (array)$klasArray);
   $klas = $klasArray;
 }
 
