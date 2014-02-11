@@ -21,7 +21,10 @@ require 'inc/header.php';
   <div class="row">
     <div class="small-12 columns">
       <div class="header">
-        Klas <?php echo $klasHuman ?> &ndash; Week <?php echo $weeknr ?>
+        <?php if (!empty($_GET['klas'])) : ?>
+          Klas <?php echo $klasHuman ?> &ndash;
+        <?php endif; ?>
+        Week <?php echo $weeknr ?>
       </div>
     </div>
   </div>
@@ -38,9 +41,10 @@ require 'inc/header.php';
   </div>
   <div class="row">
     <div class="small-12 columns">
-      <h3>Klas</h3>
-      <input type="text" value="" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
-
+      <?php if (empty($_GET['klas'])) : ?>
+        <h3>Klas</h3>
+        <input type="text" value="" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
+      <?php endif; ?>
       <div class="hetrooster">
         <?php require('rooster.php') ?>
       </div>

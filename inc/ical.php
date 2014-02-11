@@ -18,14 +18,14 @@ function getFile($url) {
   // }
 
   $cal = new CalFileParser();
-  $json = $cal->parse('http://pinega.fontys.nl/studenten/ical.aspx?instituut=1&'.$url);
+  $remote = $cal->parse('http://pinega.fontys.nl/studenten/ical.aspx?instituut=1&'.$url);
 
   // $fh = fopen($cacheFile, 'w');
   // fwrite($fh, time() . "\n");
-  // fwrite($fh, $json);
+  // fwrite($fh, $remote);
   // fclose($fh);
 
-  return $json;
+  return $remote;
 }
 
 function getDag($weekNummer, $dagNummer, $klas) {
