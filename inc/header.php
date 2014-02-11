@@ -9,7 +9,7 @@ $klasOrig = '';
 if (!empty($_GET['klas']) && preg_match('/^[A-Za-z0-9;-]+$/i', $_GET['klas'])) {
   // Indien meerdere klassen er een array van maken
   $klasOrig = $_GET['klas'];
-  $klasArray = explode(';', $_GET['klas']);
+  $klasArray = explode(';', $klasOrig);
   $klasHuman = implode(', ', (array)$klasArray);
   $klas = $klasArray;
 }
