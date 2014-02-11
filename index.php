@@ -61,9 +61,14 @@ require 'inc/header.php';
 
 
   <footer>
-    <p>
-      &copy; <a href="http://webduck.nl">Kees Kluskens</a>
-    </p>
+    <div class="row">
+      <div class="small-15 columns">
+        <p>
+          BETA Versie. Gemaakt door <a href="https://webduck.nl">Kees Kluskens</a> &amp; <a href="http://laylo.nl">Jeroen Janssen</a>.
+          Denk je dat dit beter kan? Help ons op <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
+        </p>
+      </div>
+    </div>
   </footer>
 
   <script src="js/vendor/jquery.js"></script>
