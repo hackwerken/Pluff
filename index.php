@@ -1,4 +1,8 @@
-<?php require('inc/klas.php') ?>
+<?php
+require 'inc/calfileparser.php';
+require 'inc/ical.php';
+require 'inc/header.php';
+?>
 
 <!DOCTYPE html>
 <html class="no-js" lang="nl" >
@@ -6,7 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>IMD <?php echo $klas_naam; ?> Rooster</title>
+  <title>Fontys Rooster</title>
 
 
   <link rel="stylesheet" href="css/foundation.min.css">
@@ -16,7 +20,30 @@
 <body>
   <div class="row">
     <div class="small-12 columns">
-      <?php require 'week.php'; ?>
+      <div class="header">
+        Klas <?php echo $klasHuman ?> &ndash; Week <?php echo $weeknr ?>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 large-4 columns">
+      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_vorige ?>" class="button alert vorige-week js-week">&laquo; Vorige week</a>
+    </div>
+    <div class="small-12 large-4 text-center-large columns">
+      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_huidig ?>" class="button huidige-week js-week">Huidige week</a>
+    </div>
+    <div class="small-12 large-4 columns">
+      <a href="rooster.php?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_volgende ?>" class="button success volgende-week js-week">Volgende week &raquo;</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>Klas</h3>
+      <input type="text" value="" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
+
+      <div class="hetrooster">
+        <?php require('rooster.php') ?>
+      </div>
     </div>
   </div>
 
