@@ -49,7 +49,7 @@ require 'inc/header.php';
   </div>
   <div class="row">
     <div class="small-15 columns">
-      <?php if (empty($_GET['klas'])) : ?>
+      <div class="js-intro <?php echo (!empty($_GET['klas'])) ? 'hide' : '' ?>">
         <h3>Rooster</h3>
         <p>
           Hieronder kun je je klas van Fontys invoeren. Zit je in meerdere klassen? Scheid deze dan met een puntkomma.
@@ -58,15 +58,13 @@ require 'inc/header.php';
         <p>
           <strong>Note:</strong> Je kunt hier alleen gebruik van maken als je op de Fontys ICT opleiding zit. We zijn nog bezig met andere opleidingen toevoegen.
         </p>
-        <input type="text" value="" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
-      <?php endif; ?>
+      </div>
+
+      <input type="text" value="<?php echo $klasOrig ?>" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
+
       <div class="hetrooster">
         <?php require('rooster.php') ?>
       </div>
-      <?php if (!empty($_GET['klas'])) : ?>
-        <h3>Klas</h3>
-        <input type="text" value="" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
-      <?php endif; ?>
     </div>
   </div>
   <div class="row">
@@ -84,6 +82,7 @@ require 'inc/header.php';
         <p>
           <em>Pluff</em> BETA Versie. Gemaakt door <a href="https://webduck.nl">Kees Kluskens</a> &amp; <a href="http://laylo.nl">Jeroen Janssen</a>.
           Denk je dat dit beter kan? Help ons op <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
+          <small>Een designer is dringend nodig</small>
         </p>
       </div>
     </div>
@@ -97,6 +96,6 @@ require 'inc/header.php';
     window.weeknr_huidig = <?php echo $weeknr_huidig ?>;
     window.klasOrig = "<?php echo $klasOrig ?>";
   </script>
-  <script src="js/general.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

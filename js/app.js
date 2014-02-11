@@ -43,7 +43,11 @@ $(function() {
 
     if (input.length >= 2) {
       klasOrig = input;
+      $('.js-intro').hide();
       roosterLaden(klasOrig, weeknr_huidig);
+    }
+    else {
+      $('.js-intro').show();
     }
   });
 
@@ -71,10 +75,8 @@ $(function() {
 
     weeknr = weeknr + 1;
 
-    if (weeknr == 53) {
+    if (weeknr == 53)
       weeknr = 01;
-      console.log('Jaar bereikt.');
-    }
 
     roosterLaden(klasOrig, weeknr);
   });
