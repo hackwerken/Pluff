@@ -7,6 +7,11 @@ De code is vrij snel geschreven en kan daardoor grote fouten bevatten. Alvast mi
 
 Tips / verbeteringen zijn altijd welkom.
 
+# Installatie
+Om het roostersysteem op je eigen server te laten werken heb je 5.4+ met CURL ondersteuning nodig.
+
+Maak verder een folder genaamd `cache` aan in de root van het project en chmod die naar `777`.
+
 # To-Do
 
 ## Hoge prioriteit
@@ -21,3 +26,4 @@ Tips / verbeteringen zijn altijd welkom.
 
 - Klassenlijst; hoewel klas intypen ook heel snel is. Misschien suggesties tijdens typen?
 - Mogelijkheid tot inzien vorige weken (nu kun je alleen nog vandaag + 3 weken inzien)
+- Grunt toevoegen om bestanden automatisch te verkleinen
