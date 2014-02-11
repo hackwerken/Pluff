@@ -9,8 +9,8 @@ function getFile($url) {
 
     // Als de data minder dan 60 min geleden is gecached, de gecachte data returnen
     if ($cacheTime > strtotime('-60 minutes')) {
-        $cachedFile = fread($fh, filesize($cacheFile));
-        return json_decode($cachedFile, true);
+      $cachedFile = fread($fh, filesize($cacheFile));
+      return json_decode($cachedFile, true);
     }
 
     // Verwijder het gecachte bestand indien > 60 min oud
@@ -19,14 +19,24 @@ function getFile($url) {
   }
 
   // Haal JSON op van Fontys website en sla in de $json variabele op
-  $json = file_get_contents('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
+  $ch = curl_init('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $json = '';
 
-  $fh = fopen($cacheFile, 'w');
-  fwrite($fh, time() . "\n");
-  fwrite($fh, $json);
-  fclose($fh);
+  // Kijk of de klas(sen) gevonden zijn
+  if(($json = curl_exec($ch))) {
+    // Tijd wegschrijven
+    $fh = fopen($cacheFile, 'w');
+    fwrite($fh, time() . "\n");
+    fwrite($fh, $json);
+    fclose($fh);
 
-  return json_decode($json, true);
+    return json_decode($json, true);
+  }
+
+  curl_close($ch);
+  // $json = file_get_contents('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
+
 }
 
 function getDag($weekNummer, $dagNummer, $klas) {
