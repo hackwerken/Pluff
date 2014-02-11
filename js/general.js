@@ -1,51 +1,83 @@
 $(function() {
 
-	$('.klas-wisselen').on('click', function(e) {
-		e.preventDefault();
+  // Lees status van de javascript variabelen op (handig om te testen)
+  function getStatus() {
+    console.log('KlasOrig: ' + klasOrig);
+    console.log('Weeknr: ' + weeknr);
+    console.log('Weeknr volgende: ' + weeknr_volgende);
+    console.log('Weeknr vorige: ' + weeknr_vorige);
+  }
 
-		console.log('Klikkie.');
+  // Standaard status
+  getStatus();
 
-		// Dropdown laten zien
-		$('.klas-select').fadeToggle(300);
+  // Het daadwerkelijk laden van het rooster
+  function roosterLaden(klasOrig, weeknr) {
+    weeknr_volgende = weeknr + 1;
+    weeknr_vorige = weeknr - 1;
 
-		// Verdwijnen bij esc toets
-		$(document).on('keyup', function(e) {
-			if(e.keyCode === 27) {
-				$('.klas-select').fadeOut(300);
-				$(document).off('keyup');
-			}
-		});
+    console.log('Laden...');
+    $.get('rooster.php?klas=' + klasOrig + '&week=' + weeknr, function(data) {
+      // Opgehaalde rooster in de DOM zetten
+      $('.hetrooster').html(data);
 
-		// Laten verdwijnen als er ergens anders op wordt geklikt.
-		// WAARSCHUWING: matige code.
-		$('.wegklikken').css('z-index', 10).on('click', function(e) {
-			$('.klas-select, .week-select').hide();
-			console.log('Weg!');
-			$('.wegklikken').css('z-index', 0).off();
-		});
-	});
+      // Weeknummer en klas vervangen in de header
+      $('.js-weeknr-show').text(weeknr);
+      $('.js-klas-show').text(klasOrig.replace(/;/g , ', '));
 
-	// En die shit kopieren, ik ben te lui.
-	$('.week-select-button').on('click', function(e) {
-		e.preventDefault();
+      // Permalink laten zien
+      $('.js-permalink-toggle').show();
+      $('.js-permalink').text('http://pluff.nl/?klas=' + klasOrig);
 
-		console.log('Klikkie.');
-		$('.week-select').fadeToggle(300);
+      // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
+      history.pushState(null, null, 'index.php?klas=' + klasOrig + '&week=' + weeknr);
 
-		$(document).on('keyup', function(e) {
-			if(e.keyCode === 27) {
-				$('.week-select').fadeOut(300);
-				$(document).off('keyup');
-			}
-		});
+      getStatus();
+    });
+  }
 
-		$('.wegklikken').css('z-index', 10).on('click', function(e) {
-			$('.klas-select, .week-select').hide();
-			console.log('Weg!');
-			$('.wegklikken').css('z-index', 0).off();
-		});
-	});
+  $('.js-klas').on('keyup change', function() {
+    // Haal de ingevoerde klassen op, haal alle spaties weg en vervang komma's door puntkomma's
+    var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';');
+    console.log(input);
 
+    if (input.length >= 2) {
+      klasOrig = input;
+      roosterLaden(klasOrig, weeknr_huidig);
+    }
+  });
+
+  $('.js-vorige').on('click', function(e) {
+    e.preventDefault();
+
+    weeknr = weeknr - 1;
+
+    if (weeknr == 00)
+      weeknr = 52;
+
+    roosterLaden(klasOrig, weeknr);
+  });
+
+  $('.js-huidige').on('click', function(e) {
+    e.preventDefault();
+
+    weeknr = weeknr_huidig;
+
+    roosterLaden(klasOrig, weeknr);
+  });
+
+  $('.js-volgende').on('click', function(e) {
+    e.preventDefault();
+
+    weeknr = weeknr + 1;
+
+    if (weeknr == 53) {
+      weeknr = 01;
+      console.log('Jaar bereikt.');
+    }
+
+    roosterLaden(klasOrig, weeknr);
+  });
 
 });
 
