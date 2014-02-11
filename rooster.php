@@ -1,6 +1,5 @@
 <?php
-require_once 'inc/calfileparser.php';
-require_once 'inc/ical.php';
+require_once 'inc/json.php';
 require 'inc/header.php';
 ?>
 <div class="hide js-klasHuman"><?php echo $klasHuman ?></div>

@@ -1,6 +1,5 @@
 <?php
-require 'inc/calfileparser.php';
-require 'inc/ical.php';
+require 'inc/json.php';
 require 'inc/header.php';
 ?>
 
