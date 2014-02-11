@@ -7,17 +7,18 @@ function getFile($url) {
     $fh = fopen($cacheFile, 'r');
     $cacheTime = trim(fgets($fh));
 
-    // if data was cached recently, return cached data
+    // Als de data minder dan 60 min geleden is gecached, de gecachte data returnen
     if ($cacheTime > strtotime('-60 minutes')) {
         $cachedFile = fread($fh, filesize($cacheFile));
         return json_decode($cachedFile, true);
     }
 
-    // else delete cache file
+    // Verwijder het gecachte bestand indien > 60 min oud
     fclose($fh);
     unlink($cacheFile);
   }
 
+  // Haal JSON op van Fontys website en sla in de $json variabele op
   $json = file_get_contents('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
 
   $fh = fopen($cacheFile, 'w');
@@ -31,28 +32,34 @@ function getFile($url) {
 function getDag($weekNummer, $dagNummer, $klas) {
   $remote = getFile('&klas='.$klas);
 
-  $huidigeTijd = date('H:i');
+  // Dag is gevonden
+  if ($remote) {
+    $huidigeTijd = date('H:i');
 
-  foreach ($remote as $event) {
-    $starttijd = strtotime($event['dat'].' '.$event['start']); // Starttijd geconverteerd naar UNIX timestamp
-    $eindtijd  = strtotime($event['dat'].' '.$event['eind']); // Eindtijd geconverteerd naar UNIX timestamp
-    $starttijdHuman = date('H:i', $starttijd);
-    $eindtijdHuman  = date('H:i', $eindtijd);
+    foreach ($remote as $event) {
+      $starttijd = strtotime($event['dat'].' '.$event['start']); // Starttijd geconverteerd naar UNIX timestamp
+      $eindtijd  = strtotime($event['dat'].' '.$event['eind']); // Eindtijd geconverteerd naar UNIX timestamp
+      $starttijdHuman = date('H:i', $starttijd);
+      $eindtijdHuman  = date('H:i', $eindtijd);
 
-    // Alleen de huidige week weergeven
-    if (date('W', $starttijd) === $weekNummer AND date('N', $starttijd) == $dagNummer) {
-      // Controleer of de les nu bezig is door het dagnummer te vergelijken en de tijd
-      if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
-        echo '<span style="color:red">';
-      }
-      echo "<b>".$starttijdHuman." - ";
-      echo $eindtijdHuman."</b><br/>";
-      echo $event['vak']." - ".$event['doc']."<br/>";
-      echo "<small>".$event['lok']." - ".$event['klas']."</small><br/>";
-      echo "<hr/>";
-      if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
-        echo '</span>';
+      // Alleen de huidige week weergeven
+      if (date('W', $starttijd) === $weekNummer AND date('N', $starttijd) == $dagNummer) {
+        // Controleer of de les nu bezig is door het dagnummer te vergelijken en de tijd
+        if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
+          echo '<span style="color:red">';
+        }
+        echo "<b>".$starttijdHuman." - ";
+        echo $eindtijdHuman."</b><br/>";
+        echo $event['vak']." - ".$event['doc']."<br/>";
+        echo "<small>".$event['lok']." - ".$event['klas']."</small><br/>";
+        echo "<hr/>";
+        if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
+          echo '</span>';
+        }
       }
     }
+  }
+  else {
+    echo 'Leeg.';
   }
 }
