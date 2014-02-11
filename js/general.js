@@ -52,6 +52,9 @@ $(function() {
 
     weeknr = weeknr - 1;
 
+    if (weeknr == 00)
+      weeknr = 52;
+
     roosterLaden(klasOrig, weeknr);
   });
 
@@ -67,6 +70,11 @@ $(function() {
     e.preventDefault();
 
     weeknr = weeknr + 1;
+
+    if (weeknr == 53) {
+      weeknr = 01;
+      console.log('Jaar bereikt.');
+    }
 
     roosterLaden(klasOrig, weeknr);
   });
