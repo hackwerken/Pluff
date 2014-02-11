@@ -1,4 +1,9 @@
 <?php
+/*
+ * Dit bestand voert wat berekeningen uit over de standaard dagen.
+ * En controleert of er al variabelen zijn ingevuld.
+ */
+
 $klasOrig = '';
 
 if (!empty($_GET['klas']) && preg_match('/^[A-Za-z0-9;]+$/i', $_GET['klas'])) {

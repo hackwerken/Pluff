@@ -1,4 +1,8 @@
 <?php
+/*
+ * Dit bestand haalt het daadwerkelijk rooster via JSON op en verwerkt het.
+ */
+
 function getFile($url) {
   // cache files are created like cache/abcdef123456...
   $cacheFile = 'cache' . DIRECTORY_SEPARATOR . md5($url);
@@ -21,18 +25,17 @@ function getFile($url) {
   // Haal JSON op van Fontys website en sla in de $json variabele op
   $ch = curl_init('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  $json = '';
 
-  // Kijk of de klas(sen) gevonden zijn
-  if(($json = curl_exec($ch))) {
-    // Tijd wegschrijven
-    $fh = fopen($cacheFile, 'w');
-    fwrite($fh, time() . "\n");
-    fwrite($fh, $json);
-    fclose($fh);
+  // Zet content in variabele
+  $json = curl_exec($ch);
 
-    return json_decode($json, true);
-  }
+  // Tijd wegschrijven
+  $fh = fopen($cacheFile, 'w');
+  fwrite($fh, time() . "\n");
+  fwrite($fh, $json);
+  fclose($fh);
+
+  return json_decode($json, true);
 
   curl_close($ch);
   // $json = file_get_contents('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
