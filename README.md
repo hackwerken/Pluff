@@ -18,9 +18,10 @@ Maak verder een folder genaamd `cache` aan in de root van het project en chmod d
 
 - Mooi ontwerp (**!!**)
 - Rooster 'ophaal methode' verbeteren; wordt nu nog per volledige dag opgehaald.
+- Optimalisatie voor telefoon: automatisch huidige dag laten zien
 - Kijken of ook niet gevonden bestanden gecached kunnen worden (met een leeg JSON bestand), zodat de Fontys server niet overbodig belast wordt (en snellere respons).
 - 1 uur cache: goed genoeg of langer?
-- Push notificaties
+- Push notificaties (*veel werk*); hiervoor moet een groot deel van de code herschreven worden
 
 ## Lage prioriteit
 

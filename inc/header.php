@@ -23,13 +23,14 @@ if (!empty($_GET['week']) && is_numeric($_GET['week'])) {
   $weeknr = $_GET['week'];
 }
 
+// Voeg een 0 toe aan getallen < 10
 $weeknr = sprintf("%02s", $weeknr);
 
 // Vorige en volgende weeknr's :)
-$weeknr_vorige = sprintf("%02s", $weeknr - 1);
-$weeknr_volgende = sprintf("%02s", $weeknr + 1);
+$weeknr_vorige = $weeknr - 1;
+$weeknr_volgende = $weeknr + 1;
 if ($weeknr_volgende == 53)
   $weeknr_volgende = '01';
 if ($weeknr_vorige == 00)
   $weeknr_vorige = 52;
-$weeknr_huidig = sprintf("%02s", date('W'));
+$weeknr_huidig = date('W');

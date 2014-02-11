@@ -46,7 +46,13 @@ require 'inc/header.php';
         <?php require('rooster.php') ?>
       </div>
     </div>
-    <div class="permalink hide js-permalink-toggle"><b>Permalink:</b> <span class="js-permalink"></span></div>
+  </div>
+  <div class="row">
+    <div class="small-15 columns">
+      <div class="permalink hide js-permalink-toggle panel">
+        <b>Permalink:</b> <span class="js-permalink"></span>
+      </div>
+    </div>
   </div>
 
 
