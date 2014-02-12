@@ -3,60 +3,29 @@
  * Dit bestand haalt het daadwerkelijk rooster via JSON op en verwerkt het.
  */
 
-$klas_whitelist_bestand = file_get_contents('klaswhitelist.json');
-$klas_whitelist = json_decode($klas_whitelist_bestand, true);
+$cache_dir = 'klassen/';
 
 // Accepteert array met klassen
-function getFile($klas) {
-  global $klas_whitelist;
+function getFile($klassen) {
+  global $klas_whitelist, $cache_dir;
 
-  // Controleer of de ingevoerde klas(sen) in de toegestane lijst zitten, indien niet het geval helemaal niks doen.
-  // Dit zit er in om zowel een 'DDoS' aan Fontys kant te voorkomen, maar ook aan onze kant.
-  if (array_diff($klas, $klas_whitelist)) {
-    return array();
-    exit;
-  }
+  $json_klassen = array();
 
-  // Array weer samenvoegen met extra tekst ertussen. (array) voorkomt een foutmelding als er maar 1 klas is opgegeven.
-  $url = '&klas='.implode('&klas=', (array)$klas);
+  foreach ($klassen as $klas) {
+    // Pad naar bestand
+    $json_file_name = $cache_dir.$klas.'.json';
 
-  // Cache bestanden worden in de 'cache/' folder gemaakt en met md5 gehashed
-  $cacheFile = 'cache' . DIRECTORY_SEPARATOR . md5($url);
+    if (file_exists($json_file_name)) {
+      $json_file = fopen($json_file_name, 'r');
 
-  if (strlen($url) > 35)
-    print('Te lang.');
-
-  if (file_exists($cacheFile)) {
-    $fh = fopen($cacheFile, 'r');
-    $cacheTime = trim(fgets($fh));
-
-    // Als de data minder dan 60 min geleden is gecached, de gecachte data returnen
-    if ($cacheTime > strtotime('-60 minutes')) {
-      $cachedFile = fread($fh, filesize($cacheFile));
-      return json_decode($cachedFile, true);
+      $json_read = fread($json_file, filesize($json_file_name));
+      $json_array = json_decode($json_read, true);
+      $json_klassen = array_merge($json_klassen, $json_array);
+      fclose($json_file);
     }
-
-    // Verwijder het gecachte bestand indien > 60 min oud
-    fclose($fh);
-    unlink($cacheFile);
   }
 
-  // Haal JSON op van Fontys website en sla in de $json variabele op
-  $ch = curl_init('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&'.$url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-  // Zet content in variabele
-  $json = curl_exec($ch);
-
-  // Tijd wegschrijven
-  $fh = fopen($cacheFile, 'w');
-  fwrite($fh, time() . "\n");
-  fwrite($fh, $json);
-  fclose($fh);
-
-  return json_decode($json, true);
-
-  curl_close($ch);
+  return $json_klassen;
 }
 
 function getDag($weekNummer, $dagNummer, $klas) {
