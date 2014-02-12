@@ -8,15 +8,14 @@ $(function() {
     console.log('Weeknr vorige: ' + weeknr_vorige);
   }
 
-  // Standaard status
-  getStatus();
+  // getStatus();
 
   // Het daadwerkelijk laden van het rooster
   function roosterLaden(klasOrig, weeknr) {
     weeknr_volgende = weeknr + 1;
     weeknr_vorige = weeknr - 1;
 
-    console.log('Laden...');
+    // console.log('Laden...');
     $.get('rooster.php?klas=' + klasOrig + '&week=' + weeknr, function(data) {
       // Opgehaalde rooster in de DOM zetten
       $('.hetrooster').html(data);
@@ -31,7 +30,7 @@ $(function() {
       $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
 
       // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
-      history.pushState(null, null, 'index.php?klas=' + klasOrig + '&week=' + weeknr);
+      history.pushState(null, null, '?klas=' + klasOrig + '&week=' + weeknr);
 
       getStatus();
     });
@@ -40,7 +39,7 @@ $(function() {
   $('.js-klas').on('keyup change', function() {
     // Haal de ingevoerde klassen op, haal alle spaties weg en vervang komma's door puntkomma's
     var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';').toLowerCase();
-    console.log(input);
+    // console.log(input);
 
     if (input.length >= 2) {
       klasOrig = input;
