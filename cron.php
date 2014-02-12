@@ -1,4 +1,7 @@
 <?php
+if (!empty($_SERVER['SCRIPT_FILENAME']) && 'cron.php' == basename($_SERVER['SCRIPT_FILENAME']))
+die ('Direct aanroepen script niet toegestaan!');
+
 $cache_dir = 'klassen/';
 $log_file = $cache_dir.'fouten.log';
 
