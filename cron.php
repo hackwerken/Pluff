@@ -1,8 +1,9 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && 'cron.php' == basename($_SERVER['SCRIPT_FILENAME']))
-die ('Direct aanroepen script niet toegestaan!');
-
-$cache_dir = 'klassen/';
+// Check of dit bestand wordt aangeroepen via command line interface
+define("IS_CLI_CALL",( strcmp(php_sapi_name(),'cli') == 0 ));
+// Als dat zo is, voer dan de code uit
+if(IS_CLI_CALL){
+   $cache_dir = 'klassen/';
 $log_file = $cache_dir.'fouten.log';
 
 $countErrors = 0;
@@ -61,3 +62,9 @@ foreach ($klas_whitelist as $klas) {
 
 // Log bestand sluiten
 fclose($log);
+}
+// Geef een foutmelding als het bestand niet via CLI opgeroepen is
+else{
+  echo 'Toegang geweigerd';
+}
+?>
