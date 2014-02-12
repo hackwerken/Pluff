@@ -31,7 +31,6 @@ function getFile($klas) {
     // Bestand wegschrijven
     $fh = fopen($cache_dir.$klas.'.json', 'w');
     fwrite($fh, $json);
-    fclose($fh);
     curl_close($ch);
   }
   else {
