@@ -6,11 +6,11 @@ Kees had eerst een oplossing bedacht met iframes. Dit werkte wel, maar na een pa
 
 Nu nog een design!
 
-Kees Kluskens
-Jeroen Janssen
+Kees Kluskens [WebDuck]
+Jeroen Janssen [LAYLO]
 
 WebDuck Industries - http://webduck.nl
-Laylo - http://laylo.nl
+LAYLO - http://laylo.nl
 
 Verdere mensen die hieraan hebben bijgedragen:
 - De mensen bij Zurb, die het geweldige CSS-framework 'Foundation' hebben gemaakt.
