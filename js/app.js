@@ -8,7 +8,6 @@ $(function() {
     console.log('Weeknr vorige: ' + weeknr_vorige);
   }
 
-  // Standaard status
   // getStatus();
 
   // Het daadwerkelijk laden van het rooster
