@@ -70,7 +70,7 @@ require 'inc/header.php';
   <div class="row">
     <div class="small-15 columns">
       <div class="permalink hide js-permalink-toggle panel">
-        <b>Permalink:</b> <span class="js-permalink"></span>
+        <b>Permalink:</b> <a href="#" class="js-permalink"></a>
       </div>
     </div>
   </div>

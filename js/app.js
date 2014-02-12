@@ -27,7 +27,8 @@ $(function() {
 
       // Permalink laten zien
       $('.js-permalink-toggle').show();
-      $('.js-permalink').text('http://pluff.nl/?klas=' + klasOrig);
+      var nieuweUrl = 'http://pluff.nl/?klas=' + klasOrig;
+      $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
 
       // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
       history.pushState(null, null, 'index.php?klas=' + klasOrig + '&week=' + weeknr);
