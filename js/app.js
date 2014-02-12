@@ -38,7 +38,7 @@ $(function() {
 
   $('.js-klas').on('keyup change', function() {
     // Haal de ingevoerde klassen op, haal alle spaties weg en vervang komma's door puntkomma's
-    var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';');
+    var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';').toLowerCase();
     console.log(input);
 
     if (input.length >= 2) {
