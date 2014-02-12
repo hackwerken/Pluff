@@ -31,7 +31,7 @@ $(function() {
       $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
 
       // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
-      history.pushState(null, null, 'index.php?klas=' + klasOrig + '&week=' + weeknr);
+      history.pushState(null, null, '?klas=' + klasOrig + '&week=' + weeknr);
 
       getStatus();
     });
