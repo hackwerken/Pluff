@@ -4,7 +4,8 @@ define("IS_CLI_CALL",( strcmp(php_sapi_name(),'cli') == 0 ));
 
 // Als dat zo is, voer dan de code uit
 if (IS_CLI_CALL) {
-  $cache_dir = __DIR__.'/klassen/';
+  $script_dir = dirname(__FILE__);
+  $cache_dir = $script_dir.'/klassen/';
   $log_file = $cache_dir.'fouten.log';
 
   $countErrors = 0;
