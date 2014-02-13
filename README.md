@@ -7,12 +7,12 @@ De code is vrij snel geschreven en kan daardoor grote fouten bevatten. Alvast mi
 
 Tips / verbeteringen zijn altijd welkom.
 
-**Helpen**? Dat mag altijd. We hebben op dit moment vooral een designer nodig, die goed is in minimalistische ontwerpen. Contact via info@webduck.nl
+**Helpen**? Dat mag altijd! Lees de code vast even door om jezelf wegwijs te maken! Contact via info@webduck.nl
 
 # Installatie
-Om het roostersysteem op je eigen server te laten werken heb je 5.4+ met CURL ondersteuning nodig.
+Om het roostersysteem op je eigen server te laten werken heb je 5.4+ met CURL ondersteuning nodig. Rechten om CRON taken toe te kunnen voegen & uitvoeren is nodig om het rooster up-to-date te houden. Tenzij je graag elke één/twee uur met de hand een PHP script uitvoert via de CLI.
 
-Maak verder een folder genaamd `cache` aan in de root van het project en chmod die naar `777`.
+Maak verder een folder genaamd `klassen` aan in de root van het project en chmod die naar `777`.
 
 # To-Do
 

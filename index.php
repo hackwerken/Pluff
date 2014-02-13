@@ -81,8 +81,7 @@ require 'inc/header.php';
       <div class="small-15 columns">
         <p>
           <em>Pluff</em> BETA Versie. Gemaakt door <a href="https://webduck.nl">Kees Kluskens</a> &amp; <a href="http://laylo.nl">Jeroen Janssen</a>.
-          Denk je dat dit beter kan? Help ons op <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
-          <small>Een designer is dringend nodig</small>
+          Ervaren coder? Help ons mee via <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
         </p>
       </div>
     </div>
