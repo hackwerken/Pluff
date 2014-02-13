@@ -2,8 +2,6 @@
 require_once 'inc/json.php';
 require 'inc/header.php';
 ?>
-<div class="hide js-klasHuman"><?php echo $klasHuman ?></div>
-<div class="hide js-week"><?php echo $weeknr ?></div>
 
 <?php if (!empty($klas)) :?>
   <div class="row">
