@@ -6,9 +6,10 @@ $(function() {
     console.log('Weeknr: ' + weeknr);
     console.log('Weeknr volgende: ' + weeknr_volgende);
     console.log('Weeknr vorige: ' + weeknr_vorige);
+    console.log('Weeknr huidig: ' + weeknr_huidig);
   }
 
-  // getStatus();
+  getStatus();
 
   // Het daadwerkelijk laden van het rooster
   function roosterLaden(klasOrig, weeknr) {
@@ -82,4 +83,3 @@ $(function() {
   });
 
 });
-

@@ -11,9 +11,7 @@ require 'inc/header.php';
   <meta name="viewport" content="width=device-width">
   <title>Fontys Rooster</title>
 
-
-  <link rel="stylesheet" href="css/foundation.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
 
 </head>
 <body>

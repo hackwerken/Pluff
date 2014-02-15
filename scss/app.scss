@@ -1,0 +1,51 @@
+@import "normalize";
+@import "settings";
+@import "foundation";
+
+/* Blergh onderstaande CSS handelt af met IE8- gebruikers */
+.slechtebrowser {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  width: 600px;
+  margin-left: -300px;
+  z-index: 1000;
+  background: red;
+  color: #fff;
+  padding: 20px;
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+/* Echte stijlen */
+.header {
+  text-align: center;
+  font-size: 2.75em;
+  line-height: 1.4;
+  position: relative;
+}
+
+.button {
+  border-radius: 3px;
+}
+
+.vorige-week, .volgende-week, .huidige-week {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .volgende-week {
+    float: right;
+  }
+
+  .text-center-large {
+    text-align: center;
+  }
+}
+
+footer {
+  margin-top: 2em;
+}
