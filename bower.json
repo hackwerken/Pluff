@@ -1,0 +1,6 @@
+{
+  "name": "WebDuck Project",
+  "dependencies": {
+    "foundation": "zurb/bower-foundation"
+  }
+}
