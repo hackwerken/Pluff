@@ -37,8 +37,4 @@ $weeknr_volgende = $weeknr + 1;
 if ($weeknr_volgende == 53)
   $weeknr_volgende = '01';
 if ($weeknr_vorige == 00)
-<<<<<<< HEAD
   $weeknr_vorige = 52;
-=======
-  $weeknr_vorige = 52;
->>>>>>> grunt
