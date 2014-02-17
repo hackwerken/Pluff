@@ -34,8 +34,9 @@ if (IS_CLI_CALL) {
     // Dit om te voorkomen dat er hele HTML pagina's met foutmeldingen worden gedownload.
     if (is_json($response) === true) {
       $json = $response;
+      $json_file = strtolower($cache_dir.$klas.'.json');
       // Bestand wegschrijven
-      $fh = fopen($cache_dir.$klas.'.json', 'w');
+      $fh = fopen($json_file, 'w');
       fwrite($fh, $json);
       curl_close($ch);
     }
