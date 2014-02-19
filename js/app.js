@@ -42,6 +42,9 @@ $(function() {
     var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';').toLowerCase();
     // console.log(input);
 
+    // Reset week naar huidige
+    weeknr = weeknr_huidig;
+
     if (input.length >= 2) {
       klasOrig = input;
       $('.js-intro').hide();
@@ -57,6 +60,7 @@ $(function() {
 
     weeknr = weeknr - 1;
 
+    // Week 0 bestaat niet, dus naar het vorige jaar gaan
     if (weeknr == 00)
       weeknr = 52;
 
@@ -76,6 +80,7 @@ $(function() {
 
     weeknr = weeknr + 1;
 
+    // Het jaar is voorbij, dus weer opnieuw beginnen
     if (weeknr == 53)
       weeknr = 01;
 
