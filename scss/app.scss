@@ -2,6 +2,21 @@
 @import "settings";
 @import "foundation";
 
+@font-face {
+  font-family: 'Baffled';
+  src: url('fonts/Baffled-Regular.eot'); /* IE9 Compat Modes */
+  src: url('fonts/Baffled-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/Baffled-Regular.woff') format('woff'), /* Modern Browsers */
+       url('fonts/Baffled-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/Baffled-Regular.svg#172039f834ca2a14e7589324a7c3d59c') format('svg'); /* Legacy iOS */
+  font-style: normal;
+  font-weight: 400;
+}
+
+::selection {
+  background: $primary-color;
+}
+
 /* Blergh onderstaande CSS handelt af met IE8- gebruikers */
 .slechtebrowser {
   position: fixed;
@@ -20,16 +35,79 @@
   }
 }
 
+/* Typografie */
+h2 {
+  text-transform: uppercase;
+  color: darken($primary-color, 30%);
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 2.5em;
+  color: $body-font-color;
+  margin-bottom: 1.1875rem;
+}
+
+h4 {
+  font-size: 1.56em;
+  color: $body-font-color;
+}
+
 /* Echte stijlen */
 .header {
   text-align: center;
-  font-size: 2.75em;
-  line-height: 1.4;
   position: relative;
+  margin-top: 1.19em;
+
+  .logo {
+    font: 7.15em "Baffled", Georgia, serif;
+    margin: 0;
+    color: $primary-color;
+  }
+
+  .logo {
+      background: linear-gradient(
+        162deg,
+        lighten($primary-color, 13%) 0%,
+        lighten($primary-color, 13%) 45%,
+        darken($primary-color, 2%) 46%,
+        darken($primary-color, 2%) 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+
+  h2 {
+    margin-top: -1em;
+    line-height: 1;
+  }
+
+  hr {
+    width: 100%;
+    height: 2px;
+    background: $secondary-color;
+    border: none;
+    border-bottom: 1px solid #fff;
+  }
 }
 
 .button {
-  border-radius: 3px;
+  border-radius: $global-radius;
+  border: 1px solid $input-border-color;
+  background: #f3f3f3;
+  color: $body-font-color;
+
+  &:hover {
+    .pijl {
+      color: #fff;
+    }
+  }
+}
+
+input[type=text] {
+  border-radius: $global-radius;
+  box-shadow: none;
+  border: 1px solid $input-border-color;
 }
 
 .vorige-week, .volgende-week, .huidige-week {
@@ -45,6 +123,37 @@
     text-align: center;
   }
 }
+
+.pijl {
+  color: $primary-color;
+  font-weight: 300;
+}
+
+.panel {
+  border-radius: $global-radius;
+}
+
+/* Het rooster zelf */
+.dag {
+  border: 1px solid $input-border-color;
+  border-radius: 7px;
+  margin-bottom: 1em;
+
+  h4 {
+    border-bottom: 1px solid $input-border-color;
+    padding-left: 0.75rem;
+    padding-bottom: .2em;
+  }
+}
+
+.uur {
+  padding: 0 .75rem;
+}
+
+.uur-bezig {
+  color: $primary-color;
+}
+
 
 footer {
   margin-top: 2em;
