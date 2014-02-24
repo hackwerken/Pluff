@@ -30,7 +30,7 @@ require 'inc/header.php';
   <div class="row">
     <div class="small-15 columns">
       <div class="header">
-        <h1 class="logo">Pluff.</h1>
+        <h1 class="logo js-home"><a href="#">Pluff.</a></h1>
         <h2>Studentenrooster</h2>
         <hr>
         <h3>

@@ -35,6 +35,17 @@ $(function() {
 
       getStatus();
     });
+
+    // De hele zooi resetten als er geen klas en week zijn ingevuld
+    if (klasOrig === null && weeknr === null) {
+      $('.js-klas').val('');
+      $('.js-permalink-toggle').hide();
+      $('.hetrooster').html('');
+      $('body').removeClass('rooster-actief');
+      $('.js-weeknr-show').text(weeknr_huidig);
+      $('.js-klas-show').text('');
+      history.pushState(null, null, '/');
+    }
   }
 
   $('.js-klas').on('keyup change', function() {
@@ -86,6 +97,12 @@ $(function() {
       weeknr = 01;
 
     roosterLaden(klasOrig, weeknr);
+  });
+
+  $('.js-home').on('click', function(e) {
+    e.preventDefault();
+
+    roosterLaden(null, null);
   });
 
 });
