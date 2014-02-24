@@ -13,31 +13,32 @@ $(function() {
 
   // Het daadwerkelijk laden van het rooster
   function roosterLaden(klasOrig, weeknr) {
-    weeknr_volgende = weeknr + 1;
-    weeknr_vorige = weeknr - 1;
+    if (klasOrig && weeknr) {
+      weeknr_volgende = weeknr + 1;
+      weeknr_vorige = weeknr - 1;
 
-    // console.log('Laden...');
-    $.get('rooster.php?klas=' + klasOrig + '&week=' + weeknr, function(data) {
-      // Opgehaalde rooster in de DOM zetten
-      $('.hetrooster').html(data);
+      // console.log('Laden...');
+      $.get('rooster.php?klas=' + klasOrig + '&week=' + weeknr, function(data) {
+        // Opgehaalde rooster in de DOM zetten
+        $('.hetrooster').html(data);
 
-      // Weeknummer en klas vervangen in de header
-      $('.js-weeknr-show').text(weeknr);
-      $('.js-klas-show').text(klasOrig.replace(/;/g , ', '));
+        // Weeknummer en klas vervangen in de header
+        $('.js-weeknr-show').text(weeknr);
+        $('.js-klas-show').text(klasOrig.replace(/;/g , ', '));
 
-      // Permalink laten zien
-      $('.js-permalink-toggle').show();
-      var nieuweUrl = 'http://pluff.nl/?klas=' + klasOrig;
-      $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
+        // Permalink laten zien
+        $('.js-permalink-toggle').show();
+        var nieuweUrl = 'http://pluff.nl/?klas=' + klasOrig;
+        $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
 
-      // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
-      history.pushState(null, null, '?klas=' + klasOrig + '&week=' + weeknr);
+        // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
+        history.pushState(null, null, '?klas=' + klasOrig + '&week=' + weeknr);
 
-      getStatus();
-    });
-
+        getStatus();
+      });
+    }
     // De hele zooi resetten als er geen klas en week zijn ingevuld
-    if (klasOrig === null && weeknr === null) {
+    else {
       $('.js-klas').val('');
       $('.js-permalink-toggle').hide();
       $('.hetrooster').html('');
@@ -56,15 +57,10 @@ $(function() {
     // Reset week naar huidige
     weeknr = weeknr_huidig;
 
-    if (input.length >= 2) {
-      klasOrig = input;
-      // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
-      $('body').addClass('rooster-actief');
-      roosterLaden(klasOrig, weeknr_huidig);
-    }
-    else {
-      $('body').removeClass('rooster-actief');
-    }
+    klasOrig = input;
+    // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
+    $('body').addClass('rooster-actief');
+    roosterLaden(klasOrig, weeknr_huidig);
   });
 
   $('.js-vorige').on('click', function(e) {
