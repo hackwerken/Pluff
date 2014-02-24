@@ -44,6 +44,7 @@ h2 {
 
 h3 {
   font-size: 2.5em;
+  font-weight: 300;
   color: $body-font-color;
   margin-bottom: 1.1875rem;
 }
@@ -51,6 +52,10 @@ h3 {
 h4 {
   font-size: 1.56em;
   color: $body-font-color;
+}
+
+b, strong {
+  font-weight: normal;
 }
 
 /* Echte stijlen */
@@ -151,6 +156,7 @@ input[type=text] {
 
 /* Het rooster zelf */
 .dag {
+  background: lighten($body-bg, 1%);
   border: 1px solid $input-border-color;
   border-radius: 7px;
   margin-bottom: 1em;
@@ -159,6 +165,12 @@ input[type=text] {
     border-bottom: 1px solid $input-border-color;
     padding-left: 0.75rem;
     padding-bottom: .2em;
+  }
+
+  &.huidige-dag {
+    h4 {
+      color: $primary-color;
+    }
   }
 }
 

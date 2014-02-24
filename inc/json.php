@@ -64,3 +64,10 @@ function getDag($weekNummer, $dagNummer, $klas) {
     echo 'Leeg.';
   }
 }
+
+function huidigeDag($dagNummer) {
+  if (date('N') == $dagNummer) {
+    return true;
+  }
+  return false;
+}
