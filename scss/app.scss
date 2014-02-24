@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: 'Baffled';
-  src: url('fonts/Baffled-Regular.eot'); /* IE9 Compat Modes */
-  src: url('fonts/Baffled-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/Baffled-Regular.woff') format('woff'), /* Modern Browsers */
-       url('fonts/Baffled-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('fonts/Baffled-Regular.svg#172039f834ca2a14e7589324a7c3d59c') format('svg'); /* Legacy iOS */
+  src: url('../fonts/Baffled-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/Baffled-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/Baffled-Regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/Baffled-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/Baffled-Regular.svg#172039f834ca2a14e7589324a7c3d59c') format('svg'); /* Legacy iOS */
   font-style: normal;
   font-weight: 400;
 }
@@ -91,6 +91,23 @@ h4 {
   }
 }
 
+.intro {
+  display: block;
+}
+
+/* Deze class wordt actief als er een rooster staat */
+.rooster-actief {
+  .intro, .header h2, .header hr {
+    display: none;
+  }
+
+  .header {
+    .logo {
+      font-size: 2em;
+    }
+  }
+}
+
 .button {
   border-radius: $global-radius;
   border: 1px solid $input-border-color;
@@ -106,7 +123,6 @@ h4 {
 
 input[type=text] {
   border-radius: $global-radius;
-  box-shadow: none;
   border: 1px solid $input-border-color;
 }
 

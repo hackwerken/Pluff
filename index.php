@@ -15,7 +15,7 @@ require 'inc/header.php';
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
 
 </head>
-<body>
+<body class="<?php echo (!empty($_GET['klas'])) ? 'rooster-actief' : '' ?>">
   <!--[if lt IE 9]>
     <div class="slechtebrowser">
       <p>
@@ -53,7 +53,7 @@ require 'inc/header.php';
   </div>
   <div class="row">
     <div class="small-15 columns">
-      <div class="js-intro <?php echo (!empty($_GET['klas'])) ? 'hide' : '' ?>">
+      <div class="intro">
         <h3>Rooster</h3>
         <p>
           Hieronder kun je je klas van Fontys invoeren. Zit je in meerdere klassen? Scheid deze dan met een puntkomma.

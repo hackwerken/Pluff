@@ -47,11 +47,12 @@ $(function() {
 
     if (input.length >= 2) {
       klasOrig = input;
-      $('.js-intro').hide();
+      // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
+      $('body').addClass('rooster-actief');
       roosterLaden(klasOrig, weeknr_huidig);
     }
     else {
-      $('.js-intro').show();
+      $('body').removeClass('rooster-actief');
     }
   });
 
