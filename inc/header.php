@@ -6,6 +6,14 @@
 
 $klasOrig = '';
 
+$dagen = [
+  1 => 'Maandag',
+  2 => 'Dinsdag',
+  3 => 'Woensdag',
+  4 => 'Donderdag',
+  5 => 'Vrijdag'
+];
+
 if (!empty($_GET['klas']) && preg_match('/^[A-Za-z0-9;-]+$/i', $_GET['klas'])) {
   // Indien meerdere klassen er een array van maken
   $klasOrig = $_GET['klas'];
