@@ -84,7 +84,7 @@ require 'inc/header.php';
     <div class="row">
       <div class="small-15 columns">
         <p>
-          <em>Pluff</em> BETA Versie. Gemaakt door <a href="https://webduck.nl">Kees Kluskens</a> &amp; <a href="http://laylo.nl">Jeroen Janssen</a>.
+          <em>Pluff</em> BETA Versie.
           Ervaren coder? Help ons mee via <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
         </p>
       </div>

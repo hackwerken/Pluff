@@ -70,18 +70,6 @@ b, strong {
     color: $primary-color;
   }
 
-  .logo {
-      background: linear-gradient(
-        162deg,
-        lighten($primary-color, 13%) 0%,
-        lighten($primary-color, 13%) 45%,
-        darken($primary-color, 2%) 46%,
-        darken($primary-color, 2%) 100%
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-  }
-
   h2 {
     margin-top: -1em;
     line-height: 1;
