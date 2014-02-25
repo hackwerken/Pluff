@@ -1,5 +1,6 @@
 "use strict"
 path = require("path")
+shell = require("shelljs")
 
 module.exports = (grunt) ->
   # load all grunt tasks
@@ -80,13 +81,13 @@ module.exports = (grunt) ->
           livereload: true
 
 
-    php:
+    open:
       app:
-        options:
-          keepalive: false
-          open: true
-          port: 9000
-          hostname: "localhost"
-          livereload: true
+        path: "http://app.local"
 
-  grunt.registerTask "default", ["sass", "autoprefixer", "php", "copy", "concat", "uglify", "svgmin",  "watch"]
+      project:
+        path: path.resolve()
+
+  grunt.registerTask "vagrant-up", ->
+    shell.exec "vagrant up"
+  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "svgmin", "open:app", "watch"]

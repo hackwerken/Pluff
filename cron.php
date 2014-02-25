@@ -1,6 +1,6 @@
 <?php
 // Check of dit bestand wordt aangeroepen via command line interface
-// define("IS_CLI_CALL", true);
+define("IS_CLI_CALL", true);
 
 // Als dat zo is, voer dan de code uit
 if (IS_CLI_CALL) {
