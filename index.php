@@ -12,9 +12,10 @@ require 'inc/header.php';
   <title>Fontys Rooster</title>
 
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
 
 </head>
-<body>
+<body class="<?php echo (!empty($_GET['klas'])) ? 'rooster-actief' : '' ?>">
   <!--[if lt IE 9]>
     <div class="slechtebrowser">
       <p>
@@ -29,25 +30,30 @@ require 'inc/header.php';
   <div class="row">
     <div class="small-15 columns">
       <div class="header">
+        <h1 class="logo js-home"><a href="#">Pluff.</a></h1>
+        <h2>Studentenrooster</h2>
+        <hr>
+        <h3>
           Klas <span class="js-klas-show"><?php echo (!empty($klasHuman)) ? $klasHuman : '' ?></span> &ndash;
           Week <span class="js-weeknr-show"><?php echo $weeknr ?></span>
+        </h3>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="small-15 medium-5 columns">
-      <a href="?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_vorige ?>" class="button alert vorige-week js-vorige">&laquo; Vorige week</a>
+      <a href="?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_vorige ?>" class="button vorige-week js-vorige"><span class="pijl">&lt;</span> Vorige week</a>
     </div>
     <div class="small-15 medium-5 text-center-large columns">
       <a href="?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_huidig ?>" class="button huidige-week js-huidige">Huidige week</a>
     </div>
     <div class="small-15 medium-5 columns">
-      <a href="?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_volgende ?>" class="button success volgende-week js-volgende">Volgende week &raquo;</a>
+      <a href="?klas=<?php echo $klasOrig ?>&week=<?php echo $weeknr_volgende ?>" class="button volgende-week js-volgende">Volgende week <span class="pijl">&gt;</span></a>
     </div>
   </div>
   <div class="row">
     <div class="small-15 columns">
-      <div class="js-intro <?php echo (!empty($_GET['klas'])) ? 'hide' : '' ?>">
+      <div class="intro">
         <h3>Rooster</h3>
         <p>
           Hieronder kun je je klas van Fontys invoeren. Zit je in meerdere klassen? Scheid deze dan met een puntkomma.
@@ -78,7 +84,7 @@ require 'inc/header.php';
     <div class="row">
       <div class="small-15 columns">
         <p>
-          <em>Pluff</em> BETA Versie. Gemaakt door <a href="https://webduck.nl">Kees Kluskens</a> &amp; <a href="http://laylo.nl">Jeroen Janssen</a>.
+          <em>Pluff</em> BETA Versie.
           Ervaren coder? Help ons mee via <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
         </p>
       </div>
@@ -94,5 +100,8 @@ require 'inc/header.php';
     window.klasOrig = "<?php echo $klasOrig ?>";
   </script>
   <script src="js/app.js"></script>
+
+  <!-- LiveReload script -->
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>

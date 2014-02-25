@@ -1,16 +1,18 @@
-Dit roostersysteem is bedacht & gemaakt uit pure frustratie. Wij zijn ICT'ers en dan moeten wij met een roostersysteem werken dat eruit ziet alsof het in de jaren '80 gemaakt is door de communisten?
+Dit roostersysteem is bedacht & gemaakt uit pure frustratie. Wij zijn ICT'ers en dan moeten wij met een roostersysteem werken dat eruit ziet alsof het door communisten in de jaren '80 gemaakt is?
 
 Dit kan zo niet. Hier moet wat aan gedaan worden.
 
 Kees had eerst een oplossing bedacht met iframes. Dit werkte wel, maar na een paar maanden kwamen we erachter dat het beter kon. Door motivatie & skills van Jeroen om hieraan verder te werken zijn we nu uiteindelijk hier gekomen.
 
-Nu nog een design!
+Bram van de Sommen heeft uiteindelijk de finale kick gegeven en een leuk ontwerp voor de roostersite gemaakt.
 
 Kees Kluskens [WebDuck]
 Jeroen Janssen [LAYLO]
+Bram van de Sommen [Mashed Creative]
 
 WebDuck Industries - http://webduck.nl
 LAYLO - http://laylo.nl
+Mashed Creative - http://mashedcreative.nl
 
 Verdere mensen die hieraan hebben bijgedragen:
 - De mensen bij Zurb, die het geweldige CSS-framework 'Foundation' hebben gemaakt.

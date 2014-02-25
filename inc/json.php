@@ -43,22 +43,31 @@ function getDag($weekNummer, $dagNummer, $klas) {
 
       // Alleen de huidige week weergeven
       if (date('W', $starttijd) === $weekNummer AND date('N', $starttijd) == $dagNummer) {
+        echo '<div class="uur">';
         // Controleer of de les nu bezig is door het dagnummer te vergelijken en de tijd
         if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
-          echo '<span style="color:red">';
+          echo '<span class="uur-bezig">';
         }
         echo "<b>".$starttijdHuman." - ";
         echo $eindtijdHuman."</b><br/>";
         echo $event['vak']." - ".$event['doc']."<br/>";
         echo "<small>".$event['lok']." - ".$event['klas']."</small><br/>";
-        echo "<hr/>";
         if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
           echo '</span>';
         }
+        echo '</div>';
+        echo '<hr/>';
       }
     }
   }
   else {
     echo 'Leeg.';
   }
+}
+
+function huidigeDag($dagNummer) {
+  if (date('N') == $dagNummer) {
+    return true;
+  }
+  return false;
 }
