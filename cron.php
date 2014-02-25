@@ -1,18 +1,29 @@
 <?php
+error_reporting(E_ALL);
 // Check of dit bestand wordt aangeroepen via command line interface
 define("IS_CLI_CALL", true);
 
 // Als dat zo is, voer dan de code uit
 if (IS_CLI_CALL) {
-  $script_dir = dirname(__FILE__);
-  $cache_dir = $script_dir.'/klassen/';
-  $log_file = $cache_dir.'fouten.log';
+  $db = new PDO('mysql:host=localhost;dbname=rooster;charset=utf8', 'root', 'password', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-  $countErrors = 0;
-
-  // Log file aan het begin van de cronjob een nieuw kopje geven
-  $log = fopen($log_file, 'a');
-  fwrite($log, "\n\n"."-- CRONjob van ".date("Y-m-d H:i:s")."\n");
+  $tijden = [
+    1 => '08:45',
+    2 => '09:35',
+    3 => '10:45',
+    4 => '11:35',
+    5 => '12:25',
+    6 => '13:15',
+    7 => '14:05',
+    8 => '15:15',
+    9 => '16:05',
+    10 => '16:55',
+    11 => '18:00',
+    12 => '18:50',
+    13 => '20:00',
+    14 => '20:50',
+    15 => '21:40'
+  ];
 
   // Check of $string wel een geldige JSON array is en of er uberhaupt wel iets in de $string staat
   function is_json($string) {
@@ -21,7 +32,7 @@ if (IS_CLI_CALL) {
 
   // Haal het bestand van een klas op
   function getFile($klas) {
-    global $cache_dir, $log_file, $log, $countErrors;
+    global $db, $tijden;
 
     // Haal JSON op van Fontys website en sla in de $json variabele op
     $ch = curl_init('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&klas='.urlencode($klas));
@@ -33,38 +44,53 @@ if (IS_CLI_CALL) {
     // Pas als geverifieerd is dat de response JSON is, het bestand wegschrijven.
     // Dit om te voorkomen dat er hele HTML pagina's met foutmeldingen worden gedownload.
     if (is_json($response) === true) {
-      $json = $response;
-      $json_file = strtolower($cache_dir.$klas.'.json');
-      // Bestand wegschrijven
-      $fh = fopen($json_file, 'w');
-      fwrite($fh, $json);
-      curl_close($ch);
+      $lessen = json_decode($response, true);
+
+      foreach ($lessen as $les) {
+        // Begin en eind tijden converteren naar een DATETIME
+        $tijdstipBeginUnix = strtotime($les['dat'].' '.$les['start']);
+        $tijdstipEindUnix = strtotime($les['dat'].' '.$les['eind']);
+
+        $tijdstipBegin = date('Y-m-d H:i:s', $tijdstipBeginUnix);
+        $tijdstipEind = date('Y-m-d H:i:s', $tijdstipEindUnix);
+
+        // Juiste begin en eind uren verkrijgen (precieze tijden staan in array $tijden)
+        $uurnrBegin = array_search($les['start'], $tijden);
+        // 3000 = 50 minuten. TODO: round() is niet goede functie hier
+        $uurnrEind = round(($tijdstipEindUnix - $tijdstipBeginUnix) / 3000) + $uurnrBegin;
+
+        $lesVak = strtolower($les['vak']);
+        $lesKlas = strtolower($les['klas']);
+        $lesLokaal = $les['lok'];
+
+        $db->exec("INSERT INTO rooster(tijdstip_begin, tijdstip_eind, uurnr_begin, uurnr_eind, vak, klas, lokaal)
+          VALUES(
+            '".$tijdstipBegin."',
+            '".$tijdstipEind."',
+            '".$uurnrBegin."',
+            '".$uurnrEind."',
+            '".$lesVak."',
+            '".$lesKlas."',
+            '".$lesLokaal."'
+          )");
+      }
     }
     else {
       // Bestand is geen JSON. Deze gebeurtenis loggen we.
-      fwrite($log, "Klas ".urldecode($klas)." gaf geen geldige JSON terug.\n");
-
-      // Error tellen
-      $countErrors++;
+      echo "Klas ".urldecode($klas)." gaf geen geldige JSON terug.<br>";
     }
 
   }
 
-  // Helemaal geen fouten tegengekomen
-  if ($countErrors === 0) {
-    fwrite($log, "Alle JSON succesvol opgeslagen.\n");
-  }
-
   // JSON ophalen waarin alle klassen staan die gedownload moeten worden.
-  $klas_whitelist_bestand = file_get_contents(__DIR__.'/klaswhitelist.json');
-  $klas_whitelist = json_decode($klas_whitelist_bestand, true);
+  // $klas_whitelist_bestand = file_get_contents(__DIR__.'/klaswhitelist.json');
+  // $klas_whitelist = json_decode($klas_whitelist_bestand, true);
 
-  foreach ($klas_whitelist as $klas) {
-    getFile($klas);
-  }
+  // foreach ($klas_whitelist as $klas) {
+  //   getFile($klas);
+  // }
 
-  // Log bestand sluiten
-  fclose($log);
+  getFile('m32');
 }
 
 // Geef een foutmelding als het bestand niet via CLI opgeroepen is
