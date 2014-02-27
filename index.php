@@ -1,4 +1,5 @@
 <?php
+require 'inc/config.php';
 require 'inc/json.php';
 require 'inc/header.php';
 ?>

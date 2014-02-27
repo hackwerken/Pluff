@@ -3,66 +3,27 @@
  * Dit bestand haalt het daadwerkelijk rooster via JSON op en verwerkt het.
  */
 
-$cache_dir = 'klassen/';
-
 // Accepteert array met klassen
 function getFile($klassen) {
   global $klas_whitelist, $cache_dir;
 
-  $json_klassen = array();
 
-  foreach ($klassen as $klas) {
-    // Pad naar bestand
-    $json_file_name = $cache_dir.$klas.'.json';
-
-    if (file_exists($json_file_name)) {
-      $json_file = fopen($json_file_name, 'r');
-
-      $json_read = fread($json_file, filesize($json_file_name));
-      $json_array = json_decode($json_read, true);
-      $json_klassen = array_merge($json_klassen, $json_array);
-      fclose($json_file);
-    }
-  }
-
-  return $json_klassen;
 }
 
-function getDag($weekNummer, $dagNummer, $klas) {
-  $remote = getFile($klas);
+function getUur($weekNummer, $dagNummer, $uurNummer, $klassen) {
+  global $db;
 
-  // Dag is gevonden
-  if ($remote) {
-    $huidigeTijd = date('H:i');
+  foreach ($klassen as $klas) {
+    // Huidige jaar pakken met het ingevoerde week nummer.
+    // Daarna daarbij het dagnummer optellen minus 1 (begint met maandag)
+    $begintijd = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
+    $datum = date('Y-m-d', $begintijd);
 
-    foreach ($remote as $event) {
-      $starttijd = strtotime($event['dat'].' '.$event['start']); // Starttijd geconverteerd naar UNIX timestamp
-      $eindtijd  = strtotime($event['dat'].' '.$event['eind']); // Eindtijd geconverteerd naar UNIX timestamp
-      $starttijdHuman = date('H:i', $starttijd);
-      $eindtijdHuman  = date('H:i', $eindtijd);
-
-      // Alleen de huidige week weergeven
-      if (date('W', $starttijd) === $weekNummer AND date('N', $starttijd) == $dagNummer) {
-        echo '<div class="uur">';
-        // Controleer of de les nu bezig is door het dagnummer te vergelijken en de tijd
-        if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
-          echo '<span class="uur-bezig">';
-        }
-        echo "<b>".$starttijdHuman." - ";
-        echo $eindtijdHuman."</b><br/>";
-        echo $event['vak']." - ".$event['doc']."<br/>";
-        echo "<small>".$event['lok']." - ".$event['klas']."</small><br/>";
-        if (date('z', $starttijd) === date('z', time()) && $huidigeTijd > $starttijdHuman && $huidigeTijd < $eindtijdHuman) {
-          echo '</span>';
-        }
-        echo '</div>';
-        echo '<hr/>';
-      }
-    }
+    $query = $db->query("SELECT * FROM rooster WHERE klas LIKE '%".$klas."%' AND tijdstip_begin LIKE '%".$datum."%' AND uurnr_begin = '".$uurNummer."'");
+    $uur = $query->fetch(PDO::FETCH_ASSOC);
   }
-  else {
-    echo 'Leeg.';
-  }
+
+  return print_r($uur);
 }
 
 function huidigeDag($dagNummer) {
