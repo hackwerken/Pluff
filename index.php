@@ -4,6 +4,7 @@ require 'inc/header.php';
 ?>
 
 <!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="nl" >
 
 <head>
@@ -13,6 +14,8 @@ require 'inc/header.php';
 
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
+
+  <script src="js/vendor/modernizr.js"></script>
 
 </head>
 <body class="<?php echo (!empty($_GET['klas'])) ? 'rooster-actief' : '' ?>">
