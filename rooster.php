@@ -11,7 +11,20 @@ require 'inc/header.php';
         <div class="dag <?php echo (huidigeDag($dagnr)) ? 'huidige-dag' : '' ?>">
           <h4><?php echo $dagNaam ?></h4>
           <?php foreach (array_slice($cTijden, 0, -1, true) as $uurnr => $uurtijd) : ?>
-            <?php echo getUur($weeknr, $dagnr, $uurnr, $klas) ?>
+            <div class="uur">
+              <?php
+              $uur = getUur($weeknr, $dagnr, $uurnr, $klas);
+              if ($uur) {
+                echo '<b>'.date('H:i', strtotime($uur['tijdstip_begin'])).' - '.date('H:i', strtotime($uur['tijdstip_eind'])).'</b><br>';
+                echo $uur['vak'].' - '.$uur['docent'].'<br>';
+                echo '<small>'.$uur['lokaal'].' - '.$uur['klas'].'</small><br>';
+              }
+              else {
+                echo 'leeg<br>';
+              }
+              ?>
+            </div>
+            <hr>
           <?php endforeach ?>
         </div>
       </div>

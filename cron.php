@@ -28,9 +28,10 @@ function setLessen($lessen) {
     $lesVak = strtolower($les['vak']);
     $lesKlas = strtolower($les['klas']);
     $lesLokaal = $les['lok'];
+    $lesDocent = $les['doc'];
 
     // Check of uurnr_begin, uurnr_eind en klas (klas met een LIKE) al bestaan
-    $db->exec("INSERT INTO rooster(tijdstip_begin, tijdstip_eind, uurnr_begin, uurnr_eind, vak, klas, lokaal)
+    $db->exec("INSERT INTO rooster(tijdstip_begin, tijdstip_eind, uurnr_begin, uurnr_eind, vak, klas, lokaal, docent)
       VALUES(
         '".$tijdstipBegin."',
         '".$tijdstipEind."',
@@ -38,14 +39,15 @@ function setLessen($lessen) {
         '".$uurnrEind."',
         '".$lesVak."',
         '".$lesKlas."',
-        '".$lesLokaal."'
+        '".$lesLokaal."',
+        '".$lesDocent."'
       )");
   }
 }
 
 function getFile($klas) {
   // Haal JSON op van Fontys website en sla in de $json variabele op
-  $ch = curl_init('http://pinega.fontys.nl/roosterfeed/RoosterAsJSON.ashx?instituut=1&klas='.urlencode($klas));
+  $ch = curl_init('http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&instituut=1&klas='.urlencode($klas));
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
   // Zet de response in een variabele
@@ -65,14 +67,14 @@ function getFile($klas) {
 }
 
 // JSON ophalen waarin alle klassen staan die gedownload moeten worden.
-// $klas_whitelist_bestand = file_get_contents(__DIR__.'/klaswhitelist.json');
-// $klas_whitelist = json_decode($klas_whitelist_bestand, true);
+$klas_whitelist_bestand = file_get_contents(__DIR__.'/klaswhitelist.json');
+$klas_whitelist = json_decode($klas_whitelist_bestand, true);
 
-// foreach ($klas_whitelist as $klas) {
-//   getFile($klas);
-// }
+foreach ($klas_whitelist as $klas) {
+  getFile($klas);
+}
 
-getFile('m32');
+// getFile('m32');
 
 
 $endTime = microtime(TRUE);

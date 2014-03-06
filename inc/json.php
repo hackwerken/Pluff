@@ -23,7 +23,7 @@ function getUur($weekNummer, $dagNummer, $uurNummer, $klassen) {
     $uur = $query->fetch(PDO::FETCH_ASSOC);
   }
 
-  return print_r($uur);
+  return $uur;
 }
 
 function huidigeDag($dagNummer) {
