@@ -43,15 +43,6 @@ module.exports = (grunt) ->
     #       input: "css/app.css"
     #       output: "css/app.css"
 
-    svgmin:
-      dist:
-        files: [
-          expand: true
-          cwd: "img/"
-          src: ["**/*.svg"]
-          dest: "dist/img/"
-        ]
-
     concat:
       options:
         separator: ";"
@@ -89,4 +80,4 @@ module.exports = (grunt) ->
           hostname: "localhost"
           livereload: true
 
-  grunt.registerTask "default", ["sass", "autoprefixer", "php", "copy", "concat", "uglify", "svgmin",  "watch"]
+  grunt.registerTask "default", ["sass", "autoprefixer", "php", "copy", "concat", "uglify", "watch"]
