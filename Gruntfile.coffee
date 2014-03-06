@@ -44,15 +44,6 @@ module.exports = (grunt) ->
     #       input: "css/app.css"
     #       output: "css/app.css"
 
-    svgmin:
-      dist:
-        files: [
-          expand: true
-          cwd: "img/"
-          src: ["**/*.svg"]
-          dest: "dist/img/"
-        ]
-
     concat:
       options:
         separator: ";"
@@ -90,4 +81,4 @@ module.exports = (grunt) ->
 
   grunt.registerTask "vagrant-up", ->
     shell.exec "vagrant up"
-  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "svgmin", "open:app", "watch"]
+  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "open:app", "watch"]
