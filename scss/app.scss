@@ -2,17 +2,6 @@
 @import "settings";
 @import "foundation";
 
-@font-face {
-  font-family: 'Baffled';
-  src: url('../fonts/Baffled-Regular.eot'); /* IE9 Compat Modes */
-  src: url('../fonts/Baffled-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/Baffled-Regular.woff') format('woff'), /* Modern Browsers */
-       url('../fonts/Baffled-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/Baffled-Regular.svg#172039f834ca2a14e7589324a7c3d59c') format('svg'); /* Legacy iOS */
-  font-style: normal;
-  font-weight: 400;
-}
-
 ::selection {
   background: $primary-color;
 }
@@ -78,11 +67,11 @@ b, strong {
     display: block;
   }
 
-  .no-svg .logo {
+  .logo {
     background: none;
     width: auto;
     height: auto;
-    font: 7.15em "Baffled", Georgia, serif;
+    font: 7.15em Georgia, serif;
     margin: 0;
     color: $primary-color;
     text-indent: 0;
