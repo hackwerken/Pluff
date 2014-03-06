@@ -10,27 +10,34 @@ require 'inc/header.php';
       <div class="medium-3 columns">
         <div class="dag <?php echo (huidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : '' ?>">
           <h4><?php echo $dagNaam ?></h4>
-          <?php foreach (array_slice($cTijden, 0, -1, true) as $uurnr => $uurtijd) : ?>
-            <div class="uur">
-              <div class="uur-nummer"><?php echo $uurnr ?></div>
-              <?php
-              $uurArray = getUur($weeknr, $dagnr, $uurnr, $klas);
-              if ($uurArray) {
-                foreach ($uurArray as $uur) {
-                  if ($uur) {
-                    echo '<b>'.date('H:i', strtotime($uur['tijdstip_begin'])).' - '.date('H:i', strtotime($uur['tijdstip_eind'])).'</b><br>';
-                    echo $uur['vak'].' - '.$uur['docent'].'<br>';
-                    echo '<small>'.$uur['lokaal'].' - '.$uur['klas'].'</small><br>';
-                  }
+          <?php
+          // We willen niet bij 0 beginnen.
+          $cTijdenMin1 = array_slice($cTijden, 0, -1, true);
+
+          // Alle uren
+          foreach ($cTijdenMin1 as $uurnr => $uurtijd) {
+            $uurArray = getUur($weeknr, $dagnr, $uurnr, $klas);
+            if ($uurArray) {
+              echo '<div class="uur">';
+              echo '<div class="uur-nummer">'.$uurnr.'</div>';
+              foreach ($uurArray as $uur) {
+                if ($uur) {
+                  echo '<b>'.date('H:i', strtotime($uur['tijdstip_begin'])).' - '.date('H:i', strtotime($uur['tijdstip_eind'])).'</b><br>';
+                  echo $uur['vak'].' - '.$uur['docent'].'<br>';
+                  echo '<small>'.$uur['lokaal'].' - '.$uur['klas'].'</small><br>';
                 }
               }
-              else {
-                echo 'leeg<br>';
-              }
-              ?>
-            </div>
-            <hr class="<?php echo ($uurnr === 14) ? 'hide' : '' ?>">
-          <?php endforeach ?>
+              echo '</div>';
+            }
+            else {
+              echo '<div class="uur uur-leeg">';
+              echo '<div class="uur-nummer">'.$uurnr.'</div>';
+              echo '</div>';
+            }
+            $laatste = ($uurnr === 14) ? 'hide' : '';
+            echo '<hr class="'.$laatste.'">';
+          }
+          ?>
         </div>
       </div>
     <?php endforeach; ?>

@@ -144,12 +144,15 @@ input[type=text] {
   border: 1px solid $input-border-color;
   border-radius: 7px;
   margin-bottom: 1em;
-  padding-bottom: 1.25em;
 
   h4 {
     border-bottom: 1px solid $input-border-color;
     padding-left: 0.75rem;
-    padding-bottom: .2em;
+    margin-bottom: 0;
+  }
+
+  hr {
+    margin: 0;
   }
 
   &.huidige-dag {
@@ -160,7 +163,8 @@ input[type=text] {
 }
 
 .uur {
-  padding: 0 .75rem;
+  padding: 1.25rem .75rem;
+  overflow: hidden;
 }
 
 .uur-bezig b {
@@ -170,6 +174,10 @@ input[type=text] {
 .uur-nummer {
   float: right;
   color: $secondary-color;
+}
+
+.uur-leeg {
+  background: #fff;
 }
 
 
