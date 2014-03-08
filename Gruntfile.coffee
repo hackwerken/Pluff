@@ -20,9 +20,9 @@ module.exports = (grunt) ->
     autoprefixer:
       build:
         expand: true
-        cwd: "css"
+        cwd: "public/css"
         src: ["**/*.css"]
-        dest: "css"
+        dest: "public/css"
 
     copy:
       dist:
@@ -67,7 +67,7 @@ module.exports = (grunt) ->
         files: ["public/scss/{,*/}*.scss", "public/bower_components/{,*/}*.scss"]
         tasks: ["sass", "autoprefixer"]
       livereload:
-        files: ["*.php", "public/js/{,*/}*.js", "public/css/{,*/}*.css", "public/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
+        files: ["app/{,*/}*.php", "public/js/{,*/}*.js", "public/css/{,*/}*.css", "public/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
         options:
           livereload: true
 

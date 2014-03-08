@@ -51,7 +51,7 @@
         <h2>Studentenrooster</h2>
         <hr>
         <h3>
-          Klas <span class="js-klas-show">{{ (!empty($klasHuman)) ? $klasHuman : '' }}</span> &ndash;
+          Klas <span class="js-klas-show">{{ $klasHuman or '' }}</span> &ndash;
           Week <span class="js-weeknr-show">{{ $weeknr }}</span>
         </h3>
       </div>
@@ -119,6 +119,6 @@
   <script src="js/app.js"></script>
 
   <!-- LiveReload script -->
-  <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
+  <script>document.write('<script src="http://192.168.0.193:35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>

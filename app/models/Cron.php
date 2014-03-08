@@ -18,7 +18,7 @@ class Cron {
       $tijdstipEind = date('Y-m-d H:i:s', $tijdstipEindUnix);
 
       // Juiste begin en eind uren verkrijgen (precieze tijden staan in array $cTijden)
-      $uurnrBegin = array_search($les['start'], $cTijden);
+      $uurnrBegin = array_search($les['start'], Config::get('rooster.tijden'));
       // 3000 = 50 minuten. TODO: Checken welke afrondmethode te gebruiken; round() of floor()
       $uurnrEind = round(($tijdstipEindUnix - $tijdstipBeginUnix) / 3000) + $uurnrBegin;
 
@@ -52,7 +52,7 @@ class Cron {
 
     // Pas als geverifieerd is dat de response JSON is, het bestand wegschrijven.
     // Dit om te voorkomen dat er hele HTML pagina's met foutmeldingen worden gedownload.
-    if (is_json($response) === true) {
+    if (Cron::is_json($response) === true) {
       $lessen = json_decode($response, true);
       // Geef alle lessen in een array door aan de setLessen() functie
       Cron::setLessen($lessen);

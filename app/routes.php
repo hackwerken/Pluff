@@ -11,7 +11,52 @@
 |
 */
 
-Route::get('/', function()
+Route::get('cron', function() {
+  // JSON ophalen waarin alle klassen staan die gedownload moeten worden.
+  $klas_whitelist_bestand = file_get_contents(public_path().'/klaswhitelist.json');
+  $klas_whitelist = json_decode($klas_whitelist_bestand, true);
+
+  foreach ($klas_whitelist as $klas) {
+    Cron::getFile($klas);
+  }
+});
+
+Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
-	return View::make('home');
+  $klasInfo = Rooster::getKlasInfo($klasInput);
+  $weekInfo = Rooster::getWeekInfo($weekInput);
+
+  $data = [
+    'klas' => $klasInfo['array'],
+    'klasHuman' => $klasInfo['human'],
+    'klasOrig' => $klasInfo['orig'],
+    'weeknr_vorige' => $weekInfo['vorige'],
+    'weeknr_huidig' => $weekInfo['huidig'],
+    'weeknr_volgende' => $weekInfo['volgende'],
+    'weeknr' => $weekInfo['gebruikt'],
+
+    'cDagen' => Config::get('rooster.dagen'),
+  ];
+
+  return View::make('rooster', $data);
+});
+
+Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
+{
+  $klasInfo = Rooster::getKlasInfo($klasInput);
+  $weekInfo = Rooster::getWeekInfo($weekInput);
+
+  $data = [
+    'klas' => $klasInfo['array'],
+    'klasHuman' => $klasInfo['human'],
+    'klasOrig' => $klasInfo['orig'],
+    'weeknr_vorige' => $weekInfo['vorige'],
+    'weeknr_huidig' => $weekInfo['huidig'],
+    'weeknr_volgende' => $weekInfo['volgende'],
+    'weeknr' => $weekInfo['gebruikt'],
+
+    'cDagen' => Config::get('rooster.dagen'),
+  ];
+
+	return View::make('home', $data);
 });

@@ -1,39 +1,32 @@
-<?php if (!empty($klas)) :?>
+@if (!empty($klas))
   <div class="row">
-    <?php foreach($cDagen as $dagnr => $dagNaam) : ?>
+    @foreach($cDagen as $dagnr => $dagNaam)
       <div class="medium-3 columns">
-        <div class="dag <?php echo (huidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : '' ?>">
-          <h4><?php echo $dagNaam ?></h4>
-          <?php
-          // Laatste uur niet meetellen
-          $cTijdenMin1 = array_slice($cTijden, 0, -1, true);
+        <div class="dag {{ (Bereken::getHuidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : '' }}">
+          <h4>{{ $dagNaam }}</h4>
 
-          // Alle uren
-          foreach ($cTijdenMin1 as $uurnr => $uurtijd) {
-            $uurArray = getUur($weeknr, $dagnr, $uurnr, $klas);
-            if ($uurArray) {
-              echo '<div class="uur">';
-              echo '<div class="uur-nummer">'.$uurnr.'</div>';
-              foreach ($uurArray as $uur) {
-                if ($uur) {
-                  echo '<b>'.date('H:i', strtotime($uur['tijdstip_begin'])).' - '.date('H:i', strtotime($uur['tijdstip_eind'])).'</b><br>';
-                  echo $uur['vak'].' - '.$uur['docent'].'<br>';
-                  echo '<small>'.$uur['lokaal'].' - '.$uur['klas'].'</small><br>';
-                }
-              }
-              echo '</div>';
-            }
-            else {
-              echo '<div class="uur uur-leeg">';
-              echo '<div class="uur-nummer">'.$uurnr.'</div>';
-              echo '</div>';
-            }
-            $laatste = ($uurnr === 14) ? 'hide' : '';
-            echo '<hr class="'.$laatste.'">';
-          }
-          ?>
+          @foreach (Bereken::getTijdenMin1() as $uurnr => $uurtijd)
+            <?php $uurArray = Rooster::getUur($weeknr, $dagnr, $uurnr, $klas); ?>
+            @if ($uurArray)
+              <div class="uur">
+                <div class="uur-nummer">{{ $uurnr }}</div>
+                @foreach ($uurArray as $uur)
+                  @if ($uur)
+                    <b>{{ date('H:i', strtotime($uur['tijdstip_begin'])) }} - {{ date('H:i', strtotime($uur['tijdstip_eind'])) }}</b><br>
+                    {{ $uur['vak'] }} - {{ $uur['docent'] }}<br>
+                    <small>{{ $uur['lokaal'] }} - {{ $uur['klas'] }}</small><br>
+                  @endif
+                @endforeach
+              </div>
+            @else
+              <div class="uur uur-leeg">
+                <div class="uur-nummer"> {{ $uurnr }}</div>
+              </div>
+            @endif
+            <hr class="{{ ($uurnr === 14) ? 'hide' : '' }}">
+          @endforeach
         </div>
       </div>
-    <?php endforeach; ?>
+    @endforeach
   </div>
-<?php endif; ?>
+@endif

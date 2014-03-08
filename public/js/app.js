@@ -18,7 +18,7 @@ $(function() {
       weeknr_vorige = weeknr - 1;
 
       // console.log('Laden...');
-      $.get('rooster.php?klas=' + klasOrig + '&week=' + weeknr, function(data) {
+      $.get('/rooster/' + klasOrig + '/' + weeknr, function(data) {
         // Opgehaalde rooster in de DOM zetten
         $('.hetrooster').html(data);
 
@@ -28,11 +28,11 @@ $(function() {
 
         // Permalink laten zien
         $('.js-permalink-toggle').show();
-        var nieuweUrl = 'http://pluff.nl/?klas=' + klasOrig;
+        var nieuweUrl = 'http://pluff.nl/' + klasOrig;
         $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
 
         // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
-        history.pushState(null, null, '?klas=' + klasOrig + '&week=' + weeknr);
+        history.pushState(null, null, '/' + klasOrig + '/' + weeknr);
 
         getStatus();
       });
