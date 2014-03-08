@@ -30,7 +30,6 @@ function setLessen($lessen) {
     $lesLokaal = $les['lok'];
     $lesDocent = $les['doc'];
 
-    // Check of uurnr_begin, uurnr_eind en klas (klas met een LIKE) al bestaan
     $db->exec("INSERT INTO rooster(tijdstip_begin, tijdstip_eind, uurnr_begin, uurnr_eind, vak, klas, lokaal, docent)
       VALUES(
         '".$tijdstipBegin."',

@@ -11,7 +11,7 @@ require 'inc/header.php';
         <div class="dag <?php echo (huidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : '' ?>">
           <h4><?php echo $dagNaam ?></h4>
           <?php
-          // We willen niet bij 0 beginnen.
+          // Laatste uur niet meetellen
           $cTijdenMin1 = array_slice($cTijden, 0, -1, true);
 
           // Alle uren
