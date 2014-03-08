@@ -43,7 +43,7 @@ Vagrant::configure('2') do |config|
                     "rooster"
                 ]
             },
-            "sites" => ["legacy"]
+            "sites" => ["default"]
         })
 
     end
