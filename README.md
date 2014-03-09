@@ -18,4 +18,10 @@ Nog nooit Grunt gebruikt? Eens moet de eerste keer zijn :). Installeer eerst [No
 
 Ga via de terminal naar de root van het project. Type hier in `npm install && bower install` om de benodigde tools te installeren (is eenmalig). Type hierna `grunt`. Als het goed is opent de browser nu de website en kun je er aan werken.
 
+## Tijdelijk
+0. zet in je /etc/hosts het volgende: '10.10.10.10   app.local'
+1. Type in de folder 'grunt'. Dit duurt vrij lang, hij maakt nu een VM aan.
+2. Als 'ie klaar is, open een nieuwe tab en doe 'vagrant ssh'.
+3. `cd /vagrant; composer install; php artisan migrate --seed`
+
 Maak verder een folder genaamd `klassen` aan in de root van het project en chmod die naar `777`.

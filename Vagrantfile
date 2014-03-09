@@ -27,6 +27,7 @@ Vagrant::configure('2') do |config|
         chef.add_recipe "php::module_gd"
         chef.add_recipe "php::module_curl"
         chef.add_recipe "chef-php-extra"
+        chef.add_recipe "composer"
         chef.add_recipe "database::mysql"
         chef.add_recipe "apache-sites"
         chef.add_recipe "mysql-databases"
