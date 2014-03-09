@@ -1,4 +1,11 @@
-node_modules/
-vendor/*
-public/bower_components/
-.vagrant/
+/node_modules
+/public/bower_components
+/.vagrant
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.env.local.php
+.env.php
+.DS_Store
+Thumbs.db
