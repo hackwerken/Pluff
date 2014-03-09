@@ -2,16 +2,25 @@
 
 class DatabaseSeeder extends Seeder {
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Eloquent::unguard();
+  public function run()
+  {
+    $this->call('RoosterTableSeeder');
+    $this->command->info('Rooster table seeded!');
+  }
+}
 
-		// $this->call('UserTableSeeder');
-	}
+class RoosterTableSeeder extends Seeder {
+
+    // Vul de rooster tabel met echte data
+    public function run()
+    {
+      // JSON ophalen waarin alle klassen staan die gedownload moeten worden.
+      $klas_whitelist_bestand = file_get_contents(public_path().'/klaswhitelist.json');
+      $klas_whitelist = json_decode($klas_whitelist_bestand, true);
+
+      foreach ($klas_whitelist as $klas) {
+        Cron::getFile($klas);
+      }
+    }
 
 }

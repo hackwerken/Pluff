@@ -5,6 +5,8 @@ class Rooster extends Eloquent {
    * @var string
    */
   protected $table = 'rooster';
+  public $timestamps = true;
+  protected $softDelete = false;
 
   public static function getKlasInfo($klasInput = null) {
 
@@ -65,6 +67,7 @@ class Rooster extends Eloquent {
       $begintijd = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
       $datum = date('Y-m-d', $begintijd);
 
+      // TODO: Checken of de klas in cache staat, zoniet onderstaande functie uitvoeren
       $query = Rooster::where('klas', 'like', '%'.$klas.'%')
         ->where('tijdstip_begin', 'like', '%'.$datum.'%')
         ->where('uurnr_begin', '=', $uurNummer)
