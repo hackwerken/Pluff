@@ -15,13 +15,19 @@ class Rooster extends Eloquent {
    * @var bool
    */
   protected $softDelete = false;
-
-  // public function scopeKlas($query, $klas)
-  // {
-  //   return $query->where('klas', '=', $klas)
-  //         ->orWhere('klas', 'like', $klas.' %')
-  //         ->orWhere('klas', 'like', '% '.$klas.'%');
-  // }
+  /**
+   * Zoek een klas in het 'klas' veld.
+   *
+   * @param string $klas Voorbeeld: 'm32'
+   */
+  public function scopeKlasLike($query, $klas)
+  {
+    return $query->where(function($query) use ($klas) {
+        $query->where('klas', '=', $klas)
+          ->orWhere('klas', 'like', $klas.' %')
+          ->orWhere('klas', 'like', '% '.$klas.'%');
+        });
+  }
 
   /**
    * Haal een lesuur op.
@@ -41,29 +47,14 @@ class Rooster extends Eloquent {
       $begintijd = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
       $datum = date('Y-m-d', $begintijd);
 
-      $query = Rooster::where(function($query) use ($klas) {
-          $query->where('klas', '=', $klas)
-            ->orWhere('klas', 'like', $klas.' %')
-            ->orWhere('klas', 'like', '% '.$klas.'%');
-        })
+      $query = Rooster::klasLike($klas)
         ->where('tijdstip_begin', 'like', '%'.$datum.'%')
         ->where('uurnr_begin', '=', $uurNummer)
-        ->first();
-
-      $query2 = Rooster::where(function($query) use ($klas) {
-          $query->where('klas', '=', $klas)
-            ->orWhere('klas', 'like', $klas.' %')
-            ->orWhere('klas', 'like', '% '.$klas.'%');
-        })
-        ->where('tijdstip_begin', 'like', '%'.$datum.'%')
-        ->where('uurnr_eind', '=', ($uurNummer + 1))
         ->first();
 
       // Als er een uur gevonden is, deze in de array zetten (zodat er meerdere lesuren in één uur kunnen zitten)
       if ($query)
         $uur[] = $query;
-      elseif ($query2)
-        $uur[] = $query2;
     }
 
     return $uur;
