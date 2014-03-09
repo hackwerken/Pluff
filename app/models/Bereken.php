@@ -1,7 +1,13 @@
 <?php
 class Bereken {
 
-  // Check of $string wel een geldige JSON array is en of er uberhaupt wel iets in de $string staat
+  /**
+   * Zoek de UNIX timestamp van de input op en controleer of de datum overeenkomt met de huidige datum.
+   *
+   * @param int $weekNummer Nummer moet tussen 0 - 52 zitten
+   * @param int $dagNummer Nummer moet tussen 0 - 365 zitten
+   * @return boolean
+   */
   public static function getHuidigeDag($weekNummer, $dagNummer) {
     // Converteer het ingevoerde weeknummer + dagnummer van de week naar een UNIX timestamp
     $datum = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
@@ -15,7 +21,13 @@ class Bereken {
     return false;
   }
 
-  // Haal alle tijden volgens het rooster op, behalve de laatste. In het laatste uur wordt namelijk geen les gegeven.
+
+  /**
+   * Haal de roostertijden uit de config op, behalve de laatste.
+   * In het laatste uur wordt namelijk geen les gegeven.
+   *
+   * @return array
+   */
   public static function getTijdenMin1() {
     return array_slice(Config::get('rooster.tijden'), 0, -1, true);
   }

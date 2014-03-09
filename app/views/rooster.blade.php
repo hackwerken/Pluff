@@ -2,7 +2,7 @@
   <div class="row">
     @foreach($cDagen as $dagnr => $dagNaam)
       <div class="medium-3 columns">
-        <div class="dag {{ (Bereken::getHuidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : '' }}">
+        <div class="dag {{ (Bereken::getHuidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : 'andere-dag' }}">
           <h4>{{ $dagNaam }}</h4>
 
           @foreach (Bereken::getTijdenMin1() as $uurnr => $uurtijd)

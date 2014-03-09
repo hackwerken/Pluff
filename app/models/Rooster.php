@@ -1,13 +1,27 @@
 <?php
 class Rooster extends Eloquent {
   /**
-   * Database table used by model
+   * Database tabel gebruikt door het model.
    * @var string
    */
   protected $table = 'rooster';
+  /**
+   * Wel of geen timestamps aan de tabel toevoegen.
+   * @var bool
+   */
   public $timestamps = true;
+  /**
+   * Bij verwijdering van een rij het in een 'prullenbak' gooien.
+   * @var bool
+   */
   protected $softDelete = false;
 
+  /**
+   * Kijk welke klas(sen) er zijn ingevuld, of ze geldig zijn en maak er o.a. een array van.
+   *
+   * @param string|null $klasInput Puntkomma-gescheiden klassen
+   * @return array Bevat alle informatie over de ingevoerde klas
+   */
   public static function getKlasInfo($klasInput = null) {
 
     if (!empty($klasInput) && preg_match('/^[A-Za-z0-9;-]+$/i', $klasInput)) {
@@ -27,6 +41,13 @@ class Rooster extends Eloquent {
     }
   }
 
+  /**
+   * Kijk of er een weeknummer is ingevuld en voer hier een aantal berekeningen mee uit.
+   * Indien geen weeknummer is ingevuld het huidige weeknummer pakken.
+   *
+   * @param int $weekInput Nummer moet tussen 0 - 52 zitten.
+   * @return array Bevat de volgende, vorige, huidige en ingevoerd weeknummer
+   */
   public static function getWeekInfo($weekInput = null) {
     $weekOutput = [];
 

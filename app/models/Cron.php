@@ -1,12 +1,22 @@
 <?php
 class Cron {
 
-  // Check of $string wel een geldige JSON array is en of er uberhaupt wel iets in de $string staat
+  /**
+   * Controleer of de input een geldig JSON formaat heeft en of er wel iets in staat.
+   *
+   * @param string $string JSON
+   * @return boolean
+   */
   public static function is_json($string) {
     return !empty($string) && is_string($string) && is_array(json_decode($string, true)) && json_last_error() == 0;
   }
 
-  // Haal het bestand van een klas op
+  /**
+   * Zet alle gevonden lessen van één klas in de database.
+   *
+   * @param array $lessen
+   * @return bool
+   */
   public static function setLessen($lessen) {
 
     foreach ($lessen as $les) {
@@ -42,6 +52,13 @@ class Cron {
     }
   }
 
+  /**
+   * Haal de JSON van een klas op en indien geldige JSON,
+   * geef de output dan door aan setLessen
+   *
+   * @param string $klas Een klas die in public/klaswhitelist.json staat
+   * @return bool
+   */
   public static function getFile($klas) {
     // Haal JSON op van Fontys website en sla in de $json variabele op
     $ch = curl_init('http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&instituut=1&klas='.urlencode($klas));
@@ -59,7 +76,7 @@ class Cron {
     }
     else {
       // Bestand is geen JSON. Deze gebeurtenis loggen we.
-      echo "Klas ".urldecode($klas)." gaf geen geldige JSON terug.<br>";
+      echo "Klas ".urldecode($klas)." gaf geen geldige JSON terug.\n";
     }
   }
 }
