@@ -45,7 +45,7 @@ class Rooster extends Eloquent {
    * Kijk of er een weeknummer is ingevuld en voer hier een aantal berekeningen mee uit.
    * Indien geen weeknummer is ingevuld het huidige weeknummer pakken.
    *
-   * @param int $weekInput Nummer moet tussen 0 - 52 zitten.
+   * @param int|null $weekInput Nummer moet tussen 1 - 52 zitten.
    * @return array Bevat de volgende, vorige, huidige en ingevoerd weeknummer
    */
   public static function getWeekInfo($weekInput = null) {
@@ -79,6 +79,15 @@ class Rooster extends Eloquent {
     return $weekOutput;
   }
 
+  /**
+   * Haal een lesuur op.
+   *
+   * @param int $weekNummer Nummer moet tussen 1 - 52 zitten.
+   * @param int $dagNummer Nummer moet tussen 1 - 365 zitten.
+   * @param int $uurNummer Nummer zit tussen 1 - 14 (kan geconfigureerd worden in app/config/rooster.php).
+   * @param array $klassen De klassen die in het uur kunnen voorkomen.
+   * @return array Informatie over het uur zoals vak, lokaal, docent.
+   */
   public static function getUur($weekNummer, $dagNummer, $uurNummer, $klassen) {
     $uur = [];
 
@@ -89,7 +98,11 @@ class Rooster extends Eloquent {
       $datum = date('Y-m-d', $begintijd);
 
       // TODO: Checken of de klas in cache staat, zoniet onderstaande functie uitvoeren
-      $query = Rooster::where('klas', 'like', '%'.$klas.'%')
+      $query = Rooster::where(function ($query) use ($klas) {
+          $query->where('klas', '=', $klas)
+            ->orWhere('klas', 'like', $klas.' %')
+            ->orWhere('klas', 'like', '% '.$klas.'%');
+        })
         ->where('tijdstip_begin', 'like', '%'.$datum.'%')
         ->where('uurnr_begin', '=', $uurNummer)
         ->first();
