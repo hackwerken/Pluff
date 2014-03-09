@@ -11,16 +11,6 @@
 |
 */
 
-Route::get('cron', function() {
-  // JSON ophalen waarin alle klassen staan die gedownload moeten worden.
-  $klas_whitelist_bestand = file_get_contents(public_path().'/klaswhitelist.json');
-  $klas_whitelist = json_decode($klas_whitelist_bestand, true);
-
-  foreach ($klas_whitelist as $klas) {
-    Cron::getFile($klas);
-  }
-});
-
 Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
   $klasInfo = Rooster::getKlasInfo($klasInput);
