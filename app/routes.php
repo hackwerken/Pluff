@@ -13,8 +13,8 @@
 
 Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
-  $klasInfo = Rooster::getKlasInfo($klasInput);
-  $weekInfo = Rooster::getWeekInfo($weekInput);
+  $klasInfo = Bereken::getKlasInfo($klasInput);
+  $weekInfo = Bereken::getWeekInfo($weekInput);
 
   $data = [
     'klas' => $klasInfo['array'],
@@ -33,8 +33,8 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
 
 Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
-  $klasInfo = Rooster::getKlasInfo($klasInput);
-  $weekInfo = Rooster::getWeekInfo($weekInput);
+  $klasInfo = Bereken::getKlasInfo($klasInput);
+  $weekInfo = Bereken::getWeekInfo($weekInput);
 
   $data = [
     'klas' => $klasInfo['array'],
