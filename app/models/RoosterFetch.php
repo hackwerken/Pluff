@@ -37,6 +37,9 @@ class RoosterFetch {
       $lesLokaal = $les['lok'];
       $lesDocent = $les['doc'];
 
+      // We gaan nu elk uur wat tussen het 'beginuur' en het 'einduur' zit doorloopen.
+      // Voor elk uur hiertussen wordt een aparte rij in de db aangemaakt.
+      // TODO: Efficiënter?
       for ($uurnrBeginFor = $uurnrBegin; $uurnrBeginFor < $uurnrEind; $uurnrBeginFor++) {
         $rooster = new Rooster;
 
