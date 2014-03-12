@@ -4,11 +4,6 @@
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
 */
 
 Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
@@ -48,5 +43,5 @@ Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput 
     'cDagen' => Config::get('rooster.dagen'),
   ];
 
-	return View::make('home', $data);
+  return View::make('home', $data);
 });

@@ -5,6 +5,7 @@ class Rooster extends Eloquent {
    * @var string
    */
   protected $table = 'rooster';
+  public static $unguarded = true;
   /**
    * Wel of geen timestamps aan de tabel toevoegen.
    * @var bool

@@ -1,7 +1,7 @@
 <?php
 
 return array(
-
+  'fetchUrl' => 'http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&instituut=1&klas=',
   'dagen' => [
     1 => 'Maandag',
     2 => 'Dinsdag',

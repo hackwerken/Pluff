@@ -41,18 +41,29 @@ class RoosterFetch {
       // Voor elk uur hiertussen wordt een aparte rij in de db aangemaakt.
       // TODO: Efficiënter?
       for ($uurnrBeginFor = $uurnrBegin; $uurnrBeginFor < $uurnrEind; $uurnrBeginFor++) {
-        $rooster = new Rooster;
+          $lesInput = array(
+            'tijdstip_begin' => $tijdstipBegin,
+            'tijdstip_eind' => $tijdstipEind,
+            'uurnr_begin' => $uurnrBeginFor,
+            'uurnr_eind' => $uurnrEind,
+            'vak' => $lesVak,
+            'klas' => $lesKlas,
+            'lokaal' => $lesLokaal,
+            'docent' => $lesDocent
+          );
 
-        $rooster->tijdstip_begin = $tijdstipBegin;
-        $rooster->tijdstip_eind = $tijdstipEind;
-        $rooster->uurnr_begin = $uurnrBeginFor;
-        $rooster->uurnr_eind = $uurnrEind;
-        $rooster->vak = $lesVak;
-        $rooster->klas = $lesKlas;
-        $rooster->lokaal = $lesLokaal;
-        $rooster->docent = $lesDocent;
+          Rooster::create($lesInput);
 
-        $rooster->save();
+          // $lesQuery = Rooster::where('tijdstip_begin', '=', $tijdstipBegin)
+          //   ->where('uurnr_begin', '=', $uurnrBeginFor)
+          //   ->where('klas', '=', $lesKlas);
+          // $lesZoeken = $lesQuery->first();
+
+          // if ($lesZoeken === null)
+          //   Rooster::create($lesInput);
+          // else
+          //   $lesQuery->update($lesInput);
+
       }
     }
   }
@@ -66,7 +77,7 @@ class RoosterFetch {
    */
   public static function getFile($klas) {
     // Haal JSON op van Fontys website en sla in de $json variabele op
-    $ch = curl_init('http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&instituut=1&klas='.urlencode($klas));
+    $ch = curl_init(Config::get('rooster.fetchUrl').urlencode($klas));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     // Zet de response in een variabele
@@ -83,5 +94,21 @@ class RoosterFetch {
       // Bestand is geen JSON. Deze gebeurtenis loggen we.
       echo "Klas ".urldecode($klas)." gaf geen geldige JSON terug.\n";
     }
+  }
+
+  /**
+   * Verwijder alle lesuren die al een paar weken oud zijn
+   * en ook alle lesuren van vandaag en in de toekomende tijd.
+   *
+   * @param string $tijdOud een geldig Engels datumformaat
+   * @return void
+   */
+  public static function deleteOud($tijdOud = '-3 weeks') {
+    // Converteer de datum die is opgegeven naar een DATETIME compitabel formaat
+    $datumOud = date('Y-m-d H:i:s', strtotime($tijdOud));
+
+    // Verwijder elke rij die ouder (= kleiner) is dan de ingevoerde datum
+    Rooster::where('tijdstip_begin', '<', $datumOud)->delete();
+    Rooster::where('tijdstip_begin', '>', date('Y-m-d H:i:s', strtotime('Today')))->delete();
   }
 }
