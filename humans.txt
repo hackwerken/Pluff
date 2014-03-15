@@ -2,9 +2,13 @@ Dit roostersysteem is bedacht & gemaakt uit pure frustratie. Wij zijn ICT'ers en
 
 Dit kan zo niet. Hier moet wat aan gedaan worden.
 
-Kees had eerst een oplossing bedacht met iframes. Dit werkte wel, maar na een paar maanden kwamen we erachter dat het beter kon. Door motivatie & skills van Jeroen om hieraan verder te werken zijn we nu uiteindelijk hier gekomen.
+Kees had eerst een oplossing bedacht met iframes. Dit werkte wel, maar na een paar maanden kwamen we erachter dat het beter kon. Door motivatie van Jeroen om hieraan verder te werken heeft hij verder uitgezocht hoe je met JSON het rooster op kunt halen.
+
+Kees heeft dit vervolgens gebouwd. Later realiseerden we ons dat het nog handiger is om dit met een database te doen, zodat er meer controle mogelijk is. We zijn toen ook het Laravel framework gaan gebruiken.
 
 Bram van de Sommen heeft uiteindelijk de finale kick gegeven en een leuk ontwerp voor de roostersite gemaakt.
+
+Jeroen van LAYLO verzorgt de hosting van Pluff en staat paraat met een accuraat antwoord op vragen indien gewenst.
 
 Kees Kluskens [WebDuck]
 Jeroen Janssen [LAYLO]
