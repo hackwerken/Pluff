@@ -1,12 +1,28 @@
 <?php
+/*
+|--------------------------------------------------------------------------
+| Routes caching.
+| ! Nog experimenteel !
+|--------------------------------------------------------------------------
+*/
+Route::filter('cache', function($route, $request, $response = null)
+{
+    $key = 'route-'.Str::slug(Request::url());
+    $minutes = 30;
+    if(is_null($response) && Cache::has($key)) {
+      return Cache::get($key);
+    }
+    elseif(!is_null($response) && !Cache::has($key)) {
+      Cache::put($key, $response->getContent(), $minutes);
+    }
+});
 
 /*
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 */
-
-Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
+Route::get('rooster/{klasInput?}/{weekInput?}', array('before' => 'cache', 'after' => 'cache', function($klasInput = null, $weekInput = null)
 {
   $klasInfo = Bereken::getKlasInfo($klasInput);
   $weekInfo = Bereken::getWeekInfo($weekInput);
@@ -24,7 +40,7 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
   ];
 
   return View::make('rooster', $data);
-});
+}));
 
 Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
