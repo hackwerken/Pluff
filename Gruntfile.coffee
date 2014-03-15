@@ -1,6 +1,5 @@
 "use strict"
 path = require("path")
-shell = require("shelljs")
 
 module.exports = (grunt) ->
   # load all grunt tasks
@@ -10,27 +9,27 @@ module.exports = (grunt) ->
 
     sass:
       options:
-        includePaths: ["public/bower_components/foundation/scss"],
+        includePaths: ["bower_components/foundation/scss"],
       dist:
         options:
           outputStyle: "compressed"
         files:
-          "public/css/app.css": "public/scss/app.scss"
+          "css/app.css": "scss/app.scss"
 
     autoprefixer:
       build:
         expand: true
-        cwd: "public/css"
+        cwd: "css"
         src: ["**/*.css"]
-        dest: "public/css"
+        dest: "css"
 
     copy:
       dist:
         files: [
           expand: true
           flatten: true
-          src: ["public/bower_components/jquery/jquery.min.js", "public/bower_components/modernizr/modernizr.js"]
-          dest: "public/js/vendor/"
+          src: ["bower_components/jquery/jquery.min.js", "bower_components/modernizr/modernizr.js"]
+          dest: "js/vendor/"
           filter: "isFile"
         ]
 
@@ -48,8 +47,8 @@ module.exports = (grunt) ->
       options:
         separator: ";"
       dist:
-        src: ["public/js/app.js"]
-        dest: "public/js/all.js"
+        src: ["js/app.js"]
+        dest: "js/all.js"
 
     uglify:
       options:
@@ -57,28 +56,28 @@ module.exports = (grunt) ->
           drop_console: true
       dist:
         files:
-          "public/js/all.js": ["public/js/all.js"]
+          "js/all.js": ["js/all.js"]
 
     watch:
       grunt:
         files: ["Gruntfile.coffee"]
         tasks: ["sass"]
       sass:
-        files: ["public/scss/{,*/}*.scss", "public/bower_components/{,*/}*.scss"]
+        files: ["scss/{,*/}*.scss", "bower_components/{,*/}*.scss"]
         tasks: ["sass", "autoprefixer"]
       livereload:
-        files: ["app/{,*/}*.php", "public/js/{,*/}*.js", "public/css/{,*/}*.css", "public/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
+        files: ["*.php", "js/{,*/}*.js", "css/{,*/}*.css", "img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
         options:
           livereload: true
 
 
-    open:
+    php:
       app:
-        path: "http://app.local"
+        options:
+          keepalive: false
+          open: true
+          port: 9000
+          hostname: "localhost"
+          livereload: true
 
-      project:
-        path: path.resolve()
-
-  grunt.registerTask "vagrant-up", ->
-    shell.exec "vagrant up"
-  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "open:app", "watch"]
+  grunt.registerTask "default", ["sass", "autoprefixer", "php", "copy", "concat", "uglify", "watch"]

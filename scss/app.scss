@@ -1,0 +1,172 @@
+@import "normalize";
+@import "settings";
+@import "foundation";
+
+::selection {
+  background: $primary-color;
+}
+
+/* Blergh onderstaande CSS handelt af met IE8- gebruikers */
+.slechtebrowser {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  width: 600px;
+  margin-left: -300px;
+  z-index: 1000;
+  background: red;
+  color: #fff;
+  padding: 20px;
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+/* Typografie */
+h2 {
+  text-transform: uppercase;
+  color: darken($primary-color, 30%);
+  font-size: 1.38rem;
+}
+
+h3 {
+  font-size: 2.5em;
+  font-weight: 300;
+  color: $body-font-color;
+  margin-bottom: 1.1875rem;
+}
+
+h4 {
+  font-size: 1.56em;
+  color: $body-font-color;
+}
+
+b, strong {
+  font-weight: normal;
+}
+
+/* Echte stijlen */
+.header {
+  text-align: center;
+  position: relative;
+  margin-top: 1.19em;
+
+  .logo {
+    background: url('../img/logo.png') no-repeat center;
+    background-size: contain;
+    text-indent: -999em;
+    height: 6.3rem;
+  }
+
+  .logo a {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  h2 {
+    line-height: 1;
+    margin-top: 1rem;
+  }
+
+  hr {
+    width: 100%;
+    height: 2px;
+    background: $secondary-color;
+    border: none;
+    border-bottom: 1px solid #fff;
+  }
+}
+
+.intro {
+  display: block;
+}
+
+/* Deze class wordt actief als er een rooster staat */
+.rooster-actief {
+  .intro, .header h2, .header hr {
+    display: none;
+  }
+
+  .header {
+    .logo {
+      height: 2.5rem;
+    }
+  }
+}
+
+.button {
+  border-radius: $global-radius;
+  border: 1px solid $input-border-color;
+  background: #f3f3f3;
+  color: $body-font-color;
+
+  &:hover {
+    .pijl {
+      color: #fff;
+    }
+  }
+}
+
+input[type=text] {
+  border-radius: $global-radius;
+  border: 1px solid $input-border-color;
+}
+
+.vorige-week, .volgende-week, .huidige-week {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .volgende-week {
+    float: right;
+  }
+
+  .text-center-large {
+    text-align: center;
+  }
+}
+
+.pijl {
+  color: $primary-color;
+  font-weight: 300;
+}
+
+.panel {
+  border-radius: $global-radius;
+}
+
+/* Het rooster zelf */
+.dag {
+  background: lighten($body-bg, 1%);
+  border: 1px solid $input-border-color;
+  border-radius: 7px;
+  margin-bottom: 1em;
+
+  h4 {
+    border-bottom: 1px solid $input-border-color;
+    padding-left: 0.75rem;
+    padding-bottom: .2em;
+  }
+
+  &.huidige-dag {
+    h4 {
+      color: $primary-color;
+    }
+  }
+}
+
+.uur {
+  padding: 0 .75rem;
+}
+
+.uur-bezig b {
+  color: $primary-color;
+}
+
+
+footer {
+  margin-top: 2em;
+}
