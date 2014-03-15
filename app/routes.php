@@ -2,7 +2,9 @@
 /*
 |--------------------------------------------------------------------------
 | Routes caching.
-| ! Nog experimenteel !
+| TODO:
+| - Verder testen
+| - Snelheidwinst meten
 |--------------------------------------------------------------------------
 */
 Route::filter('cache', function($route, $request, $response = null)
