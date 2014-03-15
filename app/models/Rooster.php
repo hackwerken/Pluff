@@ -5,6 +5,11 @@ class Rooster extends Eloquent {
    * @var string
    */
   protected $table = 'rooster';
+  /**
+   * Toestaan om alle columns te mogen bewerken.
+   * TODO: Dit is niet zoals het hoort. Kan beter.
+   * @var bool
+   */
   public static $unguarded = true;
   /**
    * Wel of geen timestamps aan de tabel toevoegen.

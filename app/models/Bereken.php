@@ -71,14 +71,25 @@ class Bereken {
    * @param int $dagNummer Nummer moet tussen 0 - 365 zitten
    * @return boolean
    */
-  public static function getHuidigeDag($weekNummer, $dagNummer) {
+  public static function getTimestampVanWeeknrDagnr($weekNummer, $dagNummer) {
     // Converteer het ingevoerde weeknummer + dagnummer van de week naar een UNIX timestamp
     $datum = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
-    // Pak dan het dagnummer van het jaar (0 - 365)
-    $dagnrvanhetjaar = date('z', $datum);
+
+    return $datum;
+  }
+
+  /**
+   * Zoek de UNIX timestamp van de input op en controleer of de datum overeenkomt met de huidige datum.
+   *
+   * @param int $weekNummer Nummer moet tussen 0 - 52 zitten
+   * @param int $dagNummer Nummer moet tussen 0 - 365 zitten
+   * @return boolean
+   */
+  public static function getHuidigeDag($weekNummer, $dagNummer) {
+    $timestamp = Bereken::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
 
     // En controleer of het de huidige dag is. Zoja, return true
-    if (date('z') == $dagnrvanhetjaar)
+    if (date('z') == date('z', $timestamp))
       return true;
 
     return false;

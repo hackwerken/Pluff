@@ -39,7 +39,7 @@ h3 {
 }
 
 h4 {
-  font-size: 1.56em;
+  font-size: 1.18em;
   color: $body-font-color;
 }
 
@@ -145,10 +145,19 @@ input[type=text] {
   border-radius: 7px;
   margin-bottom: 1em;
 
-  h4 {
+  .naam {
     border-bottom: 1px solid $input-border-color;
     padding-left: 0.75rem;
-    margin-bottom: 0;
+
+    h4 {
+      margin-bottom: 0;
+      display: inline;
+    }
+
+    .datum {
+      font-weight: 300;
+      font-size: .7em;
+    }
   }
 
   hr {
