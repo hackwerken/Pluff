@@ -25,6 +25,9 @@ Als Vagrant is opgestart en Grunt als het goed is de pagina geopend heeft, moet 
 
 Het command hierboven zorgt ervoor dat Laravel goed werkt en de database gevuld wordt met het actuele rooster. Hierna ben je klaar!
 
+# Cronjob
+`/usr/bin/php /vagrant/artisan db:seed >> /vagrant/app/storage/logs/cron.log`
+
 # Credits
 Voor het rooster systeem maken we gebruik van de volgende projecten:
 

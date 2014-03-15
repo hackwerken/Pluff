@@ -5,7 +5,6 @@ class DatabaseSeeder extends Seeder {
   public function run()
   {
     $this->call('RoosterTableSeeder');
-    $this->command->info('Rooster table seeded!');
   }
 }
 
@@ -14,6 +13,7 @@ class RoosterTableSeeder extends Seeder {
     // Vul de rooster tabel met echte data
     public function run()
     {
+      echo "\nDATUM: ".date('d-m-Y H:i')."\n";
       // Eerst de oude roosterdata verwijderen
       RoosterFetch::deleteOud();
 
@@ -24,6 +24,8 @@ class RoosterTableSeeder extends Seeder {
       foreach ($klas_whitelist as $klas) {
         RoosterFetch::getFile($klas);
       }
+
+      $this->command->info('Klaar met seeden. '.Rooster::count().' rijen in tabel.');
     }
 
 }
