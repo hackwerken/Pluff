@@ -27,9 +27,11 @@ class RoosterTableSeeder extends Seeder {
         RoosterFetch::getFile($klas);
       }
 
+      // Simpele benchmark
       $eindTijd = microtime(1);
+      $tijdsDuur = round($eindTijd - $startTijd, 1);
 
-      $this->command->info('Klaar met seeden. '.Rooster::count().' rijen in tabel. Duur: '.($eindTijd - $startTijd).'');
+      $this->command->info('Klaar met seeden. '.Rooster::count().' rijen in tabel. Duur: '.$tijdsDuur.'s');
     }
 
 }
