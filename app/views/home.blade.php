@@ -51,7 +51,7 @@
         <h2>Studentenrooster</h2>
         <hr>
         <h3>
-          Klas <span class="js-klas-show">{{ $klasHuman or '' }}</span> &ndash;
+          <span class="js-klas-show">{{ $klasHuman or '' }}</span> &ndash;
           Week <span class="js-weeknr-show">{{ $weeknr }}</span>
         </h3>
       </div>
@@ -73,8 +73,8 @@
       <div class="intro">
         <h3>Rooster</h3>
         <p>
-          Hieronder kun je je klas van Fontys invoeren. Zit je in meerdere klassen? Scheid deze dan met een puntkomma.
-          Je kunt hierna onderaan de pagina de &lsquo;permalink&rsquo; kopi&euml;ren en hier eventueel een bladwijzer van maken.
+          Hieronder kun je een klas of docent van Fontys ICT invoeren. Wil je meerdere klassen of docenten zien? Scheid deze dan met een puntkomma.
+          Je kunt hierna onderaan de pagina de &lsquo;permalink&rsquo; kopi&euml;ren en hier eventueel een bladwijzer van maken of aan je startscherm toevoegen op je smartphone.
         </p>
         <p>
           <strong>Note:</strong> Je kunt hier alleen gebruik van maken als je op de Fontys ICT opleiding zit. We zijn nog bezig met andere opleidingen toevoegen.
