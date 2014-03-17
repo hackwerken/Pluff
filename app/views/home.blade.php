@@ -81,7 +81,7 @@
         </p>
       </div>
 
-      <input type="text" value="{{ $klasOrig }}" placeholder="Vul een of meerdere klassen in (puntkommmagescheiden)" class="js-klas">
+      <input type="text" value="{{ $klasOrig }}" placeholder="Vul een of meerdere klassen of docenten in (puntkommmagescheiden)" class="js-klas">
 
       <div class="hetrooster">
         @include('rooster')
