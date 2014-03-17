@@ -104,4 +104,32 @@ class Bereken {
   public static function getTijdenMin1() {
     return array_slice(Config::get('rooster.tijden'), 0, -1, true);
   }
+
+  /**
+   * Zet de input in een array en verwerkt deze tot een JSON bestand.
+   *
+   * @param string $input HTML waarin alle klassen staan. 1 klas per regel.
+   * @return bool
+   */
+  public static function setKlasWhitelist($input) {
+    // Haal alle <option> tags weg
+    $process = strip_tags($input);
+    $process = strtolower($process);
+    $process = html_entity_decode($process);
+    // $process = urlencode($process);
+    // We hebben nu alle klassen op een aparte regel staan. Tijd om er een array van te maken!
+    $process = explode("\n", $process);
+    // Verwijder lege array values
+    $process = array_filter($process);
+    $process = array_map('trim', $process);
+    // Array naar een JSON bestand omzetten
+    $process = json_encode($process, JSON_PRETTY_PRINT);
+
+    $save = File::put('klaswhitelist.json', $process);
+
+    if ($save)
+      return true;
+
+    return false;
+  }
 }

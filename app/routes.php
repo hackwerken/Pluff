@@ -24,6 +24,28 @@ Route::filter('cache', function($route, $request, $response = null)
 | Application Routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('klasinput', function() {
+  // Voor gehele automatisering van de input van klassen moet onderstaande methode nog verbeterd worden.
+  // $ch = curl_init('http://iplanner.fontys.nl/');
+  // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  // curl_setopt($ch, CURLOPT_POST, true);
+  // curl_setopt($ch, CURLOPT_POSTFIELDS, 'ddlInstituut=1');
+  // $response = curl_exec($ch);
+
+  // Vul hieronder een lijst met <option>'s van alle klassen in.
+  // Deze kun je krijgen van http://iplanner.fontys.nl/.
+  // Zet elke option op een nieuwe regel!
+  // Voorbeeld:
+  // <option value="a1">a1</option>
+  $input = '';
+
+  if (Bereken::setKlasWhitelist($input))
+    echo 'De whitelist is opgeslagen.';
+  else
+    echo 'Er is helaas iets misgegaan met het verwerken en opslaan van de whitelist.';
+});
+
 Route::get('rooster/{klasInput?}/{weekInput?}', array('before' => 'cache', 'after' => 'cache', function($klasInput = null, $weekInput = null)
 {
   $klasInfo = Bereken::getKlasInfo($klasInput);

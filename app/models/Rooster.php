@@ -29,10 +29,11 @@ class Rooster extends Eloquent {
   public function scopeKlasLike($query, $klas)
   {
     return $query->where(function($query) use ($klas) {
-        $query->where('klas', '=', $klas)
-          ->orWhere('klas', 'like', $klas.' %')
-          ->orWhere('klas', 'like', '% '.$klas.'%');
-        });
+      $query->where('klas', '=', $klas)
+        ->orWhere('klas', 'like', $klas.' %')
+        ->orWhere('klas', 'like', '% '.$klas.'%')
+        ->orWhere('docent', '=', $klas);
+    });
   }
 
   /**
@@ -50,7 +51,7 @@ class Rooster extends Eloquent {
     foreach ($klassen as $klas) {
       // Huidige jaar pakken met het ingevoerde week nummer.
       // Daarna daarbij het dagnummer optellen minus 1 (begint met maandag)
-      $begintijd = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
+      $begintijd = Bereken::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
       $datum = date('Y-m-d', $begintijd);
 
       $query = Rooster::klasLike($klas)
