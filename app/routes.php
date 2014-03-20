@@ -28,6 +28,10 @@ Route::get('klasinput', function() {
 
 Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
+  // Ingevoerde klas in een sessie stoppen
+  if (strlen($klasInput) > 1)
+    Session::put('laatsteklas', $klasInput);
+
   // View ophalen uit cache indien die al gecachet is
   $key = 'klas-'.Str::slug(Request::url());
   $minutes = 30;
