@@ -11,10 +11,10 @@ Route::filter('cache', function($route, $request, $response = null)
 {
     $key = 'route-'.Str::slug(Request::url());
     $minutes = 30;
-    if(is_null($response) && Cache::has($key)) {
+    if (is_null($response) && Cache::has($key)) {
       return Cache::get($key);
     }
-    elseif(!is_null($response) && !Cache::has($key)) {
+    elseif (!is_null($response) && !Cache::has($key)) {
       Cache::put($key, $response->getContent(), $minutes);
     }
 });
@@ -51,6 +51,10 @@ Route::get('rooster/{klasInput?}/{weekInput?}', array('before' => 'cache', 'afte
   $klasInfo = Bereken::getKlasInfo($klasInput);
   $weekInfo = Bereken::getWeekInfo($weekInput);
 
+  // Ingevoerde klas in een sessie stoppen
+  if (strlen($klasInput) > 1)
+    Session::put('laatsteklas', $klasInput);
+
   $data = [
     'klas' => $klasInfo['array'],
     'klasHuman' => $klasInfo['human'],
@@ -68,6 +72,10 @@ Route::get('rooster/{klasInput?}/{weekInput?}', array('before' => 'cache', 'afte
 
 Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
+  // Als er geen klas is ingevuld, kijk dan welke klas de persoon het laatste heeft ingevuld
+  if ($klasInput === null)
+    $klasInput = Session::get('laatsteklas');
+
   $klasInfo = Bereken::getKlasInfo($klasInput);
   $weekInfo = Bereken::getWeekInfo($weekInput);
 
