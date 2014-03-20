@@ -13,5 +13,12 @@ return [
   "input_placeholder" => "Vul een of meerdere klassen of docenten in (puntkommmagescheiden)",
   "permalink" => "Permalink",
   "footer_version" => "BETA Versie",
-  "footer_credits" => "Ervaren coder? Help ons mee via <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!"
+  "footer_credits" => "Ervaren coder? Help ons mee via <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!",
+  "days" => [
+    1 => "Maandag",
+    2 => "Dinsdag",
+    3 => "Woensdag",
+    4 => "Donderdag",
+    5 => "Vrijdag"
+  ]
 ];

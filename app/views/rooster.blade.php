@@ -1,6 +1,6 @@
 @if (!empty($klas))
   <div class="row">
-    @foreach($cDagen as $dagnr => $dagNaam)
+    @foreach(Lang::get('site.days') as $dagnr => $dagNaam)
       <div class="medium-3 columns">
         <div class="dag {{ (Bereken::getHuidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : 'andere-dag' }}">
           <div class="naam">

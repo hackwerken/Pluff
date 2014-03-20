@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Pluff | {{ trans('site.page_title') }}</title>
+  <title>Pluff | @lang('site.page_title')</title>
 
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
@@ -54,36 +54,36 @@
     <div class="small-15 columns">
       <div class="header">
         <h1 class="logo js-home"><a href="#">Pluff.</a></h1>
-        <h2>{{ trans('site.sub_heading') }}</h2>
+        <h2>@lang('site.sub_heading')</h2>
         <hr>
         <h3>
           <span class="js-klas-show">{{ $klasHuman or '' }}</span> &ndash;
-          {{ trans('site.week') }} <span class="js-weeknr-show">{{ $weeknr }}</span>
+          @lang('site.week') <span class="js-weeknr-show">{{ $weeknr }}</span>
         </h3>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="small-15 medium-5 columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_vorige }}" class="button vorige-week js-vorige"><span class="pijl">&lt;</span> {{ trans('site.last_week') }}</a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_vorige }}" class="button vorige-week js-vorige"><span class="pijl">&lt;</span> @lang('site.last_week')</a>
     </div>
     <div class="small-15 medium-5 text-center-large columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_huidig }}" class="button huidige-week js-huidige">{{ trans('site.current_week') }}</a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_huidig }}" class="button huidige-week js-huidige">@lang('site.current_week')</a>
     </div>
     <div class="small-15 medium-5 columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_volgende }}" class="button volgende-week js-volgende">{{ trans('site.next_week') }} <span class="pijl">&gt;</span></a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_volgende }}" class="button volgende-week js-volgende">@lang('site.next_week') <span class="pijl">&gt;</span></a>
     </div>
   </div>
   <div class="row">
     <div class="small-15 columns">
       <div class="intro">
-        <h3>{{ trans('site.rooster_heading') }}</h3>
+        <h3>@lang('site.rooster_heading')</h3>
         <p>
-          {{ trans('site.intro_paragraph') }}
+          @lang('site.intro_paragraph')
         </p>
       </div>
 
-      <input type="text" value="{{ $klasOrig }}" placeholder="{{ trans('site.input_placeholder') }}" class="js-klas">
+      <input type="text" value="{{ $klasOrig }}" placeholder="@lang('site.input_placeholder')" class="js-klas">
 
       <div class="hetrooster">
         @include('rooster')
@@ -93,7 +93,7 @@
   <div class="row">
     <div class="small-15 columns">
       <div class="permalink hide js-permalink-toggle panel">
-        <b>{{ trans('site.permalink') }}:</b> <a href="#" class="js-permalink"></a>
+        <b>@lang('site.permalink'):</b> <a href="#" class="js-permalink"></a>
       </div>
     </div>
   </div>
@@ -103,8 +103,8 @@
     <div class="row">
       <div class="small-15 columns">
         <p>
-          <em>Pluff</em> {{ trans('site.footer_version') }}.
-          {{ trans('site.footer_credits') }}
+          <em>Pluff</em> @lang('site.footer_version').
+          @lang('site.footer_credits')
         </p>
       </div>
     </div>

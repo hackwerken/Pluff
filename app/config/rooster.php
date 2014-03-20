@@ -2,13 +2,6 @@
 
 return array(
   'fetchUrl' => 'http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&instituut=1&klas=',
-  'dagen' => [
-    1 => 'Maandag',
-    2 => 'Dinsdag',
-    3 => 'Woensdag',
-    4 => 'Donderdag',
-    5 => 'Vrijdag'
-  ],
   'tijden' => [
     1 => '08:45',
     2 => '09:35',
