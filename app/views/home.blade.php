@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Pluff - Check je Fontys rooster!</title>
+  <title>Pluff | {{ trans('site.page_title') }}</title>
 
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
@@ -54,40 +54,36 @@
     <div class="small-15 columns">
       <div class="header">
         <h1 class="logo js-home"><a href="#">Pluff.</a></h1>
-        <h2>Studentenrooster</h2>
+        <h2>{{ trans('site.sub_heading') }}</h2>
         <hr>
         <h3>
           <span class="js-klas-show">{{ $klasHuman or '' }}</span> &ndash;
-          Week <span class="js-weeknr-show">{{ $weeknr }}</span>
+          {{ trans('site.week') }} <span class="js-weeknr-show">{{ $weeknr }}</span>
         </h3>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="small-15 medium-5 columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_vorige }}" class="button vorige-week js-vorige"><span class="pijl">&lt;</span> Vorige week</a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_vorige }}" class="button vorige-week js-vorige"><span class="pijl">&lt;</span> {{ trans('site.last_week') }}</a>
     </div>
     <div class="small-15 medium-5 text-center-large columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_huidig }}" class="button huidige-week js-huidige">Huidige week</a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_huidig }}" class="button huidige-week js-huidige">{{ trans('site.current_week') }}</a>
     </div>
     <div class="small-15 medium-5 columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_volgende }}" class="button volgende-week js-volgende">Volgende week <span class="pijl">&gt;</span></a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_volgende }}" class="button volgende-week js-volgende">{{ trans('site.next_week') }} <span class="pijl">&gt;</span></a>
     </div>
   </div>
   <div class="row">
     <div class="small-15 columns">
       <div class="intro">
-        <h3>Rooster</h3>
+        <h3>{{ trans('site.rooster_heading') }}</h3>
         <p>
-          Hieronder kun je een klas of docent van Fontys ICT invoeren. Wil je meerdere klassen of docenten zien? Scheid deze dan met een puntkomma.
-          Je kunt hierna onderaan de pagina de &lsquo;permalink&rsquo; kopi&euml;ren en hier eventueel een bladwijzer van maken of aan je startscherm toevoegen op je smartphone.
-        </p>
-        <p>
-          <strong>Note:</strong> Je kunt hier alleen gebruik van maken als je op de Fontys ICT opleiding zit. We zijn nog bezig met andere opleidingen toevoegen.
+          {{ trans('site.intro_paragraph') }}
         </p>
       </div>
 
-      <input type="text" value="{{ $klasOrig }}" placeholder="Vul een of meerdere klassen of docenten in (puntkommmagescheiden)" class="js-klas">
+      <input type="text" value="{{ $klasOrig }}" placeholder="{{ trans('site.input_placeholder') }}" class="js-klas">
 
       <div class="hetrooster">
         @include('rooster')
@@ -97,7 +93,7 @@
   <div class="row">
     <div class="small-15 columns">
       <div class="permalink hide js-permalink-toggle panel">
-        <b>Permalink:</b> <a href="#" class="js-permalink"></a>
+        <b>{{ trans('site.permalink') }}:</b> <a href="#" class="js-permalink"></a>
       </div>
     </div>
   </div>
@@ -107,8 +103,8 @@
     <div class="row">
       <div class="small-15 columns">
         <p>
-          <em>Pluff</em> BETA Versie.
-          Ervaren coder? Help ons mee via <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
+          <em>Pluff</em> {{ trans('site.footer_version') }}.
+          {{ trans('site.footer_credits') }}
         </p>
       </div>
     </div>
