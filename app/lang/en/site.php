@@ -8,8 +8,8 @@ return [
   "current_week" => "Current week",
   "next_week" => "Next week",
   "rooster_heading" => "Timetable",
-  "intro_paragraph" => "Hieronder kun je een klas of docent van Fontys ICT invoeren. Wil je meerdere klassen of docenten zien? Scheid deze dan met een puntkomma.
-    Je kunt hierna onderaan de pagina de &lsquo;permalink&rsquo; kopi&euml;ren en hier eventueel een bladwijzer van maken of aan je startscherm toevoegen op je smartphone.",
+  "intro_paragraph" => "Welcome to Pluff, your fast-lane to your class schedule. Either enter your class code [eg, M32] of the abbreviation or the tutor you&rsquo;d wish to lookup.
+    Want to combine multiple classes or tutors? Seperate them with a comma.",
   "input_placeholder" => "Enter one or more classes or teachers (semicolon seperated)",
   "permalink" => "Permalink",
   "footer_version" => "BETA Version",
