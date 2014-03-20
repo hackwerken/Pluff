@@ -1,26 +1,6 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Routes caching.
-| TODO:
-| - Verder testen
-| - Snelheidwinst meten
-|--------------------------------------------------------------------------
-*/
-Route::filter('cache', function($route, $request, $response = null)
-{
-    $key = 'route-'.Str::slug(Request::url());
-    $minutes = 30;
-    if (is_null($response) && Cache::has($key)) {
-      return Cache::get($key);
-    }
-    elseif (!is_null($response) && !Cache::has($key)) {
-      Cache::put($key, $response->getContent(), $minutes);
-    }
-});
-
-/*
-|--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 */
@@ -38,22 +18,24 @@ Route::get('klasinput', function() {
   // Zet elke option op een nieuwe regel!
   // Voorbeeld:
   // <option value="a1">a1</option>
-  $input = '';
+  // $input = '';
 
-  if (Bereken::setKlasWhitelist($input))
+  if (isset($input) && Bereken::setKlasWhitelist($input))
     echo 'De whitelist is opgeslagen.';
   else
     echo 'Er is helaas iets misgegaan met het verwerken en opslaan van de whitelist.';
 });
 
-Route::get('rooster/{klasInput?}/{weekInput?}', array('before' => 'cache', 'after' => 'cache', function($klasInput = null, $weekInput = null)
+Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
+  // View ophalen uit cache indien die al gecachet is
+  $key = 'klas-'.Str::slug(Request::url());
+  $minutes = 30;
+  if (Cache::has($key))
+    return Cache::get($key);
+
   $klasInfo = Bereken::getKlasInfo($klasInput);
   $weekInfo = Bereken::getWeekInfo($weekInput);
-
-  // Ingevoerde klas in een sessie stoppen
-  if (strlen($klasInput) > 1)
-    Session::put('laatsteklas', $klasInput);
 
   $data = [
     'klas' => $klasInfo['array'],
@@ -64,11 +46,17 @@ Route::get('rooster/{klasInput?}/{weekInput?}', array('before' => 'cache', 'afte
     'weeknr_volgende' => $weekInfo['volgende'],
     'weeknr' => $weekInfo['gebruikt'],
 
-    'cDagen' => Config::get('rooster.dagen'),
+    'cDagen' => Config::get('rooster.dagen')
   ];
 
-  return View::make('rooster', $data);
-}));
+  $roosterView = View::make('rooster', $data)->render();
+
+  // De gerenderde view in de cache opslaan als dat nog niet is gebeurt
+  if (!is_null($roosterView) && !Cache::has($key))
+    Cache::put($key, $roosterView, $minutes);
+
+  return $roosterView;
+});
 
 Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
@@ -88,7 +76,7 @@ Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput 
     'weeknr_volgende' => $weekInfo['volgende'],
     'weeknr' => $weekInfo['gebruikt'],
 
-    'cDagen' => Config::get('rooster.dagen'),
+    'cDagen' => Config::get('rooster.dagen')
   ];
 
   return View::make('home', $data);
