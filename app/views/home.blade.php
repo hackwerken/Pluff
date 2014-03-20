@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Fontys Rooster</title>
+  <title>Pluff - Check je Fontys rooster!</title>
 
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
@@ -30,6 +30,12 @@
   <meta name="msapplication-TileImage" content="/img/mstile-144x144.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
+  <meta property="og:title" content="Pluff - Check je Fontys rooster!">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
+  <meta property="og:url" content="{{ Config::get('app.url') }}">
 
 </head>
 <body class="{{ (!empty($klas)) ? 'rooster-actief' : '' }}">
