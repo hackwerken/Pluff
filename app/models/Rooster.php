@@ -66,4 +66,19 @@ class Rooster extends Eloquent {
 
     return $uur;
   }
+
+
+  /**
+   * Haal alle docenten op die in het rooster staan.
+   *
+   * @return object Alle docentenafkortingen
+   */
+  public static function getDocenten() {
+
+    $query = Cache::rememberForever('docenten', function() {
+      return Rooster::where('docent', '!=', '-')->distinct()->get(array('docent'));
+    });
+
+    return $query;
+  }
 }
