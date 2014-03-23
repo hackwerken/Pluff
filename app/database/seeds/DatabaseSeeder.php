@@ -19,6 +19,9 @@ class RoosterTableSeeder extends Seeder {
       // Eerst de oude roosterdata verwijderen
       RoosterFetch::deleteOud();
 
+      // Cache leegmaken
+      Cache::flush();
+
       // JSON ophalen waarin alle klassen staan die gedownload moeten worden.
       $klas_whitelist_bestand = file_get_contents(public_path().'/klaswhitelist.json');
       $klas_whitelist = json_decode($klas_whitelist_bestand, true);

@@ -34,7 +34,6 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
 
   // View ophalen uit cache indien die al gecachet is
   $key = 'klas-'.Str::slug(Request::url());
-  $minutes = 30;
   if (Cache::has($key))
     return Cache::get($key);
 
@@ -55,7 +54,7 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
 
   // De gerenderde view in de cache opslaan als dat nog niet is gebeurt
   if (!is_null($roosterView) && !Cache::has($key))
-    Cache::put($key, $roosterView, $minutes);
+    Cache::forever($key, $roosterView);
 
   return $roosterView;
 });
