@@ -116,6 +116,7 @@
     window.weeknr_volgende = {{ $weeknr_volgende }};
     window.weeknr_vorige = {{ $weeknr_vorige }};
     window.weeknr_huidig = {{ $weeknr_huidig }};
+    window.appUrl = "{{ Config::get('app.url') }}";
     window.klasOrig = "{{ $klasOrig }}";
   </script>
   <script src="/js/app.js"></script>

@@ -28,7 +28,7 @@ $(function() {
 
         // Permalink laten zien
         $('.js-permalink-toggle').show();
-        var nieuweUrl = 'http://pluff.nl/' + klasOrig;
+        var nieuweUrl = appUrl + '/' + klasOrig;
         $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
 
         // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
@@ -49,7 +49,7 @@ $(function() {
     }
   }
 
-  $('.js-klas').on('keyup change', function() {
+  $('.js-klas').on('input', function() {
     // Haal de ingevoerde klassen op, haal alle spaties weg en vervang komma's door puntkomma's
     var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';').toLowerCase();
     // console.log(input);
@@ -58,9 +58,13 @@ $(function() {
     weeknr = weeknr_huidig;
 
     klasOrig = input;
+
     // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
     $('body').addClass('rooster-actief');
+
     roosterLaden(klasOrig, weeknr_huidig);
+
+
   });
 
   $('.js-vorige').on('click', function(e) {
