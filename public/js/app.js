@@ -50,21 +50,27 @@ $(function() {
   }
 
   $('.js-klas').on('input', function() {
-    // Haal de ingevoerde klassen op, haal alle spaties weg en vervang komma's door puntkomma's
-    var input = $(this).val().replace(/\s+/g, '').replace(/,/g , ';').toLowerCase();
-    // console.log(input);
+    clearTimeout($(this).data('timer'));
 
-    // Reset week naar huidige
-    weeknr = weeknr_huidig;
+    var thisInput = $(this);
 
-    klasOrig = input;
+    // We maken gebruik van een timer, om overbodige AJAX requests te voorkomen en de server niet te misbruiken.
+    // Dit zorgt ook voor betere performance.
+    $(this).data('timer', setTimeout(function() {
+      // Haal de ingevoerde klassen op, haal alle spaties weg en vervang komma's door puntkomma's
+      var input = thisInput.val().replace(/\s+/g, '').replace(/,/g , ';').toLowerCase();
+      // console.log(input);
 
-    // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
-    $('body').addClass('rooster-actief');
+      // Reset week naar huidige
+      weeknr = weeknr_huidig;
 
-    roosterLaden(klasOrig, weeknr_huidig);
+      klasOrig = input;
 
+      // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
+      $('body').addClass('rooster-actief');
 
+      roosterLaden(klasOrig, weeknr_huidig);
+    }, 400));
   });
 
   $('.js-vorige').on('click', function(e) {
