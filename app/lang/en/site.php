@@ -12,6 +12,7 @@ return [
     Want to combine multiple classes or tutors? Seperate them with a comma.",
   "input_placeholder" => "Enter one or more classes or teachers (semicolon seperated)",
   "permalink" => "Permalink",
+  "show_everything" => "Show everything",
   "footer_version" => "BETA Version",
   "footer_credits" => "Experienced coder? Help us on <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!",
   "days" => [

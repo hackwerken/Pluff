@@ -100,7 +100,7 @@
 
   <div class="row alles-zien">
     <div class="small-15 columns">
-      <a href="#" class="button button-fullwidth js-alleszien">Laat alles zien</a>
+      <a href="#" class="button button-fullwidth js-alleszien">@lang('site.show_everything')</a>
     </div>
   </div>
 

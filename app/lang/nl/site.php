@@ -12,6 +12,7 @@ return [
           Je kunt hierna onderaan de pagina de &lsquo;permalink&rsquo; kopi&euml;ren en hier eventueel een bladwijzer van maken of aan je startscherm toevoegen op je smartphone.",
   "input_placeholder" => "Vul een of meerdere klassen of docenten in (puntkommmagescheiden)",
   "permalink" => "Permalink",
+  "show_everything" => "Laat alles zien",
   "footer_version" => "BETA Versie",
   "footer_credits" => "Ervaren coder? Help ons mee via <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!",
   "days" => [
