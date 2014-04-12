@@ -99,9 +99,13 @@ b, strong {
       height: 2.5rem;
     }
   }
+}
 
-  .alles-zien {
-    display: block;
+@media only screen and (max-width: 40em) {
+  .rooster-actief {
+    .alles-zien {
+      display: block;
+    }
   }
 }
 
