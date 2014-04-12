@@ -31,6 +31,8 @@ $(function() {
         var nieuweUrl = appUrl + '/' + klasOrig;
         $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
 
+        $('.js-alleszien:parent').addClass('show-for-small-only');
+
         // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
         history.pushState(null, null, '/' + klasOrig + '/' + weeknr);
 
@@ -111,4 +113,10 @@ $(function() {
     roosterLaden(null, null);
   });
 
+  // Gebruiker van een klein scherm eventueel alle dagen + knoppen laten zien
+  $('.js-alleszien').on('click', function(e) {
+    e.preventDefault();
+    $('.dag, .js-controls').removeClass('hide-for-small-only');
+    $('.js-alleszien:parent').hide();
+  });
 });

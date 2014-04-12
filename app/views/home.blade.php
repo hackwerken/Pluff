@@ -63,15 +63,15 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row hide-for-small-only js-controls">
     <div class="small-15 medium-5 columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_vorige }}" class="button vorige-week js-vorige"><span class="pijl">&lt;</span> @lang('site.last_week')</a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_vorige }}" class="button button-fullwidth vorige-week js-vorige"><span class="pijl">&lt;</span> @lang('site.last_week')</a>
     </div>
     <div class="small-15 medium-5 text-center-large columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_huidig }}" class="button huidige-week js-huidige">@lang('site.current_week')</a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_huidig }}" class="button button-fullwidth huidige-week js-huidige">@lang('site.current_week')</a>
     </div>
     <div class="small-15 medium-5 columns">
-      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_volgende }}" class="button volgende-week js-volgende">@lang('site.next_week') <span class="pijl">&gt;</span></a>
+      <a href="?klas={{ $klasOrig }}&week={{ $weeknr_volgende }}" class="button button-fullwidth volgende-week js-volgende">@lang('site.next_week') <span class="pijl">&gt;</span></a>
     </div>
   </div>
   <div class="row">
@@ -83,7 +83,7 @@
         </p>
       </div>
 
-      <input type="text" value="{{ $klasOrig }}" placeholder="@lang('site.input_placeholder')" class="js-klas">
+      <input type="text" value="{{ $klasOrig }}" placeholder="@lang('site.input_placeholder')" autocapitalize="off" autocorrect="off" class="js-klas">
 
       <div class="hetrooster">
         @include('rooster')
@@ -95,6 +95,12 @@
       <div class="permalink hide js-permalink-toggle panel">
         <b>@lang('site.permalink'):</b> <a href="#" class="js-permalink"></a>
       </div>
+    </div>
+  </div>
+
+  <div class="row alles-zien">
+    <div class="small-15 columns">
+      <a href="#" class="button button-fullwidth js-alleszien">Laat alles zien</a>
     </div>
   </div>
 
