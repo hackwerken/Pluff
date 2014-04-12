@@ -96,6 +96,20 @@ class Bereken {
   }
 
   /**
+   * Verkrijg het huidige dagnr van de werkdag of, in het week-end, dagnr 1.
+   *
+   * @return integer Zit tussen 1 - 5
+   */
+  public static function getAankomendeDagnr() {
+    $huidig_dagnr = date('N');
+
+    if ($huidig_dagnr == 5 && date('H') > 18 OR $huidig_dagnr == 6 OR $huidig_dagnr == 7)
+      return 1;
+
+    return $huidig_dagnr;
+  }
+
+  /**
    * Haal de roostertijden uit de config op, behalve de laatste.
    * In het laatste uur wordt namelijk geen les gegeven.
    *

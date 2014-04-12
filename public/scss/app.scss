@@ -84,6 +84,10 @@ b, strong {
   display: block;
 }
 
+.alles-zien {
+  display: none;
+}
+
 /* Deze class wordt actief als er een rooster staat */
 .rooster-actief {
   .intro, .header h2, .header hr {
@@ -94,6 +98,10 @@ b, strong {
     .logo {
       height: 2.5rem;
     }
+  }
+
+  .alles-zien {
+    display: block;
   }
 }
 
@@ -115,7 +123,7 @@ input[type=text] {
   border: 1px solid $input-border-color;
 }
 
-.vorige-week, .volgende-week, .huidige-week {
+.button-fullwidth {
   width: 100%;
 }
 
@@ -189,7 +197,8 @@ input[type=text] {
   background: #fff;
 }
 
-
 footer {
   margin-top: 2em;
 }
+
+

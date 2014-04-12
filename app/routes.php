@@ -47,7 +47,8 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
     'weeknr_vorige' => $weekInfo['vorige'],
     'weeknr_huidig' => $weekInfo['huidig'],
     'weeknr_volgende' => $weekInfo['volgende'],
-    'weeknr' => $weekInfo['gebruikt']
+    'weeknr' => $weekInfo['gebruikt'],
+    'aankomende_dag' => Bereken::getAankomendeDagnr()
   ];
 
   $roosterView = View::make('rooster', $data)->render();
@@ -75,7 +76,8 @@ Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput 
     'weeknr_vorige' => $weekInfo['vorige'],
     'weeknr_huidig' => $weekInfo['huidig'],
     'weeknr_volgende' => $weekInfo['volgende'],
-    'weeknr' => $weekInfo['gebruikt']
+    'weeknr' => $weekInfo['gebruikt'],
+    'aankomende_dag' => Bereken::getAankomendeDagnr()
   ];
 
   return View::make('home', $data);
