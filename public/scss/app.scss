@@ -1,6 +1,18 @@
+@charset "UTF-8";
+
 @import "normalize";
 @import "settings";
-@import "foundation";
+
+@import
+  "foundation/components/grid",
+  "foundation/components/buttons",
+  "foundation/components/clearing",
+  "foundation/components/dropdown",
+  "foundation/components/forms",
+  "foundation/components/panels",
+  "foundation/components/type",
+  "foundation/components/visibility";
+
 
 ::selection {
   background: $primary-color;
@@ -101,7 +113,7 @@ b, strong {
   }
 }
 
-@media only screen and (max-width: 40em) {
+@media #{$small-only} {
   .rooster-actief {
     .alles-zien {
       display: block;
@@ -131,7 +143,7 @@ input[type=text] {
   width: 100%;
 }
 
-@media only screen and (min-width: 768px) {
+@media #{$medium-up} {
   .volgende-week {
     float: right;
   }
@@ -199,6 +211,10 @@ input[type=text] {
 
 .uur-leeg {
   background: #fff;
+
+  @media #{$small-only} {
+    display: none;
+  }
 }
 
 footer {
