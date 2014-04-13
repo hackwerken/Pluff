@@ -122,6 +122,7 @@
   </footer>
 
   <script src="/js/vendor/jquery.js"></script>
+  <script src="/js/pace.js"></script>
   <script>
     window.weeknr = {{ $weeknr }};
     window.weeknr_volgende = {{ $weeknr_volgende }};
