@@ -14,6 +14,7 @@ return [
   "permalink" => "Permalink",
   "show_everything" => "Laat alles zien",
   "footer_version" => "BETA Versie",
+  "choose_lang" => "Kies taal:",
   "footer_credits" => "Ervaren coder? Help ons mee via <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!",
   "days" => [
     1 => "Maandag",

@@ -13,7 +13,10 @@
 
 App::before(function($request)
 {
-	//
+  if (Session::has('language')) {
+    $language = Session::get('language');
+    App::setLocale($language);
+  }
 });
 
 

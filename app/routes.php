@@ -26,16 +26,20 @@ Route::get('klasinput', function() {
     echo 'Er is helaas iets misgegaan met het verwerken en opslaan van de whitelist.';
 });
 
+Route::get('lang/{lang}', function($langInput)
+{
+  if (in_array($langInput, Config::get('app.provided_locales'))) {
+    Session::put('language', $langInput);
+
+    return Redirect::back();
+  }
+});
+
 Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
   // Ingevoerde klas in een sessie stoppen
   if (strlen($klasInput) > 1)
     Session::put('laatsteklas', $klasInput);
-
-  // View ophalen uit cache indien die al gecachet is
-  $key = 'klas-'.Str::slug(Request::url());
-  if (Cache::has($key))
-    return Cache::get($key);
 
   $klasInfo = Bereken::getKlasInfo($klasInput);
   $weekInfo = Bereken::getWeekInfo($weekInput);
@@ -51,13 +55,7 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
     'aankomende_dag' => Bereken::getAankomendeDagnr()
   ];
 
-  $roosterView = View::make('rooster', $data)->render();
-
-  // De gerenderde view in de cache opslaan als dat nog niet is gebeurt
-  if (!is_null($roosterView) && !Cache::has($key))
-    Cache::forever($key, $roosterView);
-
-  return $roosterView;
+  return View::make('rooster', $data)->render();;
 });
 
 Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
@@ -82,3 +80,4 @@ Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput 
 
   return View::make('home', $data);
 });
+

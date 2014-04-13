@@ -39,6 +39,7 @@
 
 </head>
 <body class="{{ (!empty($klas)) ? 'rooster-actief' : '' }}">
+
   <!--[if lt IE 9]>
     <div class="slechtebrowser">
       <p>
@@ -104,12 +105,16 @@
     </div>
   </div>
 
-
   <footer>
     <div class="row">
       <div class="small-15 columns">
         <p>
           <em>Pluff</em> @lang('site.footer_version').
+          @lang('site.choose_lang')
+          @foreach (Config::get('app.provided_locales') as $locale)
+            <a href="{{ url('lang/'.$locale) }}">{{ strtoupper($locale) }}</a>
+          @endforeach
+          .
           @lang('site.footer_credits')
         </p>
       </div>
