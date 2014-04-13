@@ -1,5 +1,5 @@
-FHICT-Rooster
-=============
+Pluff - Studentenrooster
+========================
 
 Een verbeterde versie van de goede roostersoftware van Fontys ICT.
 
