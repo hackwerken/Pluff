@@ -168,6 +168,7 @@ input[type=text] {
   border: 1px solid $input-border-color;
   border-radius: 7px;
   margin-bottom: 1em;
+  overflow: hidden;
 
   .naam {
     border-bottom: 1px solid $input-border-color;
@@ -214,6 +215,10 @@ input[type=text] {
 
   @media #{$small-only} {
     display: none;
+
+    & + hr {
+      display: none;
+    }
   }
 }
 
