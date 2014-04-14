@@ -8,7 +8,6 @@
   <title>Pluff | @lang('site.page_title')</title>
 
   <link rel="stylesheet" href="/css/app.css">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
 
   <script src="/js/pace.js" data-pace-options="{ 'restartOnRequestAfter': false }"></script>
 
