@@ -35,6 +35,14 @@ Route::get('lang/{lang}', function($langInput)
   }
 });
 
+Route::get('cheatsheet', function() {
+  $data = [
+    'docenten' => Rooster::getDocenten(),
+    'lokalen' => Rooster::getLokalen()
+  ];
+  return View::make('cheatsheet', $data);
+});
+
 Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
   // Ingevoerde klas in een sessie stoppen
@@ -55,7 +63,7 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
     'aankomende_dag' => Bereken::getAankomendeDagnr()
   ];
 
-  return View::make('rooster', $data)->render();;
+  return View::make('rooster', $data);
 });
 
 Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)

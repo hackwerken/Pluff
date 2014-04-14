@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quicksand:300,400">
 
   <script src="/js/pace.js" data-pace-options="{ 'restartOnRequestAfter': false }"></script>
-  <script src="/js/vendor/modernizr.js"></script>
 
   <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">

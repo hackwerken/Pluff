@@ -70,7 +70,6 @@ class Rooster extends Eloquent {
     });
   }
 
-
   /**
    * Haal alle docenten op die in het rooster staan.
    *
@@ -79,7 +78,21 @@ class Rooster extends Eloquent {
   public static function getDocenten() {
 
     $query = Cache::rememberForever('docenten', function() {
-      return Rooster::where('docent', '!=', '-')->distinct()->get(array('docent'));
+      return Rooster::where('docent', '!=', '-')->where('docent', '!=', '?')->distinct()->get(array('docent'));
+    });
+
+    return $query;
+  }
+
+  /**
+   * Haal alle lokalen op die in het rooster staan.
+   *
+   * @return object Alle docentenafkortingen
+   */
+  public static function getLokalen() {
+
+    $query = Cache::rememberForever('lokalen', function() {
+      return Rooster::where('lokaal', '!=', '-')->where('lokaal', '!=', '?')->distinct()->get(array('lokaal'));
     });
 
     return $query;
