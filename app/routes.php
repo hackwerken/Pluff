@@ -38,7 +38,8 @@ Route::get('lang/{lang}', function($langInput)
 Route::get('cheatsheet', function() {
   $data = [
     'docenten' => Rooster::getDocenten(),
-    'lokalen' => Rooster::getLokalen()
+    'lokalen' => Rooster::getLokalen(),
+    'klassen' => Rooster::getKlassen()
   ];
   return View::make('cheatsheet', $data);
 });

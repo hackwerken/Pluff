@@ -37,6 +37,21 @@ class Rooster extends Eloquent {
   }
 
   /**
+   * Filter een aantal niet bestaande velden
+   *
+   * @param string $column Voorbeeld: 'klas', 'lokaal', 'docent'
+   */
+  public function scopeFilterOnzin($query, $column)
+  {
+    return $query->where(function($query) use ($column) {
+      $query->where($column, '!=', '-')
+        ->where($column, '!=', '?')
+        ->where($column, '!=', '')
+        ->where($column, '!=', 'xxx');
+    })->distinct();
+  }
+
+  /**
    * Haal een lesuur op.
    *
    * @param int $weekNummer Nummer moet tussen 1 - 52 zitten.
@@ -78,7 +93,7 @@ class Rooster extends Eloquent {
   public static function getDocenten() {
 
     $query = Cache::rememberForever('docenten', function() {
-      return Rooster::where('docent', '!=', '-')->where('docent', '!=', '?')->distinct()->get(array('docent'));
+      return Rooster::filterOnzin('docent')->get(array('docent'));
     });
 
     return $query;
@@ -92,7 +107,21 @@ class Rooster extends Eloquent {
   public static function getLokalen() {
 
     $query = Cache::rememberForever('lokalen', function() {
-      return Rooster::where('lokaal', '!=', '-')->where('lokaal', '!=', '?')->distinct()->get(array('lokaal'));
+      return Rooster::filterOnzin('lokaal')->get(array('lokaal'));
+    });
+
+    return $query;
+  }
+
+  /**
+   * Haal alle klassen op die in het rooster staan.
+   *
+   * @return object Alle klassen
+   */
+  public static function getKlassen() {
+
+    $query = Cache::rememberForever('klassen', function() {
+      return Rooster::filterOnzin('klas')->where('klas', 'not like', '%/%')->get(array('klas'));
     });
 
     return $query;

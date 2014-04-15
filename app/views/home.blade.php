@@ -104,6 +104,8 @@
     </div>
   </div>
 
+  <a href="#" class="js-btn-cheatsheet">Cheatsheet</a>
+
   <footer>
     <div class="row">
       <div class="small-15 columns">
@@ -120,6 +122,9 @@
     </div>
   </footer>
 
+  <div class="popup hide"></div>
+  <div class="popup-achtergrond hide"></div>
+
   <script src="/js/vendor/jquery.js"></script>
   <script>
     window.weeknr = {{ $weeknr }};
@@ -132,6 +137,6 @@
   <script src="/js/app.js"></script>
 
   <!-- LiveReload script -->
-  <!-- <script>document.write('<script src="http://192.168.0.193:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
+  <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>

@@ -26,6 +26,7 @@
   "foundation/components/forms",
   "foundation/components/panels",
   "foundation/components/type",
+  "foundation/components/reveal",
   "foundation/components/visibility";
 
 
@@ -239,6 +240,54 @@ input[type=text] {
 
 footer {
   margin-top: 2em;
+}
+
+/* Popup */
+.js-btn-cheatsheet {
+  display: none;
+}
+
+@media #{$medium-up} {
+  .js-btn-cheatsheet {
+    border: 1px solid $input-border-color;
+    background: #f3f3f3;
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 1.21rem;
+    padding: .5rem;
+    border-top-left-radius: $global-radius;
+    border-bottom-left-radius: $global-radius;
+  }
+}
+
+.popup {
+  position: absolute;
+  top: 2em;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: $secondary-color;
+  width: 40em;
+  max-width: 100%;
+  padding: 1.25rem;
+  z-index: 100;
+  margin-bottom: 2em;
+
+  .sluit-popup {
+    position: absolute;
+    top: .1rem;
+    right: .3rem;
+  }
+}
+
+.popup-achtergrond {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, .5);
+  z-index: 99;
+  display: none;
+  top: 0;
 }
 
 /* Loading */

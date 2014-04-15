@@ -29,7 +29,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           flatten: true
-          src: ["public/bower_components/jquery/jquery.min.js", "public/bower_components/modernizr/modernizr.js"]
+          src: ["public/bower_components/jquery/jquery.min.js"]
           dest: "public/js/vendor/"
           filter: "isFile"
         ]

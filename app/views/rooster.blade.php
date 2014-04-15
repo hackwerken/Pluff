@@ -17,9 +17,9 @@
                 <div class="uur-nummer">{{ $uurnr }}</div>
                 @foreach ($uurArray as $uur)
                   @if ($uur)
-                    <b>{{ date('H:i', strtotime($uur['tijdstip_begin'])) }} - {{ date('H:i', strtotime($uur['tijdstip_eind'])) }}</b><br>
-                    {{ $uur['vak'] }} - {{ $uur['docent'] }}<br>
-                    <small>{{ $uur['lokaal'] }} - {{ $uur['klas'] }}</small><br>
+                    <b>{{{ date('H:i', strtotime($uur['tijdstip_begin'])) }}} - {{{ date('H:i', strtotime($uur['tijdstip_eind'])) }}}</b><br>
+                    {{{ $uur['vak'] }}} - {{{ $uur['docent'] }}}<br>
+                    <small>{{{ $uur['lokaal'] }}} - {{{ $uur['klas'] }}}</small><br>
                   @endif
                 @endforeach
               </div>

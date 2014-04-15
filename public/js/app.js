@@ -81,7 +81,8 @@ $(function() {
     weeknr = weeknr - 1;
 
     // Week 0 bestaat niet, dus naar het vorige jaar gaan
-    if (weeknr == 00)
+    // TODO: Onderstaande code controleren
+    if (weeknr === 0)
       weeknr = 52;
 
     roosterLaden(klasOrig, weeknr);
@@ -119,4 +120,48 @@ $(function() {
     $('.dag, .js-controls').removeClass('hide-for-small-only');
     $('.js-alleszien:parent').hide();
   });
+
+
+  // POPUP
+  function popupOpenen() {
+    $.get('/cheatsheet', function(data) {
+      // Opgehaalde cheatsheet in de DOM zetten
+      $('.popup').html(data);
+      $('.popup-achtergrond').fadeIn(200);
+      $('.popup').fadeIn(200);
+    });
+  }
+
+  function popupSluiten() {
+    $('.popup-achtergrond').fadeOut(200);
+    $('.popup').fadeOut(200);
+  }
+
+  $('.js-btn-cheatsheet').on('click', function(e) {
+    e.preventDefault();
+
+    popupOpenen();
+  });
+
+  $('.popup').on('click', '.sluit-popup', function(e) {
+    e.preventDefault();
+
+    popupSluiten();
+  });
+
+  $('.popup-achtergrond').on('click', function() {
+    popupSluiten();
+  });
+
+  $('.popup').on('click', '.cheat-link', function(e) {
+    e.preventDefault();
+
+    var input = $(this).text();
+
+    roosterLaden(input, weeknr_huidig);
+    $('.js-klas').val(input);
+
+    popupSluiten();
+  });
+
 });
