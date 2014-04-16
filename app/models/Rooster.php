@@ -55,8 +55,8 @@ class Rooster extends Eloquent {
    * @param array $klassen De klassen die in het uur kunnen voorkomen.
    * @return array Informatie over het uur zoals vak, lokaal, docent.
    */
-  public static function getUur($weekNummer, $dagNummer, $uurNummer, $klassen) {
-
+  public static function getUur($weekNummer, $dagNummer, $uurNummer, $klassen)
+  {
     return Cache::rememberForever($weekNummer.'-'.$dagNummer.'-'.$uurNummer.'-'.implode('-', $klassen), function() use ($weekNummer, $dagNummer, $uurNummer, $klassen) {
       $uur = [];
 
@@ -85,8 +85,8 @@ class Rooster extends Eloquent {
    *
    * @return object Alle docentenafkortingen
    */
-  public static function getDocenten() {
-
+  public static function getDocenten()
+  {
     $query = Cache::rememberForever('docenten', function() {
       return Rooster::filterOnzin('docent')->orderBy('docent')->get(array('docent'));
     });
@@ -99,8 +99,8 @@ class Rooster extends Eloquent {
    *
    * @return object Alle docentenafkortingen
    */
-  public static function getLokalen() {
-
+  public static function getLokalen()
+  {
     $query = Cache::rememberForever('lokalen', function() {
       return Rooster::filterOnzin('lokaal')->orderBy('lokaal')->get(array('lokaal'));
     });
@@ -113,8 +113,8 @@ class Rooster extends Eloquent {
    *
    * @return object Alle klassen
    */
-  public static function getKlassen() {
-
+  public static function getKlassen()
+  {
     $query = Cache::rememberForever('klassen', function() {
       return Rooster::filterOnzin('klas')->where('klas', 'not like', '%/%')->orderBy('klas')->get(array('klas'));
     });

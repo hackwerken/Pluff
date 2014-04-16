@@ -7,7 +7,8 @@ class Bereken {
    * @param string|null $klasInput Puntkomma-gescheiden klassen
    * @return array Bevat alle informatie over de ingevoerde klas
    */
-  public static function getKlasInfo($klasInput = null) {
+  public static function getKlasInfo($klasInput = null)
+  {
 
     if (!empty($klasInput) && preg_match('/^[A-Za-z0-9;-]+$/i', $klasInput)) {
       // Indien meerdere klassen er een array van maken
@@ -33,7 +34,8 @@ class Bereken {
    * @param int|null $weekInput Nummer moet tussen 1 - 52 zitten.
    * @return array Bevat de volgende, vorige, huidige en ingevoerd weeknummer
    */
-  public static function getWeekInfo($weekInput = null) {
+  public static function getWeekInfo($weekInput = null)
+  {
     $weekOutput = [];
 
     // Standaard week
@@ -71,7 +73,8 @@ class Bereken {
    * @param int $dagNummer Nummer moet tussen 0 - 365 zitten
    * @return boolean
    */
-  public static function getTimestampVanWeeknrDagnr($weekNummer, $dagNummer) {
+  public static function getTimestampVanWeeknrDagnr($weekNummer, $dagNummer)
+  {
     // Converteer het ingevoerde weeknummer + dagnummer van de week naar een UNIX timestamp
     $datum = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
 
@@ -85,7 +88,8 @@ class Bereken {
    * @param int $dagNummer Nummer moet tussen 0 - 365 zitten
    * @return boolean
    */
-  public static function getHuidigeDag($weekNummer, $dagNummer) {
+  public static function getHuidigeDag($weekNummer, $dagNummer)
+  {
     $timestamp = Bereken::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
 
     // En controleer of het de huidige dag is. Zoja, return true
@@ -100,7 +104,8 @@ class Bereken {
    *
    * @return integer Zit tussen 1 - 5
    */
-  public static function getAankomendeDagnr() {
+  public static function getAankomendeDagnr()
+  {
     $huidig_dagnr = date('N');
 
     if ($huidig_dagnr == 5 && date('H') > 18 OR $huidig_dagnr == 6 OR $huidig_dagnr == 7)
@@ -115,7 +120,8 @@ class Bereken {
    *
    * @return array
    */
-  public static function getTijdenMin1() {
+  public static function getTijdenMin1()
+  {
     return array_slice(Config::get('rooster.tijden'), 0, -1, true);
   }
 
@@ -125,7 +131,8 @@ class Bereken {
    * @param string $input HTML waarin alle klassen staan. 1 klas per regel.
    * @return bool
    */
-  public static function setKlasWhitelist($input) {
+  public static function setKlasWhitelist($input)
+  {
     // Haal alle <option> tags weg
     $process = strip_tags($input);
     $process = strtolower($process);
