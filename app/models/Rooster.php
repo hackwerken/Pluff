@@ -93,7 +93,7 @@ class Rooster extends Eloquent {
   public static function getDocenten() {
 
     $query = Cache::rememberForever('docenten', function() {
-      return Rooster::filterOnzin('docent')->get(array('docent'));
+      return Rooster::filterOnzin('docent')->orderBy('docent')->get(array('docent'));
     });
 
     return $query;
@@ -107,7 +107,7 @@ class Rooster extends Eloquent {
   public static function getLokalen() {
 
     $query = Cache::rememberForever('lokalen', function() {
-      return Rooster::filterOnzin('lokaal')->get(array('lokaal'));
+      return Rooster::filterOnzin('lokaal')->orderBy('lokaal')->get(array('lokaal'));
     });
 
     return $query;
@@ -121,7 +121,7 @@ class Rooster extends Eloquent {
   public static function getKlassen() {
 
     $query = Cache::rememberForever('klassen', function() {
-      return Rooster::filterOnzin('klas')->where('klas', 'not like', '%/%')->get(array('klas'));
+      return Rooster::filterOnzin('klas')->where('klas', 'not like', '%/%')->orderBy('klas')->get(array('klas'));
     });
 
     return $query;

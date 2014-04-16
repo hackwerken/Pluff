@@ -130,6 +130,13 @@ $(function() {
       $('.popup-achtergrond').fadeIn(200);
       $('.popup').fadeIn(200);
     });
+
+    $(document).on('keyup', function(e) {
+      if(e.keyCode === 27) {
+        popupSluiten();
+        $(document).off('keyup');
+      }
+    });
   }
 
   function popupSluiten() {
@@ -146,10 +153,6 @@ $(function() {
   $('.popup').on('click', '.sluit-popup', function(e) {
     e.preventDefault();
 
-    popupSluiten();
-  });
-
-  $('.popup-achtergrond').on('click', function() {
     popupSluiten();
   });
 
