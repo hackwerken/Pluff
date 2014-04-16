@@ -153,4 +153,27 @@ class Bereken {
 
     return false;
   }
+
+  public static function EUNaarDateFormat($input) {
+    $sep = explode('-', $input);
+
+    return $sep[2].'-'.$sep[1].'-'.$sep[0];
+  }
+
+  public static function DateFormatNaarEU($input) {
+    $sep = explode('-', $input);
+
+    return $sep[2].'-'.$sep[1].'-'.$sep[0];
+  }
+
+  public static function dagenTeGaan($start) {
+    $start = strtotime($start);
+    $huidig = strtotime(date('Y-m-d'));
+
+    $verschil = $start - $huidig;
+
+    $verschilInDagen = floor($verschil/3600/24);
+
+    return $verschilInDagen;
+  }
 }

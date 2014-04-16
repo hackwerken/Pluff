@@ -8,14 +8,16 @@
           <th>Naam</th>
           <th>Begin</th>
           <th>Eind</th>
+          <th>Dagen te gaan</th>
         </tr>
       </thead>
       <tbody>
         @foreach ($vakanties as $vakNaam => $vak)
         <tr>
           <td>{{ $vakNaam }}</td>
-          <td>{{ $vak['start'] }}</td>
-          <td>{{ $vak['eind'] }}</td>
+          <td>{{ Bereken::DateFormatNaarEU($vak['start']) }}</td>
+          <td>{{ Bereken::DateFormatNaarEU($vak['eind']) }}</td>
+          <td>{{ Bereken::DagenTeGaan($vak['start']) }} dagen</td>
         </tr>
         @endforeach
       </tbody>
