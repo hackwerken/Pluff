@@ -27,6 +27,7 @@
   "foundation/components/panels",
   "foundation/components/type",
   "foundation/components/reveal",
+  "foundation/components/tables",
   "foundation/components/visibility";
 
 
@@ -243,21 +244,26 @@ footer {
 }
 
 /* Popup */
-.js-btn-cheatsheet {
+.buttons-fixed {
   display: none;
 }
 
 @media #{$medium-up} {
-  .js-btn-cheatsheet {
-    border: 1px solid $input-border-color;
-    background: #f3f3f3;
-    display: block;
+  .buttons-fixed {
     position: fixed;
     right: 0;
     top: 1.21rem;
+    display: block;
+  }
+
+  .button-fixed {
+    border: 1px solid $input-border-color;
+    background: #f3f3f3;
+    display: block;
     padding: .5rem;
     border-top-left-radius: $global-radius;
     border-bottom-left-radius: $global-radius;
+    margin-bottom: 1.21rem;
   }
 }
 

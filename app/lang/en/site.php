@@ -13,6 +13,8 @@ return [
   "input_placeholder" => "Enter one or more classes or teachers (semicolon seperated)",
   "permalink" => "Permalink",
   "show_everything" => "Show everything",
+  "cheatsheet" => "Cheatsheet",
+  "holidays" => "Holidays",
   "footer_version" => "BETA Version",
   "choose_lang" => "Choose language:",
   "footer_credits" => "Experienced coder? Help us on <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!",

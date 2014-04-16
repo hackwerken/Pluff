@@ -44,6 +44,13 @@ Route::get('cheatsheet', function() {
   return View::make('cheatsheet', $data);
 });
 
+Route::get('vakanties', function() {
+  $data = [
+    'vakanties' => Config::get('rooster.vakanties')
+  ];
+  return View::make('vakanties', $data);
+});
+
 Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {
   // Ingevoerde klas in een sessie stoppen

@@ -24,6 +24,23 @@ return [
     '?',
     '',
     'xxx'
+  ],
+  'vakanties' => [
+    'Meivakantie' => [
+      'start' => '2014-04-26',
+      'eind' => '2014-05-05'
+    ],
+    'Zomervakantie' => [
+      'start' => '2014-07-12',
+      'eind' => '2014-08-24'
+    ],
+    'Herfstvakantie' => [
+      'start' => '2014-10-18',
+      'eind' => '2014-10-26'
+    ],
+    'Kerstvakantie' => [
+      'start' => '2014-12-20',
+      'eind' => '2015-01-04'
+    ]
   ]
-
 ];

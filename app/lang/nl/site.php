@@ -13,6 +13,8 @@ return [
   "input_placeholder" => "Vul een of meerdere klassen of docenten in (puntkommmagescheiden)",
   "permalink" => "Permalink",
   "show_everything" => "Laat alles zien",
+  "cheatsheet" => "Cheatsheet",
+  "holidays" => "Vakanties",
   "footer_version" => "BETA Versie",
   "choose_lang" => "Kies taal:",
   "footer_credits" => "Ervaren coder? Help ons mee via <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!",

@@ -123,8 +123,8 @@ $(function() {
 
 
   // POPUP
-  function popupOpenen() {
-    $.get('/cheatsheet', function(data) {
+  function popupOpenen(url) {
+    $.get('/' + url, function(data) {
       // Opgehaalde cheatsheet in de DOM zetten
       $('.popup').html(data);
       $('.popup-achtergrond').fadeIn(200);
@@ -134,7 +134,6 @@ $(function() {
     $(document).on('keyup', function(e) {
       if(e.keyCode === 27) {
         popupSluiten();
-        $(document).off('keyup');
       }
     });
   }
@@ -142,12 +141,14 @@ $(function() {
   function popupSluiten() {
     $('.popup-achtergrond').fadeOut(200);
     $('.popup').fadeOut(200);
+    $(document).off('keyup');
   }
 
-  $('.js-btn-cheatsheet').on('click', function(e) {
+  $('.js-popup').on('click', function(e) {
     e.preventDefault();
 
-    popupOpenen();
+    var url = $(this).attr('href');
+    popupOpenen(url);
   });
 
   $('.popup').on('click', '.sluit-popup', function(e) {
@@ -161,6 +162,7 @@ $(function() {
 
     var input = $(this).text();
 
+    // TODO: Code in functie zetten voor hergebruik
     weeknr = weeknr_huidig;
     klasOrig = input;
     $('body').addClass('rooster-actief');

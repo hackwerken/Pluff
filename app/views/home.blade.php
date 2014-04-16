@@ -104,7 +104,10 @@
     </div>
   </div>
 
-  <a href="#" class="js-btn-cheatsheet">Cheatsheet</a>
+  <div class="buttons-fixed">
+    <a href="cheatsheet" class="button-fixed js-popup">@lang('site.cheatsheet')</a>
+    <a href="vakanties" class="button-fixed js-popup">@lang('site.holidays')</a>
+  </div>
 
   <footer>
     <div class="row">
@@ -138,7 +141,7 @@
   @if (App::environment('local'))
   <script src="/js/app.js"></script>
   <!-- LiveReload script -->
-  <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else
   <script src="/js/all.js"></script>
   @endif
