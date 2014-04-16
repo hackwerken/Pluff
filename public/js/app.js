@@ -161,6 +161,10 @@ $(function() {
 
     var input = $(this).text();
 
+    weeknr = weeknr_huidig;
+    klasOrig = input;
+    $('body').addClass('rooster-actief');
+
     roosterLaden(input, weeknr_huidig);
     $('.js-klas').val(input);
 

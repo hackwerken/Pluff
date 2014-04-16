@@ -32,6 +32,7 @@ class Rooster extends Eloquent {
       $query->where('klas', '=', $klas)
         ->orWhere('klas', 'like', $klas.' %')
         ->orWhere('klas', 'like', '% '.$klas.'%')
+        ->orWhere('lokaal', '=', $klas)
         ->orWhere('docent', '=', $klas);
     });
   }
