@@ -113,7 +113,7 @@
           <em>Pluff</em> @lang('site.footer_version').
           @lang('site.choose_lang')
           @foreach (Config::get('app.provided_locales') as $locale)
-            <a href="{{ url('lang/'.$locale) }}">{{ strtoupper($locale) }}</a>
+          <a href="{{ url('lang/'.$locale) }}">{{ strtoupper($locale) }}</a>
           @endforeach
           .
           @lang('site.footer_credits')
@@ -136,11 +136,11 @@
   </script>
 
   @if (App::environment('local'))
-    <script src="/js/app.js"></script>
-    <!-- LiveReload script -->
-    <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <script src="/js/app.js"></script>
+  <!-- LiveReload script -->
+  <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script>
   @else
-    <script src="/js/all.js"></script>
+  <script src="/js/all.js"></script>
   @endif
 </body>
 </html>
