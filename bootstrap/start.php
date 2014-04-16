@@ -26,7 +26,8 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'live' => array('pluff.nl'),
+	'production' => array('pluff.nl', 'yva.laylo.nl'),
+  'local' => array('app.local', 'quantal64')
 
 ));
 
