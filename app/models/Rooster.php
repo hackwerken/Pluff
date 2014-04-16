@@ -43,12 +43,7 @@ class Rooster extends Eloquent {
    */
   public function scopeFilterOnzin($query, $column)
   {
-    return $query->where(function($query) use ($column) {
-      $query->where($column, '!=', '-')
-        ->where($column, '!=', '?')
-        ->where($column, '!=', '')
-        ->where($column, '!=', 'xxx');
-    })->distinct();
+    return $query->whereNotIn($column, Config::get('rooster.klas_filter'))->distinct();
   }
 
   /**

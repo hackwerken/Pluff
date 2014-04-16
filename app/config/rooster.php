@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
   'fetchUrl' => 'http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&instituut=1&klas=',
   'tijden' => [
     1 => '08:45',
@@ -18,6 +18,12 @@ return array(
     13 => '20:00',
     14 => '20:50',
     15 => '21:40'
+  ],
+  'klas_filter' => [
+    '-',
+    '?',
+    '',
+    'xxx'
   ]
 
-);
+];
