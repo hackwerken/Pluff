@@ -48,7 +48,7 @@ module.exports = (grunt) ->
       options:
         separator: ";"
       dist:
-        src: ["public/js/app.js"]
+        src: ["public/js/app.js", "public/js/popup.js"]
         dest: "public/js/all.js"
 
     uglify:

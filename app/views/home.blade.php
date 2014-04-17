@@ -140,6 +140,7 @@
 
   @if (App::environment('local'))
   <script src="/js/app.js"></script>
+  <script src="/js/popup.js"></script>
   <!-- LiveReload script -->
   <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else

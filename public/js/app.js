@@ -1,55 +1,56 @@
+// Lees status van de javascript variabelen op (handig om te testen)
+function getStatus() {
+  console.log('KlasOrig: ' + klasOrig);
+  console.log('Weeknr: ' + weeknr);
+  console.log('Weeknr volgende: ' + weeknr_volgende);
+  console.log('Weeknr vorige: ' + weeknr_vorige);
+  console.log('Weeknr huidig: ' + weeknr_huidig);
+}
+
+// Het daadwerkelijk laden van het rooster
+function roosterLaden(klasOrig, weeknr) {
+  if (klasOrig && weeknr) {
+    weeknr_volgende = weeknr + 1;
+    weeknr_vorige = weeknr - 1;
+
+    // console.log('Laden...');
+    $.get('/rooster/' + klasOrig + '/' + weeknr, function(data) {
+      // Opgehaalde rooster in de DOM zetten
+      $('.hetrooster').html(data);
+
+      // Weeknummer en klas vervangen in de header
+      $('.js-weeknr-show').text(weeknr);
+      $('.js-klas-show').text(klasOrig.replace(/;/g , ', '));
+
+      // Permalink laten zien
+      $('.js-permalink-toggle').show();
+      var nieuweUrl = appUrl + '/' + klasOrig;
+      $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
+
+      // Button laten zien op kleine schermen zodra er een rooster is geladen
+      $('.js-alleszien:parent').addClass('show-for-small-only');
+
+      // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
+      history.pushState(null, null, '/' + klasOrig + '/' + weeknr);
+
+      getStatus();
+    });
+  }
+  // De hele zooi resetten als er geen klas en week zijn ingevuld
+  else {
+    $('.js-klas').val('');
+    $('.js-permalink-toggle').hide();
+    $('.hetrooster').html('');
+    $('body').removeClass('rooster-actief');
+    $('.js-weeknr-show').text(weeknr_huidig);
+    $('.js-klas-show').text('');
+    history.pushState(null, null, '/');
+  }
+}
+
 $(function() {
 
-  // Lees status van de javascript variabelen op (handig om te testen)
-  function getStatus() {
-    console.log('KlasOrig: ' + klasOrig);
-    console.log('Weeknr: ' + weeknr);
-    console.log('Weeknr volgende: ' + weeknr_volgende);
-    console.log('Weeknr vorige: ' + weeknr_vorige);
-    console.log('Weeknr huidig: ' + weeknr_huidig);
-  }
-
   getStatus();
-
-  // Het daadwerkelijk laden van het rooster
-  function roosterLaden(klasOrig, weeknr) {
-    if (klasOrig && weeknr) {
-      weeknr_volgende = weeknr + 1;
-      weeknr_vorige = weeknr - 1;
-
-      // console.log('Laden...');
-      $.get('/rooster/' + klasOrig + '/' + weeknr, function(data) {
-        // Opgehaalde rooster in de DOM zetten
-        $('.hetrooster').html(data);
-
-        // Weeknummer en klas vervangen in de header
-        $('.js-weeknr-show').text(weeknr);
-        $('.js-klas-show').text(klasOrig.replace(/;/g , ', '));
-
-        // Permalink laten zien
-        $('.js-permalink-toggle').show();
-        var nieuweUrl = appUrl + '/' + klasOrig;
-        $('.js-permalink').text(nieuweUrl).attr('href', nieuweUrl);
-
-        $('.js-alleszien:parent').addClass('show-for-small-only');
-
-        // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
-        history.pushState(null, null, '/' + klasOrig + '/' + weeknr);
-
-        getStatus();
-      });
-    }
-    // De hele zooi resetten als er geen klas en week zijn ingevuld
-    else {
-      $('.js-klas').val('');
-      $('.js-permalink-toggle').hide();
-      $('.hetrooster').html('');
-      $('body').removeClass('rooster-actief');
-      $('.js-weeknr-show').text(weeknr_huidig);
-      $('.js-klas-show').text('');
-      history.pushState(null, null, '/');
-    }
-  }
 
   $('.js-klas').on('input', function() {
     clearTimeout($(this).data('timer'));
@@ -119,58 +120,6 @@ $(function() {
     e.preventDefault();
     $('.dag, .js-controls').removeClass('hide-for-small-only');
     $('.js-alleszien:parent').hide();
-  });
-
-
-  // POPUP
-  function popupOpenen(url) {
-    $.get('/' + url, function(data) {
-      // Opgehaalde cheatsheet in de DOM zetten
-      $('.popup').html(data);
-      $('.popup-achtergrond').fadeIn(200);
-      $('.popup').fadeIn(200);
-    });
-
-    $(document).on('keyup', function(e) {
-      if(e.keyCode === 27) {
-        popupSluiten();
-      }
-    });
-  }
-
-  function popupSluiten() {
-    $('.popup-achtergrond').fadeOut(200);
-    $('.popup').fadeOut(200);
-    $(document).off('keyup');
-  }
-
-  $('.js-popup').on('click', function(e) {
-    e.preventDefault();
-
-    var url = $(this).attr('href');
-    popupOpenen(url);
-  });
-
-  $('.popup').on('click', '.sluit-popup', function(e) {
-    e.preventDefault();
-
-    popupSluiten();
-  });
-
-  $('.popup').on('click', '.cheat-link', function(e) {
-    e.preventDefault();
-
-    var input = $(this).text();
-
-    // TODO: Code in functie zetten voor hergebruik
-    weeknr = weeknr_huidig;
-    klasOrig = input;
-    $('body').addClass('rooster-actief');
-
-    roosterLaden(input, weeknr_huidig);
-    $('.js-klas').val(input);
-
-    popupSluiten();
   });
 
 });
