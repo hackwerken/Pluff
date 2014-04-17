@@ -66,6 +66,9 @@ module.exports = (grunt) ->
       sass:
         files: ["public/scss/{,*/}*.scss", "public/bower_components/{,*/}*.scss"]
         tasks: ["sass", "autoprefixer"]
+      concat:
+        files: ["public/js/app.js", "public/js/popup.js"]
+        tasks: ["concat", "uglify"]
       livereload:
         files: ["app/{,*/}*.php", "public/js/{,*/}*.js", "public/css/{,*/}*.css", "public/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
         options:

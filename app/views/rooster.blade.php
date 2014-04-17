@@ -19,7 +19,13 @@
         @if ($uur)
         <b>{{{ date('H:i', strtotime($uur['tijdstip_begin'])) }}} - {{{ date('H:i', strtotime($uur['tijdstip_eind'])) }}}</b><br>
         {{{ $uur['vak'] }}} - <a href="/{{{ $uur['docent'] }}}" class="js-roosterlink undercover-link">{{{ $uur['docent'] }}}</a><br>
-        <small><a href="/{{{ $uur['lokaal'] }}}" class="js-roosterlink undercover-link">{{{ $uur['lokaal'] }}}</a> - <a href="/{{{ $uur['klas'] }}}" class="js-roosterlink undercover-link">{{{ $uur['klas'] }}}</a></small><br>
+        <small>
+          <a href="/{{{ $uur['lokaal'] }}}" class="js-roosterlink undercover-link">{{{ $uur['lokaal'] }}}</a> -
+          <?php $klasArray = explode(';', $uur['klas']); $klasAantal = count($klasArray); $klasTellen = 0; ?>
+          @foreach ($klasArray as $singleKlas)
+          <a href="/{{{ $singleKlas }}}" class="js-roosterlink undercover-link">{{{ $singleKlas }}}</a>{{ (++$klasTellen === $klasAantal) ? '' : ', ' }}
+          @endforeach
+        </small><br>
         @endif
         @endforeach
       </div>

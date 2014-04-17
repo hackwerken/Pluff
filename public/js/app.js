@@ -71,14 +71,12 @@ $(function() {
     // We maken gebruik van een timer, om overbodige AJAX requests te voorkomen en de server niet te misbruiken.
     // Dit zorgt ook voor betere performance.
     $(this).data('timer', setTimeout(function() {
-      // Haal de ingevoerde klassen op, haal leading en trailing spaties weg en vervang komma's en slashes door puntkomma's
+      // Haal de ingevoerde klassen op, haal leading en trailing spaties weg en vervang komma's door puntkomma's
       var input = thisInput.val()
         .trim()
         .replace(/,/g , ';')
         .replace(/, /g , ';')
         .replace(/; /g , ';')
-        .replace(/\//g , ';')
-        .replace(/\/ /g , ';')
         .toLowerCase();
       // console.log(input);
 
