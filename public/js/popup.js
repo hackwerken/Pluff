@@ -37,16 +37,7 @@ $(function() {
   $('.popup').on('click', '.cheat-link', function(e) {
     e.preventDefault();
 
-    var input = $(this).text();
-
-    // TODO: Code in functie zetten voor hergebruik
-    weeknr = weeknr_huidig;
-    klasOrig = input;
-    $('body').addClass('rooster-actief');
-
-    roosterLaden(input, weeknr_huidig);
-    $('.js-klas').val(input);
-
+    roosterLink($(this).text());
     popupSluiten();
   });
 });

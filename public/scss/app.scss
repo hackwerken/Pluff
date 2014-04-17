@@ -76,6 +76,14 @@ b, strong {
   font-weight: normal;
 }
 
+.undercover-link {
+  color: $body-font-color;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
 /* Echte stijlen */
 .header {
   text-align: center;

@@ -9,6 +9,9 @@ function getStatus() {
 
 // Het daadwerkelijk laden van het rooster
 function roosterLaden(klasOrig, weeknr) {
+  // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
+  $('body').addClass('rooster-actief');
+
   if (klasOrig && weeknr) {
     weeknr_volgende = weeknr + 1;
     weeknr_vorige = weeknr - 1;
@@ -48,6 +51,14 @@ function roosterLaden(klasOrig, weeknr) {
   }
 }
 
+function roosterLink(input) {
+  weeknr = weeknr_huidig;
+  klasOrig = input;
+
+  roosterLaden(input, weeknr_huidig);
+  $('.js-klas').val(input);
+}
+
 $(function() {
 
   getStatus();
@@ -68,9 +79,6 @@ $(function() {
       weeknr = weeknr_huidig;
 
       klasOrig = input;
-
-      // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
-      $('body').addClass('rooster-actief');
 
       roosterLaden(klasOrig, weeknr_huidig);
     }, 400));
@@ -113,6 +121,14 @@ $(function() {
     e.preventDefault();
 
     roosterLaden(null, null);
+  });
+
+  $('.hetrooster').on('click', '.js-roosterlink', function(e) {
+    e.preventDefault();
+
+    // Slashes verwijderen
+    var input = $(this).attr('href').replace(/\//g,'');
+    roosterLink(input);
   });
 
   // Gebruiker van een klein scherm eventueel alle dagen + knoppen laten zien

@@ -18,7 +18,7 @@
         @foreach ($uurArray as $uur)
         @if ($uur)
         <b>{{{ date('H:i', strtotime($uur['tijdstip_begin'])) }}} - {{{ date('H:i', strtotime($uur['tijdstip_eind'])) }}}</b><br>
-        {{{ $uur['vak'] }}} - {{{ $uur['docent'] }}}<br>
+        {{{ $uur['vak'] }}} - <a href="/{{{ $uur['docent'] }}}" class="js-roosterlink undercover-link">{{{ $uur['docent'] }}}</a><br>
         <small>{{{ $uur['lokaal'] }}} - {{{ $uur['klas'] }}}</small><br>
         @endif
         @endforeach
