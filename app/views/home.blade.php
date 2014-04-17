@@ -9,7 +9,7 @@
 
   <link rel="stylesheet" href="/css/app.css">
 
-  <script src="/js/pace.js" data-pace-options="{ 'restartOnRequestAfter': false }"></script>
+  <script src="/js/pace.js" data-pace-options='{ "restartOnRequestAfter": false }'></script>
 
   <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
