@@ -1,14 +1,14 @@
 <a class="sluit-popup">&#215;</a>
 <div class="row">
   <div class="small-15 columns">
-    <h2>Vakanties</h2>
+    <h2>@lang('site.holidays')</h2>
     <table>
       <thead>
         <tr>
-          <th>Naam</th>
-          <th>Begin</th>
-          <th>Eind</th>
-          <th>Dagen te gaan</th>
+          <th>@lang('site.holidays_heading_name')</th>
+          <th>@lang('site.holidays_heading_start')</th>
+          <th>@lang('site.holidays_heading_end')</th>
+          <th>@lang('site.holidays_heading_daystogo')</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +17,7 @@
           <td>{{ $vakNaam }}</td>
           <td>{{ Bereken::DateFormatNaarEU($vak['start']) }}</td>
           <td>{{ Bereken::DateFormatNaarEU($vak['eind']) }}</td>
-          <td>{{ Bereken::DagenTeGaan($vak['start']) }} dagen</td>
+          <td>{{ Bereken::DagenTeGaan($vak['start']) }} @lang('site.holidays_days')</td>
         </tr>
         @endforeach
       </tbody>

@@ -1,7 +1,7 @@
 <a class="sluit-popup">&#215;</a>
 <div class="row">
   <div class="small-5 columns">
-    <h2>Klassen</h2>
+    <h2>@lang('site.cheatsheet_classes')</h2>
     <p class="cheats cheats-klassen">
       @foreach ($klassen as $klas)
       <a href="#" class="cheat-link">{{ $klas['klas'] }}</a><br>
@@ -9,7 +9,7 @@
     </p>
   </div>
   <div class="small-5 columns">
-    <h2>Docenten</h2>
+    <h2>@lang('site.cheatsheet_teachers')</h2>
     <p class="cheats cheats-docenten">
       @foreach ($docenten as $docent)
       <a href="#" class="cheat-link">{{ $docent['docent'] }}</a><br>
@@ -17,7 +17,7 @@
     </p>
   </div>
   <div class="small-5 columns">
-    <h2>Lokalen</h2>
+    <h2>@lang('site.cheatsheet_locals')</h2>
     <p>
       <em>Je kunt voorlopig nog niet op lokalen zoeken</em>
     </p>
