@@ -82,7 +82,7 @@ class RoosterFetch {
    * @param string $klas Een klas die in public/klaswhitelist.json staat
    * @return bool
    */
-  public static function getFile($klas) {
+  public static function getFile($klas, $simple = false) {
     // Haal JSON op van Fontys website en sla in de $json variabele op
     $ch = curl_init(Config::get('rooster.fetchUrl').urlencode($klas));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -95,11 +95,17 @@ class RoosterFetch {
     if (RoosterFetch::is_json($response) === true) {
       $lessen = json_decode($response, true);
       // Geef alle lessen in een array door aan de setLessen() functie
-      RoosterFetch::setLessen($lessen);
+      if ($simple === false)
+        RoosterFetch::setLessen($lessen);
+      else
+        return true;
     }
     else {
       // Bestand is geen JSON. Deze gebeurtenis loggen we.
-      echo "Klas ".urldecode($klas)." gaf geen geldige JSON terug.\n";
+      if ($simple === false)
+        echo "Klas ".urldecode($klas)." gaf geen geldige JSON terug.\n";
+      else
+        return false;
     }
   }
 

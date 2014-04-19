@@ -143,8 +143,16 @@ class Bereken {
     // Verwijder lege array values
     $process = array_filter($process);
     $process = array_map('trim', $process);
+
+    // Controleer nu of elke klas wel echt bestaat en geldige JSON teruggeeft.
+    $processChecked = [];
+    foreach ($process as $klas) {
+      if (RoosterFetch::getFile($klas, true) === true) {
+        $processChecked[] = $klas;
+      }
+    }
     // Array naar een JSON bestand omzetten
-    $process = json_encode($process, JSON_PRETTY_PRINT);
+    $process = json_encode($processChecked, JSON_PRETTY_PRINT);
 
     $save = File::put('klaswhitelist.json', $process);
 
