@@ -27,7 +27,7 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 
 	'production' => array('pluff.nl', 'pluff.laylo.nl'),
-  'local' => array('app.local', 'quantal64')
+  'local' => array('app.local', 'packer-virtualbox')
 
 ));
 
