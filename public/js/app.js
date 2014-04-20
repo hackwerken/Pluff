@@ -174,6 +174,7 @@ $(function() {
 
       roosterLaden(klasOrig, weeknr);
     }
+    // Pijl naar rechts (volgende week)
     else if (e.keyCode === 39) {
       weeknr = weeknr + 1;
 
@@ -183,7 +184,6 @@ $(function() {
 
       roosterLaden(klasOrig, weeknr);
     }
-    // Pijl naar rechts
 
   });
 

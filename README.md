@@ -12,7 +12,7 @@ Tips / verbeteringen zijn altijd welkom.
 # Installatie
 Dit project maakt gebruik van [Grunt](http://gruntjs.com/). Dit zorgt ervoor dat je met één command in de terminal een simpele php server kan draaien, livereload en verkleint CSS en JavaScript automatisch.
 
-Nog nooit Grunt gebruikt? Eens moet de eerste keer zijn :). Installeer eerst [Node.js](http://nodejs.org/).
+Nog nooit Grunt gebruikt? Eens moet de eerste keer zijn :-). Installeer eerst [Node.js](http://nodejs.org/).
 
 Ga via de terminal naar de root van het project. Type hier in `npm install && bower install` om de benodigde tools te installeren (dit is eenmalig). Type hierna `grunt`.
 
@@ -21,12 +21,10 @@ Grunt gaat nu Vagrant opstarten, die een *Virtual Machine* download en voor je c
 In de tussentijd kun je aan je *hosts* file al het volgende toevoegen:
 `10.10.10.10 app.local`.
 
-Als Vagrant is opgestart en Grunt als het goed is de pagina geopend heeft, moet je nog even het volgende invoeren in je terminal (`cd` wel eerst naar de goede folder): `vagrant ssh -c "cd /vagrant; composer install; php artisan migrate --seed"`.
-
-Het command hierboven zorgt ervoor dat Laravel goed werkt en de database gevuld wordt met het actuele rooster. Hierna ben je klaar!
+Als alles goed is gegaan opent Grunt nu de website http://app.local met het studentenrooster erop.
 
 # Cronjob
-`/usr/bin/php /vagrant/artisan db:seed >> /vagrant/app/storage/logs/cron.log`
+`/usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log`
 
 # Credits
 Voor het rooster systeem maken we gebruik van de volgende projecten:
