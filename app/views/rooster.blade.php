@@ -1,5 +1,11 @@
 @if (!empty($klas))
 <div class="row">
+  @if (Bereken::isVakantie($weeknr))
+  <div class="alert-box radius">
+    @lang('site.its_a_holiday')
+  </div>
+  @endif
+
   @foreach(Lang::get('site.days') as $dagnr => $dagNaam)
   <div class="medium-3 columns">
     <div class="dag {{ (Bereken::getHuidigeDag($weeknr, $dagnr)) ? 'huidige-dag' : 'andere-dag' }} dag-{{ $dagnr }} {{ ($aankomende_dag != $dagnr) ? 'hide-for-small-only' : '' }}">

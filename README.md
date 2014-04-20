@@ -7,7 +7,7 @@ De code is vrij snel geschreven en kan daardoor grote fouten bevatten. Alvast mi
 
 Tips / verbeteringen zijn altijd welkom.
 
-**Helpen**? Dat mag altijd! Lees de code vast even door om jezelf wegwijs te maken! Contact via info@webduck.nl
+**Helpen**? Dat mag altijd! Lees de code vast even door om jezelf wegwijs te maken! Contact via [info@webduck.nl](mailto:info@webduck.nl)
 
 # Installatie
 Dit project maakt gebruik van [Grunt](http://gruntjs.com/). Dit zorgt ervoor dat je met één command in de terminal een simpele php server kan draaien, livereload en verkleint CSS en JavaScript automatisch.
@@ -21,7 +21,7 @@ Grunt gaat nu Vagrant opstarten, die een *Virtual Machine* download en voor je c
 In de tussentijd kun je aan je *hosts* file al het volgende toevoegen:
 `10.10.10.10 app.local`.
 
-Als alles goed is gegaan opent Grunt nu de website http://app.local met het studentenrooster erop.
+Als alles goed is gegaan opent Grunt nu de website [app.local](http://app.local) met het studentenrooster erop.
 
 # Cronjob
 `/usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log`

@@ -34,7 +34,7 @@
   <meta property="og:title" content="Pluff - Check je Fontys rooster!">
   <meta property="og:type" content="website">
   <meta property="og:description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
-  <meta property="og:url" content="{{ Config::get('app.url') }}">
+  <meta property="og:url" content="{{ url() }}">
 
 </head>
 <body class="{{ (!empty($klas)) ? 'rooster-actief' : '' }}">
@@ -134,7 +134,7 @@
     window.weeknr_volgende = {{ $weeknr_volgende }};
     window.weeknr_vorige = {{ $weeknr_vorige }};
     window.weeknr_huidig = {{ $weeknr_huidig }};
-    window.appUrl = "{{ Config::get('app.url') }}";
+    window.appUrl = "{{ url() }}";
     window.klasOrig = "{{ $klasOrig }}";
   </script>
 

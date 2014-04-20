@@ -13,6 +13,7 @@ return [
   "input_placeholder" => "Enter one or more classes or teachers (semicolon seperated)",
   "permalink" => "Permalink",
   "show_everything" => "Show everything",
+  "its_a_holiday" => "HOLIDAY, BITCHES!",
   "cheatsheet" => "Cheatsheet",
   "holidays" => "Holidays",
   "holidays_heading_name" => "Name",

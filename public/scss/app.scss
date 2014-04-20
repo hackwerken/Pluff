@@ -28,6 +28,7 @@
   "foundation/components/type",
   "foundation/components/reveal",
   "foundation/components/tables",
+  "foundation/components/alert-boxes",
   "foundation/components/visibility";
 
 
@@ -185,6 +186,11 @@ input[type=text] {
 
 .panel {
   border-radius: $global-radius;
+}
+
+.alert-box {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 /* Het rooster zelf */

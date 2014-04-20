@@ -162,18 +162,36 @@ class Bereken {
     return false;
   }
 
+  /**
+   * Zet een EU dateformat (bijv. 24-02-1995) om naar een US dateformat (bijv. 1995-02-24)
+   *
+   * @param string $input Datum in het formaat d-m-Y (dag-maand-jaar)
+   * @return string dateformat Y-m-d (jaar-maand-dag)
+   */
   public static function EUNaarDateFormat($input) {
     $sep = explode('-', $input);
 
     return $sep[2].'-'.$sep[1].'-'.$sep[0];
   }
 
+  /**
+   * Zet een US dateformat (bijv. 1995-02-24) om naar een EU dateformat (bijv. 24-02-1995)
+   *
+   * @param string $input Datum in het formaat Y-m-d (jaar-maand-dag)
+   * @return string dateformat d-m-Y (dag-maand-jaar)
+   */
   public static function DateFormatNaarEU($input) {
     $sep = explode('-', $input);
 
     return $sep[2].'-'.$sep[1].'-'.$sep[0];
   }
 
+  /**
+   * Bereken hoeveel dagen er nog zijn voordat de huidige datum bereikt wordt.
+   *
+   * @param string $start Datum (kan in alle formaten die de PHP strtotime functie ook ondersteund)
+   * @return integer Aantal dagen
+   */
   public static function dagenTeGaan($start) {
     $start = strtotime($start);
     $huidig = strtotime(date('Y-m-d'));
@@ -183,5 +201,23 @@ class Bereken {
     $verschilInDagen = floor($verschil/3600/24);
 
     return $verschilInDagen;
+  }
+
+  /**
+   * Controleer of het opgegeven weeknummer tussen de vakantiedata ligt (staan in de config).
+   *
+   * @param integer $weekNummer Nummer moet tussen 0 - 52 zitten
+   * @return bool
+   */
+  public static function isVakantie($weekNummer) {
+    $huidigeTimestamp = self::getTimestampVanWeeknrDagnr($weekNummer, 1);
+    $huidigeDatum = date('Y-m-d', $huidigeTimestamp);
+
+    foreach (Config::get('rooster.vakanties') as $vakantie) {
+      if ($huidigeDatum >= $vakantie['start'] && $huidigeDatum < $vakantie['eind'])
+        return true;
+    }
+
+    return false;
   }
 }

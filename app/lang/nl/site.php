@@ -13,6 +13,7 @@ return [
   "input_placeholder" => "Vul een of meerdere klassen of docenten in (puntkommmagescheiden)",
   "permalink" => "Permalink",
   "show_everything" => "Laat alles zien",
+  "its_a_holiday" => "HET IS FUCKING VAKANTIE!",
   "cheatsheet" => "Cheatsheet",
   "holidays" => "Vakanties",
   "holidays_heading_name" => "Naam",
