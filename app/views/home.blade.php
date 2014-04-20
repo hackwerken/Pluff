@@ -113,7 +113,7 @@
     <div class="row">
       <div class="small-15 columns">
         <p>
-          <em>Pluff</em> @lang('site.footer_version').
+          <em>Pluff</em> {{ Config::get('rooster.versie') }}.
           @lang('site.choose_lang')
           @foreach (Config::get('app.provided_locales') as $locale)
           <a href="{{ url('lang/'.$locale) }}">{{ strtoupper($locale) }}</a>

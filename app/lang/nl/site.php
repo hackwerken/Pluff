@@ -23,7 +23,6 @@ return [
   "cheatsheet_classes" => "Klassen",
   "cheatsheet_teachers" => "Docenten",
   "cheatsheet_locals" => "Lokalen",
-  "footer_version" => "BETA Versie",
   "choose_lang" => "Kies taal:",
   "footer_credits" => "Ervaren coder? Help ons mee via <a href=\"https://github.com/SpaceK33z/FHICT-Rooster\">Github</a>!",
   "days" => [
