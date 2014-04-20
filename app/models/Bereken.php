@@ -10,7 +10,7 @@ class Bereken {
   public static function getKlasInfo($klasInput = null)
   {
 
-    if (!empty($klasInput) && preg_match('/^[A-Za-z0-9;-]+$/i', $klasInput)) {
+    if (!empty($klasInput) && preg_match('/^[A-Za-z0-9;-_.]+$/i', $klasInput)) {
       // Indien meerdere klassen er een array van maken
       $klasOutput['orig'] = $klasInput;
       $klasOutput['array'] = explode(';', $klasOutput['orig']);

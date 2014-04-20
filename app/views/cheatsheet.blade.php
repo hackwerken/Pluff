@@ -18,9 +18,6 @@
   </div>
   <div class="small-5 columns">
     <h2>@lang('site.cheatsheet_locals')</h2>
-    <p>
-      <em>Je kunt voorlopig nog niet op lokalen zoeken</em>
-    </p>
     <p class="cheats cheats-lokalen">
       @foreach ($lokalen as $lokaal)
       <a href="#" class="cheat-link">{{ $lokaal['lokaal'] }}</a><br>

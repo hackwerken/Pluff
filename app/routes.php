@@ -72,7 +72,7 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
   ];
 
   return View::make('rooster', $data);
-});
+})->where('klasInput', '[A-Za-z0-9_.]+');
 
 Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput = null)
 {

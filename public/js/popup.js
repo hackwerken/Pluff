@@ -7,9 +7,8 @@ function popupOpenen(url) {
   });
 
   $(document).on('keyup', function(e) {
-    if(e.keyCode === 27) {
+    if(e.keyCode === 27)
       popupSluiten();
-    }
   });
 }
 
