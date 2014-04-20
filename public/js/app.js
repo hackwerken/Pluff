@@ -7,6 +7,8 @@ function getStatus() {
   console.log('Weeknr huidig: ' + weeknr_huidig);
 }
 
+var everLoaded = false;
+
 // Het daadwerkelijk laden van het rooster
 function roosterLaden(klasOrig, weeknr) {
   // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
@@ -35,6 +37,7 @@ function roosterLaden(klasOrig, weeknr) {
 
       // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
       history.pushState(null, null, '/' + klasOrig + '/' + weeknr);
+      everLoaded = true;
 
       getStatus();
     });
@@ -61,7 +64,7 @@ function roosterLink(input) {
 
 $(function() {
 
-  getStatus();
+  // getStatus();
 
   $('.js-klas').on('input', function() {
     clearTimeout($(this).data('timer'));
@@ -133,8 +136,6 @@ $(function() {
 
     // Slashes verwijderen
     var input = $(this).attr('href');
-    if (input.indexOf('/') === 0)
-      input = input.substring(1);
     roosterLink(input);
   });
 
@@ -143,6 +144,47 @@ $(function() {
     e.preventDefault();
     $('.dag, .js-controls').removeClass('hide-for-small-only');
     $('.js-alleszien:parent').hide();
+  });
+
+  // Detecteren als er op een vorige of volgende knop wordt gedrukt
+  // TODO: Deze functie werkt nog niet 100%. Nog controleren!
+  $(window).on('popstate', function(e) {
+    if (everLoaded) {
+      // Link ophalen waarnaar genavigeerd wordt
+      newLink = history.location || document.location;
+      // Alleen de bruikbare informatie uit de link halen
+      newLink = newLink.toString();
+      newLink = newLink.split('/');
+      weeknr = parseInt(newLink[4]);
+
+      roosterLaden(newLink[3], weeknr);
+    }
+    everLoaded = true;
+  });
+
+  $(document).on('keyup', function(e) {
+    // Pijl naar links (vorige week)
+    if(e.keyCode === 37) {
+      weeknr = weeknr - 1;
+
+      // Week 0 bestaat niet, dus naar het vorige jaar gaan
+      // TODO: Onderstaande code controleren
+      if (weeknr === 0)
+        weeknr = 52;
+
+      roosterLaden(klasOrig, weeknr);
+    }
+    else if (e.keyCode === 39) {
+      weeknr = weeknr + 1;
+
+      // Het jaar is voorbij, dus weer opnieuw beginnen
+      if (weeknr == 53)
+        weeknr = 01;
+
+      roosterLaden(klasOrig, weeknr);
+    }
+    // Pijl naar rechts
+
   });
 
 });
