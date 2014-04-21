@@ -9,8 +9,7 @@ class Bereken {
    */
   public static function getKlasInfo($klasInput = null)
   {
-
-    if (!empty($klasInput) && preg_match('/^[A-Za-z0-9;-_.]+$/i', $klasInput)) {
+    if (!empty($klasInput) && preg_match('/^[A-Za-z0-9;_\-.]+$/i', $klasInput)) {
       // Indien meerdere klassen er een array van maken
       $klasOutput['orig'] = $klasInput;
       $klasOutput['array'] = explode(';', $klasOutput['orig']);
@@ -64,6 +63,16 @@ class Bereken {
       $weekOutput['vorige'] = 52;
 
     return $weekOutput;
+  }
+
+  /**
+   * Vervang de karakters '&', ' ' en '/' door streepjes.
+   *
+   * @param string $input
+   * @return string Waarin de speciale karakters zijn verplaatst door streepjes
+   */
+  public static function SpecialeCharsNaarStreepje($input) {
+    return str_replace(array('&', ' ', '/'), '-', $input);
   }
 
   /**

@@ -33,8 +33,8 @@ class RoosterFetch {
       $uurnrEind = round(($tijdstipEindUnix - $tijdstipBeginUnix) / 3000) + $uurnrBegin;
 
       $lesVak = strtolower($les['vak']);
-      $lesLokaal = $les['lok'];
-      $lesDocent = $les['doc'];
+      $lesLokaal = Bereken::SpecialeCharsNaarStreepje($les['lok']);
+      $lesDocent = Bereken::SpecialeCharsNaarStreepje($les['doc']);
 
       // Klassen worden met een spatie + forward slash + spatie gescheiden.
       // We willen dit wat netter maken door hiervan een puntkomma te maken en spaties te verwijderen.
@@ -43,6 +43,7 @@ class RoosterFetch {
       // Verwijder trailing en leading whitespaces
       $lesKlas = array_map('trim', $lesKlas);
       $lesKlas = implode(';', $lesKlas);
+      $lesKlas = Bereken::SpecialeCharsNaarStreepje($lesKlas);
 
       // We gaan nu elk uur wat tussen het 'beginuur' en het 'einduur' zit doorloopen.
       // Voor elk uur hiertussen wordt een aparte rij in de db aangemaakt.

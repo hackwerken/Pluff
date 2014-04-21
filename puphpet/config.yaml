@@ -94,10 +94,10 @@ nginx:
     install: 0
     vhosts:
         KV1IThmA3FpE:
-            server_name: awesome.dev
+            server_name: app.local
             server_aliases:
-                - www.awesome.dev
-            www_root: /var/www/awesome.dev
+                - www.app.local
+            www_root: /var/www/public
             listen_port: '80'
             index_files:
                 - index.html
