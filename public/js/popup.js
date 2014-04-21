@@ -16,6 +16,7 @@ function popupSluiten() {
   $('.popup-achtergrond').fadeOut(200);
   $('.popup').fadeOut(200);
   $(document).off('keyup');
+  keyUpFix();
 }
 
 $(function() {

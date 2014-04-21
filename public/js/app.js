@@ -62,6 +62,33 @@ function roosterLink(input) {
   $('.js-klas').val(input);
 }
 
+function keyUpFix() {
+  $(document).on('keyup', function(e) {
+    // Pijl naar links (vorige week)
+    if(e.keyCode === 37) {
+      weeknr = weeknr - 1;
+
+      // Week 0 bestaat niet, dus naar het vorige jaar gaan
+      // TODO: Onderstaande code controleren
+      if (weeknr === 0)
+        weeknr = 52;
+
+      roosterLaden(klasOrig, weeknr);
+    }
+    // Pijl naar rechts (volgende week)
+    else if (e.keyCode === 39) {
+      weeknr = weeknr + 1;
+
+      // Het jaar is voorbij, dus weer opnieuw beginnen
+      if (weeknr == 53)
+        weeknr = 01;
+
+      roosterLaden(klasOrig, weeknr);
+    }
+
+  });
+}
+
 $(function() {
 
   // getStatus();
@@ -162,29 +189,5 @@ $(function() {
     everLoaded = true;
   });
 
-  $(document).on('keyup', function(e) {
-    // Pijl naar links (vorige week)
-    if(e.keyCode === 37) {
-      weeknr = weeknr - 1;
-
-      // Week 0 bestaat niet, dus naar het vorige jaar gaan
-      // TODO: Onderstaande code controleren
-      if (weeknr === 0)
-        weeknr = 52;
-
-      roosterLaden(klasOrig, weeknr);
-    }
-    // Pijl naar rechts (volgende week)
-    else if (e.keyCode === 39) {
-      weeknr = weeknr + 1;
-
-      // Het jaar is voorbij, dus weer opnieuw beginnen
-      if (weeknr == 53)
-        weeknr = 01;
-
-      roosterLaden(klasOrig, weeknr);
-    }
-
-  });
-
+  keyUpFix();
 });
