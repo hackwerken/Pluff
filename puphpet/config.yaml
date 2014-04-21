@@ -60,7 +60,7 @@ mailcatcher:
         mailcatcher_path: /usr/local/bin
         log_path: /var/log/mailcatcher/mailcatcher.log
 apache:
-    install: '1'
+    install: 0
     settings:
         user: vagrant
         group: vagrant
@@ -91,7 +91,7 @@ apache:
     mod_pagespeed: 0
     mod_spdy: 0
 nginx:
-    install: 0
+    install: '1'
     vhosts:
         KV1IThmA3FpE:
             server_name: app.local
