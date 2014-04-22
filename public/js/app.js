@@ -162,7 +162,7 @@ $(function() {
     e.preventDefault();
 
     // Slashes verwijderen
-    var input = $(this).attr('href');
+    var input = $(this).attr('href').replace(/^\/|\/$/g, '');
     roosterLink(input);
   });
 
