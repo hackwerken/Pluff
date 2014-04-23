@@ -7,7 +7,14 @@ De code is vrij snel geschreven en kan daardoor grote fouten bevatten. Alvast mi
 
 Tips / verbeteringen zijn altijd welkom.
 
-**Helpen**? Dat mag altijd! Lees de code vast even door om jezelf wegwijs te maken! Contact via [info@webduck.nl](mailto:info@webduck.nl)
+**Helpen**? Dat mag altijd! Graag zelfs! Meer dan een warm gevoel, een gezellige crew en een incidenteel biertje in het schoolcafé kunnen we helaas niet bieden. Je levert uiteraard wel een zinnige bijdrage aan het leven van veel FHICT [en binnenkort Fontys] studenten.
+
+Meehelpen kan op verschillende manieren:
+
+- Door mee te helpen met de ontwikkeling. Lees de code alvast even door en neem contact op met Kees, via [info@webduck.nl](mailto:info@webduck.nl).
+- Heb je ideeën hoe we Pluff nog beter kunnen maken, maar kan je zelf geen code schrijven? Open een nieuwe issue hier op Github, of neem contact op met Jeroen, via [jeroen@laylo.nll](mailto:jeroen@laylo.nl).
+- Is er in jouw ogen iets mis, of kan er iets verbeterd worden aan de servertechniek van [Pluff.nl](http://pluff.nl/)? Daarvoor is Jeroen het aanspreekpunt.
+- Het design is gemaakt door Bram van der Sommen, van [Mashed](http://www.mashedcreative.nl). Als je daar feedback of tips voor hebt kun je contact op nemen met Kees, Jeroen of Bram. Maar dat mag natuurlijk ook door het openen van een nieuwe issue.
 
 # Installatie
 Dit project maakt gebruik van [Grunt](http://gruntjs.com/). Dit zorgt ervoor dat je met één command in de terminal een simpele php server kan draaien, livereload en verkleint CSS en JavaScript automatisch.
@@ -25,6 +32,10 @@ Als alles goed is gegaan opent Grunt nu de website [app.local](http://app.local)
 
 # Cronjob
 `/usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log`
+
+# Servertechniek
+
+De eerste tijd is er gebruik gemaakt van Apache, in combinatie met PHP en MySQL. Dat leverde helaas een tegenvallende performance. Nu wordt er gebruik gemaakt van nginx, PHP-FPM en MySQL, dat een behoorlijke performance boost gaf boven de oude configuratie. Wellicht iets om mee te nemen als je zelf Pluff zou willen hosten/mirroren.
 
 # Credits
 Voor het rooster systeem maken we gebruik van de volgende projecten:
