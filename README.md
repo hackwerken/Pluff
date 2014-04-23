@@ -11,15 +11,13 @@ Tips / verbeteringen zijn altijd welkom.
 
 Meehelpen kan op verschillende manieren:
 
-- Door mee te helpen met de ontwikkeling. Lees de code alvast even door en neem contact op met Kees, via [info@webduck.nl](mailto:info@webduck.nl).
-- Heb je ideeën hoe we Pluff nog beter kunnen maken, maar kan je zelf geen code schrijven? Open een nieuwe issue hier op Github, of neem contact op met Jeroen, via [jeroen@laylo.nll](mailto:jeroen@laylo.nl).
+- Door mee te helpen met de ontwikkeling. Voor vragen, open een issue of mail naar [info@webduck.nl](mailto:info@webduck.nl).
+- Heb je ideeën hoe we Pluff nog beter kunnen maken, maar kan je zelf geen code schrijven? Open een nieuw issue hier op Github, of neem contact op met Jeroen, via [jeroen@laylo.nl](mailto:jeroen@laylo.nl).
 - Is er in jouw ogen iets mis, of kan er iets verbeterd worden aan de servertechniek van [Pluff.nl](http://pluff.nl/)? Daarvoor is Jeroen het aanspreekpunt.
-- Het design is gemaakt door Bram van der Sommen, van [Mashed](http://www.mashedcreative.nl). Als je daar feedback of tips voor hebt kun je contact op nemen met Kees, Jeroen of Bram. Maar dat mag natuurlijk ook door het openen van een nieuwe issue.
+- Het design is gemaakt door Bram van der Sommen, van [Mashed](http://www.mashedcreative.nl). Voor feedback of tips hierover kun je een issue openen.
 
 # Installatie
-Dit project maakt gebruik van [Grunt](http://gruntjs.com/). Dit zorgt ervoor dat je met één command in de terminal een simpele php server kan draaien, livereload en verkleint CSS en JavaScript automatisch.
-
-Nog nooit Grunt gebruikt? Eens moet de eerste keer zijn :-). Installeer eerst [Node.js](http://nodejs.org/).
+Dit project maakt gebruik van [Grunt](http://gruntjs.com/). Nog nooit Grunt gebruikt? Eens moet de eerste keer zijn :-). Installeer eerst [Node.js](http://nodejs.org/).
 
 Ga via de terminal naar de root van het project. Type hier in `npm install && bower install` om de benodigde tools te installeren (dit is eenmalig). Type hierna `grunt`.
 
