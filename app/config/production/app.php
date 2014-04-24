@@ -2,5 +2,5 @@
 
 return array(
   'debug' => false,
-  'url' => 'http://app.local'
+  'url' => 'https://pluff.nl'
 );
