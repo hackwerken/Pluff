@@ -19,7 +19,7 @@ return [
   | in JSON zijn. Achter deze URL komt een klasnaam te staan.
   |
   */
-  'fetchUrl' => 'http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&instituut=1&klas=',
+  'fetchUrl' => 'http://iplanner.fontys.nl/RoosterHandler.ashx?soort=JSON&dagen=365&instituut=1&klas=',
   /*
   |--------------------------------------------------------------------------
   | Lesuur tijden
