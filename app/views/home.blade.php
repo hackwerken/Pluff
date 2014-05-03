@@ -136,6 +136,7 @@
     window.weeknr_huidig = {{ $weeknr_huidig }};
     window.appUrl = "{{ url() }}";
     window.klasOrig = "{{ $klasOrig }}";
+    window.allesZien = false;
   </script>
 
   @if (App::environment('local'))

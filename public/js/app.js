@@ -35,6 +35,9 @@ function roosterLaden(klasOrig, weeknr) {
       // Button laten zien op kleine schermen zodra er een rooster is geladen
       $('.js-alleszien:parent').addClass('show-for-small-only');
 
+      // Alles weer laten zien indien nodig
+      laatAllesZien();
+
       // Push de url naar de browser zodat je dezelfde pagina ziet als je de pagina refresht en een permalink kunt maken
       history.pushState(null, null, '/' + klasOrig + '/' + weeknr);
       everLoaded = true;
@@ -87,6 +90,13 @@ function keyUpFix() {
     }
 
   });
+}
+
+function laatAllesZien() {
+  if (allesZien === true) {
+    $('.dag, .js-controls').removeClass('hide-for-small-only');
+    $('.js-alleszien:parent').hide();
+  }
 }
 
 $(function() {
@@ -169,8 +179,9 @@ $(function() {
   // Gebruiker van een klein scherm eventueel alle dagen + knoppen laten zien
   $('.js-alleszien').on('click', function(e) {
     e.preventDefault();
-    $('.dag, .js-controls').removeClass('hide-for-small-only');
-    $('.js-alleszien:parent').hide();
+
+    allesZien = true;
+    laatAllesZien();
   });
 
   // Detecteren als er op een vorige of volgende knop wordt gedrukt
