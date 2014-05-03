@@ -62,16 +62,6 @@ class RoosterFetch {
 
           Rooster::create($lesInput);
 
-          // $lesQuery = Rooster::where('tijdstip_begin', '=', $tijdstipBegin)
-          //   ->where('uurnr_begin', '=', $uurnrBeginFor)
-          //   ->where('klas', '=', $lesKlas);
-          // $lesZoeken = $lesQuery->first();
-
-          // if ($lesZoeken === null)
-          //   Rooster::create($lesInput);
-          // else
-          //   $lesQuery->update($lesInput);
-
       }
     }
   }
