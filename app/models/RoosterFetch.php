@@ -28,7 +28,9 @@ class RoosterFetch {
       $tijdstipEind = date('Y-m-d H:i:s', $tijdstipEindUnix);
 
       // Juiste begin en eind uren verkrijgen (precieze tijden staan in array $cTijden)
-      $uurnrBegin = array_search($les['start'], Config::get('rooster.tijden'));
+      $uurnrBegin = explode(':', $les['start']);
+      $uurnrBegin = (float) $uurnrBegin[0] + ($uurnrBegin[1] / 60);
+      $uurnrBegin = Bereken::getArrayKeyDichtstBij($uurnrBegin, Config::get('rooster.tijden'));
       // 3000 = 50 minuten. TODO: Checken welke afrondmethode te gebruiken; round() of floor()
       $uurnrEind = round(($tijdstipEindUnix - $tijdstipBeginUnix) / 3000) + $uurnrBegin;
 

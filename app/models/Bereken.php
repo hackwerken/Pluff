@@ -199,7 +199,7 @@ class Bereken {
    * Bereken hoeveel dagen er nog zijn voordat de huidige datum bereikt wordt.
    *
    * @param string $start Datum (kan in alle formaten die de PHP strtotime functie ook ondersteund)
-   * @return integer Aantal dagen
+   * @return int Aantal dagen
    */
   public static function dagenTeGaan($start) {
     $start = strtotime($start);
@@ -215,7 +215,7 @@ class Bereken {
   /**
    * Controleer of het opgegeven weeknummer tussen de vakantiedata ligt (staan in de config).
    *
-   * @param integer $weekNummer Nummer moet tussen 0 - 52 zitten
+   * @param int $weekNummer Nummer moet tussen 0 - 52 zitten
    * @return bool
    */
   public static function isVakantie($weekNummer) {
@@ -228,5 +228,24 @@ class Bereken {
     }
 
     return false;
+  }
+
+  /**
+   * Zoek de dichtstbijzijnde array value op en geef de key van de gekozen value terug.
+   *
+   * @param int|float
+   * @return mixed
+   */
+  public static function getArrayKeyDichtstBij($search, $arr) {
+     $closest = null;
+     $closestKey = null;
+
+     foreach($arr as $key => $item) {
+        if($closest == null || abs($search - $closest) > abs($item - $search)) {
+           $closest = $item;
+           $closestKey = $key;
+        }
+     }
+     return $closestKey;
   }
 }
