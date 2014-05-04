@@ -5,6 +5,14 @@
 |--------------------------------------------------------------------------
 */
 
+Route::get('test', function() {
+  foreach (Rooster::orderBy('vak')->distinct()->get(array('vak')) as $vak) {
+    echo '<div style="width: 70px; height: 70px; float:left; margin: 0 10px 10px 0; color: #fff; background: #'.Bereken::stringNaarKleurenCode($vak->vak).'">
+    '.$vak->vak.'
+    </div>';
+  }
+});
+
 Route::get('klasinput', function() {
   // Voor gehele automatisering van de input van klassen moet onderstaande methode nog verbeterd worden.
   // $ch = curl_init('http://iplanner.fontys.nl/');

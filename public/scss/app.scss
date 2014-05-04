@@ -250,6 +250,15 @@ input[type=text] {
   padding: 1.25rem .75rem;
   overflow: hidden;
   min-height: 5.5rem;
+  color: $uur-color;
+
+  a {
+    color: $uur-color;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
 }
 
 .uur-bezig b {
@@ -258,11 +267,15 @@ input[type=text] {
 
 .uur-nummer {
   float: right;
-  color: $secondary-color;
+  color: $uur-color;
 }
 
 .uur-leeg {
   background: #fff;
+
+  .uur-nummer {
+    color: $secondary-color;
+  }
 
   @media #{$small-only} {
     display: none;

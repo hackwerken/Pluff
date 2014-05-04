@@ -248,4 +248,16 @@ class Bereken {
      }
      return $closestKey;
   }
+
+  /**
+   * Converteert een string naar een heximale kleurencode.
+   *
+   * @param string
+   * @return string van 6 heximale tekens
+   */
+  public static function stringNaarKleurenCode($str) {
+    $code = dechex(crc32($str));
+    $code = substr($code, 0, 6);
+    return $code;
+  }
 }
