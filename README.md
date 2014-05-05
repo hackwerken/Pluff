@@ -1,41 +1,36 @@
 Pluff — Studentenrooster
 ========================
 
-Een verbeterde versie van de goede roostersoftware van Fontys ICT.
+# Inleiding
 
-De code is vrij snel geschreven en kan daardoor grote fouten bevatten. Alvast mijn diepste verontschuldigingen.
+Pluff is een open-source roostersysteem, gemaakt door Fontys ICT studenten. Het is onze visie, hoe het eigenlijk zou moeten. Het systeem dat door Fontys ICT zelf aangeboden wordt, is in onze ogen verouderd, wij vinden het eruit zien en werken alsof het in de jaren '80 is gemaakt door een stelletje communisten. Kom op. Framesets, Comic Sans en zelfs GIF-jes met glitters. No joke.
 
-Tips / verbeteringen zijn altijd welkom.
+Pluff is retesnel, overzichtelijk en werkt op al je favoriete apparaten. Zelfs op je **slimme koelkast**. Het past zich automatisch aan de schermgrootte aan, waardoor je in één oogopslag de planning kunt zien, alsmede de docent en het lokaal waar je moet zijn. Ook biedt Pluff een 'cheatsheet' en een overzicht van de aankomende vakanties. Mét een handige teller, zodat je ook kunt zien hoe lang dat nog duurt.
 
-**Helpen**? Dat mag altijd! Graag zelfs! Meer dan een warm gevoel, een gezellige crew en een incidenteel biertje in het schoolcafé kunnen we helaas niet bieden. Je levert uiteraard wel een zinnige bijdrage aan het leven van veel FHICT [en binnenkort Fontys] studenten.
-
-Meehelpen kan op verschillende manieren:
-
-- Door mee te helpen met de ontwikkeling. Voor vragen, open een issue of mail naar [info@webduck.nl](mailto:info@webduck.nl).
-- Heb je ideeën hoe we Pluff nog beter kunnen maken, maar kan je zelf geen code schrijven? Open een nieuw issue hier op Github, of neem contact op met Jeroen, via [jeroen@laylo.nl](mailto:jeroen@laylo.nl).
-- Is er in jouw ogen iets mis, of kan er iets verbeterd worden aan de servertechniek van [Pluff.nl](http://pluff.nl/)? Daarvoor is Jeroen het aanspreekpunt.
-- Het design is gemaakt door Bram van der Sommen, van [Mashed](http://www.mashedcreative.nl). Voor feedback of tips hierover kun je een issue openen.
+Uiteraard kan het altijd beter. Wij nemen tips, feedback en verbeteringen dan ook graag mee. Stuur een mailtje naar [Kees](mailto:info@webduck.nl) voor alles omtrent de ontwikkeling en naar [Jeroen](mailto:jeroen@laylo.nl) voor de achterliggende techniek, design of de communicatie. Of nóg beter, maak een issue aan op Github!
 
 # Installatie
-Dit project maakt gebruik van [Grunt](http://gruntjs.com/). Nog nooit Grunt gebruikt? Eens moet de eerste keer zijn :-). Installeer eerst [Node.js](http://nodejs.org/).
 
-Ga via de terminal naar de root van het project. Type hier in `npm install && bower install` om de benodigde tools te installeren (dit is eenmalig). Type hierna `grunt`.
+Uit ervaring kunnen we nginx 1.4, PHP 5.5, MySQL 5.6 en Memcached aanraden qua servertechniek. Apache is gewoonweg te lomp om Pluff fatsoenlijk (lees: snel) te kunnen serveren. Memcached biedt een betere performance dan 'flat file caching'. Mocht je geen memcached kunnen gebruiken, pas dat dan even aan in app/config/cache.php.
 
-Grunt gaat nu Vagrant opstarten, die een *Virtual Machine* download en voor je configureert.
+Om Pluff te kunnen installeren heb je [Node.js](http://nodejs.org/) en [Grunt](http://gruntjs.com/) nodig. Voer de volgende commando's uit in de root van het project:
 
-In de tussentijd kun je aan je *hosts* file al het volgende toevoegen:
-`10.10.10.10 app.local`.
-
-Als alles goed is gegaan opent Grunt nu de website [app.local](http://app.local) met het studentenrooster erop.
+npm install && bower install && grunt && echo 10.10.10.10 app.local >> /etc/hosts
 
 # Cronjob
-`/usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log`
 
-# Servertechniek
+De volgende regel [voor Cron] kun je instellen om het rooster automatisch van Fontys op te halen. Pas /var/www aan naar de projectroot:
 
-De eerste tijd is er gebruik gemaakt van Apache, in combinatie met PHP en MySQL. Dat leverde helaas een tegenvallende performance. Nu wordt er gebruik gemaakt van nginx, PHP-FPM en MySQL, dat een behoorlijke performance boost gaf boven de oude configuratie. Wellicht iets om mee te nemen als je zelf Pluff zou willen hosten/mirroren.
+/usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
 
 # Credits
+
+De mensen achter Pluff:
+
+- [Kees](https://www.webduck.nl) - Ontwikkelaar en meesterbrein
+- [Jeroen](https://www.laylo.nl) - Serverbeheer en woordvoerder
+- [Bram](http://www.mashed-creative.nl) - Ontwerp front-end
+
 Voor het rooster systeem maken we gebruik van de volgende projecten:
 
 - [Laravel](http://laravel.com/) - PHP framework
