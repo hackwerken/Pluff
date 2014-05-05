@@ -80,10 +80,6 @@ return [
   |
   */
   'vakanties' => [
-    'Meivakantie' => [
-      'start' => '2014-04-26',
-      'eind' => '2014-05-05'
-    ],
     'Zomervakantie' => [
       'start' => '2014-07-12',
       'eind' => '2014-08-24'
