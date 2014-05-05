@@ -65,13 +65,13 @@
   </div>
   <div class="row hide-for-small-only js-controls">
     <div class="small-15 medium-5 columns">
-      <a href="/{{ $klasOrig }}/{{ $weeknr_vorige }}" class="button button-fullwidth vorige-week js-vorige"><span class="pijl">&lt;</span> @lang('site.last_week')</a>
+      <a href="/{{ $klasOrig }}/{{ $weeknrVorige }}" class="button button-fullwidth vorige-week js-vorige"><span class="pijl">&lt;</span> @lang('site.last_week')</a>
     </div>
     <div class="small-15 medium-5 text-center-large columns">
-      <a href="/{{ $klasOrig }}/{{ $weeknr_huidig }}" class="button button-fullwidth huidige-week js-huidige">@lang('site.current_week')</a>
+      <a href="/{{ $klasOrig }}/{{ $weeknrHuidig }}" class="button button-fullwidth huidige-week js-huidige">@lang('site.current_week')</a>
     </div>
     <div class="small-15 medium-5 columns">
-      <a href="/{{ $klasOrig }}/{{ $weeknr_volgende }}" class="button button-fullwidth volgende-week js-volgende">@lang('site.next_week') <span class="pijl">&gt;</span></a>
+      <a href="/{{ $klasOrig }}/{{ $weeknrVolgende }}" class="button button-fullwidth volgende-week js-volgende">@lang('site.next_week') <span class="pijl">&gt;</span></a>
     </div>
   </div>
   <div class="row">
@@ -131,9 +131,9 @@
   <script src="/js/vendor/jquery.js"></script>
   <script>
     window.weeknr = {{ $weeknr }};
-    window.weeknr_volgende = {{ $weeknr_volgende }};
-    window.weeknr_vorige = {{ $weeknr_vorige }};
-    window.weeknr_huidig = {{ $weeknr_huidig }};
+    window.weeknrVolgende = {{ $weeknrVolgende }};
+    window.weeknrVorige = {{ $weeknrVorige }};
+    window.weeknrHuidig = {{ $weeknrHuidig }};
     window.appUrl = "{{ url() }}";
     window.klasOrig = "{{ $klasOrig }}";
     window.allesZien = false;

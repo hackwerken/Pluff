@@ -6,11 +6,14 @@
 */
 
 Route::get('test', function() {
+  $start = microtime(true);
   foreach (Rooster::orderBy('vak')->distinct()->get(array('vak')) as $vak) {
     echo '<div style="width: 70px; height: 70px; float:left; margin: 0 10px 10px 0; color: #fff; background: #'.Bereken::stringNaarKleurenCode($vak->vak).'">
     '.$vak->vak.'
     </div>';
   }
+  $end = microtime(true);
+  echo "Geladen in ".($end-$start)."s\n";
 });
 
 Route::get('klasinput', function() {
@@ -72,11 +75,11 @@ Route::get('rooster/{klasInput?}/{weekInput?}', function($klasInput = null, $wee
     'klas' => $klasInfo['array'],
     'klasHuman' => $klasInfo['human'],
     'klasOrig' => $klasInfo['orig'],
-    'weeknr_vorige' => $weekInfo['vorige'],
-    'weeknr_huidig' => $weekInfo['huidig'],
-    'weeknr_volgende' => $weekInfo['volgende'],
+    'weeknrVorige' => $weekInfo['vorige'],
+    'weeknrHuidig' => $weekInfo['huidig'],
+    'weeknrVolgende' => $weekInfo['volgende'],
     'weeknr' => $weekInfo['gebruikt'],
-    'aankomende_dag' => Bereken::getAankomendeDagnr()
+    'aankomendeDag' => Bereken::getAankomendeDagnr()
   ];
 
   return View::make('rooster', $data);
@@ -95,11 +98,11 @@ Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput 
     'klas' => $klasInfo['array'],
     'klasHuman' => $klasInfo['human'],
     'klasOrig' => $klasInfo['orig'],
-    'weeknr_vorige' => $weekInfo['vorige'],
-    'weeknr_huidig' => $weekInfo['huidig'],
-    'weeknr_volgende' => $weekInfo['volgende'],
+    'weeknrVorige' => $weekInfo['vorige'],
+    'weeknrHuidig' => $weekInfo['huidig'],
+    'weeknrVolgende' => $weekInfo['volgende'],
     'weeknr' => $weekInfo['gebruikt'],
-    'aankomende_dag' => Bereken::getAankomendeDagnr()
+    'aankomendeDag' => Bereken::getAankomendeDagnr()
   ];
 
   return View::make('home', $data);

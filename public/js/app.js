@@ -2,9 +2,9 @@
 function getStatus() {
   console.log('KlasOrig: ' + klasOrig);
   console.log('Weeknr: ' + weeknr);
-  console.log('Weeknr volgende: ' + weeknr_volgende);
-  console.log('Weeknr vorige: ' + weeknr_vorige);
-  console.log('Weeknr huidig: ' + weeknr_huidig);
+  console.log('Weeknr volgende: ' + weeknrVolgende);
+  console.log('Weeknr vorige: ' + weeknrVorige);
+  console.log('Weeknr huidig: ' + weeknrHuidig);
 }
 
 var everLoaded = false;
@@ -15,8 +15,8 @@ function roosterLaden(klasOrig, weeknr) {
   $('body').addClass('rooster-actief');
 
   if (klasOrig && weeknr) {
-    weeknr_volgende = weeknr + 1;
-    weeknr_vorige = weeknr - 1;
+    weeknrVolgende = weeknr + 1;
+    weeknrVorige = weeknr - 1;
 
     // console.log('Laden...');
     $.get('/rooster/' + klasOrig + '/' + weeknr, function(data) {
@@ -51,17 +51,17 @@ function roosterLaden(klasOrig, weeknr) {
     $('.js-permalink-toggle').hide();
     $('.hetrooster').html('');
     $('body').removeClass('rooster-actief');
-    $('.js-weeknr-show').text(weeknr_huidig);
+    $('.js-weeknr-show').text(weeknrHuidig);
     $('.js-klas-show').text('');
     history.pushState(null, null, '/');
   }
 }
 
 function roosterLink(input) {
-  weeknr = weeknr_huidig;
+  weeknr = weeknrHuidig;
   klasOrig = input;
 
-  roosterLaden(input, weeknr_huidig);
+  roosterLaden(input, weeknrHuidig);
   $('.js-klas').val(input);
 }
 
@@ -121,11 +121,11 @@ $(function() {
       // console.log(input);
 
       // Reset week naar huidige
-      weeknr = weeknr_huidig;
+      weeknr = weeknrHuidig;
 
       klasOrig = input;
 
-      roosterLaden(klasOrig, weeknr_huidig);
+      roosterLaden(klasOrig, weeknrHuidig);
     }, 400));
   });
 
@@ -145,7 +145,7 @@ $(function() {
   $('.js-huidige').on('click', function(e) {
     e.preventDefault();
 
-    weeknr = weeknr_huidig;
+    weeknr = weeknrHuidig;
 
     roosterLaden(klasOrig, weeknr);
   });

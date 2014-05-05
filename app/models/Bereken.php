@@ -99,7 +99,7 @@ class Bereken {
    */
   public static function getHuidigeDag($weekNummer, $dagNummer)
   {
-    $timestamp = Bereken::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
+    $timestamp = self::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
 
     // En controleer of het de huidige dag is. Zoja, return true
     if (date('z') == date('z', $timestamp))
@@ -255,8 +255,8 @@ class Bereken {
    * @param string
    * @return string van 6 heximale tekens
    */
-  public static function stringNaarKleurenCode($str) {
-    $code = dechex(crc32($str));
+  public static function stringNaarKleurenCode($input) {
+    $code = dechex(crc32($input));
     $code = substr($code, 0, 6);
     return $code;
   }
