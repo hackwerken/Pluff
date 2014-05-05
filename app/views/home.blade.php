@@ -32,6 +32,7 @@
 
   <meta name="description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
   <meta property="og:title" content="Pluff - Check je Fontys rooster!">
+  <meta property="og:image" content="/img/logo.png">
   <meta property="og:type" content="website">
   <meta property="og:description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
   <meta property="og:url" content="{{ url() }}">
