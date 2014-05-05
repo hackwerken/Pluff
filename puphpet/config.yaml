@@ -46,6 +46,7 @@ vagrantfile-local:
 server:
     packages:
         - htop
+        - memcached
     dot_files:
         -
             bash_aliases: null
