@@ -188,7 +188,11 @@ input[type=text] {
   border-radius: $global-radius;
 }
 
-.alert-box {
+.hide {
+  display: none;
+}
+
+.bier-box {
   background: transparent;
   border-color: #CBD8A2;
   color: $body-font-color;
@@ -200,7 +204,7 @@ input[type=text] {
   position: relative;
 }
 
-.alert-box:after {
+.bier-box:after {
   content: "";
   background: url('../img/grolsch.jpg') repeat-x center center;
   opacity: 0.3;

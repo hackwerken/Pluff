@@ -35,6 +35,9 @@ function roosterLaden(klasOrig, weeknr) {
       // Button laten zien op kleine schermen zodra er een rooster is geladen
       $('.js-alleszien:parent').addClass('show-for-small-only');
 
+      // Foutmelding verbergen
+      $('.js-ajax-error').hide();
+
       // Alles weer laten zien indien nodig
       laatAllesZien();
 
@@ -102,6 +105,10 @@ function laatAllesZien() {
 $(function() {
 
   // getStatus();
+
+  $(document).ajaxError(function() {
+    $('.js-ajax-error').show();
+  });
 
   $('.js-klas').on('input', function() {
     clearTimeout($(this).data('timer'));

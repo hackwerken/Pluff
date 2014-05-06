@@ -1,7 +1,7 @@
 @if (!empty($klas))
 <div class="row">
   @if (Bereken::isVakantie($weeknr))
-  <div class="alert-box radius">
+  <div class="alert-box bier-box radius">
     @lang('site.its_a_holiday')
   </div>
   @endif

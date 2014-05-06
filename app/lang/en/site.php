@@ -32,5 +32,7 @@ return [
     3 => "Wednesday",
     4 => "Thursday",
     5 => "Friday"
-  ]
+  ],
+
+  "error_loading" => "Something went wrong with loading!"
 ];

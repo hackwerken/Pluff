@@ -86,6 +86,12 @@
 
       <input type="text" value="{{ $klasOrig }}" placeholder="@lang('site.input_placeholder')" autocapitalize="off" autocorrect="off" class="js-klas">
 
+      <div class="js-messages">
+        <div class="hide alert-box radius js-ajax-error">
+          <strong>Oops!</strong> @lang('site.error_loading')
+        </div>
+      </div>
+
       <div class="hetrooster">
         @include('rooster')
       </div>
