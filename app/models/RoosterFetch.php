@@ -117,34 +117,4 @@ class RoosterFetch {
     Rooster::where('tijdstip_begin', '<', $datumOud)->delete();
     Rooster::where('tijdstip_begin', '>', date('Y-m-d H:i:s', strtotime('Today')))->delete();
   }
-
-  /**
-   * Pre-cache alle uren zodat ze zo snel mogelijk laden.
-   * Deze functie moet nog uitgebreider getest worden.
-   */
-  public static function preCache() {
-    Cache::driver('memcached')->flush();
-
-    // De lijsten met docenten, lokalen en klassen precachen
-    Rooster::getDocenten();
-    Rooster::getLokalen();
-    Rooster::getKlassen();
-
-    // Alle uren cachen.
-    // TODO: Performance checken
-    foreach (Rooster::all() as $uur) {
-      $timestamp = strtotime($uur->tijdstip_begin);
-      $weekNummer = date('W', $timestamp);
-      $dagNummer = date('N', $timestamp);
-      $uurNummer = $uur->uurnr_begin;
-      $klas = $uur->klas;
-
-      // Nog ff heel hacky
-      $output = [];
-      $output[] = $uur;
-
-      Cache::forever($weekNummer.'-'.$dagNummer.'-'.$uurNummer.'-'.$klas, $output);
-    }
-
-  }
 }
