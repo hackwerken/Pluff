@@ -34,16 +34,6 @@ module.exports = (grunt) ->
           filter: "isFile"
         ]
 
-    # cssrazor:
-    #   release:
-    #     options:
-    #       urls: [
-    #         "http://localhost:9000/index.php"
-    #         "http://localhost:9000/rooster.php"
-    #       ]
-    #       input: "css/app.css"
-    #       output: "css/app.css"
-
     concat:
       options:
         separator: ";"

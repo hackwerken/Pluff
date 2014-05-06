@@ -5,7 +5,7 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get('test', function() {
+Route::get('klaskleuren', function() {
   $start = microtime(true);
   foreach (Rooster::orderBy('vak')->distinct()->get(array('vak')) as $vak) {
     echo '<div style="width: 70px; height: 70px; float:left; margin: 0 10px 10px 0; color: #fff; background: #'.Bereken::stringNaarKleurenCode($vak->vak).'">
