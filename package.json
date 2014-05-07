@@ -22,8 +22,8 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-autoprefixer": "~0.6.5",
     "matchdep": "~0.3.0",
-    "grunt-cssrazor": "~0.1.7",
     "shelljs": "~0.2.6",
-    "grunt-open": "~0.2.3"
+    "grunt-open": "~0.2.3",
+    "grunt-cache-bust": "~0.3.6"
   }
 }

@@ -32,7 +32,7 @@
 
   <meta name="description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
   <meta property="og:title" content="Pluff - Check je Fontys rooster!">
-  <meta property="og:image" content="{{ url() }}/img/logo.png">
+  <meta property="og:image" content="/img/logo.png">
   <meta property="og:type" content="website">
   <meta property="og:description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
   <meta property="og:url" content="{{ url() }}">
@@ -57,14 +57,14 @@
         <h1 class="logo js-home"><a href="#">Pluff.</a></h1>
         <h2>@lang('site.sub_heading')</h2>
         <hr>
-        <h3>
+        <h3 class="klas-week-info">
           <span class="js-klas-show">{{ $klasHuman or '' }}</span> &ndash;
           @lang('site.week') <span class="js-weeknr-show">{{ $weeknr }}</span>
         </h3>
       </div>
     </div>
   </div>
-  <div class="row hide-for-small-only js-controls">
+  <div class="row controls hide-for-small-only">
     <div class="small-15 medium-5 columns">
       <a href="/{{ $klasOrig }}/{{ $weeknrVorige }}" class="button button-fullwidth vorige-week js-vorige"><span class="pijl">&lt;</span> @lang('site.last_week')</a>
     </div>
@@ -78,7 +78,6 @@
   <div class="row">
     <div class="small-15 columns">
       <div class="intro">
-        <h3>@lang('site.rooster_heading')</h3>
         <p>
           @lang('site.intro_paragraph')
         </p>

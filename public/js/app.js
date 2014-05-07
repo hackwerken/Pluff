@@ -97,7 +97,7 @@ function keyUpFix() {
 
 function laatAllesZien() {
   if (allesZien === true) {
-    $('.dag, .js-controls').removeClass('hide-for-small-only');
+    $('.dag, .controls').removeClass('hide-for-small-only');
     $('.js-alleszien:parent').hide();
   }
 }
