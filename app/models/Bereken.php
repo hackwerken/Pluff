@@ -135,6 +135,18 @@ class Bereken {
   }
 
   /**
+   * Converteer klassen gescheiden met puntkomma naar een array.
+   *
+   * @param string $klassen Klassen gescheiden met puntkomma.
+   * @return array
+   */
+  public static function klassenNaarArray($klassen)
+  {
+    return explode(';', ltrim($klassen, ';'));
+  }
+
+
+  /**
    * Zet de input in een array en verwerkt deze tot een JSON bestand.
    *
    * @param string $input HTML waarin alle klassen staan. 1 klas per regel.

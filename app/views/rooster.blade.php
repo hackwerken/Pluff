@@ -31,7 +31,7 @@
 
         <small>
           <a href="/{{{ $uur['lokaal'] }}}" class="js-roosterlink undercover-link">{{{ $uur['lokaal'] }}}</a> -
-          <?php $klasArray = explode(';', $uur['klas']); $klasAantal = count($klasArray); $klasTellen = 0; ?>
+          <?php $klasArray = Bereken::klassenNaarArray($uur['klas']); $klasAantal = count($klasArray); $klasTellen = 0; ?>
 
           @foreach ($klasArray as $singleKlas)
           <a href="/{{{ $singleKlas }}}" class="js-roosterlink undercover-link">{{{ $singleKlas }}}</a>{{ (++$klasTellen === $klasAantal) ? '' : ', ' }}

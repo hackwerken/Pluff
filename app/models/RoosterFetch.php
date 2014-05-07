@@ -44,7 +44,7 @@ class RoosterFetch {
       $lesKlas = explode('/', $lesKlas);
       // Verwijder trailing en leading whitespaces
       $lesKlas = array_map('trim', $lesKlas);
-      $lesKlas = implode(';', $lesKlas);
+      $lesKlas = ';'.implode(';', $lesKlas);
       $lesKlas = Bereken::SpecialeCharsNaarStreepje($lesKlas);
 
       // We gaan nu elk uur wat tussen het 'beginuur' en het 'einduur' zit doorloopen.
