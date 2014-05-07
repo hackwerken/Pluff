@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pluff | @lang('site.page_title')</title>
 
-  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/app.css?6383ea">
 
-  <script src="/js/pace.js" data-pace-options='{ "restartOnRequestAfter": false }'></script>
+  <script src="/js/pace.js?e9f4e5" data-pace-options='{ "restartOnRequestAfter": false }'></script>
 
   <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
@@ -19,11 +19,11 @@
   <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon-76x76.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png">
-  <link rel="icon" type="image/png" href="/img/favicon-196x196.png" sizes="196x196">
-  <link rel="icon" type="image/png" href="/img/favicon-160x160.png" sizes="160x160">
-  <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
-  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/img/favicon-196x196.png?b17708" sizes="196x196">
+  <link rel="icon" type="image/png" href="/img/favicon-160x160.png?7f3779" sizes="160x160">
+  <link rel="icon" type="image/png" href="/img/favicon-96x96.png?6b24d7" sizes="96x96">
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png?0aadfd" sizes="16x16">
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png?4696d7" sizes="32x32">
 
   <meta name="msapplication-TileColor" content="#00aba9">
   <meta name="msapplication-TileImage" content="/img/mstile-144x144.png">
@@ -134,7 +134,7 @@
   <div class="popup hide"></div>
   <div class="popup-achtergrond hide"></div>
 
-  <script src="/js/vendor/jquery.js"></script>
+  <script src="/js/vendor/jquery.js?97d540"></script>
   <script>
     window.weeknr = {{ $weeknr }};
     window.weeknrVolgende = {{ $weeknrVolgende }};
@@ -146,12 +146,12 @@
   </script>
 
   @if (App::environment('local'))
-  <script src="/js/app.js"></script>
-  <script src="/js/popup.js"></script>
+  <script src="/js/app.js?d19400"></script>
+  <script src="/js/popup.js?a50b21"></script>
   <!-- LiveReload script -->
   <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else
-  <script src="/js/all.js"></script>
+  <script src="/js/all.js?261eee"></script>
   @endif
 </body>
 </html>

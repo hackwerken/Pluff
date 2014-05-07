@@ -49,6 +49,12 @@ module.exports = (grunt) ->
         files:
           "public/js/all.js": ["public/js/all.js"]
 
+    cacheBust:
+      options:
+        length: 6
+        baseDir: "public/"
+      files: ["app/views/home.blade.php"]
+
     watch:
       grunt:
         files: ["Gruntfile.coffee"]
@@ -59,6 +65,9 @@ module.exports = (grunt) ->
       concat:
         files: ["public/js/app.js", "public/js/popup.js"]
         tasks: ["concat", "uglify"]
+      cacheBust:
+        files: ["public/css/{,*/}*.css", "public/js/{,*/}*.js"]
+        tasks: ["cacheBust"]
       livereload:
         files: ["app/{,*/}*.php", "public/js/{,*/}*.js", "public/css/{,*/}*.css", "public/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
         options:
@@ -74,4 +83,4 @@ module.exports = (grunt) ->
 
   grunt.registerTask "vagrant-up", ->
     shell.exec "vagrant up"
-  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "open:app", "watch"]
+  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "cacheBust", "open:app", "watch"]
