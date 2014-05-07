@@ -10,16 +10,20 @@ function getStatus() {
 var everLoaded = false;
 
 // Het daadwerkelijk laden van het rooster
-function roosterLaden(klasOrig, weeknr) {
+function roosterLaden(klasOrig, weeknrInput) {
   // .rooster-actief aan <body> toevoegen, zodat we makkelijk dingen in de CSS kunnen veranderen
   $('body').addClass('rooster-actief');
 
-  if (klasOrig && weeknr) {
-    weeknrVolgende = weeknr + 1;
-    weeknrVorige = weeknr - 1;
+  if (klasOrig && weeknrInput) {
 
     // console.log('Laden...');
-    $.get('/rooster/' + klasOrig + '/' + weeknr, function(data) {
+    $.get('/rooster/' + klasOrig + '/' + weeknrInput, function(data) {
+
+      // Pas als het rooster succesvol geladen is de nieuwe global vars invoeren
+      weeknr = weeknrInput;
+      weeknrVolgende = weeknr + 1;
+      weeknrVorige = weeknr - 1;
+
       // Opgehaalde rooster in de DOM zetten
       $('.hetrooster').html(data);
 
@@ -61,7 +65,6 @@ function roosterLaden(klasOrig, weeknr) {
 }
 
 function roosterLink(input) {
-  weeknr = weeknrHuidig;
   klasOrig = input;
 
   roosterLaden(input, weeknrHuidig);
@@ -72,24 +75,24 @@ function keyUpFix() {
   $(document).on('keyup', function(e) {
     // Pijl naar links (vorige week)
     if(e.keyCode === 37) {
-      weeknr = weeknr - 1;
+      weeknrInput = weeknr - 1;
 
       // Week 0 bestaat niet, dus naar het vorige jaar gaan
       // TODO: Onderstaande code controleren
-      if (weeknr === 0)
-        weeknr = 52;
+      if (weeknrInput === 0)
+        weeknrInput = 52;
 
-      roosterLaden(klasOrig, weeknr);
+      roosterLaden(klasOrig, weeknrInput);
     }
     // Pijl naar rechts (volgende week)
     else if (e.keyCode === 39) {
-      weeknr = weeknr + 1;
+      weeknrInput = weeknr + 1;
 
       // Het jaar is voorbij, dus weer opnieuw beginnen
-      if (weeknr == 53)
-        weeknr = 01;
+      if (weeknrInput == 53)
+        weeknrInput = 01;
 
-      roosterLaden(klasOrig, weeknr);
+      roosterLaden(klasOrig, weeknrInput);
     }
 
   });
@@ -127,9 +130,6 @@ $(function() {
         .toLowerCase();
       // console.log(input);
 
-      // Reset week naar huidige
-      weeknr = weeknrHuidig;
-
       klasOrig = input;
 
       roosterLaden(klasOrig, weeknrHuidig);
@@ -139,34 +139,32 @@ $(function() {
   $('.js-vorige').on('click', function(e) {
     e.preventDefault();
 
-    weeknr = weeknr - 1;
+    weeknrInput = weeknr - 1;
 
     // Week 0 bestaat niet, dus naar het vorige jaar gaan
     // TODO: Onderstaande code controleren
-    if (weeknr === 0)
-      weeknr = 52;
+    if (weeknrInput === 0)
+      weeknrInput = 52;
 
-    roosterLaden(klasOrig, weeknr);
+    roosterLaden(klasOrig, weeknrInput);
   });
 
   $('.js-huidige').on('click', function(e) {
     e.preventDefault();
 
-    weeknr = weeknrHuidig;
-
-    roosterLaden(klasOrig, weeknr);
+    roosterLaden(klasOrig, weeknrHuidig);
   });
 
   $('.js-volgende').on('click', function(e) {
     e.preventDefault();
 
-    weeknr = weeknr + 1;
+    weeknrInput = weeknr + 1;
 
     // Het jaar is voorbij, dus weer opnieuw beginnen
-    if (weeknr == 53)
-      weeknr = 01;
+    if (weeknrInput == 53)
+      weeknrInput = 01;
 
-    roosterLaden(klasOrig, weeknr);
+    roosterLaden(klasOrig, weeknrInput);
   });
 
   $('.js-home').on('click', function(e) {
@@ -200,9 +198,9 @@ $(function() {
       // Alleen de bruikbare informatie uit de link halen
       newLink = newLink.toString();
       newLink = newLink.split('/');
-      weeknr = parseInt(newLink[4]);
+      weeknrInput = parseInt(newLink[4]);
 
-      roosterLaden(newLink[3], weeknr);
+      roosterLaden(newLink[3], weeknrInput);
     }
     everLoaded = true;
   });

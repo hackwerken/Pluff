@@ -146,12 +146,12 @@
   </script>
 
   @if (App::environment('local'))
-  <script src="/js/app.js?d19400"></script>
+  <script src="/js/app.js?e4d27a"></script>
   <script src="/js/popup.js?a50b21"></script>
   <!-- LiveReload script -->
   <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else
-  <script src="/js/all.js?261eee"></script>
+  <script src="/js/all.js?95f40d"></script>
   @endif
 </body>
 </html>
