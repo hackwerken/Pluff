@@ -83,7 +83,7 @@
         </p>
       </div>
 
-      <input type="text" value="{{ $klasOrig }}" placeholder="@lang('site.input_placeholder')" autocapitalize="off" autocorrect="off" class="js-klas">
+      <input type="text" value="{{ $klasOrig }}" placeholder="@lang('site.input_placeholder')" autocapitalize="off" autocorrect="off" spellcheck="false" class="js-klas">
 
       <div class="js-messages">
         <div class="hide alert-box radius js-ajax-error">
