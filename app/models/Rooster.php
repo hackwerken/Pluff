@@ -29,7 +29,9 @@ class Rooster extends Eloquent {
   public function scopeKlasLike($query, $klas)
   {
     return $query->where(function($query) use ($klas) {
-      $query->where('klas', 'like', '%;'.$klas.'%')
+      $query->where('klas', '=', $klas)
+        ->orWhere('klas', 'like', $klas.';%')
+        ->orWhere('klas', 'like', '%;'.$klas.'%')
         ->orWhere('lokaal', '=', $klas)
         ->orWhere('docent', '=', $klas);
     });
