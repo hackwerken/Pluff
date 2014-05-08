@@ -5,6 +5,15 @@
 |--------------------------------------------------------------------------
 */
 
+Route::get('test', function() {
+  if (Bereken::isVakantie(31)) {
+    echo 'Vakantie!';
+  }
+  else {
+    echo 'Geen vakantie.';
+  }
+});
+
 Route::get('klaskleuren', function() {
   $start = microtime(true);
   foreach (Rooster::orderBy('vak')->distinct()->get(array('vak')) as $vak) {

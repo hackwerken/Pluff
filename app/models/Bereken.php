@@ -37,14 +37,16 @@ class Bereken {
   {
     $weekOutput = [];
 
+    $dt = Carbon::now();
+
     // Standaard week
-    if (date('N') == 5 && date('H') > 18 OR date('N') == 6 OR date('N') == 7) {
-      $weekOutput['gebruikt'] = date('W') + 1;
-      $weekOutput['huidig'] = date('W') + 1;
+    if ($dt->dayOfWeek === Carbon::FRIDAY && $dt->hour > 18 OR $dt->isWeekend()) {
+      $weekOutput['gebruikt'] = $dt->addWeek()->weekOfYear;
+      $weekOutput['huidig'] = $dt->addWeek()->weekOfYear;
     }
     else {
-      $weekOutput['gebruikt'] = date('W');
-      $weekOutput['huidig'] = date('W');
+      $weekOutput['gebruikt'] = $dt->weekOfYear;
+      $weekOutput['huidig'] = $dt->weekOfYear;
     }
 
     if (!empty($weekInput) && is_numeric($weekInput)) {
@@ -85,7 +87,7 @@ class Bereken {
   public static function getTimestampVanWeeknrDagnr($weekNummer, $dagNummer)
   {
     // Converteer het ingevoerde weeknummer + dagnummer van de week naar een UNIX timestamp
-    $datum = strtotime(date('Y').'W'.$weekNummer.' + '.($dagNummer - 1).' day');
+    $datum = new Carbon('2014W'.$weekNummer.' '.($dagNummer - 1).' day');
 
     return $datum;
   }
@@ -99,10 +101,11 @@ class Bereken {
    */
   public static function getHuidigeDag($weekNummer, $dagNummer)
   {
-    $timestamp = self::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
+    $nu = Carbon::now();
+    $dt = self::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
 
     // En controleer of het de huidige dag is. Zoja, return true
-    if (date('z') == date('z', $timestamp))
+    if ($nu->dayOfYear === $dt->dayOfYear)
       return true;
 
     return false;
@@ -115,12 +118,12 @@ class Bereken {
    */
   public static function getAankomendeDagnr()
   {
-    $huidig_dagnr = date('N');
+    $dt = Carbon::now();
 
-    if ($huidig_dagnr == 5 && date('H') > 18 OR $huidig_dagnr == 6 OR $huidig_dagnr == 7)
+    if ($dt->dayOfWeek === Carbon::FRIDAY && $dt->hour > 18 OR $dt->isWeekend())
       return 1;
 
-    return $huidig_dagnr;
+    return $dt->dayOfWeek;
   }
 
   /**
@@ -210,18 +213,16 @@ class Bereken {
   /**
    * Bereken hoeveel dagen er nog zijn voordat de huidige datum bereikt wordt.
    *
-   * @param string $start Datum (kan in alle formaten die de PHP strtotime functie ook ondersteund)
+   * @param string $start Datum in Y-m-d
    * @return int Aantal dagen
    */
   public static function dagenTeGaan($start) {
-    $start = strtotime($start);
-    $huidig = strtotime(date('Y-m-d'));
+    $start = Carbon::createFromFormat('Y-m-d', $start);
+    $huidig = Carbon::now();
 
-    $verschil = $start - $huidig;
+    $verschil = $start->diffInDays($huidig);
 
-    $verschilInDagen = floor($verschil/3600/24);
-
-    return $verschilInDagen;
+    return $verschil;
   }
 
   /**
@@ -231,11 +232,13 @@ class Bereken {
    * @return bool
    */
   public static function isVakantie($weekNummer) {
-    $huidigeTimestamp = self::getTimestampVanWeeknrDagnr($weekNummer, 1);
-    $huidigeDatum = date('Y-m-d', $huidigeTimestamp);
+    $nu = self::getTimestampVanWeeknrDagnr($weekNummer, 1);
 
     foreach (Config::get('rooster.vakanties') as $vakantie) {
-      if ($huidigeDatum >= $vakantie['start'] && $huidigeDatum < $vakantie['eind'])
+      $start = new Carbon($vakantie['start']);
+      $eind = new Carbon($vakantie['eind']);
+
+      if ($nu->between($start, $eind))
         return true;
     }
 

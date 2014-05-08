@@ -12,7 +12,7 @@
       <div class="naam">
         <h4>{{ $dagNaam }}</h4>
         <b class="datum">
-          {{ date('d-m', Bereken::getTimestampVanWeeknrDagnr($weeknr, $dagnr)) }}
+          {{ Bereken::getTimestampVanWeeknrDagnr($weeknr, $dagnr)->format('d-m') }}
         </b>
       </div>
 

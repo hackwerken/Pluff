@@ -130,7 +130,7 @@ xdebug:
     install: '1'
     settings:
         xdebug.default_enable: '1'
-        xdebug.remote_autostart: '0'
+        xdebug.remote_autostart: '1'
         xdebug.remote_connect_back: '1'
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
@@ -140,27 +140,25 @@ drush:
     settings:
         drush.tag_branch: 6.x
 mysql:
-    install: '1'
+    install: 0
     root_password: password
     phpmyadmin: 0
     adminer: 0
-    databases:
-        xig292DjGLMR:
-            grant:
-                - ALL
-            name: dbname
-            host: localhost
-            user: dbuser
-            password: password
-            sql_file: ''
+    databases: {  }
 postgresql:
-    install: 0
+    install: '1'
     settings:
-        root_password: '123'
+        root_password: password
         user_group: postgres
         encoding: UTF8
         version: '9.3'
-    databases: {  }
+    databases:
+        K7NutOzZjj21:
+            grant: ALL
+            name: dbname
+            user: dbuser
+            password: password
+            sql_file: ''
     adminer: 0
 mariadb:
     install: 0

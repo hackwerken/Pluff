@@ -21,6 +21,8 @@ class Rooster extends Eloquent {
    * @var bool
    */
   protected $softDelete = false;
+
+  protected $dates = array('tijdstip_begin', 'tijdstip_eind');
   /**
    * Zoek een klas in het 'klas' veld.
    *
@@ -65,10 +67,11 @@ class Rooster extends Eloquent {
         // Huidige jaar pakken met het ingevoerde week nummer.
         // Daarna daarbij het dagnummer optellen minus 1 (begint met maandag)
         $begintijd = Bereken::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
-        $datum = date('Y-m-d', $begintijd);
+        $datum = $begintijd->format('Y-m-d');
 
+        // TODO: LIKE query van tijdstip_begin verbeteren
         $query = Rooster::klasLike($klas)
-          ->where('tijdstip_begin', 'like', '%'.$datum.'%')
+          ->whereRaw('tijdstip_begin::text LIKE \''.$datum.'%\'')
           ->where('uurnr_begin', '=', $uurNummer)
           ->first();
 
@@ -117,7 +120,19 @@ class Rooster extends Eloquent {
   public static function getKlassen()
   {
     $query = Cache::rememberForever('klassen', function() {
-      return Rooster::filterOnzin('klas')->where('klas', 'not like', '%;%')->orderBy('klas')->get(array('klas'));
+      $stripPuntKomma = function ($input) {
+        return ltrim($input['klas'], ';');
+      };
+
+      $query = Rooster::filterOnzin('klas')->orderBy('klas')->get(array('klas'))->toArray();
+
+      // Alleen 'enkelvoudige' klassen mogen in de lijst voorkomen, niet meerdere klassen.
+      // TODO: Gadverdamme. Dit kan beter.
+      foreach ($query as $klas) {
+        if (substr_count($klas['klas'], ';') === 1)
+          $klassen[] = ltrim($klas['klas'], ';');
+      }
+      return $klassen;
     });
 
     return $query;

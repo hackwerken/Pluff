@@ -4,7 +4,7 @@
     <h2>@lang('site.cheatsheet_classes')</h2>
     <p class="cheats cheats-klassen">
       @foreach ($klassen as $klas)
-      <a href="#" class="cheat-link">{{ $klas['klas'] }}</a><br>
+      <a href="#" class="cheat-link">{{ $klas }}</a><br>
       @endforeach
     </p>
   </div>

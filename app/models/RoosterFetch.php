@@ -21,18 +21,15 @@ class RoosterFetch {
 
     foreach ($lessen as $les) {
       // Begin en eind tijden converteren naar een DATETIME
-      $tijdstipBeginUnix = strtotime($les['dat'].' '.$les['start']);
-      $tijdstipEindUnix = strtotime($les['dat'].' '.$les['eind']);
-
-      $tijdstipBegin = date('Y-m-d H:i:s', $tijdstipBeginUnix);
-      $tijdstipEind = date('Y-m-d H:i:s', $tijdstipEindUnix);
+      $tijdstipBegin = new Carbon($les['dat'].' '.$les['start']);
+      $tijdstipEind = new Carbon($les['dat'].' '.$les['eind']);
 
       // Juiste begin en eind uren verkrijgen (precieze tijden staan in array $cTijden)
       $uurnrBegin = explode(':', $les['start']);
       $uurnrBegin = (float) $uurnrBegin[0] + ($uurnrBegin[1] / 60);
       $uurnrBegin = Bereken::getArrayKeyDichtstBij($uurnrBegin, Config::get('rooster.tijden'));
       // 3000 = 50 minuten. TODO: Checken welke afrondmethode te gebruiken; round() of floor()
-      $uurnrEind = round(($tijdstipEindUnix - $tijdstipBeginUnix) / 3000) + $uurnrBegin;
+      $uurnrEind = round(($tijdstipEind->diffInSeconds($tijdstipBegin)) / 3000) + $uurnrBegin;
 
       $lesVak = strtolower($les['vak']);
       $lesLokaal = Bereken::SpecialeCharsNaarStreepje($les['lok']);
@@ -52,8 +49,8 @@ class RoosterFetch {
       // TODO: Efficiënter?
       for ($uurnrBeginFor = $uurnrBegin; $uurnrBeginFor < $uurnrEind; $uurnrBeginFor++) {
           $lesInput = array(
-            'tijdstip_begin' => $tijdstipBegin,
-            'tijdstip_eind' => $tijdstipEind,
+            'tijdstip_begin' => $tijdstipBegin->toDateTimeString(),
+            'tijdstip_eind' => $tijdstipEind->toDateTimeString(),
             'uurnr_begin' => $uurnrBeginFor,
             'uurnr_eind' => $uurnrEind,
             'vak' => $lesVak,

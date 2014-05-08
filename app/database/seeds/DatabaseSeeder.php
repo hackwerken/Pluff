@@ -15,7 +15,7 @@ class RoosterTableSeeder extends Seeder {
     {
       $startTijd = microtime(1);
 
-      echo "\nDATUM: ".date('d-m-Y H:i')."\n";
+      echo "\nDATUM: ".Carbon::now()->toDateTimeString()."\n";
       // Eerst de oude roosterdata verwijderen
       RoosterFetch::deleteOud();
 
