@@ -127,6 +127,8 @@ $(function() {
         .replace(/,/g , ';')
         .replace(/, /g , ';')
         .replace(/; /g , ';')
+        .replace(new RegExp('^[;]+'), '') // Strip 'loze' puntkomma aan het begin
+        .replace(new RegExp('[;]+$'), '') // Strip 'loze' puntkomma aan het eind
         .toLowerCase();
       // console.log(input);
 

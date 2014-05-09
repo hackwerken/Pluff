@@ -9,6 +9,8 @@ class Bereken {
    */
   public static function getKlasInfo($klasInput = null)
   {
+    $klasInput = trim($klasInput, ';');
+
     if (!empty($klasInput) && preg_match('/^[A-Za-z0-9;_\-.]+$/i', $klasInput)) {
       // Indien meerdere klassen er een array van maken
       $klasOutput['orig'] = $klasInput;
