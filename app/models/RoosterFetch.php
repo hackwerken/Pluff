@@ -103,15 +103,15 @@ class RoosterFetch {
    * Verwijder alle lesuren die al een paar weken oud zijn
    * en ook alle lesuren van vandaag en in de toekomende tijd.
    *
-   * @param string $tijdOud een geldig Engels datumformaat
+   * @param int $tijdOud Aantal weken
    * @return void
    */
-  public static function deleteOud($tijdOud = '-3 weeks') {
-    // Converteer de datum die is opgegeven naar een DATETIME compitabel formaat
-    $datumOud = date('Y-m-d H:i:s', strtotime($tijdOud));
+  public static function deleteOud($tijdOud = 3) {
+    $oud = Carbon::today()->subWeeks($tijdOud)->toDateTimeString();
+    $vandaag = Carbon::today()->toDateTimeString();
 
     // Verwijder elke rij die ouder (= kleiner) is dan de ingevoerde datum
-    Rooster::where('tijdstip_begin', '<', $datumOud)->delete();
-    Rooster::where('tijdstip_begin', '>', date('Y-m-d H:i:s', strtotime('Today')))->delete();
+    Rooster::where('tijdstip_begin', '<', $oud)->delete();
+    Rooster::where('tijdstip_begin', '>', $vandaag)->delete();
   }
 }

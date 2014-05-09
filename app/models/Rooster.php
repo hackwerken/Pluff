@@ -21,7 +21,10 @@ class Rooster extends Eloquent {
    * @var bool
    */
   protected $softDelete = false;
-
+  /**
+   * Alle DATETIME tekstvelden die naar een Carbon object mogen.
+   * @var array
+   */
   protected $dates = array('tijdstip_begin', 'tijdstip_eind');
   /**
    * Zoek een klas in het 'klas' veld.
@@ -31,9 +34,7 @@ class Rooster extends Eloquent {
   public function scopeKlasLike($query, $klas)
   {
     return $query->where(function($query) use ($klas) {
-      $query->where('klas', '=', $klas)
-        ->orWhere('klas', 'like', $klas.';%')
-        ->orWhere('klas', 'like', '%;'.$klas.'%')
+      $query->where('klas', 'like', '%;'.$klas.'%')
         ->orWhere('lokaal', '=', $klas)
         ->orWhere('docent', '=', $klas);
     });
