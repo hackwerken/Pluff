@@ -100,7 +100,8 @@ function keyUpFix() {
 
 function laatAllesZien() {
   if (allesZien === true) {
-    $('.dag, .controls').removeClass('hide-for-small-only');
+    $('.dag').removeClass('hide-for-small-only');
+    $('.controls').show();
     $('.js-alleszien:parent').hide();
   }
 }

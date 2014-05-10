@@ -121,12 +121,8 @@ b, strong {
   display: block;
 }
 
-.alles-zien {
+.alles-zien, .controls, .klas-week-info {
   display: none;
-}
-
-.klas-week-info {
-  display: none!important;
 }
 
 /* Deze class wordt actief als er een rooster staat */
@@ -136,7 +132,13 @@ b, strong {
   }
 
   .klas-week-info {
-    display: block!important;
+    display: block;
+  }
+
+  @media #{$medium-up} {
+    .controls {
+      display: block;
+    }
   }
 
   .header {

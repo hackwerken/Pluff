@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pluff | @lang('site.page_title')</title>
 
-  <link rel="stylesheet" href="/css/app.css?2219ad">
+  <link rel="stylesheet" href="/css/app.css?4abab6">
 
   <script src="/js/pace.js?e9f4e5" data-pace-options='{ "restartOnRequestAfter": false }'></script>
 
@@ -64,7 +64,7 @@
       </div>
     </div>
   </div>
-  <div class="row controls hide-for-small-only">
+  <div class="row controls">
     <div class="small-15 medium-5 columns">
       <a href="/{{ $klasOrig }}/{{ $weeknrVorige }}" class="button button-fullwidth vorige-week js-vorige"><span class="pijl">&lt;</span> @lang('site.last_week')</a>
     </div>
@@ -146,12 +146,12 @@
   </script>
 
   @if (App::environment('local'))
-  <script src="/js/app.js?59ce0f"></script>
+  <script src="/js/app.js?c2afaf"></script>
   <script src="/js/popup.js?a50b21"></script>
   <!-- LiveReload script -->
   <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else
-  <script src="/js/all.js?371654"></script>
+  <script src="/js/all.js?cd6c1d"></script>
   @endif
 </body>
 </html>
