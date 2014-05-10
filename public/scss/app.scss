@@ -22,7 +22,6 @@
   "foundation/components/grid",
   "foundation/components/buttons",
   "foundation/components/clearing",
-  "foundation/components/dropdown",
   "foundation/components/forms",
   "foundation/components/panels",
   "foundation/components/type",
@@ -122,7 +121,11 @@ b, strong {
   display: block;
 }
 
-.alles-zien, .klas-week-info, .controls {
+.alles-zien {
+  display: none;
+}
+
+.klas-week-info {
   display: none!important;
 }
 
@@ -132,7 +135,7 @@ b, strong {
     display: none;
   }
 
-  .klas-week-info, .controls {
+  .klas-week-info {
     display: block!important;
   }
 
