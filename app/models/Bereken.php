@@ -195,9 +195,9 @@ class Bereken {
    * @return string dateformat Y-m-d (jaar-maand-dag)
    */
   public static function EUNaarDateFormat($input) {
-    $sep = explode('-', $input);
+    $dt = Carbon::createFromFormat('d-m-Y', $input);
 
-    return $sep[2].'-'.$sep[1].'-'.$sep[0];
+    return $dt->format('Y-m-d');
   }
 
   /**
@@ -207,9 +207,9 @@ class Bereken {
    * @return string dateformat d-m-Y (dag-maand-jaar)
    */
   public static function DateFormatNaarEU($input) {
-    $sep = explode('-', $input);
+    $dt = Carbon::createFromFormat('Y-m-d', $input);
 
-    return $sep[2].'-'.$sep[1].'-'.$sep[0];
+    return $dt->format('d-m-Y');
   }
 
   /**
