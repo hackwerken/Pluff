@@ -44,7 +44,7 @@ class Bereken {
     // Standaard week
     if ($dt->dayOfWeek === Carbon::FRIDAY && $dt->hour > 18 OR $dt->isWeekend()) {
       $weekOutput['gebruikt'] = $dt->addWeek()->weekOfYear;
-      $weekOutput['huidig'] = $dt->addWeek()->weekOfYear;
+      $weekOutput['huidig'] = $dt->weekOfYear;
     }
     else {
       $weekOutput['gebruikt'] = $dt->weekOfYear;
