@@ -5,6 +5,10 @@
 |--------------------------------------------------------------------------
 */
 
+Route::get('test', function() {
+  var_dump(getenv('TEST2'));
+});
+
 Route::get('klaskleuren', function() {
   $start = microtime(true);
   foreach (Rooster::orderBy('vak')->distinct()->get(array('vak')) as $vak) {
