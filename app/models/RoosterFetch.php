@@ -99,19 +99,31 @@ class RoosterFetch {
     }
   }
 
+
   /**
-   * Verwijder alle lesuren die al een paar weken oud zijn
-   * en ook alle lesuren van vandaag en in de toekomende tijd.
+   * Verwijder alle lesuren van een klas van vandaag en verder in de toekomst.
+   *
+   * @param string $klas Een klas die in public/klaswhitelist.json staat
+   * @return void
+   */
+  public static function deleteHuidig($klas) {
+    $klas = Bereken::SpecialeCharsNaarStreepje($klas);
+    $vandaag = Carbon::today()->toDateTimeString();
+
+    Rooster::klasLike($klas)->where('tijdstip_begin', '>', $vandaag)->delete();
+  }
+
+  /**
+   * Verwijder alle lesuren die al een paar weken oud zijn.
+   * Haalt ook eventueel verdwenen klassen uit de database.
    *
    * @param int $tijdOud Aantal weken
    * @return void
    */
   public static function deleteOud($tijdOud = 3) {
     $oud = Carbon::today()->subWeeks($tijdOud)->toDateTimeString();
-    $vandaag = Carbon::today()->toDateTimeString();
 
     // Verwijder elke rij die ouder (= kleiner) is dan de ingevoerde datum
     Rooster::where('tijdstip_begin', '<', $oud)->delete();
-    Rooster::where('tijdstip_begin', '>', $vandaag)->delete();
   }
 }

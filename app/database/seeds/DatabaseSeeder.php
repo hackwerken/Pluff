@@ -27,6 +27,7 @@ class RoosterTableSeeder extends Seeder {
       $klas_whitelist = json_decode($klas_whitelist_bestand, true);
 
       foreach ($klas_whitelist as $klas) {
+        RoosterFetch::deleteHuidig($klas);
         RoosterFetch::getFile($klas);
       }
 
