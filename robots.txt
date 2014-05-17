@@ -3,5 +3,5 @@
 
 User-agent: *
 Disallow: /klassen
-Disallow: /node_modules
 Disallow: /bower_components
+Disallow: /rooster

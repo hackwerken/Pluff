@@ -1,7 +1,7 @@
 Pluff — Studentenrooster
 ========================
 
-Pluff is een open-source roostersysteem, gemaakt door Fontys ICT studenten. Het is onze visie, hoe het eigenlijk zou moeten. Het systeem dat door Fontys ICT zelf aangeboden wordt, is in onze ogen verouderd, wij vinden het eruit zien en werken alsof het in de jaren '80 is gemaakt door een stelletje communisten. Kom op. Framesets, Comic Sans en zelfs GIF-jes met glitters. No joke.
+[Pluff](https://pluff.nl) is een open-source roostersysteem, gemaakt door Fontys ICT studenten. Het is onze visie, hoe het eigenlijk zou moeten. Het systeem dat door Fontys ICT zelf aangeboden wordt, is in onze ogen verouderd, wij vinden het eruit zien en werken alsof het in de jaren '80 is gemaakt door een stelletje communisten. Kom op. Framesets, Comic Sans en zelfs GIF-jes met glitters. No joke.
 
 Pluff is retesnel, overzichtelijk en werkt op al je favoriete apparaten. Zelfs op je **slimme koelkast**. Het past zich automatisch aan de schermgrootte aan, waardoor je in één oogopslag de planning kunt zien, alsmede de docent en het lokaal waar je moet zijn. Ook biedt Pluff een 'cheatsheet' en een overzicht van de aankomende vakanties. Mét een handige teller, zodat je ook kunt zien hoe lang dat nog duurt.
 

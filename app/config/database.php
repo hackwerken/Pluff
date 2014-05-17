@@ -49,9 +49,9 @@ return array(
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
-			'database' => 'dbname',
-			'username' => 'dbuser',
-			'password' => 'password',
+			'database' => 'homestead',
+			'username' => 'homestead',
+			'password' => 'secret',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
