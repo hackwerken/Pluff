@@ -9,18 +9,29 @@ Uiteraard kan het altijd beter. Wij nemen tips, feedback en verbeteringen dan oo
 
 # Installatie
 
-Uit ervaring kunnen we nginx 1.4, PHP 5.5, MySQL 5.6 en Memcached aanraden qua servertechniek. Apache is gewoonweg te lomp om Pluff fatsoenlijk (lees: snel) te kunnen serveren. Memcached biedt een betere performance dan 'flat file caching'. Mocht je geen memcached kunnen gebruiken, pas dat dan even aan in app/config/cache.php.
+Dit project heeft de volgende systeemeisen:
 
-Om Pluff te kunnen installeren heb je [Node.js](http://nodejs.org/) en [Grunt](http://gruntjs.com/) nodig. Voer de volgende commando's uit in de root van het project:
+- PHP 5.4+
+    + CURL module
+- PostgreSQL
+- nginx (oké apache kan ook)
 
-npm install && bower install && grunt && echo 10.10.10.10 app.local >> /etc/hosts
+Na het clonen van dit project kun je in `app/config/app.php` o.a. de URL veranderen en in `app/config/database.php` de database settings aanpassen. Voer daarna `composer install` uit.
+
+Om het rooster eenmalig binnen te halen kun je het volgende command gebruiken:
+```shell
+php artisan db:seed
+```
 
 # Cronjob
 
-De volgende regel [voor Cron] kun je instellen om het rooster automatisch van Fontys op te halen. Pas /var/www aan naar de projectroot:
+Op de Pluff site hebben we 3 cronjobs draaien die om `07:30`, `12:00` en `17:00` elke dag het rooster verversen. Dit ziet er zo uit:
 
-/usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
-
+```shell
+30 7    * * *   www-data    /usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
+00 12   * * *   www-data    /usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
+00 17   * * *   www-data    /usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
+```
 # Credits
 
 De mensen achter Pluff:
