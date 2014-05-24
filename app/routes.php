@@ -5,6 +5,12 @@
 |--------------------------------------------------------------------------
 */
 
+Route::get('jsoninput', function() {
+  $json = Rooster::getAll();
+
+  return Response::json($json);
+});
+
 Route::get('klaskleuren', function() {
   $start = microtime(true);
   foreach (Rooster::orderBy('vak')->distinct()->get(array('vak')) as $vak) {

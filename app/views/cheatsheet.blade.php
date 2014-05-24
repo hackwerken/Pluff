@@ -12,7 +12,7 @@
     <h2>@lang('site.cheatsheet_teachers')</h2>
     <p class="cheats cheats-docenten">
       @foreach ($docenten as $docent)
-      <a href="#" class="cheat-link">{{ $docent['docent'] }}</a><br>
+      <a href="#" class="cheat-link">{{ $docent }}</a><br>
       @endforeach
     </p>
   </div>
@@ -20,7 +20,7 @@
     <h2>@lang('site.cheatsheet_locals')</h2>
     <p class="cheats cheats-lokalen">
       @foreach ($lokalen as $lokaal)
-      <a href="#" class="cheat-link">{{ $lokaal['lokaal'] }}</a><br>
+      <a href="#" class="cheat-link">{{ $lokaal }}</a><br>
       @endforeach
     </p>
   </div>

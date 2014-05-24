@@ -76,7 +76,7 @@ module.exports = (grunt) ->
 
     open:
       app:
-        path: "http://app.local"
+        path: "http://pluff.dev:8000/"
 
       project:
         path: path.resolve()

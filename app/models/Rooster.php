@@ -93,7 +93,14 @@ class Rooster extends Eloquent {
   public static function getDocenten()
   {
     $query = Cache::rememberForever('docenten', function() {
-      return Rooster::filterOnzin('docent')->orderBy('docent')->get(array('docent'));
+      $query = Rooster::filterOnzin('docent')->orderBy('docent')->get(array('docent'))->toArray();
+
+      // Alleen 'enkelvoudige' klassen mogen in de lijst voorkomen, niet meerdere klassen.
+      // TODO: Gadverdamme. Dit kan beter.
+      foreach ($query as $docent) {
+        $docenten[] = $docent['docent'];
+      }
+      return $docenten;
     });
 
     return $query;
@@ -107,7 +114,14 @@ class Rooster extends Eloquent {
   public static function getLokalen()
   {
     $query = Cache::rememberForever('lokalen', function() {
-      return Rooster::filterOnzin('lokaal')->orderBy('lokaal')->get(array('lokaal'));
+      $query = Rooster::filterOnzin('lokaal')->orderBy('lokaal')->get(array('lokaal'))->toArray();
+
+      // Alleen 'enkelvoudige' klassen mogen in de lijst voorkomen, niet meerdere klassen.
+      // TODO: Gadverdamme. Dit kan beter.
+      foreach ($query as $lokaal) {
+        $lokalen[] = $lokaal['lokaal'];
+      }
+      return $lokalen;
     });
 
     return $query;
@@ -137,5 +151,18 @@ class Rooster extends Eloquent {
     });
 
     return $query;
+  }
+
+  public static function getAll()
+  {
+    $output = Cache::rememberForever('klassen', function() {
+      $klassen = self::getKlassen();
+      $lokalen = self::getLokalen();
+      $docenten = self::getDocenten();
+
+      return array_merge($klassen, $lokalen, $docenten);
+    });
+
+    return $output;
   }
 }
