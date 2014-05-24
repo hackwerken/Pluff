@@ -10,7 +10,7 @@ module.exports = (grunt) ->
 
     sass:
       options:
-        includePaths: ["public/bower_components/foundation/scss"],
+        includePaths: ["public/bower_components/foundation/scss", "public/bower_components/selectize/dist/css"],
       dist:
         options:
           outputStyle: "compressed"
@@ -29,7 +29,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           flatten: true
-          src: ["public/bower_components/jquery/jquery.min.js"]
+          src: ["public/bower_components/jquery/jquery.min.js", "public/bower_components/selectize/dist/js/standalone/selectize.min.js"]
           dest: "public/js/vendor/"
           filter: "isFile"
         ]
@@ -81,6 +81,4 @@ module.exports = (grunt) ->
       project:
         path: path.resolve()
 
-  grunt.registerTask "vagrant-up", ->
-    shell.exec "vagrant up"
-  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "cacheBust", "open:app", "watch"]
+  grunt.registerTask "default", ["sass", "autoprefixer", "copy", "concat", "uglify", "cacheBust", "open:app", "watch"]
