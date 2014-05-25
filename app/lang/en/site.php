@@ -9,8 +9,8 @@ return [
   "next_week" => "Next week",
   "rooster_heading" => "Timetable",
   "intro_paragraph" => "Welcome to Pluff, your fast-lane to your class schedule. Either enter your class code [eg, M32] of the abbreviation or the tutor you&rsquo;d wish to lookup.
-    Want to combine multiple classes or tutors? Seperate them with a comma.",
-  "input_placeholder" => "Enter one or more classes or teachers (semicolon seperated)",
+    If you want, you can combine multiple classes or tutors.",
+  "input_placeholder" => "Enter one or more classes or teachers",
   "permalink" => "Permalink",
   "show_everything" => "Show everything",
   "its_a_holiday" => "It&rsquo;s vacation. Grab a beer &amp; enjoy!",

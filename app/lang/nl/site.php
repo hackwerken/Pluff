@@ -8,7 +8,7 @@ return [
   "current_week" => "Huidige week",
   "next_week" => "Volgende week",
   "rooster_heading" => "Rooster",
-  "intro_paragraph" => "Hieronder kun je een klas of docent van Fontys ICT invoeren. Wil je meerdere klassen of docenten zien? Scheid deze dan met een puntkomma.
+  "intro_paragraph" => "Hieronder kun je een klas, docent of lokaal van Fontys ICT invoeren. Dit kunnen er ook meerdere zijn.
           Je kunt hierna onderaan de pagina de &lsquo;permalink&rsquo; kopi&euml;ren en hier eventueel een bladwijzer van maken of aan je startscherm toevoegen op je smartphone.",
   "input_placeholder" => "Vul een of meerdere klassen of docenten in (puntkommmagescheiden)",
   "permalink" => "Permalink",
