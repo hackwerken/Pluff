@@ -125,6 +125,10 @@ $(function() {
         labelField: 'item',
         valueField: 'item',
         searchField: 'item',
+        onItemAdd: function() {
+          // Sluit het dropdown menu na het toevoegen van een item
+          selectize.close();
+        },
         onChange: function(input) {
           roosterLaden(input, weeknrHuidig);
         }

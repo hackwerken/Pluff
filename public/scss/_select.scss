@@ -39,7 +39,7 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
-  padding: .2rem .5rem;
+  padding: .6rem .5rem;
   margin-bottom: 1rem;
 }
 
@@ -48,9 +48,7 @@
 }
 
 .selectize-input.dropdown-active {
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
+  border-radius: 7px 7px 0 0;
 }
 
 .selectize-input > * {
@@ -62,18 +60,17 @@
 // Een ingevoerd (en geldig) item
 .selectize-control.multi .selectize-input > div {
   cursor: pointer;
-  margin: 0 3px 3px 0;
-  padding: 0.13rem 0.38rem;
+  margin: 0 3px 0 0;
+  padding: .21rem .38rem;
   background: #f2f2f2;
   color: #303030;
-  border: 0 solid #d0d0d0;
   border-radius: 3px;
+  display: inline-block;
 }
 
 .selectize-control.multi .selectize-input > div.active {
   background: $primary-color;
   color: #fff;
-  border: 0;
 }
 
 .selectize-input > input {
@@ -81,6 +78,7 @@
   min-height: 0 !important;
   max-height: none !important;
   max-width: 100% !important;
+  height: auto !important;
   margin: 0 2px 0 0 !important;
   text-indent: 0 !important;
   border: 0 none !important;
