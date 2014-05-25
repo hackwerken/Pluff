@@ -85,7 +85,6 @@
   background: none !important;
   line-height: inherit !important;
   -webkit-user-select: auto !important;
-  -webkit-box-shadow: none !important;
   box-shadow: none !important;
   display: inline !important;
 }
@@ -132,9 +131,7 @@
 }
 
 .selectize-dropdown [data-selectable] .highlight {
-  background: rgba(125,168,208,0.2);
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
+  background: rgba(51, 225, 176, .2);
   border-radius: 1px;
 }
 

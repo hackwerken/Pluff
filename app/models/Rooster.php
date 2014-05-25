@@ -61,28 +61,26 @@ class Rooster extends Eloquent {
    */
   public static function getUur($weekNummer, $dagNummer, $uurNummer, $klassen)
   {
-    return Cache::rememberForever($weekNummer.'-'.$dagNummer.'-'.$uurNummer.'-'.implode('-', $klassen), function() use ($weekNummer, $dagNummer, $uurNummer, $klassen) {
-      $uur = [];
+    $uur = [];
 
-      foreach ($klassen as $klas) {
-        // Huidige jaar pakken met het ingevoerde week nummer.
-        // Daarna daarbij het dagnummer optellen minus 1 (begint met maandag)
-        $begintijd = Bereken::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
-        $datum = $begintijd->format('Y-m-d');
+    foreach ($klassen as $klas) {
+      // Huidige jaar pakken met het ingevoerde week nummer.
+      // Daarna daarbij het dagnummer optellen minus 1 (begint met maandag)
+      $begintijd = Bereken::getTimestampVanWeeknrDagnr($weekNummer, $dagNummer);
+      $datum = $begintijd->format('Y-m-d');
 
-        // TODO: LIKE query van tijdstip_begin verbeteren
-        $query = Rooster::klasLike($klas)
-          ->whereRaw('tijdstip_begin::text LIKE \''.$datum.'%\'')
-          ->where('uurnr_begin', '=', $uurNummer)
-          ->first();
+      // TODO: LIKE query van tijdstip_begin verbeteren
+      $query = Rooster::klasLike($klas)
+        ->whereRaw('tijdstip_begin::text LIKE \''.$datum.'%\'')
+        ->where('uurnr_begin', '=', $uurNummer)
+        ->first();
 
-        // Als er een uur gevonden is, deze in de array zetten (zodat er meerdere lesuren in één uur kunnen zitten)
-        if ($query)
-          $uur[] = $query;
-      }
+      // Als er een uur gevonden is, deze in de array zetten (zodat er meerdere lesuren in één uur kunnen zitten)
+      if ($query)
+        $uur[] = $query;
+    }
 
-      return $uur;
-    });
+    return $uur;
   }
 
   /**
