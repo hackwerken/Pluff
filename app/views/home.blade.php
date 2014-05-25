@@ -152,7 +152,7 @@
   <!-- LiveReload script -->
   <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else
-  <script src="/js/all.js?48d995"></script>
+  <script src="/js/all.js?b9104d"></script>
   @endif
 </body>
 </html>

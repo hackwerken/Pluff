@@ -38,7 +38,7 @@ module.exports = (grunt) ->
       options:
         separator: ";"
       dist:
-        src: ["public/js/app.js", "public/js/popup.js"]
+        src: ["public/js/vendor/selectize.min.js", "public/js/app.js", "public/js/popup.js"]
         dest: "public/js/all.js"
 
     uglify:
