@@ -109,8 +109,6 @@ function laatAllesZien() {
 
 $(function() {
 
-  // getStatus();
-
   $.getJSON(appUrl + '/jsoninput', function(data) {
     items = data.map(function(x) { return { item: x }; });
 
@@ -130,7 +128,9 @@ $(function() {
           selectize.close();
         },
         onChange: function(input) {
-          roosterLaden(input, weeknrHuidig);
+          klasOrig = input;
+
+          roosterLaden(klasOrig, weeknrHuidig);
         }
       });
     selectize = $select[0].selectize;
