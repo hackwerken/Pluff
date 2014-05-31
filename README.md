@@ -18,7 +18,12 @@ Dit project heeft de volgende systeemeisen:
 
 Na het clonen van dit project kun je in `app/config/app.php` o.a. de URL veranderen en in `app/config/database.php` de database settings aanpassen. Voer daarna `composer install` uit.
 
-Om het rooster eenmalig binnen te halen kun je het volgende command gebruiken:
+Om de database tabellen aan te maken en het rooster eenmalig binnen te halen gebruik je het volgende command:
+```shell
+php artisan migrate --seed
+```
+
+Om het rooster weer te verversen:
 ```shell
 php artisan db:seed
 ```
