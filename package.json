@@ -12,17 +12,17 @@
     "url": "git://github.com/SpaceK33z/FHICT-Rooster.git"
   },
   "devDependencies": {
-    "node-sass": "~0.7.0",
-    "grunt": "~0.4.2",
+    "node-sass": "~0.8.6",
+    "grunt": "~0.4.5",
     "grunt-contrib-watch": "git://github.com/gruntjs/grunt-contrib-watch",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-sass": "~0.9.0",
-    "grunt-contrib-uglify": "~0.3.2",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-autoprefixer": "~0.6.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-sass": "~0.12.1",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-autoprefixer": "~0.7.3",
     "matchdep": "~0.3.0",
-    "shelljs": "~0.2.6",
+    "shelljs": "~0.3.0",
     "grunt-open": "~0.2.3",
     "grunt-cache-bust": "~0.3.6"
   }
