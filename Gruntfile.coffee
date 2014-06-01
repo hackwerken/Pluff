@@ -73,12 +73,13 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-
     open:
       app:
-        path: "http://pluff.dev:8000/"
+        path: "http://pluff.dev/"
 
       project:
         path: path.resolve()
 
-  grunt.registerTask "default", ["sass", "autoprefixer", "copy", "concat", "uglify", "cacheBust", "open:app", "watch"]
+  grunt.registerTask "vagrant-up", ->
+    shell.exec "vagrant up"
+  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "cacheBust", "open:app", "watch"]

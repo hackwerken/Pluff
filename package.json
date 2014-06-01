@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/SpaceK33z/FHICT-Rooster.git"
+    "url": "git://github.com/SpaceK33z/Pluff.git"
   },
   "devDependencies": {
     "node-sass": "~0.8.6",
@@ -22,7 +22,7 @@
     "grunt-contrib-concat": "~0.4.0",
     "grunt-autoprefixer": "~0.7.3",
     "matchdep": "~0.3.0",
-    "shelljs": "~0.3.0",
+    "shelljs": "^0.3.0",
     "grunt-open": "~0.2.3",
     "grunt-cache-bust": "~0.3.6"
   }
