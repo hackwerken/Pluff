@@ -123,6 +123,7 @@ $(function() {
         labelField: 'item',
         valueField: 'item',
         searchField: 'item',
+        plugins: ['remove_button'],
         onItemAdd: function() {
           // Sluit het dropdown menu na het toevoegen van een item
           selectize.close();
