@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pluff | @lang('site.page_title')</title>
 
-  <link rel="stylesheet" href="/css/app.css?176d21">
+  <link rel="stylesheet" href="/css/app.css?d1d52a">
 
   <script src="/js/pace.js?e9f4e5" data-pace-options='{ "restartOnRequestAfter": false }'></script>
 
@@ -146,13 +146,13 @@
   </script>
 
   @if (App::environment('local'))
-  <script src="/js/app.js?ffb292"></script>
+  <script src="/js/app.js?9f703d"></script>
   <script src="/js/popup.js?a50b21"></script>
   <script src="/js/vendor/selectize.min.js?fc5960"></script>
   <!-- LiveReload script -->
   <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else
-  <script src="/js/all.js?dcfc92"></script>
+  <script src="/js/all.js?2d0aef"></script>
   @endif
 </body>
 </html>

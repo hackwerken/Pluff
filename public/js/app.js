@@ -69,7 +69,7 @@ function roosterLink(input) {
   klasOrig = input;
 
   roosterLaden(input, weeknrHuidig);
-  $('.js-klas').val(input);
+  selectize.setValue(input);
 }
 
 function keyUpFix() {
