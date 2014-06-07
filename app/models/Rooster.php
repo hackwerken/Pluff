@@ -160,4 +160,29 @@ class Rooster extends Eloquent {
 
     return $output;
   }
+
+  public static function getDocentenToplijst($limiet = null) {
+    $query = Rooster::filterOnzin('docent')
+      ->select(DB::raw('count(*) as lessen, docent'))
+      ->groupBy('docent')
+      ->orderBy('lessen', 'desc');
+
+      if (is_numeric($limiet))
+        $query->take($limiet);
+
+      return $query->get()->toArray();
+  }
+
+  public static function getTotaalLessen() {
+    // SELECT date_trunc('day', tijdstip_begin) AS "Dag",
+    //   count(*) AS lessen_op_dag
+    // FROM rooster
+    // GROUP BY 1
+    // ORDER BY 1 ASC
+    $query = Rooster::select(DB::raw('date_trunc(\'day\', tijdstip_begin) AS "dag", count(*) AS lessen'))
+      ->groupBy('dag')
+      ->orderBy('dag', 'asc');
+
+    return $query->get()->toArray();
+  }
 }

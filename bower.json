@@ -2,6 +2,7 @@
   "name": "FHICT-Rooster",
   "dependencies": {
     "foundation": "zurb/bower-foundation",
-    "selectize": "~0.9.1"
+    "selectize": "~0.9.1",
+    "nvd3": "~1.1.15-beta"
   }
 }
