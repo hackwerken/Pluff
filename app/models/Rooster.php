@@ -133,9 +133,6 @@ class Rooster extends Eloquent {
   public static function getKlassen()
   {
     $query = Cache::rememberForever('klassen', function() {
-      $stripPuntKomma = function ($input) {
-        return ltrim($input['klas'], ';');
-      };
 
       $query = Rooster::filterOnzin('klas')->orderBy('klas')->get(array('klas'))->toArray();
 

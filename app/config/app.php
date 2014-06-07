@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://app.local',
+	'url' => 'http://pluff.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -68,6 +68,7 @@ return array(
 	*/
 
 	'key' => 'ybybia4ZIwvyntazVkpNrD5hKgzkZMRS',
+	'cipher' => MCRYPT_RIJNDAEL_256,
 
 	/*
 	|--------------------------------------------------------------------------

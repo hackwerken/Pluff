@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pluff | @lang('site.page_title')</title>
 
-  <link rel="stylesheet" href="/css/app.css?d1d52a">
+  <link rel="stylesheet" href="/css/app.css?8dead5">
 
   <script src="/js/pace.js?e9f4e5" data-pace-options='{ "restartOnRequestAfter": false }'></script>
 
@@ -103,7 +103,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="row alles-zien">
     <div class="small-15 columns">
       <a href="#" class="button button-fullwidth js-alleszien">@lang('site.show_everything')</a>
