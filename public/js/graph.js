@@ -10,9 +10,10 @@
   // });
 
 function klasStatsLaden(input) {
-  $.get(appUrl + '/graph/klas/' + input, function(data) {
-    $('.js-klas-stats').html(data);
-  });
+    $('.js-klas-stats').load(appUrl + '/graph/klas/' + input + ' .wrapper', function() {
+      window.klas = input;
+      $.getScript(appUrl + '/js/graph-klas.js');
+    });
 }
 
 $(function() {

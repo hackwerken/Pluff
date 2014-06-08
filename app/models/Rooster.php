@@ -185,4 +185,31 @@ class Rooster extends Eloquent {
 
     return $query->get()->toArray();
   }
+
+  public static function getLessenTeGaan($klas) {
+    $nu = Carbon::now()->toDateTimeString();
+
+    $query = Rooster::klasLike($klas)
+      ->where('tijdstip_begin', '>', $nu)
+      ->count();
+
+    return (int) $query;
+  }
+
+  public static function getLessenGemiddeld($klas) {
+    $lessenTeGaan = Rooster::getLessenTeGaan($klas);
+
+    if ($lessenTeGaan > 1) {
+      $query = Rooster::select(DB::raw('date_trunc(\'day\', tijdstip_begin) AS "dag"'))
+        ->groupBy('dag')
+        ->get()->toArray();
+
+      $gemiddeld = (float) $lessenTeGaan / (count($query));
+    }
+    else {
+      $gemiddeld = 0;
+    }
+
+    return (float) $gemiddeld;
+  }
 }

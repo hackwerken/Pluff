@@ -13,7 +13,33 @@ Route::get('graph', function() {
 });
 
 Route::get('graph/klas/{klas}', function($klas = null) {
-  echo 'Hallo je spreekt met '.$klas;
+  $data = [
+    'klas' => $klas,
+    'lessenTeGaan' => Rooster::getLessenTeGaan($klas),
+    'lessenGemiddeld' => Rooster::getLessenGemiddeld($klas)
+  ];
+  return View::make('graph-klas', $data);
+});
+
+Route::get('graph/vakpercentage/{klas}', function($klas) {
+  // Lessen van de klas per vak
+  $vaklessen = Rooster::select(DB::raw('vak, count(*) as lessen'))
+    ->klasLike($klas)
+    ->groupBy('vak')
+    ->orderBy('lessen', 'desc')
+    ->get()->toArray();
+
+  $data = [];
+
+  foreach ($vaklessen as $vak) {
+
+    $data[] = [
+      'label' => $vak['vak'],
+      'y' => $vak['lessen']
+    ];
+  }
+
+  return Response::json($data);
 });
 
 Route::get('graph/weeklessen/{type?}/{weeknr?}', function($type = null, $weeknr = null) {
@@ -239,4 +265,3 @@ Route::get('/{klasInput?}/{weekInput?}', function($klasInput = null, $weekInput 
 
   return View::make('home', $data);
 });
-

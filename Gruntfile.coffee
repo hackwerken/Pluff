@@ -16,6 +16,7 @@ module.exports = (grunt) ->
           outputStyle: "compressed"
         files:
           "public/css/app.css": "public/scss/app.scss"
+          "public/css/graph.css": "public/scss/graph.scss"
 
     autoprefixer:
       build:
