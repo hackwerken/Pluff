@@ -47,7 +47,14 @@ class Rooster extends Eloquent {
    */
   public function scopeFilterOnzin($query, $column)
   {
-    return $query->whereNotIn($column, Config::get('rooster.klas_filter'))->distinct();
+    $filter = Config::get('rooster.klas_filter');
+    if ($column === 'klas') {
+      foreach ($filter as &$value) {
+        $value = ';'.$value;
+      }
+    }
+
+    return $query->whereNotIn($column, $filter)->distinct();
   }
 
   /**
@@ -130,7 +137,7 @@ class Rooster extends Eloquent {
    *
    * @return object Alle klassen
    */
-  public static function getKlassen()
+  public static function getKlassen($type = null)
   {
     $query = Cache::rememberForever('klassen', function() {
 
@@ -144,6 +151,9 @@ class Rooster extends Eloquent {
       }
       return $klassen;
     });
+
+    if ($type === 'random')
+      shuffle($query);
 
     return $query;
   }

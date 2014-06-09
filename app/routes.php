@@ -7,7 +7,8 @@
 
 Route::get('graph', function() {
   $data = [
-    'docentenToplijst' => Rooster::getDocentenToplijst(5)
+    'docentenToplijst' => Rooster::getDocentenToplijst(5),
+    'klassen' => Rooster::getKlassen('random')
   ];
   return View::make('graph', $data);
 });

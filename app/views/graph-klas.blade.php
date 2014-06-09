@@ -27,16 +27,13 @@
   <div class="wrapper">
     <div class="row">
       <div class="small-15 large-9 columns">
-        <h3 class="caption">Klassenmeter<br><small>klik op de vakken die je niet volgt en zie welke vakken je het meest hebt!</small></h3>
+        <h3 class="caption">Vakkenmeter van {{{ $klas }}}<br><small>klik op de vakken die je niet volgt en zie welke vakken je het meest hebt!</small></h3>
         <svg class="vakpercentage"></svg>
       </div>
       <div class="small-15 large-6 columns">
         <p class="big-p">
           Je hebt nog <strong>{{{ $lessenTeGaan }}}</strong> lessen tot het einde van deze periode.
           Dat is gemiddeld <strong>{{{ round($lessenGemiddeld, 2) }}}</strong> uur les per dag!
-        </p>
-        <p class="big-p">
-          In de komende tijd wordt dit verminderd tot ... uur.
         </p>
       </div>
     </div>

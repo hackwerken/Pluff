@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="nl" >
 
 <head>
@@ -29,6 +28,18 @@
     <div class="small-15 columns">
       <h3 class="caption">Check je klas<br><small>vul hieronder je klas in en zie de statistieken</small></h3>
       <input type="text" value="" placeholder="Vul een klas in" autocapitalize="off" autocorrect="off" spellcheck="false" class="js-klas">
+
+      <ul class="small-block-grid-3 medium-block-grid-7 klassen-lijst">
+        @foreach ($klassen as $nummer => $klas)
+          <li {{ ($nummer > 20) ? 'class="hide"' : ''}}>
+            <a href="#" data-klas="{{{ $klas }}}" class="js-klasklik" style="background: #{{{ Bereken::stringNaarKleurenCode($klas) }}}">
+              {{{ $klas }}}
+            </a>
+          </li>
+        @endforeach
+      </ul>
+
+      <a href="#" class="klassen-lijst-meer">Meer &rang;</a>
     </div>
   </div>
 

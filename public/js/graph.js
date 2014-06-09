@@ -10,6 +10,7 @@
   // });
 
 function klasStatsLaden(input) {
+    $('.klassen-lijst, .klassen-lijst-meer').fadeOut(200);
     $('.js-klas-stats').load(appUrl + '/graph/klas/' + input + ' .wrapper', function() {
       window.klas = input;
       $.getScript(appUrl + '/js/graph-klas.js');
@@ -41,6 +42,21 @@ $(function() {
         }
       });
     selectize = $select[0].selectize;
+  });
+
+  $('.klassen-lijst-meer').on('click', function(e) {
+    e.preventDefault();
+
+    $('.klassen-lijst').addClass('meerder');
+    $('.klassen-lijst li').removeClass('hide');
+    $(this).fadeOut();
+  });
+
+  $('.js-klasklik').on('click', function(e) {
+    e.preventDefault();
+    var input = $(this).data('klas');
+    console.log(input);
+    klasStatsLaden(input);
   });
 });
 
