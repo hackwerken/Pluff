@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pluff | @lang('site.page_title')</title>
 
-  <link rel="stylesheet" href="/css/graph.css">
+  <link rel="stylesheet" href="/css/graph.css?acc8ad">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
@@ -83,14 +83,14 @@
   </script>
 
   @if (App::environment('local'))
-  <script src="/bower_components/d3/d3.min.js"></script>
-  <script src="/bower_components/nvd3/nv.d3.min.js"></script>
+  <script src="/bower_components/d3/d3.min.js?a31dbc"></script>
+  <script src="/bower_components/nvd3/nv.d3.min.js?88799e"></script>
   <script src="/js/vendor/selectize.min.js?fc5960"></script>
-  <script src="/js/graph.js"></script>
+  <script src="/js/graph.js?c156c4"></script>
   <!-- LiveReload script -->
   <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   @else
-  <script src="/js/all.js?2d0aef"></script>
+  <script src="/js/all-graph.js?f1e14a"></script>
   @endif
 </body>
 </html>

@@ -30,7 +30,10 @@ module.exports = (grunt) ->
         files: [
           expand: true
           flatten: true
-          src: ["public/bower_components/jquery/jquery.min.js", "public/bower_components/selectize/dist/js/standalone/selectize.min.js"]
+          src: ["public/bower_components/jquery/jquery.min.js",
+            "public/bower_components/selectize/dist/js/standalone/selectize.min.js",
+            "public/bower_components/d3/d3.min.js",
+            "public/bower_components/nvd3/nv.d3.min.js"]
           dest: "public/js/vendor/"
           filter: "isFile"
         ]
@@ -41,6 +44,9 @@ module.exports = (grunt) ->
       dist:
         src: ["public/js/vendor/selectize.min.js", "public/js/app.js", "public/js/popup.js"]
         dest: "public/js/all.js"
+      graph:
+        src: ["public/js/vendor/d3.min.js", "public/js/vendor/nv.d3.min.js", "public/js/vendor/selectize.min.js", "public/js/graph.js"]
+        dest: "public/js/all-graph.js"
 
     uglify:
       options:
@@ -54,7 +60,7 @@ module.exports = (grunt) ->
       options:
         length: 6
         baseDir: "public/"
-      files: ["app/views/home.blade.php"]
+      files: ["app/views/home.blade.php", "app/views/graph.blade.php", "app/views/graph-klas.blade.php"]
 
     watch:
       grunt:
