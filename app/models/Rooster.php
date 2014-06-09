@@ -139,23 +139,19 @@ class Rooster extends Eloquent {
    */
   public static function getKlassen($type = null)
   {
-    $query = Cache::rememberForever('klassen', function() {
+    $query = Rooster::filterOnzin('klas')->orderBy('klas')->get(array('klas'))->toArray();
 
-      $query = Rooster::filterOnzin('klas')->orderBy('klas')->get(array('klas'))->toArray();
-
-      // Alleen 'enkelvoudige' klassen mogen in de lijst voorkomen, niet meerdere klassen.
-      // TODO: Gadverdamme. Dit kan beter.
-      foreach ($query as $klas) {
-        if (substr_count($klas['klas'], ';') === 1)
-          $klassen[] = ltrim($klas['klas'], ';');
-      }
-      return $klassen;
-    });
+    // Alleen 'enkelvoudige' klassen mogen in de lijst voorkomen, niet meerdere klassen.
+    // TODO: Gadverdamme. Dit kan beter.
+    foreach ($query as $klas) {
+      if (substr_count($klas['klas'], ';') === 1)
+        $klassen[] = ltrim($klas['klas'], ';');
+    }
 
     if ($type === 'random')
-      shuffle($query);
+      shuffle($klassen);
 
-    return $query;
+    return $klassen;
   }
 
   public static function getAll()
