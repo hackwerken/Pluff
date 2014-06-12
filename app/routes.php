@@ -5,6 +5,12 @@
 |--------------------------------------------------------------------------
 */
 
+Route::get('test', function() {
+  $klassen = Rooster::getKlassen();
+
+  var_dump($klassen);
+});
+
 Route::get('graph', function() {
   $data = [
     'docentenToplijst' => Rooster::getDocentenToplijst(5),

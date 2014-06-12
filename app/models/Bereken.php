@@ -147,7 +147,7 @@ class Bereken {
    */
   public static function klassenNaarArray($klassen)
   {
-    return explode(';', ltrim($klassen, ';'));
+    return explode(';', trim($klassen, ';'));
   }
 
 

@@ -143,10 +143,15 @@ class Rooster extends Eloquent {
 
     // Alleen 'enkelvoudige' klassen mogen in de lijst voorkomen, niet meerdere klassen.
     // TODO: Gadverdamme. Dit kan beter.
-    foreach ($query as $klas) {
-      if (substr_count($klas['klas'], ';') === 1)
-        $klassen[] = ltrim($klas['klas'], ';');
+
+    $klassen = [];
+
+    foreach ($query as $klasColumn) {
+      foreach (Bereken::klassenNaarArray($klasColumn['klas']) as $klas)
+        $klassen[] = $klas;
     }
+
+    $klassen = array_unique($klassen);
 
     if ($type === 'random')
       shuffle($klassen);
