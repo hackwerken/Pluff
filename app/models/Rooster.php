@@ -50,7 +50,7 @@ class Rooster extends Eloquent {
     $filter = Config::get('rooster.klas_filter');
     if ($column === 'klas') {
       foreach ($filter as &$value) {
-        $value = ';'.$value;
+        $value = ';'.$value.';';
       }
     }
 
