@@ -5,17 +5,12 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get('test', function() {
-  $klassen = Rooster::getKlassen();
-
-  var_dump($klassen);
-});
-
 Route::get('graph', function() {
   $data = [
     'docentenToplijst' => Rooster::getDocentenToplijst(5),
     'klassen' => Rooster::getKlassen('random')
   ];
+
   return View::make('graph', $data);
 });
 
@@ -25,6 +20,7 @@ Route::get('graph/klas/{klas}', function($klas = null) {
     'lessenTeGaan' => Rooster::getLessenTeGaan($klas),
     'lessenGemiddeld' => Rooster::getLessenGemiddeld($klas)
   ];
+
   return View::make('graph-klas', $data);
 });
 
@@ -122,40 +118,6 @@ Route::get('graph/totaallessen/{type?}', function($type = null) {
   }
 
   return Response::json($data);
-});
-
-Route::get('tests', function() {
-  $aantalKlassen = Rooster::getKlassen();
-  $aantalKlassen = count($aantalKlassen);
-
-  echo 'Er zijn <strong>'.$aantalKlassen.'</strong> klassen en ';
-
-  $aantalDocenten = Rooster::getDocenten();
-  $aantalDocenten = count($aantalDocenten);
-
-  echo '<strong>'.$aantalDocenten.'</strong> docenten.<br>';
-
-  $vandaag = Carbon::now()->format('Y-m-d');
-  $lessenVandaag = Rooster::whereRaw('tijdstip_begin::text LIKE \''.$vandaag.'%\'')
-    ->count();
-
-  echo 'Verder zijn er <strong>'.$lessenVandaag.'</strong> lessen vandaag.';
-
-  $morgen = $morgen = Carbon::now()->addDay();
-  if ($morgen->isWeekend())
-    $morgen = $morgen->next(Carbon::TUESDAY)->format('Y-m-d');
-  else
-    $morgen = $morgen->format('Y-m-d');
-
-  $lessenMorgen = Rooster::whereRaw('tijdstip_begin::text LIKE \''.$morgen.'%\'')
-    ->count();
-
-  echo ' Morgen zijn dat er <strong>'.$lessenMorgen.'</strong>.<br><br>';
-
-  $klasNaam = 'm32';
-  $klasLessen  = Rooster::klasLike($klasNaam)->count();
-
-  echo 'De klas '.$klasNaam.' heeft <strong>'.$klasLessen.'</strong> lessen in de komende periode.';
 });
 
 /*

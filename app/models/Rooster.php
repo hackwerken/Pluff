@@ -161,7 +161,7 @@ class Rooster extends Eloquent {
 
   public static function getAll()
   {
-    $output = Cache::rememberForever('klassen', function() {
+    $output = Cache::rememberForever('alle-data', function() {
       $klassen = self::getKlassen();
       $lokalen = self::getLokalen();
       $docenten = self::getDocenten();
@@ -185,12 +185,10 @@ class Rooster extends Eloquent {
   }
 
   public static function getTotaalLessen() {
-    // SELECT date_trunc('day', tijdstip_begin) AS "Dag",
-    //   count(*) AS lessen_op_dag
-    // FROM rooster
-    // GROUP BY 1
-    // ORDER BY 1 ASC
+    $nu = Carbon::now()->toDateTimeString();
+
     $query = Rooster::select(DB::raw('date_trunc(\'day\', tijdstip_begin) AS "dag", count(*) AS lessen'))
+      ->where('tijdstip_begin', '>', $nu)
       ->groupBy('dag')
       ->orderBy('dag', 'asc');
 
