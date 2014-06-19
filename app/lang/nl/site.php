@@ -10,7 +10,7 @@ return [
   "rooster_heading" => "Rooster",
   "intro_paragraph" => "Hieronder kun je een klas, docent of lokaal van Fontys ICT invoeren. Dit kunnen er ook meerdere zijn.
           Je kunt hierna onderaan de pagina de &lsquo;permalink&rsquo; kopi&euml;ren en hier eventueel een bladwijzer van maken of aan je startscherm toevoegen op je smartphone.",
-  "input_placeholder" => "Vul een of meerdere klassen of docenten in (puntkommmagescheiden)",
+  "input_placeholder" => "Vul een of meerdere klassen of docenten in (gevolgd door &eacute;&eacute;n enter per item)",
   "permalink" => "Permalink",
   "show_everything" => "Laat alles zien",
   "its_a_holiday" => "Het is vakantie. Pak een biertje &amp; geniet!",
