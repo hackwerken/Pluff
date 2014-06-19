@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pluff | @lang('site.page_title')</title>
 
-  <link rel="stylesheet" href="/css/app.css?92bc5f">
+  <link rel="stylesheet" href="/css/app.css?cf16df">
 
   <script src="/js/pace.js?e9f4e5" data-pace-options='{ "restartOnRequestAfter": false }'></script>
 
@@ -103,7 +103,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row alles-zien">
     <div class="small-15 columns">
       <a href="#" class="button button-fullwidth js-alleszien">@lang('site.show_everything')</a>
@@ -150,7 +150,7 @@
   <script src="/js/popup.js?a50b21"></script>
   <script src="/js/vendor/selectize.min.js?fc5960"></script>
   <!-- LiveReload script -->
-  <!-- <script>document.write('<script src="http://192.168.1.100:35729/livereload.js?snipver=1"></' + 'script>')</script> -->
+  <script>document.write('<script src="http://localhost:35729/livereload.js?snipver=1"></' + 'script>')</script>
   @else
   <script src="/js/all.js?2d0aef"></script>
   @endif

@@ -76,7 +76,15 @@ b, strong {
     background: url("../img/logo.png") no-repeat center;
     background-size: contain;
     text-indent: -999em;
+    width: 15.7rem;
     height: 6.3rem;
+    margin: 0 auto;
+
+    @media #{$medium-up} {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
   .logo a {
     width: 100%;
@@ -85,7 +93,7 @@ b, strong {
   }
   h2 {
     line-height: 1;
-    margin-top: 1rem;
+    padding-top: 7.3rem;
   }
   hr {
     width: 100%;
@@ -120,7 +128,35 @@ b, strong {
   .header {
     .logo {
       height: 2.5rem;
+      @media #{$medium-up} {
+        animation: logo-kleiner .6s linear forwards;
+      }
     }
+  }
+}
+
+@keyframes logo-kleiner {
+  0% {
+    width: 6.23rem;
+    height: 2.5rem;
+  }
+  20% {
+    transform: translate(0, 5px);
+    left: 0;
+    width: 6.23rem;
+    height: 2.5rem;
+  }
+  60% {
+    transform: translate(0, 5px);
+    left: 0;
+    width: 7.476rem;
+    height: 3rem;
+  }
+  100% {
+    transform: translate(0, 5px);
+    left: 0;
+    width: 6.23rem;
+    height: 2.5rem;
   }
 }
 
