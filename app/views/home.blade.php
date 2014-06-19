@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pluff | @lang('site.page_title')</title>
 
-  <link rel="stylesheet" href="/css/app.css?cf16df">
+  <link rel="stylesheet" href="/css/app.css?f3526b">
 
   <script src="/js/pace.js?e9f4e5" data-pace-options='{ "restartOnRequestAfter": false }'></script>
 
