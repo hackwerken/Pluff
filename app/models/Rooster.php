@@ -185,7 +185,7 @@ class Rooster extends Eloquent {
   }
 
   public static function getTotaalLessen() {
-    $nu = Carbon::now()->toDateTimeString();
+    $nu = Carbon::now()->subWeek()->toDateTimeString();
 
     $query = Rooster::select(DB::raw('date_trunc(\'day\', tijdstip_begin) AS "dag", count(*) AS lessen'))
       ->where('tijdstip_begin', '>', $nu)
