@@ -83,7 +83,6 @@ b, strong {
     @media #{$medium-up} {
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
     }
   }
   .logo a {
@@ -130,33 +129,15 @@ b, strong {
       height: 2.5rem;
       @media #{$medium-up} {
         animation: logo-kleiner .6s linear forwards;
+        left: 0;
       }
     }
   }
 }
 
 @keyframes logo-kleiner {
-  0% {
-    width: 6.23rem;
-    height: 2.5rem;
-  }
-  20% {
-    transform: translate(0, 5px);
-    left: 0;
-    width: 6.23rem;
-    height: 2.5rem;
-  }
   60% {
-    transform: translate(0, 5px);
-    left: 0;
-    width: 7.476rem;
-    height: 3rem;
-  }
-  100% {
-    transform: translate(0, 5px);
-    left: 0;
-    width: 6.23rem;
-    height: 2.5rem;
+    transform: scale(1.15);
   }
 }
 
