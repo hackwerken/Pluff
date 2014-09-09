@@ -22,5 +22,9 @@
         @endforeach
       </tbody>
     </table>
+
+    <p>
+      @lang('site.holidays_calendar')
+    </p>
   </div>
 </div>

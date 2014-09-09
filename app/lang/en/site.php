@@ -21,6 +21,7 @@ return [
   "holidays_heading_end" => "End",
   "holidays_heading_daystogo" => "Days to go",
   "holidays_days" => "days",
+  "holidays_calendar" => "For further information check the Fontys <a href=\"https://portal.fhict.nl/Studentenplein/Jaaragenda/jaaragenda%202014-2015.pdf\">Yearcalendar 2014-2015</a>.",
   "cheatsheet_classes" => "Classes",
   "cheatsheet_teachers" => "Teachers",
   "cheatsheet_locals" => "Class-rooms",
