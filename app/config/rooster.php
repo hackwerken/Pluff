@@ -81,10 +81,6 @@ return [
   |
   */
   'vakanties' => [
-    'Zomervakantie' => [
-      'start' => '2014-07-11',
-      'eind' => '2014-08-31'
-    ],
     'Herfstvakantie' => [
       'start' => '2014-10-18',
       'eind' => '2014-10-26'
@@ -92,6 +88,18 @@ return [
     'Kerstvakantie' => [
       'start' => '2014-12-20',
       'eind' => '2015-01-04'
+    ],
+    'Voorjaarsvakantie' => [
+      'start' => '2015-02-14',
+      'eind' => '2015-02-22'
+    ],
+    'Meivakantie' => [
+      'start' => '2015-05-02',
+      'eind' => '2015-05-10'
+    ],
+    'Zomervakantie' => [
+      'start' => '2015-07-25',
+      'eind' => '2015-08-30'
     ]
   ]
 ];
