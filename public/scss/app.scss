@@ -79,11 +79,6 @@ b, strong {
     width: 15.7rem;
     height: 6.3rem;
     margin: 0 auto;
-
-    @media #{$medium-up} {
-      position: absolute;
-      left: 50%;
-    }
   }
   .logo a {
     width: 100%;
@@ -92,7 +87,7 @@ b, strong {
   }
   h2 {
     line-height: 1;
-    padding-top: 7.3rem;
+    margin-top: 1rem;
   }
   hr {
     width: 100%;
@@ -127,17 +122,7 @@ b, strong {
   .header {
     .logo {
       height: 2.5rem;
-      @media #{$medium-up} {
-        animation: logo-kleiner .6s linear forwards;
-        left: 0;
-      }
     }
-  }
-}
-
-@keyframes logo-kleiner {
-  60% {
-    transform: scale(1.15);
   }
 }
 
