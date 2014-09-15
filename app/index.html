@@ -42,16 +42,22 @@
     <div class="small-15 columns">
       <h1>Pluff</h1>
 
-      <p>
-        Nothing here {{'yet' + '!'}}
-      </p>
+      <div ng-controller="StudentCtrl">
+        <button ng-click="personaldata()"></button>
+      </div>
 
-      <ul ng-controller="PhoneListCtrl">
-        <li ng-repeat="uur in rooster">
-          {{phone.name}}
-          <p>{{phone.snippet}}</p>
-        </li>
-      </ul>
+      <div ng-controller="RoosterCtrl">
+        <div class="row">
+          <div class="small-12 medium-3 columns" ng-repeat="day in days">
+            {{day.spelled}}<br>
+            <div class="uur" ng-repeat="hour in hours">
+              {{hour.start}}<br>
+            </div>
+            <button ng-click="test(day.spelled)">Klik mij</button>
+          </div>
+        </div>
+
+      </div>
 
     </div>
   </div>
