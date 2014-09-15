@@ -9,34 +9,10 @@ Uiteraard kan het altijd beter. Wij nemen tips, feedback en verbeteringen dan oo
 
 # Installatie
 
-Dit project heeft de volgende systeemeisen:
+Om Pluff lokaal te draaien heb je [node.js](http://nodejs.org/), de `npm package manager` (meestal meegeleverd bij node.js) en bower nodig (`npm install -g bower`).
 
-- PHP 5.4+
-    + CURL module
-- PostgreSQL
-- nginx (oké apache kan ook)
+Type (eenmalig) in je Pluff folder `npm install && bower install` om de benodigde dependencies te installeren. Daarna type je simpelweg `grunt` om de ‘server’ te starten.
 
-Na het clonen van dit project kun je in `app/config/app.php` o.a. de URL veranderen en in `app/config/database.php` de database settings aanpassen. Voer daarna `composer install` uit.
-
-Om de database tabellen aan te maken en het rooster eenmalig binnen te halen gebruik je het volgende command:
-```shell
-php artisan migrate --seed
-```
-
-Om het rooster weer te verversen:
-```shell
-php artisan db:seed
-```
-
-# Cronjob
-
-Op de Pluff site hebben we 3 cronjobs draaien die om `07:30`, `12:00` en `17:00` elke dag het rooster verversen. Dit ziet er zo uit:
-
-```shell
-30 7    * * *   www-data    /usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
-00 12   * * *   www-data    /usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
-00 17   * * *   www-data    /usr/bin/php /var/www/artisan db:seed >> /var/www/app/storage/logs/cron.log
-```
 # Credits
 
 De mensen achter Pluff:
@@ -47,10 +23,8 @@ De mensen achter Pluff:
 
 Voor het rooster systeem maken we gebruik van de volgende projecten:
 
-- [Laravel](http://laravel.com/) - PHP framework
-- [Vagrant](http://www.vagrantup.com/) - Virtual Machine management
+- [Angular](https://angularjs.org/) - JS framework
 - [Grunt](http://gruntjs.com/) - JS task runner
 - [Bower](http://bower.io/) - Front-end package management
-- [jQuery](http://jquery.com/) - JS framework (*duh*)
 - [Foundation](http://foundation.zurb.com/) - CSS framework
 - [SASS](http://sass-lang.com/) - *CSS with superpowers*
