@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="nl" ng-app="pluffApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pluff | Check je Fontys ICT Rooster!</title>
+
+  <link rel="stylesheet" href="/css/app.css?9a4eaa">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/img/favicon-196x196.png?b17708" sizes="196x196">
+  <link rel="icon" type="image/png" href="/img/favicon-160x160.png?7f3779" sizes="160x160">
+  <link rel="icon" type="image/png" href="/img/favicon-96x96.png?6b24d7" sizes="96x96">
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png?0aadfd" sizes="16x16">
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png?4696d7" sizes="32x32">
+
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
+  <meta property="og:title" content="Pluff - Check je Fontys rooster!">
+  <meta property="og:image" content="/img/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
+  <meta property="og:url" content="{{ url() }}">
+
+</head>
+<body>
+
+  <div class="row">
+    <div class="small-15 columns">
+      <h1>Pluff</h1>
+
+      <p>
+        Nothing here {{'yet' + '!'}}
+      </p>
+
+      <ul ng-controller="PhoneListCtrl">
+        <li ng-repeat="uur in rooster">
+          {{phone.name}}
+          <p>{{phone.snippet}}</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- build:js js/vendor/jquery.min.js -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/plugins.min.js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <!-- endbuild -->
+  <script src="js/controllers.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

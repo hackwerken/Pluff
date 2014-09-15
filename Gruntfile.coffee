@@ -1,92 +1,96 @@
 "use strict"
 path = require("path")
-shell = require("shelljs")
+
 
 module.exports = (grunt) ->
   # load all grunt tasks
   require("matchdep").filterDev("grunt-*").forEach grunt.loadNpmTasks
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
-
     sass:
       options:
-        includePaths: ["public/bower_components/foundation/scss", "public/bower_components/selectize/dist/css"],
+        includePaths: ["app/bower_components/foundation/scss"]
+
       dist:
         options:
           outputStyle: "compressed"
+
         files:
-          "public/css/app.css": "public/scss/app.scss"
-          "public/css/graph.css": "public/scss/graph.scss"
+          "app/css/app.css": "app/scss/app.scss"
 
     autoprefixer:
       build:
         expand: true
-        cwd: "public/css"
+        cwd: "app/css"
         src: ["**/*.css"]
-        dest: "public/css"
+        dest: "app/css"
+
+    clean:
+      dist:
+        src: ["dist/*", "!.*", "!robots.txt"]
 
     copy:
       dist:
         files: [
           expand: true
-          flatten: true
-          src: ["public/bower_components/jquery/jquery.min.js",
-            "public/bower_components/selectize/dist/js/standalone/selectize.min.js",
-            "public/bower_components/d3/d3.min.js",
-            "public/bower_components/nvd3/nv.d3.min.js"]
-          dest: "public/js/vendor/"
-          filter: "isFile"
+          cwd: "app/"
+          src: ["css/**", "js/**", "img/**/*", "fonts/**", "**/*.html", "!**/*.scss"]
+          dest: "dist/"
         ]
 
-    concat:
+    useminPrepare:
+      html: "app/*.html"
       options:
-        separator: ";"
-      dist:
-        src: ["public/js/vendor/selectize.min.js", "public/js/app.js", "public/js/popup.js"]
-        dest: "public/js/all.js"
-      graph:
-        src: ["public/js/vendor/d3.min.js", "public/js/vendor/nv.d3.min.js", "public/js/vendor/selectize.min.js", "public/js/graph.js"]
-        dest: "public/js/all-graph.js"
+        dest: "dist"
 
-    uglify:
+    usemin:
+      html: ["dist/*.html"]
+      css: ["dist/css/*.css"]
       options:
-        compress:
-          drop_console: true
-      dist:
-        files:
-          "public/js/all.js": ["public/js/all.js"]
-
-    cacheBust:
-      options:
-        length: 6
-        baseDir: "public/"
-      files: ["app/views/home.blade.php", "app/views/graph.blade.php", "app/views/graph-klas.blade.php"]
+        dirs: ["dist"]
 
     watch:
       grunt:
         files: ["Gruntfile.coffee"]
         tasks: ["sass"]
+
       sass:
-        files: ["public/scss/{,*/}*.scss", "public/bower_components/{,*/}*.scss"]
+        files: ["app/scss/{,*/}*.scss", "app/bower_components/{,*/}*.scss"]
         tasks: ["sass", "autoprefixer"]
-      concat:
-        files: ["public/js/app.js", "public/js/popup.js"]
-        tasks: ["concat", "uglify"]
-      cacheBust:
-        files: ["public/css/{,*/}*.css", "public/js/{,*/}*.js"]
-        tasks: ["cacheBust"]
+
       livereload:
-        files: ["app/{,*/}*.php", "public/js/{,*/}*.js", "public/css/{,*/}*.css", "public/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
+        files: ["app/*.html", "app/js/{,*/}*.js", "app/css/{,*/}*.css", "app/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
         options:
           livereload: true
 
+    connect:
+      app:
+        options:
+          port: 9000
+          base: "app/"
+          hostname: "*"
+          livereload: true
+
+      dist:
+        options:
+          port: 9001
+          base: "dist/"
+          hostname: "*"
+          keepalive: true
+          livereload: false
+
     open:
       app:
-        path: "http://pluff.dev/"
+        path: "http://localhost:9000"
+
+      dist:
+        path: "http://localhost:9001"
 
       project:
         path: path.resolve()
 
-  grunt.registerTask "vagrant-up", ->
-    shell.exec "vagrant up"
-  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "cacheBust", "open:app", "watch"]
+      projectDist:
+        path: path.resolve() + "/dist"
+
+  grunt.registerTask "default", ["sass", "autoprefixer", "connect:app", "open:app", "watch"]
+  grunt.registerTask "publish", ["clean:dist", "open:projectDist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "open:dist", "connect:dist"]

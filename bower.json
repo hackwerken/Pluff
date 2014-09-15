@@ -1,8 +1,8 @@
 {
-  "name": "FHICT-Rooster",
+  "name": "Pluff",
   "dependencies": {
-    "foundation": "zurb/bower-foundation",
-    "selectize": "~0.9.1",
-    "nvd3": "~1.1.15-beta"
+    "foundation": "~5.4.3",
+    "selectize": "~0.11.0",
+    "angular": "~1.2.24"
   }
 }
