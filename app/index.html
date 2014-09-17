@@ -43,17 +43,14 @@
       <h1>Pluff</h1>
 
       <div ng-controller="StudentCtrl">
-        <button ng-click="personaldata()"></button>
       </div>
 
       <div ng-controller="RoosterCtrl">
+        <button ng-click="roosterWeek()">Ja?</button>
         <div class="row">
           <div class="small-12 medium-3 columns" ng-repeat="day in days">
             {{day.spelled}}<br>
-            <div class="uur" ng-repeat="hour in hours">
-              {{hour.start}}<br>
-            </div>
-            <button ng-click="test(day.spelled)">Klik mij</button>
+            <div class="uur" ng-repeat="hour in hours" ng-bind="getHour(day.number, hour.number)"></div>
           </div>
         </div>
 
@@ -67,6 +64,7 @@
   <!-- endbuild -->
   <!-- build:js js/plugins.min.js -->
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
   <!-- endbuild -->
   <script src="js/controllers.js"></script>
   <script src="js/app.js"></script>
