@@ -1,0 +1,18 @@
+<div ng-controller="RoosterCtrl">
+  <h2 ng-show="roosterName" class="text-center">{{roosterName}}</h2>
+
+  <div class="row">
+    <div class="small-12 medium-3 columns" ng-repeat="day in days">
+      <h3>{{day.spelled}}</h3>
+
+      <div class="uur" ng-repeat="hour in hours">
+      {{hour.number}}<br>
+        <div ng-repeat="lesson in getHour(day.number, hour.number) track by lesson.uid">
+          {{lesson.subject}} - {{lesson.teacherAbbreviation}}<br>
+          <small>{{lesson.room}}</small>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

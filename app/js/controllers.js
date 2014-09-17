@@ -2,9 +2,10 @@
 
 /* Controllers */
 
-var pluffApp = angular.module('pluffApp', [])
-  .controller('StudentCtrl', ['$scope', '$http', StudentCtrl])
-  .controller('RoosterCtrl', ['$scope', '$http', RoosterCtrl]);
+var pluffApp = angular.module('pluffApp', []);
+
+pluffApp.controller('StudentCtrl', ['$scope', '$http', StudentCtrl]);
+pluffApp.controller('RoosterCtrl', ['$scope', '$http', RoosterCtrl]);
 
 var APIurl = 'https://apps.fhict.nl/api/v1';
 var APIcallback = '&callback=JSON_CALLBACK';
@@ -53,6 +54,7 @@ function RoosterCtrl($scope, $http) {
   $http.jsonp(APIurl + '/Schedule/me?daysAhead=90' + APIcallback)
     .success(function(data, status) {
       $scope.roosterData = data.data; // sorry for the awful names it's late okay?
+      $scope.roosterName = data.title;
     })
     .error(function(data, status) {
       // Redirect to FHICT loginpage if there's an error, because the user probably isn't logged in
@@ -63,11 +65,11 @@ function RoosterCtrl($scope, $http) {
 
   $scope.roosterDate = moment();
 
-  $scope.weekNumber = 38;
+  $scope.weekNumber = $scope.roosterDate.format('ww');
 
   $scope.getHour = function(dayNumber, hourNumber) {
     // console.log('dagnr: ' + dayNumber + ' en uurnr:' + hourNumber);
-    var hourCallback;
+    var hourCallback = [];
 
     if ($scope.RoosterData != false) {
       $scope.roosterData.forEach(function(les) {
@@ -80,7 +82,7 @@ function RoosterCtrl($scope, $http) {
           var hourBin = Math.pow(2, hourNumber-1);
 
           if (les.hoursMask & hourBin) {
-            hourCallback = hourNumber + ' er is les';
+            hourCallback.push(les);
           }
         }
       });
