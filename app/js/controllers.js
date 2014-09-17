@@ -1,14 +1,9 @@
 'use strict';
 
 /* Controllers */
-
-var pluffApp = angular.module('pluffApp', []);
-
-pluffApp.controller('StudentCtrl', ['$scope', '$http', StudentCtrl]);
-pluffApp.controller('RoosterCtrl', ['$scope', '$http', RoosterCtrl]);
-
-var APIurl = 'https://apps.fhict.nl/api/v1';
-var APIcallback = '&callback=JSON_CALLBACK';
+angular.module('pluffApp.controllers', [])
+  .controller('StudentCtrl', StudentCtrl)
+  .controller('TimeTableCtrl', TimeTableCtrl);
 
 function StudentCtrl($scope, $http) {
   // $http.jsonp(APIurl + '/people/important' + APIcallback)
@@ -21,8 +16,8 @@ function StudentCtrl($scope, $http) {
   // });
 }
 
-function RoosterCtrl($scope, $http) {
-  $scope.roosterData = false;
+function TimeTableCtrl($scope, $http, hourService) {
+  $scope.tableData = false;
 
   $scope.days = [
     {number: 1, spelled: 'Maandag'},
@@ -51,47 +46,26 @@ function RoosterCtrl($scope, $http) {
   ];
 
   // Get the personal schedule from the API
-  $http.jsonp(APIurl + '/Schedule/me?daysAhead=90' + APIcallback)
+  // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
+  $http.jsonp(APIconfig.url('/Schedule/me?includeTeacher=false&daysAhead=90'))
     .success(function(data, status) {
-      $scope.roosterData = data.data; // sorry for the awful names it's late okay?
-      $scope.roosterName = data.title;
+      $scope.tableData = data.data; // sorry for the awful names it's late okay?
+      $scope.tableName = data.title;
     })
     .error(function(data, status) {
       // Redirect to FHICT loginpage if there's an error, because the user probably isn't logged in
       // TODO: Check if it's a 'normal' error or auth error
       // TODO: Redirect back to Pluff
       window.location = 'https://portal.fhict.nl/CookieAuth.dll?GetLogon?reason=0&formdir=6';
+
+      // TODO: Create a nice error page
     });
 
-  $scope.roosterDate = moment();
+  $scope.tableDate = moment();
 
-  $scope.weekNumber = $scope.roosterDate.format('ww');
+  $scope.weekNumber = $scope.tableDate.format('ww');
 
   $scope.getHour = function(dayNumber, hourNumber) {
-    // console.log('dagnr: ' + dayNumber + ' en uurnr:' + hourNumber);
-    var hourCallback = [];
-
-    if ($scope.RoosterData != false) {
-      $scope.roosterData.forEach(function(les) {
-        // Get the input date from the weeknumber of the year and daynumber of week (1-5) (ex. 2014-52-5)
-        var currentDay = moment('2014-'+ $scope.weekNumber + '-' + dayNumber, 'YYYY-ww-d');
-
-        // Check if the lesson is on the current day
-        if (currentDay.isSame(les.start, 'day')) {
-          // Get the exponent of the hourNumber (^2 - 1)
-          var hourBin = Math.pow(2, hourNumber-1);
-
-          if (les.hoursMask & hourBin) {
-            hourCallback.push(les);
-          }
-        }
-      });
-
-      return hourCallback;
-    }
-
-    // hourNumber is 1 to 15
-
-
+    return hourService.getHour($scope, dayNumber, hourNumber);
   };
 }
