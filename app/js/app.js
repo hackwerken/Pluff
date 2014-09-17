@@ -5,9 +5,18 @@ angular.module('pluffApp', [
   'pluffApp.services',
   'ngRoute'
 ])
-.config(['$routeProvider', function($routeProvider) {
+.config(function($routeProvider, $locationProvider) {
   // TODO: Everything.
-}]);
+  $routeProvider
+  .when('/query', {
+    controller: function() {
+      console.log('Test query');
+    }
+  });
+
+  $locationProvider.html5Mode(false);
+  $locationProvider.hashPrefix('!');
+});
 
 var APIconfig = {
   urlRaw: 'https://apps.fhict.nl/api/v1',

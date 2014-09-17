@@ -45,9 +45,15 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService) {
     {number: 14, start: '21:40'}
   ];
 
+  $scope.input = function() {
+    console.log($routeParams);
+
+    return '/Schedule/me';
+  }
+
   // Get the personal schedule from the API
   // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
-  $http.jsonp(APIconfig.url('/Schedule/me?includeTeacher=false&daysAhead=90'))
+  $http.jsonp(APIconfig.url($scope.input() + '?includeTeacher=false&daysAhead=90'))
     .success(function(data, status) {
       $scope.tableData = data.data; // sorry for the awful names it's late okay?
       $scope.tableName = data.title;

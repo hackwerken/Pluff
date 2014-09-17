@@ -13,6 +13,7 @@ angular.module('pluffApp.services', [])
       // Allow multiple lessons in one hour
       var hourCallback = [];
 
+      // Wait until the JSON is fully loaded
       if ($scope.tableData != false) {
         // TODO: Optimize for performance (!!)
         $scope.tableData.forEach(function(les) {
