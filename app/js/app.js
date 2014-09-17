@@ -2,8 +2,12 @@
 
 angular.module('pluffApp', [
   'pluffApp.controllers',
-  'pluffApp.services'
-]);
+  'pluffApp.services',
+  'ngRoute'
+])
+.config(['$routeProvider', function($routeProvider) {
+  // TODO: Everything.
+}]);
 
 var APIconfig = {
   urlRaw: 'https://apps.fhict.nl/api/v1',

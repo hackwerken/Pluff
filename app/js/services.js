@@ -17,7 +17,7 @@ angular.module('pluffApp.services', [])
         // TODO: Optimize for performance (!!)
         $scope.tableData.forEach(function(les) {
           // Get the input date from the weeknumber of the year and daynumber of week (1-5) (ex. 2014-52-5)
-          var currentDay = moment('2014-' + $scope.weekNumber + '-' + dayNumber, 'YYYY-ww-d');
+          var currentDay = moment('2014-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
 
           // Check if the lesson is on the current day
           if (currentDay.isSame(les.start, 'day')) {

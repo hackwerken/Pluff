@@ -16,7 +16,7 @@ function StudentCtrl($scope, $http) {
   // });
 }
 
-function TimeTableCtrl($scope, $http, hourService) {
+function TimeTableCtrl($scope, $http, $routeParams, hourService) {
   $scope.tableData = false;
 
   $scope.days = [
@@ -61,9 +61,47 @@ function TimeTableCtrl($scope, $http, hourService) {
       // TODO: Create a nice error page
     });
 
-  $scope.tableDate = moment();
+  $scope.weekNumberUsed = parseInt(moment().format('w'));
 
-  $scope.weekNumber = $scope.tableDate.format('ww');
+  $scope.weekNumber = function() {
+    var weekInfo = {};
+
+    // Get current week number (without leading zero)
+    // TODO: If it's friday after 18 pm or weekend, make the current week next week
+    weekInfo.current = parseInt(moment().format('w'));
+    weekInfo.use = $scope.weekNumberUsed;
+
+    // Rotate the number when the year has ended
+    if (weekInfo.use === 53) {
+      weekInfo.use = 1;
+    }
+    if (weekInfo.use === 0) {
+      weekInfo.use = 52;
+    }
+
+    $scope.weekNumberUsed = weekInfo.use;
+
+    return weekInfo;
+  };
+
+  $scope.nextWeek = function() {
+    // Add 1 to the weeknumber in use
+    $scope.weekNumberUsed++;
+    console.log('Op naar volgende week! ' + $scope.weekNumberUsed);
+  };
+
+  $scope.currentWeek = function() {
+    // Reset to the current week
+    $scope.weekNumberUsed = $scope.weekNumber().current;
+    console.log('Op naar de huidige week! ' + $scope.weekNumberUsed);
+  };
+
+  $scope.previousWeek = function() {
+    // Subtract 1 from the weeknumber in use
+    // TODO: Do something when user tries to go past the current week
+    $scope.weekNumberUsed--;
+    console.log('Op naar de vorige week! ' + $scope.weekNumberUsed);
+  };
 
   $scope.getHour = function(dayNumber, hourNumber) {
     return hourService.getHour($scope, dayNumber, hourNumber);

@@ -1,5 +1,11 @@
 <div ng-controller="TimeTableCtrl">
-  <h2 ng-show="tableName" class="text-center">{{tableName}}</h2>
+  <h2 ng-show="tableName" class="text-center">{{tableName}}<br><small>week {{weekNumber().use}}</small></h2>
+
+  <ul>
+    <li><a href="#" ng-click="previousWeek()">Vorig &laquo;</a></li>
+    <li><a href="#" ng-click="currentWeek()">Huidig</a></li>
+    <li><a href="#" ng-click="nextWeek()">Volgend &raquo;</a></li>
+  </ul>
 
   <div class="row">
     <div class="small-12 medium-3 columns" ng-repeat="day in days">
