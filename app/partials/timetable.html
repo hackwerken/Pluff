@@ -7,14 +7,14 @@
 </ul>
 
 <div class="row">
-  <div class="small-12 medium-5 columns end">
+  <div class="small-15 medium-5 columns end">
     <input type="text" ng-model="search" placeholder="Search for a class, room or teacher">
     <button ng-click="updateurl()">Go</button>
   </div>
 </div>
 
 <div class="row">
-  <div class="small-12 medium-3 columns" ng-repeat="day in days" ng-class="{'activeDay': isActiveDay(day.number)}">
+  <div class="small-15 medium-3 columns" ng-repeat="day in days" ng-class="{'activeDay': isActiveDay(day.number)}">
     <h3>
       {{day.spelled}}<br>
       <small>{{currentDayDate(day.number).format('D-M')}}</small>
