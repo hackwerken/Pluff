@@ -16,7 +16,7 @@ function StudentCtrl($scope, $http) {
   // });
 }
 
-function TimeTableCtrl($scope, $http, $routeParams, hourService) {
+function TimeTableCtrl($scope, $http, $routeParams, hourService, $window) {
   $scope.tableData = false;
 
   $scope.days = [
@@ -112,4 +112,19 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService) {
   $scope.getHour = function(dayNumber, hourNumber) {
     return hourService.getHour($scope, dayNumber, hourNumber);
   };
+
+  angular.element($window).on('keydown', function(e) {
+    // Go to the next week on right arrow key
+    if (e.keyCode === 39) {
+      $scope.$apply(function() {
+        $scope.nextWeek();
+      });
+    }
+    // Go to the previous week on left arrow key
+    if (e.keyCode === 37) {
+      $scope.$apply(function() {
+        $scope.previousWeek();
+      });
+    }
+  });
 }

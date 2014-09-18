@@ -15,7 +15,7 @@ angular.module('pluffApp', [
   });
 
   $locationProvider.html5Mode(false);
-  $locationProvider.hashPrefix('!');
+  // $locationProvider.hashPrefix('!');
 });
 
 var APIconfig = {
