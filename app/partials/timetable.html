@@ -23,8 +23,8 @@
     <div class="uur" ng-repeat="hour in hours">
     {{hour.number}}<br>
       <div ng-repeat="lesson in getHour(day.number, hour.number) track by lesson.uid">
-        {{lesson.subject}} - {{lesson.teacherAbbreviation}}<br>
-        <small>{{lesson.room}}</small>
+        {{lesson.subject}} - <a href="query/{{lesson.teacherAbbreviation}}">{{lesson.teacherAbbreviation}}</a><br>
+        <small><a href="query/{{lesson.room}}">{{lesson.room}}</a></small>
       </div>
       <hr>
     </div>
