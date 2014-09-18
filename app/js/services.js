@@ -8,24 +8,26 @@ angular.module('pluffApp.services', [])
 
     hour.getHour = function($scope, dayNumber, hourNumber) {
       // dayNumber can be 1 to 5 (day of the week)
-      // hourNumber can be 1 to 15
+      // hourNumber can be 1 to 14
 
       // Allow multiple lessons in one hour
       var hourCallback = [];
 
-      // Get the input date from the weeknumber of the year and daynumber of week (1-5) (ex. 2014-52-5)
-      var currentDay = moment('2014-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
+      // Get the complete date from the daynumber and current weeknumber
+      var currentDay = $scope.currentDayDate(dayNumber);
 
-      // Get the exponent of the hourNumber (^2 - 1)
+      // Get the exponent of the hourNumber (current hour) (^2 - 1)
+      // Equalize the current hour with the mask
       var hourBin = Math.pow(2, hourNumber - 1);
 
       // Wait until the JSON is fully loaded
       if ($scope.tableData != false) {
-        // TODO: Optimize for performance (!!)
-        $scope.tableData.forEach(function(les) {
-          // Check if the lesson is on the current day
-          if (currentDay.isSame(les.start, 'day') && les.hoursMask & hourBin) {
-            hourCallback.push(les);
+        // TODO: Optimize for performance
+        $scope.tableData.forEach(function(lesson) {
+          // Check if the lesson is on the current day and if the current hour is in the mask
+          // Ex.: if a mask is 12, the binary code of it is 1100. This means that the lesson is in the third and fourth hour.
+          if (currentDay.isSame(lesson.start, 'day') && lesson.hoursMask & hourBin) {
+            hourCallback.push(lesson);
           }
         });
       }
