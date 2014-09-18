@@ -31,12 +31,6 @@ module.exports = (grunt) ->
       dist: ["dist/*", "!.*", "!robots.txt"]
 
     copy:
-      angular:
-        files: [
-          expand: false
-          src: "app/bower_components/angular/angular.min.js"
-          dest: "app/js/angular.min.js"
-        ]
       dist:
         files: [
           expand: true
@@ -55,6 +49,11 @@ module.exports = (grunt) ->
       css: ["dist/css/*.css"]
       options:
         dirs: ["dist"]
+
+    uncss:
+      dist:
+        files:
+          'dist/css/app.css': ['app/*.html', 'app/partials/*.html']
 
     uglify:
       options:
@@ -120,5 +119,5 @@ module.exports = (grunt) ->
       projectDist:
         path: path.resolve() + "/dist"
 
-  grunt.registerTask "default", ["sass", "autoprefixer", "copy:angular", "connect:app", "open:app", "watch"]
-  grunt.registerTask "publish", ["clean:dist", "open:projectDist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "open:dist", "connect:dist"]
+  grunt.registerTask "default", ["sass", "autoprefixer", "connect:app", "open:app", "watch"]
+  grunt.registerTask "publish", ["clean:dist", "open:projectDist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "uncss", "open:dist", "connect:dist"]

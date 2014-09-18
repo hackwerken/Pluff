@@ -24,6 +24,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-open": "^0.2.3",
     "grunt-sass": "^0.14.1",
+    "grunt-uncss": "^0.3.6",
     "grunt-usemin": "^2.4.0",
     "matchdep": "^0.3.0",
     "node-sass": "^0.9.3"
