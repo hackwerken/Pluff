@@ -18,7 +18,7 @@ angular.module('pluffApp.services', [])
 
       // Get the exponent of the hourNumber (current hour) (^2 - 1)
       // Equalize the current hour with the mask
-      var hourBin = Math.pow(2, hourNumber - 1);
+      var hourExp = Math.pow(2, hourNumber - 1);
 
       // Wait until the JSON is fully loaded
       if ($scope.tableData != false) {
@@ -26,7 +26,7 @@ angular.module('pluffApp.services', [])
         $scope.tableData.forEach(function(lesson) {
           // Check if the lesson is on the current day and if the current hour is in the mask
           // Ex.: if a mask is 12, the binary code of it is 1100. This means that the lesson is in the third and fourth hour.
-          if (currentDay.isSame(lesson.start, 'day') && lesson.hoursMask & hourBin) {
+          if (currentDay.isSame(lesson.start, 'day') && lesson.hoursMask & hourExp) {
             hourCallback.push(lesson);
           }
         });

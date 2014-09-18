@@ -28,15 +28,20 @@ module.exports = (grunt) ->
         dest: "app/css"
 
     clean:
-      dist:
-        src: ["dist/*", "!.*", "!robots.txt"]
+      dist: ["dist/*", "!.*", "!robots.txt"]
 
     copy:
+      angular:
+        files: [
+          expand: false
+          src: "app/bower_components/angular/angular.min.js"
+          dest: "app/js/angular.min.js"
+        ]
       dist:
         files: [
           expand: true
           cwd: "app/"
-          src: ["css/**", "js/**", "img/**/*", "fonts/**", "**/*.html", "!**/*.scss"]
+          src: ["css/**", "js/**", "img/**/*", "fonts/**", "*.html", "partials/**"]
           dest: "dist/"
         ]
 
@@ -50,6 +55,11 @@ module.exports = (grunt) ->
       css: ["dist/css/*.css"]
       options:
         dirs: ["dist"]
+
+    uglify:
+      options:
+        mangle: false # preserve variables etc., bc angular doesn't like it (pussy)
+        preserveComments: 'all' # we don't want no license trouble
 
     watch:
       grunt:
@@ -110,5 +120,5 @@ module.exports = (grunt) ->
       projectDist:
         path: path.resolve() + "/dist"
 
-  grunt.registerTask "default", ["sass", "autoprefixer", "connect:app", "open:app", "watch"]
+  grunt.registerTask "default", ["sass", "autoprefixer", "copy:angular", "connect:app", "open:app", "watch"]
   grunt.registerTask "publish", ["clean:dist", "open:projectDist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "open:dist", "connect:dist"]
