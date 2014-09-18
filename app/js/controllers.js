@@ -118,6 +118,7 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
     return hourService.getHour($scope, dayNumber, hourNumber);
   };
 
+  // Bind keybindings to the window to enable right and left arrow navigation
   angular.element($window).on('keydown', function(e) {
     // Go to the next week on right arrow key
     if (e.keyCode === 39) {
@@ -133,12 +134,13 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
     }
   });
 
+  // Calculate the date of the current day
   $scope.currentDayDate = function(dayNumber) {
     return moment('2014-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
   }
 
+  // Check if the current day is today
   $scope.isActiveDay = function(dayNumber) {
-
     if (moment().isSame($scope.currentDayDate(dayNumber), 'day')) {
       return true;
     }
