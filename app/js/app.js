@@ -3,7 +3,8 @@
 angular.module('pluffApp', [
   'pluffApp.controllers',
   'pluffApp.services',
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate'
 ])
 .config(function($routeProvider, $locationProvider) {
   // TODO: Everything.
