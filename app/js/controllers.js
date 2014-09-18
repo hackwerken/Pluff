@@ -47,15 +47,17 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
     }
   }
 
+  // Search query (can be classes, rooms or teachers)
   $scope.search = '';
 
+  // Update the query URL to the new search query
   $scope.updateurl = function() {
     $location.path('/query/' + $scope.search);
   }
 
   // Get the personal schedule from the API
   // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
-  $http.jsonp(APIconfig.url('/Schedule' + $scope.input() + '?includeTeacher=false&daysAhead=90'))
+  $http.jsonp(APIconfig.url('/Schedule' + $scope.input() + '?includeTeacher=false&IncludeStartOfWeek=true&daysAhead=90'))
     .success(function(data, status) {
       $scope.tableData = data.data; // sorry for the awful names it's late okay?
       $scope.tableName = data.title;
@@ -69,6 +71,7 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
       // TODO: Create a nice error page
     });
 
+  // Set the default used weeknumber (without leading zero)
   $scope.weekNumberUsed = parseInt(moment().format('w'));
 
   $scope.weekNumber = function() {

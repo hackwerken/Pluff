@@ -61,7 +61,7 @@ module.exports = (grunt) ->
         tasks: ["sass", "autoprefixer"]
 
       livereload:
-        files: ["app/*.html", "app/js/{,*/}*.js", "app/css/{,*/}*.css", "app/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
+        files: ["app/*.html", "app/partials/*.html", "app/js/{,*/}*.js", "app/css/{,*/}*.css", "app/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
         options:
           livereload: true
 
