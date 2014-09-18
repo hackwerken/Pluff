@@ -8,9 +8,18 @@ angular.module('pluffApp', [
 .config(function($routeProvider, $locationProvider) {
   // TODO: Everything.
   $routeProvider
-  .when('/query', {
-    controller: function() {
-      console.log('Test query');
+  .when('/', {
+    templateUrl: 'partials/timetable.html',
+    controller: 'TimeTableCtrl'
+  })
+  .when('/query/:query', {
+    templateUrl: 'partials/timetable.html',
+    controller: 'TimeTableCtrl',
+    resolve: {
+      logging: function($route) {
+        // $route.reload()
+        console.log('Query is ' + $route.current.params.query);
+      }
     }
   });
 

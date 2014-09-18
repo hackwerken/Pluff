@@ -2,19 +2,7 @@
 
 /* Controllers */
 angular.module('pluffApp.controllers', [])
-  .controller('StudentCtrl', StudentCtrl)
   .controller('TimeTableCtrl', TimeTableCtrl);
-
-function StudentCtrl($scope, $http) {
-  // $http.jsonp(APIurl + '/people/important' + APIcallback)
-  // .success(function(data, status) {
-  //   console.log(data);
-  // })
-  // .error(function(data, status) {
-  //   // Redirect naar FHICT inlogpagina
-  //   window.location = 'https://portal.fhict.nl/CookieAuth.dll?GetLogon?reason=0&formdir=6';
-  // });
-}
 
 function TimeTableCtrl($scope, $http, $routeParams, hourService, $window) {
   $scope.tableData = false;
@@ -46,14 +34,20 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window) {
   ];
 
   $scope.input = function() {
-    console.log($routeParams);
+    // If there's something filled in (teacher, room or class)
+    if ($routeParams.query) {
+      console.log('Er is wat ingevuld: ' + $routeParams.query);
 
-    return '/Schedule/me';
+      return '/query/' + $routeParams.query;
+    }
+    else {
+      return '/me';
+    }
   }
 
   // Get the personal schedule from the API
   // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
-  $http.jsonp(APIconfig.url($scope.input() + '?includeTeacher=false&daysAhead=90'))
+  $http.jsonp(APIconfig.url('/Schedule' + $scope.input() + '?includeTeacher=false&daysAhead=90'))
     .success(function(data, status) {
       $scope.tableData = data.data; // sorry for the awful names it's late okay?
       $scope.tableName = data.title;

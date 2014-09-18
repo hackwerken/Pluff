@@ -71,7 +71,6 @@ module.exports = (grunt) ->
           port: 9000
           hostname: "*"
           livereload: true
-          open: true
           base: "app/"
           middleware: (connect, options) ->
             middlewares = []
