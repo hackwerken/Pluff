@@ -12,6 +12,7 @@
     "url": "git://github.com/SpaceK33z/Pluff.git"
   },
   "devDependencies": {
+    "connect-modrewrite": "^0.7.9",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^1.0.1",
     "grunt-cache-bust": "^0.4.4",

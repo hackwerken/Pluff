@@ -5,6 +5,8 @@ path = require("path")
 module.exports = (grunt) ->
   # load all grunt tasks
   require("matchdep").filterDev("grunt-*").forEach grunt.loadNpmTasks
+  modRewrite = require("connect-modrewrite")
+
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
     sass:
@@ -67,10 +69,27 @@ module.exports = (grunt) ->
       app:
         options:
           port: 9000
-          base: "app/"
           hostname: "*"
           livereload: true
+          open: true
+          base: "app/"
+          middleware: (connect, options) ->
+            middlewares = []
+            directory = options.directory or options.base[options.base.length - 1]
 
+            # enable Angular's HTML5 mode
+            middlewares.push modRewrite(["!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]"])
+            options.base = [options.base]  unless Array.isArray(options.base)
+            options.base.forEach (base) ->
+
+              # Serve static files.
+              middlewares.push connect.static(base)
+              return
+
+
+            # Make directory browse-able.
+            middlewares.push connect.directory(directory)
+            middlewares
       dist:
         options:
           port: 9001
