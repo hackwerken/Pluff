@@ -4,7 +4,7 @@
 angular.module('pluffApp.controllers', [])
   .controller('TimeTableCtrl', TimeTableCtrl);
 
-function TimeTableCtrl($scope, $http, $routeParams, hourService, $window) {
+function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $location) {
   $scope.tableData = false;
 
   $scope.days = [
@@ -34,6 +34,8 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window) {
   ];
 
   $scope.input = function() {
+    // $scope.$apply( $location.path( url ) );
+
     // If there's something filled in (teacher, room or class)
     if ($routeParams.query) {
       console.log('Er is wat ingevuld: ' + $routeParams.query);
@@ -43,6 +45,12 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window) {
     else {
       return '/me';
     }
+  }
+
+  $scope.search = '';
+
+  $scope.updateurl = function() {
+    $location.path('/query/' + $scope.search);
   }
 
   // Get the personal schedule from the API
@@ -121,4 +129,15 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window) {
       });
     }
   });
+
+  $scope.currentDayDate = function(dayNumber) {
+    return moment('2014-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
+  }
+
+  $scope.isActiveDay = function(dayNumber) {
+
+    if (moment().isSame($scope.currentDayDate(dayNumber), 'day')) {
+      return true;
+    }
+  }
 }

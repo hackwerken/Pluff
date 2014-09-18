@@ -6,9 +6,15 @@
   <li><a ng-click="nextWeek()">Volgend &raquo;</a></li>
 </ul>
 
+<input type="text" ng-model="search">
+<button ng-click="updateurl()">Go</button>
+
 <div class="row">
-  <div class="small-12 medium-3 columns" ng-repeat="day in days">
-    <h3>{{day.spelled}}</h3>
+  <div class="small-12 medium-3 columns" ng-repeat="day in days" ng-class="{'activeDay': isActiveDay(day.number)}">
+    <h3>
+      {{day.spelled}}<br>
+      <small>{{currentDayDate(day.number).format('D-M')}}</small>
+    </h3>
 
     <div class="uur" ng-repeat="hour in hours">
     {{hour.number}}<br>
