@@ -60,6 +60,31 @@ module.exports = (grunt) ->
         mangle: false # preserve variables etc., bc angular doesn't like it (pussy)
         preserveComments: 'all' # we don't want no license trouble
 
+    cacheBust:
+      options:
+        encoding: "utf8"
+        algorithm: "md5"
+        length: 12
+        # TODO: Setting this to true is better, but then this plugins renames the files and we don't want that shizzle
+        # There is a pull request for this luckily. Let's wait. (19 september 2014)
+        rename: false
+      assets:
+        files: [
+          src: ["dist/index.html"]
+        ]
+
+    buildcontrol:
+      options:
+        dir: "dist"
+        commit: true
+        push: true
+        message: "Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%"
+
+      production:
+        options:
+          remote: "https://github.com/SpaceK33z/Pluff.git"
+          branch: "production"
+
     watch:
       grunt:
         files: ["Gruntfile.coffee"]
@@ -120,4 +145,4 @@ module.exports = (grunt) ->
         path: path.resolve() + "/dist"
 
   grunt.registerTask "default", ["sass", "autoprefixer", "connect:app", "open:app", "watch"]
-  grunt.registerTask "publish", ["clean:dist", "open:projectDist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "uncss", "open:dist", "connect:dist"]
+  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "uncss", "cacheBust", "buildcontrol", "open:dist", "connect:dist"]
