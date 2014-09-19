@@ -34,7 +34,6 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
   ];
 
   $scope.input = function() {
-    // $scope.$apply( $location.path( url ) );
 
     // If there's something filled in (teacher, room or class)
     if ($routeParams.query) {
@@ -62,11 +61,17 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
       $scope.tableData = data.data; // sorry for the awful names it's late okay?
       $scope.tableName = data.title;
     })
-    .error(function(data, status) {
+    .error(function(data, status, headers, config) {
       // Redirect to FHICT loginpage if there's an error, because the user probably isn't logged in
       // TODO: Check if it's a 'normal' error or auth error
       // TODO: Redirect back to Pluff
-      window.location = 'https://portal.fhict.nl/CookieAuth.dll?GetLogon?reason=0&formdir=6';
+      if(status === 404) {
+        console.log('Kon niet inloggen!');
+        window.location = APIconfig.loginUrl;
+      }
+      else {
+        console.log('Andere fout ofzo.');
+      }
 
       // TODO: Create a nice error page
     });
