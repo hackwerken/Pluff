@@ -47,11 +47,23 @@
 
         <ng-view ng-show="tableData"></ng-view>
     </div>
+
+    <p ng-controller="LanguageCtrl">
+      <em>Pluff</em> 2.0.
+      {{'CHOOSE_LANGUAGE' | translate}}
+      <a ng-click="switch('nl')">NL</a>
+      <a ng-click="switch('en')">EN</a>.
+      {{'HELP_US' | translate}} <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
+    </p>
   </div>
 
   <!-- build:js js/plugins.min.js -->
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+  <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
   <script src="bower_components/moment/min/moment.min.js"></script>
   <script src="bower_components/moment/locale/nl.js"></script>

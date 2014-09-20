@@ -1,14 +1,14 @@
 <h2 ng-show="tableName" class="text-center">{{tableName}}<br><small>week {{weekNumber().use}}</small></h2>
 
 <ul>
-  <li><a ng-click="previousWeek()">Vorig &laquo;</a></li>
-  <li><a ng-click="currentWeek()">Huidig</a></li>
-  <li><a ng-click="nextWeek()">Volgend &raquo;</a></li>
+  <li><a ng-click="previousWeek()">{{'PREVIOUS_WEEK' | translate}} &laquo;</a></li>
+  <li><a ng-click="currentWeek()">{{'CURRENT_WEEK' | translate}}</a></li>
+  <li><a ng-click="nextWeek()">{{'NEXT_WEEK' | translate}} &raquo;</a></li>
 </ul>
 
 <div class="row">
   <div class="small-15 medium-5 columns end">
-    <input type="text" ng-model="search" placeholder="Search for a class, room or teacher">
+    <input type="text" ng-model="search" placeholder="{{'SEARCH_PLACEHOLDER' | translate}}">
     <button ng-click="updateurl()">Go</button>
   </div>
 </div>

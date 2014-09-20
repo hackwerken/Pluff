@@ -2,7 +2,15 @@
 
 /* Controllers */
 angular.module('pluffApp.controllers', [])
+  .controller('LanguageCtrl', LanguageCtrl)
   .controller('TimeTableCtrl', TimeTableCtrl);
+
+function LanguageCtrl($scope, $translate) {
+  $scope.switch = function($lang) {
+    // Switch to the given language
+    $translate.use($lang);
+  }
+}
 
 function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $location) {
   $scope.tableData = false;
