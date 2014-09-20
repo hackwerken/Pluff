@@ -8,8 +8,17 @@
 
 <div class="row">
   <div class="small-15 medium-5 columns end">
-    <input type="text" ng-model="search" placeholder="{{'SEARCH_PLACEHOLDER' | translate}}">
-    <button ng-click="updateurl()">Go</button>
+    <angucomplete-alt id="search-query"
+      placeholder="{{'SEARCH_PLACEHOLDER' | translate}}"
+      pause="100"
+      selected-object="searchSelected"
+      local-data="searchAuto"
+      search-fields="name"
+      title-field="name"
+      minlength="2"
+      text-searching="{{'SEARCH_BUSY' | translate}}"
+      text-no-results="{{'SEARCH_NO_RESULTS' | translate}}"
+      input-class="" />
   </div>
 </div>
 

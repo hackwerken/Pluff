@@ -12,7 +12,7 @@ function LanguageCtrl($scope, $translate) {
   }
 }
 
-function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $location) {
+function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $location, $q) {
   $scope.tableData = false;
 
   $scope.days = [
@@ -43,23 +43,18 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
 
   $scope.input = function() {
 
-    // If there's something filled in (teacher, room or class)
-    if ($routeParams.query) {
-      console.log('Er is wat ingevuld: ' + $routeParams.query);
-
-      return '/query/' + $routeParams.query;
+    // Check which timetable should be loaded
+    // First if a room or class is filled in, if nothing: default to the personal timetable
+    // TODO: Use dedicated URL's for the room and class.
+    if ($routeParams.roomQuery) {
+      return '/room/' + $routeParams.roomQuery;
+    }
+    else if ($routeParams.classQuery) {
+      return '/class/' + $routeParams.classQuery;
     }
     else {
       return '/me';
     }
-  }
-
-  // Search query (can be classes, rooms or teachers)
-  $scope.search = '';
-
-  // Update the query URL to the new search query
-  $scope.updateurl = function() {
-    $location.path('/query/' + $scope.search);
   }
 
   // Get the personal schedule from the API
@@ -75,7 +70,7 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
       // TODO: Redirect back to Pluff
       if(status === 404) {
         console.log('Kon niet inloggen!');
-        window.location = APIconfig.loginUrl;
+        // window.location = APIconfig.loginUrl;
       }
       else {
         console.log('Andere fout ofzo.');
@@ -156,6 +151,47 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
   $scope.isActiveDay = function(dayNumber) {
     if (moment().isSame($scope.currentDayDate(dayNumber), 'day')) {
       return true;
+    }
+  }
+
+  // Search results
+  $scope.getAllRooms = $http.jsonp(APIconfig.url('/Schedule/rooms?test'));
+  $scope.getAllClasses = $http.jsonp(APIconfig.url('/Schedule/classes?test'));
+
+  // Execute when all the requested JSON is loaded
+  $q.all([$scope.getAllRooms, $scope.getAllClasses]).then(function(data) {
+    var rooms = data[0].data;
+    var classes = data[1].data;
+
+    // Mix all this data in one array with the correct type
+    var results = [];
+
+    // TODO: Find a cleaner way (more DRY)
+    rooms.forEach(function(room) {
+      results.push({'name': room, 'type': 'room'});
+    });
+
+    classes.forEach(function(klass) {
+      results.push({'name': klass, 'type': 'class'});
+    });
+
+    // Add the resulting array in the global scope for the autocomplete plugin to use it
+    $scope.searchAuto = results;
+  });
+
+  // Fired when a search suggestion is selected
+  $scope.searchSelected = function(selected) {
+    var title = selected.originalObject.name;
+    var type = selected.originalObject.type;
+
+    // Check which type is selected (room or class) to update the url
+    if (type === 'room') {
+      console.log('Autocomplete room ' + title)
+      $location.path('/room/' + title);
+    }
+    else if (type === 'class') {
+      console.log('Autocomplete class ' + title)
+      $location.path('/class/' + title);
     }
   }
 }

@@ -6,6 +6,7 @@ angular.module('pluffApp', [
   'ngRoute',
   'ngCookies',
   'pascalprecht.translate',
+  'angucomplete-alt',
   'ngAnimate'
 ])
 // Routing
@@ -15,15 +16,13 @@ angular.module('pluffApp', [
     templateUrl: 'partials/timetable.html',
     controller: 'TimeTableCtrl'
   })
-  .when('/query/:query', {
+  .when('/room/:roomQuery', {
     templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl',
-    resolve: {
-      logging: function($route) {
-        // $route.reload()
-        console.log('Query is ' + $route.current.params.query);
-      }
-    }
+    controller: 'TimeTableCtrl'
+  })
+  .when('/class/:classQuery', {
+    templateUrl: 'partials/timetable.html',
+    controller: 'TimeTableCtrl'
   });
 
   $locationProvider.html5Mode(true);

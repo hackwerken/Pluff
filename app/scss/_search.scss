@@ -1,0 +1,37 @@
+.angucomplete-holder {
+  position: relative;
+}
+
+.angucomplete-dropdown {
+  border: 1px solid $secondary-color;
+  border-radius: 2px;
+  width: 250px;
+  padding: 6px;
+  cursor: pointer;
+  z-index: 9999;
+  position: absolute;
+  margin-top: -6px;
+  background-color: #fff;
+}
+
+.angucomplete-searching {
+  color: #acacac;
+  font-size: 14px;
+}
+
+.angucomplete-description {
+  font-size: 14px;
+}
+
+.angucomplete-row {
+  padding: 5px;
+  color: $body-font-color;
+  margin-bottom: 4px;
+  clear: both;
+}
+
+.angucomplete-selected-row,
+.angucomplete-row:hover {
+  background-color: $primary-color;
+  color: #fff;
+}
