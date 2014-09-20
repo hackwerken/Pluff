@@ -6,5 +6,10 @@
   "HELP_US": "Experienced coder? Help us at",
   "SEARCH_PLACEHOLDER": "Search for a class, room or teacher",
   "SEARCH_BUSY": "Searching...",
-  "SEARCH_NO_RESULTS": "No results."
+  "SEARCH_NO_RESULTS": "No results.",
+  "MONDAY": "Monday",
+  "TUESDAY": "Tuesday",
+  "WEDNESDAY": "Wednesday",
+  "THURSDAY": "Thursday",
+  "FRIDAY": "Friday"
 }

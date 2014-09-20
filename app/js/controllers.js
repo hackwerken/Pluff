@@ -16,11 +16,11 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
   $scope.tableData = false;
 
   $scope.days = [
-    {number: 1, spelled: 'Maandag'},
-    {number: 2, spelled: 'Dinsdag'},
-    {number: 3, spelled: 'Woensdag'},
-    {number: 4, spelled: 'Donderdag'},
-    {number: 5, spelled: 'Vrijdag'}
+    {number: 1, spelled: 'MONDAY'},
+    {number: 2, spelled: 'TUESDAY'},
+    {number: 3, spelled: 'WEDNESDAY'},
+    {number: 4, spelled: 'THURSDAY'},
+    {number: 5, spelled: 'FRIDAY'}
   ];
 
   // TODO: start times probably aren't necessary (?)

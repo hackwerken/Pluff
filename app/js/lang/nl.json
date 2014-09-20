@@ -6,5 +6,10 @@
   "HELP_US": "Ervaren coder? Help ons mee op",
   "SEARCH_PLACEHOLDER": "Zoek op een klas, lokaal of docent",
   "SEARCH_BUSY": "Zoeken...",
-  "SEARCH_NO_RESULTS": "Geen resultaten."
+  "SEARCH_NO_RESULTS": "Geen resultaten.",
+  "MONDAY": "Maandag",
+  "TUESDAY": "Dinsdag",
+  "WEDNESDAY": "Woensdag",
+  "THURSDAY": "Donderdag",
+  "FRIDAY": "Vrijdag"
 }

@@ -25,7 +25,7 @@
 <div class="row">
   <div class="small-15 medium-3 columns" ng-repeat="day in days" ng-class="{'activeDay': isActiveDay(day.number)}">
     <h3>
-      {{day.spelled}}<br>
+      {{day.spelled | translate}}<br>
       <small>{{currentDayDate(day.number).format('D-M')}}</small>
     </h3>
 
