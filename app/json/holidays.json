@@ -1,0 +1,27 @@
+[
+  {
+    "name": "AUTUMN_HOLIDAY",
+    "start": "2014-10-18",
+    "end": "2014-10-26"
+  },
+  {
+    "name": "CHRISTMAS_HOLIDAY",
+    "start": "2014-12-20",
+    "end": "2015-01-04"
+  },
+  {
+    "name": "SPRING_HOLIDAY",
+    "start": "2015-02-14",
+    "end": "2015-02-22"
+  },
+  {
+    "name": "MAY_HOLIDAY",
+    "start": "2015-05-02",
+    "end": "2015-05-10"
+  },
+  {
+    "name": "SUMMER_HOLIDAY",
+    "start": "2015-07-25",
+    "end": "2015-08-30"
+  }
+]

@@ -11,5 +11,11 @@
   "TUESDAY": "Dinsdag",
   "WEDNESDAY": "Woensdag",
   "THURSDAY": "Donderdag",
-  "FRIDAY": "Vrijdag"
+  "FRIDAY": "Vrijdag",
+  "AUTUMN_HOLIDAY": "Herfstvakantie",
+  "CHRISTMAS_HOLIDAY": "Kerstvakantie",
+  "SPRING_HOLIDAY": "Voorjaarsvakantie",
+  "MAY_HOLIDAY": "Meivakantie",
+  "SUMMER_HOLIDAY": "Zomervakantie",
+  "DAYS": "dagen"
 }

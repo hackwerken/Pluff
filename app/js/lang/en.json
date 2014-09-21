@@ -11,5 +11,11 @@
   "TUESDAY": "Tuesday",
   "WEDNESDAY": "Wednesday",
   "THURSDAY": "Thursday",
-  "FRIDAY": "Friday"
+  "FRIDAY": "Friday",
+  "AUTUMN_HOLIDAY": "Autumn holidays",
+  "CHRISTMAS_HOLIDAY": "Christmas holidays",
+  "SPRING_HOLIDAY": "Spring holidays",
+  "MAY_HOLIDAY": "May holidays",
+  "SUMMER_HOLIDAY": "Summer holidays",
+  "DAYS": "days"
 }

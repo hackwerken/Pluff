@@ -35,7 +35,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: "app/"
-          src: ["css/**", "js/**", "img/**/*", "fonts/**", "*.html", "partials/**"]
+          src: ["css/**", "js/**", "img/**/*", "fonts/**", "*.html", "partials/**", "json/**/*"]
           dest: "dist/"
         ]
 

@@ -3,7 +3,8 @@
 /* Controllers */
 angular.module('pluffApp.controllers', [])
   .controller('LanguageCtrl', LanguageCtrl)
-  .controller('TimeTableCtrl', TimeTableCtrl);
+  .controller('TimeTableCtrl', TimeTableCtrl)
+  .controller('HolidaysCtrl', HolidaysCtrl);
 
 function LanguageCtrl($scope, $translate) {
   $scope.switch = function($lang) {
@@ -194,4 +195,34 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
       $location.path('/class/' + title);
     }
   }
+}
+
+function HolidaysCtrl($scope, $http) {
+  // Get the json with all the holiday dates in it
+  $http.get('json/holidays.json')
+  .succes(function(data) {
+    $scope.rawHolidays = data;
+
+    // Process the dates
+    $scope.getHolidays = function() {
+      var data = [];
+
+      $scope.rawHolidays.forEach(function(holiday) {
+        var startDate = moment(holiday.start);
+        var endDate = moment(holiday.end);
+        // Calculate the difference in days between the start end end date
+        var calcDays = startDate.diff(endDate, 'days');
+
+        data.push({
+          name: startDate,
+          start: endDate,
+          end: holiday.end,
+          days: calcDays
+        });
+      });
+
+      return data;
+    }
+  });
+
 }
