@@ -70,7 +70,7 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
       // TODO: Redirect back to Pluff
       if(status === 404) {
         console.log('Kon niet inloggen!');
-        // window.location = APIconfig.loginUrl;
+        window.location = APIconfig.loginUrl;
       }
       else {
         console.log('Andere fout ofzo.');

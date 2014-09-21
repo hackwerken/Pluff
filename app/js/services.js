@@ -13,6 +13,9 @@ angular.module('pluffApp.services', [])
       // Allow multiple lessons in one hour
       var hourCallback = [];
 
+      // Filter all subjects in this array
+      var filterSubjects = ['delta'];
+
       // Get the complete date from the daynumber and current weeknumber
       var currentDay = $scope.currentDayDate(dayNumber);
 
@@ -26,7 +29,7 @@ angular.module('pluffApp.services', [])
         $scope.tableData.forEach(function(lesson) {
           // Check if the lesson is on the current day and if the current hour is in the mask
           // Ex.: if a mask is 12, the binary code of it is 1100. This means that the lesson is in the third and fourth hour.
-          if (currentDay.isSame(lesson.start, 'day') && lesson.hoursMask & hourExp) {
+          if (currentDay.isSame(lesson.start, 'day') && filterSubjects.indexOf(lesson.subject) && lesson.hoursMask & hourExp) {
             hourCallback.push(lesson);
           }
         });
