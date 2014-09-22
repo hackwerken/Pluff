@@ -23,6 +23,14 @@ angular.module('pluffApp', [
   .when('/class/:classQuery', {
     templateUrl: 'partials/timetable.html',
     controller: 'TimeTableCtrl'
+  })
+  .when('/teacher/:teacherQuery', {
+    templateUrl: 'partials/timetable.html',
+    controller: 'TimeTableCtrl'
+  })
+  .when('/subject/:subjectQuery', {
+    templateUrl: 'partials/timetable.html',
+    controller: 'TimeTableCtrl'
   });
 
   $locationProvider.html5Mode(true);

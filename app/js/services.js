@@ -39,4 +39,14 @@ angular.module('pluffApp.services', [])
     };
 
     return hour;
+  })
+  .factory('dataService', function($http, $log, $q) {
+    return {
+      getTeacher: function(teacher) {
+        return $http.jsonp(APIconfig.url('/people/search/' + teacher + '?test'));
+      },
+      getSuggestions: function() {
+        return $http.jsonp(APIconfig.url('/schedule/autocomplete?test'));
+      }
+    }
   });
