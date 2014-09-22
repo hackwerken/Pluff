@@ -155,6 +155,14 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
     }
   }
 
+  $scope.isOldWeek = function() {
+    console.log();
+    if ($scope.weekNumberUsed <= $scope.weekNumber().current) {
+      return true;
+    }
+    return false;
+  }
+
   // Search results
   $scope.getAllRooms = $http.jsonp(APIconfig.url('/Schedule/rooms?test'));
   $scope.getAllClasses = $http.jsonp(APIconfig.url('/Schedule/classes?test'));
@@ -194,7 +202,7 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
       console.log('Autocomplete class ' + title)
       $location.path('/class/' + title);
     }
-  }
+  };
 }
 
 function HolidaysCtrl($scope, $http) {
@@ -222,7 +230,7 @@ function HolidaysCtrl($scope, $http) {
       });
 
       return data;
-    }
+    };
   });
 
 }
