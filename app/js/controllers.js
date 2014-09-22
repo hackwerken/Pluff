@@ -6,10 +6,12 @@ angular.module('pluffApp.controllers', [])
   .controller('TimeTableCtrl', TimeTableCtrl)
   .controller('HolidaysCtrl', HolidaysCtrl);
 
-function LanguageCtrl($scope, $translate) {
+function LanguageCtrl($scope, $translate, $route) {
   $scope.switch = function($lang) {
     // Switch to the given language
     $translate.use($lang);
+    // Full page reload to apply all languages
+    window.location.reload();
   }
 }
 
