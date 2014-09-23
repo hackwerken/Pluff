@@ -170,6 +170,13 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
     return false;
   }
 
+  $scope.lessonStartEndTime = function(start, end) {
+    var startTime = moment(start);
+    var endTime = moment(end);
+
+    return startTime.format('H:m') + ' - ' + endTime.format('H:m');
+  }
+
   dataService.getSuggestions().then(function(payload) {
     // Add the resulting array in the global scope for the autocomplete plugin to use it
     $scope.searchAuto = payload.data;

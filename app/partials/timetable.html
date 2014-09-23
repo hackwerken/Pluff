@@ -31,17 +31,18 @@
     </h3>
 
     <div class="uur" ng-repeat="hour in hours">
-    {{hour.number}}<br>
-      <div ng-repeat="lesson in getHour(day.number, hour.number) track by lesson.uid">
-        {{lesson.subject}} - <a href="query/{{lesson.teacherAbbreviation}}">{{lesson.teacherAbbreviation}}</a><br>
+    {{hour.number}}.
+      <span ng-repeat="lesson in getHour(day.number, hour.number) track by lesson.uid">
+        {{lessonStartEndTime(lesson.start, lesson.end)}}<br>
+        {{lesson.subject}} - <a href="teacher/{{lesson.teacherAbbreviation}}">{{lesson.teacherAbbreviation}}</a><br>
         <small>
-          <a href="query/{{lesson.room}}">{{lesson.room}}</a> - </a>
+          <a href="room/{{lesson.room}}">{{lesson.room}}</a> - </a>
 
           <span ng-repeat="class in lesson.classes">
-            <a href="query/{{class}}">{{class}}</a>{{ (!$last) ? ',' : ''}}
+            <a href="class/{{class}}">{{class}}</a>{{ (!$last) ? ',' : ''}}
           </span>
         </small>
-      </div>
+      </span>
       <hr>
     </div>
   </div>
