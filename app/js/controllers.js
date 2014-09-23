@@ -15,7 +15,7 @@ function LanguageCtrl($scope, $translate, $route) {
   }
 }
 
-function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataService, timetableData) {
+function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataService, timetableData, ngDialog) {
   $scope.days = [
     {number: 1, spelled: 'MONDAY'},
     {number: 2, spelled: 'TUESDAY'},
@@ -150,6 +150,17 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
     console.log('Autocomplete ' + category + ' ' + title);
     $location.path('/' + category + '/' + title);
   };
+
+  $scope.teacherDialog = function(teacherAbr) {
+    dataService.getTeacher(teacherAbr).then(function(payload) {
+      var data = payload.data[0];
+
+      ngDialog.open({
+        template: 'partials/dialog-teacher.html',
+        data: data
+      });
+    });
+  }
 }
 
 function HolidaysCtrl($scope, $http) {

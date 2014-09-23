@@ -34,7 +34,7 @@
     {{hour.number}}.
       <span ng-repeat="lesson in getHour(day.number, hour.number) track by lesson.uid">
         {{lessonStartEndTime(lesson.start, lesson.end)}}<br>
-        {{lesson.subject}} - <a href="teacher/{{lesson.teacherAbbreviation}}">{{lesson.teacherAbbreviation}}</a><br>
+        {{lesson.subject}} - <a ng-click="teacherDialog(lesson.teacherAbbreviation)">{{lesson.teacherAbbreviation}}</a><br>
         <small>
           <a href="room/{{lesson.room}}">{{lesson.room}}</a> - </a>
 

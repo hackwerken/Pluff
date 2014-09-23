@@ -7,7 +7,8 @@ angular.module('pluffApp', [
   'ngCookies',
   'pascalprecht.translate',
   'angucomplete-alt',
-  'ngAnimate'
+  'ngAnimate',
+  'ngDialog'
 ])
 // Routing
 // TODO: Make it more DRY, this is insane :)
