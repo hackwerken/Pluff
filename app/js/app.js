@@ -10,27 +10,64 @@ angular.module('pluffApp', [
   'ngAnimate'
 ])
 // Routing
+// TODO: Make it more DRY, this is insane :)
 .config(function($routeProvider, $locationProvider) {
   $routeProvider
   .when('/', {
     templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl'
+    controller: 'TimeTableCtrl',
+    resolve: {
+      // Load the timetable JSON before the controller
+      timetableData: function(dataService) {
+        return dataService.getTimeTable('/me').then(function(payload) {
+          return payload;
+        });
+      }
+    }
   })
   .when('/room/:roomQuery', {
     templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl'
+    controller: 'TimeTableCtrl',
+    resolve: {
+      timetableData: function($route, dataService) {
+        return dataService.getTimeTable('/room/' + $route.current.params.roomQuery).then(function(payload) {
+          return payload;
+        });
+      }
+    }
   })
   .when('/class/:classQuery', {
     templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl'
+    controller: 'TimeTableCtrl',
+    resolve: {
+      timetableData: function($route, dataService) {
+        return dataService.getTimeTable('/class/' + $route.current.params.classQuery).then(function(payload) {
+          return payload;
+        });
+      }
+    }
   })
   .when('/teacher/:teacherQuery', {
     templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl'
+    controller: 'TimeTableCtrl',
+    resolve: {
+      timetableData: function($route, dataService) {
+        return dataService.getTimeTable('/teacher/abbreviation/' + $route.current.params.teacherQuery).then(function(payload) {
+          return payload;
+        });
+      }
+    }
   })
   .when('/subject/:subjectQuery', {
     templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl'
+    controller: 'TimeTableCtrl',
+    resolve: {
+      timetableData: function($route, dataService) {
+        return dataService.getTimeTable('/subject/' + $route.current.params.subjectQuery).then(function(payload) {
+          return payload;
+        });
+      }
+    }
   });
 
   $locationProvider.html5Mode(true);

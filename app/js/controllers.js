@@ -15,9 +15,7 @@ function LanguageCtrl($scope, $translate, $route) {
   }
 }
 
-function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $location, $q, dataService) {
-  $scope.tableData = false;
-
+function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataService, timetableData) {
   $scope.days = [
     {number: 1, spelled: 'MONDAY'},
     {number: 2, spelled: 'TUESDAY'},
@@ -44,48 +42,9 @@ function TimeTableCtrl($scope, $http, $routeParams, hourService, $window, $locat
     {number: 14, start: '21:40'}
   ];
 
-  $scope.input = function() {
-
-    // Check which timetable should be loaded
-    // First if a room, class, subject or teacher is filled in, if nothing: default to the personal timetable
-    if ($routeParams.roomQuery) {
-      return '/room/' + $routeParams.roomQuery;
-    }
-    else if ($routeParams.classQuery) {
-      return '/class/' + $routeParams.classQuery;
-    }
-    else if ($routeParams.subjectQuery) {
-      return '/subject/' + $routeParams.subjectQuery;
-    }
-    else if ($routeParams.teacherQuery) {
-      return '/teacher/' + $routeParams.teacherQuery;
-    }
-    else {
-      return '/me';
-    }
-  }
-
   // Get the personal schedule from the API
-  // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
-  $http.jsonp(APIconfig.url('/Schedule' + $scope.input() + '?includeTeacher=false&IncludeStartOfWeek=true&daysAhead=90'))
-    .success(function(data, status) {
-      $scope.tableData = data.data; // sorry for the awful names it's late okay?
-      $scope.tableName = data.title;
-    })
-    .error(function(data, status, headers, config) {
-      // Redirect to FHICT loginpage if there's an error, because the user probably isn't logged in
-      // TODO: Check if it's a 'normal' error or auth error
-      // TODO: Redirect back to Pluff
-      if (status === 404) {
-        console.log('Kon niet inloggen!');
-        window.location = APIconfig.loginUrl;
-      }
-      else {
-        console.log('Andere fout ofzo.');
-      }
-
-      // TODO: Create a nice error page
-    });
+  $scope.tableData = timetableData.data;
+  $scope.tableTitle = timetableData.title;
 
   // Set the default used weeknumber (without leading zero)
   $scope.weekNumberUsed = parseInt(moment().format('w'));

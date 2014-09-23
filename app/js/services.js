@@ -23,17 +23,14 @@ angular.module('pluffApp.services', [])
       // Equalize the current hour with the mask
       var hourExp = Math.pow(2, hourNumber - 1);
 
-      // Wait until the JSON is fully loaded
-      if ($scope.tableData != false) {
-        // TODO: Optimize for performance
-        $scope.tableData.forEach(function(lesson) {
-          // Check if the lesson is on the current day and if the current hour is in the mask
-          // Ex.: if a mask is 12, the binary code of it is 1100. This means that the lesson is in the third and fourth hour.
-          if (currentDay.isSame(lesson.start, 'day') && filterSubjects.indexOf(lesson.subject) && lesson.hoursMask & hourExp) {
-            hourCallback.push(lesson);
-          }
-        });
-      }
+      // TODO: Optimize for performance
+      $scope.tableData.forEach(function(lesson) {
+        // Check if the lesson is on the current day and if the current hour is in the mask
+        // Ex.: if a mask is 12, the binary code of it is 1100. This means that the lesson is in the third and fourth hour.
+        if (currentDay.isSame(lesson.start, 'day') && filterSubjects.indexOf(lesson.subject) && lesson.hoursMask & hourExp) {
+          hourCallback.push(lesson);
+        }
+      });
 
       return hourCallback;
     };
@@ -42,6 +39,27 @@ angular.module('pluffApp.services', [])
   })
   .factory('dataService', function($http, $log, $q) {
     return {
+      getTimeTable: function(input) {
+        // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
+
+        var deferred = $q.defer();
+
+        $http.jsonp(APIconfig.url('/Schedule' + input + '?includeTeacher=false&IncludeStartOfWeek=true&daysAhead=90'))
+        .success(function(payload) {
+          deferred.resolve(payload);
+        })
+        .error(function(msg, code) {
+          deferred.reject(msg);
+          $log.error(msg, code);
+
+          // Redirect to FHICT loginpage if there's an error, because the user probably isn't logged in
+          // TODO: Check if it's a 'normal' error or auth error
+          // TODO: Redirect back to Pluff
+          window.location = APIconfig.loginUrl;
+        })
+
+        return deferred.promise;
+      },
       getTeacher: function(teacher) {
         return $http.jsonp(APIconfig.url('/people/search/' + teacher + '?test'));
       },
