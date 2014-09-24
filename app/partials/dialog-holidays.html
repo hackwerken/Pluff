@@ -2,18 +2,18 @@
 <table>
   <thead>
     <tr>
-      <th>Naam</th>
-      <th>Begin</th>
-      <th>Eind</th>
-      <th>Dagen te gaan</th>
+      <th></th>
+      <th></th>
+      <th translate>START</th>
+      <th translate>END</th>
     </tr>
   </thead>
   <tbody ng-repeat="holiday in holidays">
     <tr>
+      <td>{{holiday.days}} {{DAYSUNTIL | translate}}</td>
       <td>{{holiday.name | translate}}</td>
       <td>{{holiday.start}}</td>
       <td>{{holiday.end}}</td>
-      <td>{{holiday.days}}</td>
     </tr>
   </tbody>
 </table>

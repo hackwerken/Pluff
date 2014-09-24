@@ -17,5 +17,8 @@
   "SPRING_HOLIDAY": "Spring holidays",
   "MAY_HOLIDAY": "May holidays",
   "SUMMER_HOLIDAY": "Summer holidays",
-  "DAYS": "days"
+  "DAYS": "days",
+  "DAYSUNTIL": "days until",
+  "START": "Start",
+  "END": "End"
 }

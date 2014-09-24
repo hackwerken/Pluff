@@ -85,12 +85,15 @@ angular.module('pluffApp.services', [])
             // Calculate the difference in days between the start date and now
             var calcDays = startDate.diff(now, 'days');
 
-            data.push({
-              name: holiday.name,
-              start: startDate.format('DD-MM-YYYY'),
-              end: endDate.format('DD-MM-YYYY'),
-              days: calcDays
-            });
+            // We don't want holidays from the past
+            if (calcDays > 0) {
+              data.push({
+                name: holiday.name,
+                start: startDate.format('DD-MM-YYYY'),
+                end: endDate.format('DD-MM-YYYY'),
+                days: calcDays
+              });
+            }
           });
 
           deferred.resolve(data);

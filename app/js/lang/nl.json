@@ -17,5 +17,8 @@
   "SPRING_HOLIDAY": "Voorjaarsvakantie",
   "MAY_HOLIDAY": "Meivakantie",
   "SUMMER_HOLIDAY": "Zomervakantie",
-  "DAYS": "dagen"
+  "DAYS": "dagen",
+  "DAYSUNTIL": "dagen tot",
+  "START": "Begin",
+  "END": "Einde"
 }
