@@ -1,0 +1,19 @@
+<h2>Vakanties</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Naam</th>
+      <th>Begin</th>
+      <th>Eind</th>
+      <th>Dagen te gaan</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="holiday in holidays">
+    <tr>
+      <td>{{holiday.name | translate}}</td>
+      <td>{{holiday.start}}</td>
+      <td>{{holiday.end}}</td>
+      <td>{{holiday.days}}</td>
+    </tr>
+  </tbody>
+</table>

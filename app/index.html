@@ -43,7 +43,11 @@
     <div class="small-15 columns">
       <h1>Pluff</h1>
 
-        <ng-view></ng-view>
+      <ul ng-controller="NavCtrl">
+        <li><a ng-click="holidays()">Vakanties</a></li>
+      </ul>
+
+      <ng-view></ng-view>
     </div>
 
     <p ng-controller="LanguageCtrl">

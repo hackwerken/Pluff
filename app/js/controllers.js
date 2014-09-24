@@ -3,6 +3,7 @@
 /* Controllers */
 angular.module('pluffApp.controllers', [])
   .controller('LanguageCtrl', LanguageCtrl)
+  .controller('NavCtrl', NavCtrl)
   .controller('TimeTableCtrl', TimeTableCtrl)
   .controller('HolidaysCtrl', HolidaysCtrl);
 
@@ -12,6 +13,15 @@ function LanguageCtrl($scope, $translate, $route) {
     $translate.use($lang);
     // Full page reload to apply all languages
     window.location.reload();
+  }
+}
+
+function NavCtrl($scope, ngDialog) {
+  $scope.holidays = function() {
+    ngDialog.open({
+      template: 'partials/dialog-holidays.html',
+      controller: 'HolidaysCtrl'
+    });
   }
 }
 
@@ -163,32 +173,9 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
   }
 }
 
-function HolidaysCtrl($scope, $http) {
-  // Get the json with all the holiday dates in it
-  $http.get('json/holidays.json')
-  .succes(function(data) {
-    $scope.rawHolidays = data;
-
-    // Process the dates
-    $scope.getHolidays = function() {
-      var data = [];
-
-      $scope.rawHolidays.forEach(function(holiday) {
-        var startDate = moment(holiday.start);
-        var endDate = moment(holiday.end);
-        // Calculate the difference in days between the start end end date
-        var calcDays = startDate.diff(endDate, 'days');
-
-        data.push({
-          name: startDate,
-          start: endDate,
-          end: holiday.end,
-          days: calcDays
-        });
-      });
-
-      return data;
-    };
+function HolidaysCtrl($scope, $http, holidayService) {
+  holidayService.getHolidays().then(function(payload) {
+    $scope.holidays = payload;
   });
 
 }
