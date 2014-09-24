@@ -1,2 +1,81 @@
 @import "../bower_components/ngDialog/css/ngDialog.css";
-@import "../bower_components/ngDialog/css/ngDialog-theme-default.css";
+
+.ngdialog {
+  padding-bottom: 10em;
+  padding-top: 10em;
+
+  &.ngdialog-closing .ngdialog-content {
+    animation: ngdialog-flyout .5s;
+  }
+
+  .ngdialog-content {
+    animation: ngdialog-flyin .5s;
+    background: $body-bg;
+    border-radius: $global-radius;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 1em;
+    position: relative;
+    width: 34.38em;
+  }
+
+  .ngdialog-close {
+    border-radius: $global-radius;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:before {
+      background: transparent;
+      color: #bbb;
+      content: '\00D7';
+      font-size: 1.63em;
+      font-weight: 400;
+      height: 1.15em;
+      line-height: 1;
+      position: absolute;
+      right: 3px;
+      text-align: center;
+      top: 3px;
+      width: 1.15em;
+    }
+
+    &:hover:before,
+    &:active:before {
+      color: #777;
+    }
+  }
+
+  .ngdialog-message {
+    margin-bottom: .5em;
+  }
+}
+
+@keyframes ngdialog-flyin {
+  0% {
+    opacity: 0;
+    -ms-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes ngdialog-flyout {
+  0% {
+    opacity: 1;
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -ms-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+}
