@@ -15,7 +15,7 @@ function LanguageCtrl($scope, $translate, $route) {
   }
 }
 
-function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataService, timetableData, ngDialog) {
+function TimeTableCtrl($scope, $http, hourService, $window, $location, dataService, timetableData, ngDialog) {
   $scope.days = [
     {number: 1, spelled: 'MONDAY'},
     {number: 2, spelled: 'TUESDAY'},
@@ -46,15 +46,17 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
   $scope.tableData = timetableData.data;
   $scope.tableTitle = timetableData.title;
 
-  // Set the default used weeknumber (without leading zero)
-  $scope.weekNumberUsed = parseInt(moment().format('w'));
+  // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
+  $scope.weekNumberUsed = parseInt((moment().day() > 5) ? moment().add(1, 'w').format('w') : moment().format('w'));
 
   $scope.weekNumber = function() {
     var weekInfo = {};
 
     // Get current week number (without leading zero)
-    // TODO: If it's friday after 18 pm or weekend, make the current week next week
-    weekInfo.current = parseInt(moment().format('w'));
+    var currentTime = moment();
+
+    // Set default weeknumber. In the weekend, use the next week number
+    weekInfo.current = parseInt((currentTime.day() > 5) ? currentTime.add(1, 'w').format('w') : currentTime.format('w'));
     weekInfo.use = $scope.weekNumberUsed;
 
     // Rotate the number when the year has ended
@@ -84,7 +86,6 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
 
   $scope.previousWeek = function() {
     // Subtract 1 from the weeknumber in use
-    // TODO: Do something when user tries to go past the current week
     $scope.weekNumberUsed--;
     console.log('Op naar de vorige week! ' + $scope.weekNumberUsed);
   };
@@ -111,6 +112,7 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
 
   // Calculate the date of the current day
   $scope.currentDayDate = function(dayNumber) {
+    // TODO: Don't hardcode the year!
     return moment('2014-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
   }
 
@@ -121,14 +123,15 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
     }
   };
 
+  // Check if the used week is older then or the same as the current week
   $scope.isOldWeek = function() {
-    console.log();
     if ($scope.weekNumberUsed <= $scope.weekNumber().current) {
       return true;
     }
     return false;
   };
 
+  // Display the start and end time of a lesson
   $scope.lessonStartEndTime = function(start, end) {
     var startTime = moment(start);
     var endTime = moment(end);
@@ -152,6 +155,7 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
   };
 
   $scope.teacherDialog = function(teacherAbr) {
+    // When the API data is loaded, open the dialog
     dataService.getTeacher(teacherAbr).then(function(payload) {
       var data = payload.data[0];
 
@@ -163,7 +167,9 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
   }
 }
 
-function HolidaysCtrl($scope, $http, holidayService) {
+// Holidays dialog
+function HolidaysCtrl($scope, holidayService) {
+  // Load the holiday JSON and insert it in the scope
   holidayService.getHolidays().then(function(payload) {
     $scope.holidays = payload;
   });
