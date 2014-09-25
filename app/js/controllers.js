@@ -3,7 +3,6 @@
 /* Controllers */
 angular.module('pluffApp.controllers', [])
   .controller('LanguageCtrl', LanguageCtrl)
-  .controller('NavCtrl', NavCtrl)
   .controller('TimeTableCtrl', TimeTableCtrl)
   .controller('HolidaysCtrl', HolidaysCtrl);
 
@@ -13,15 +12,6 @@ function LanguageCtrl($scope, $translate, $route) {
     $translate.use($lang);
     // Full page reload to apply all languages
     window.location.reload();
-  }
-}
-
-function NavCtrl($scope, ngDialog) {
-  $scope.holidays = function() {
-    ngDialog.open({
-      template: 'partials/dialog-holidays.html',
-      controller: 'HolidaysCtrl'
-    });
   }
 }
 

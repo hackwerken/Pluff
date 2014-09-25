@@ -42,8 +42,8 @@
     <div class="small-15 columns">
       <h1>Pluff</h1>
 
-      <ul ng-controller="NavCtrl">
-        <li><a ng-click="holidays()">Vakanties</a></li>
+      <ul>
+        <li><a ng-dialog="partials/dialog-holidays.html" ng-dialog-controller="HolidaysCtrl">Vakanties</a></li>
       </ul>
 
       <ng-view></ng-view>
