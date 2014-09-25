@@ -119,7 +119,7 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
     if (moment().isSame($scope.currentDayDate(dayNumber), 'day')) {
       return true;
     }
-  }
+  };
 
   $scope.isOldWeek = function() {
     console.log();
@@ -127,14 +127,14 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, $q, dataS
       return true;
     }
     return false;
-  }
+  };
 
   $scope.lessonStartEndTime = function(start, end) {
     var startTime = moment(start);
     var endTime = moment(end);
 
     return startTime.format('H:m') + ' - ' + endTime.format('H:m');
-  }
+  };
 
   dataService.getSuggestions().then(function(payload) {
     // Add the resulting array in the global scope for the autocomplete plugin to use it

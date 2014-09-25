@@ -1,16 +1,16 @@
 <p>
   <strong>Volledige naam:</strong> {{ngDialogData.displayName}}<br>
-  <strong>Mail:</strong> <a href="mailto:{{ngDialogData.mail}}">{{ngDialogData.mail}}</a><br>
-  <strong>Tel:</strong> <a href="tel:{{ngDialogData.telephoneNumber}}">{{ngDialogData.telephoneNumber}}</a>
+  <strong>Mail:</strong> <a ng-href="mailto:{{ngDialogData.mail}}">{{ngDialogData.mail}}</a><br>
+  <strong>Tel:</strong> <a ng-href="tel:{{ngDialogData.telephoneNumber}}">{{ngDialogData.telephoneNumber}}</a>
 </p>
 <p>
   <strong>Titel:</strong> {{ngDialogData.title}}<br>
   <strong>Kantoor:</strong> {{ngDialogData.office}}
 </p>
 <p>
-  <img src="https://apps.fhict.nl/ADS/Picture/{{ngDialogData.cn}}/big" alt="">
+  <img ng-src="https://apps.fhict.nl/ADS/Picture/{{ngDialogData.cn}}/big" alt="">
 </p>
 
 <p>
-  <a href="teacher/{{ngDialogData.personalTitle}}" ng-click="closeThisDialog(0)" class="button">Bekijk rooster</a>
+  <a ng-href="teacher/{{ngDialogData.personalTitle}}" ng-click="closeThisDialog(0)" class="button">Bekijk rooster</a>
 </p>
