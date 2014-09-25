@@ -61,7 +61,7 @@ angular.module('pluffApp.services', [])
         return deferred.promise;
       },
       getTeacher: function(teacher) {
-        return $http.jsonp(APIconfig.url('/people/search/' + teacher + '?test'));
+        return $http.jsonp(APIconfig.url('/people/afkorting/' + teacher + '?test'));
       },
       getSuggestions: function() {
         return $http.jsonp(APIconfig.url('/schedule/autocomplete?test'));

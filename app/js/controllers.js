@@ -157,7 +157,7 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, dataServi
   $scope.teacherDialog = function(teacherAbr) {
     // When the API data is loaded, open the dialog
     dataService.getTeacher(teacherAbr).then(function(payload) {
-      var data = payload.data[0];
+      var data = payload.data;
 
       ngDialog.open({
         template: 'partials/dialog-teacher.html',
