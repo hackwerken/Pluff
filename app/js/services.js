@@ -41,24 +41,7 @@ angular.module('pluffApp.services', [])
     return {
       getTimeTable: function(input) {
         // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
-
-        var deferred = $q.defer();
-
-        $http.jsonp(APIconfig.url('/Schedule' + input + '?includeTeacher=false&IncludeStartOfWeek=true&daysAhead=90'))
-        .success(function(payload) {
-          deferred.resolve(payload);
-        })
-        .error(function(msg, code) {
-          deferred.reject(msg);
-          $log.error(msg, code);
-
-          // Redirect to FHICT loginpage if there's an error, because the user probably isn't logged in
-          // TODO: Check if it's a 'normal' error or auth error
-          // TODO: Redirect back to Pluff
-          window.location = APIconfig.loginUrl;
-        })
-
-        return deferred.promise;
+        return $http.jsonp(APIconfig.url('/Schedule' + input + '?includeTeacher=false&IncludeStartOfWeek=true&daysAhead=90'));
       },
       getTeacher: function(teacher) {
         return $http.jsonp(APIconfig.url('/people/afkorting/' + teacher + '?test'));
