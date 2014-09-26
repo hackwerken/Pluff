@@ -24,10 +24,10 @@
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-open": "^0.2.3",
-    "grunt-sass": "^0.14.1",
+    "grunt-sass": "^0.14.2",
     "grunt-uncss": "^0.3.6",
     "grunt-usemin": "^2.4.0",
     "matchdep": "^0.3.0",
-    "node-sass": "^0.9.3"
+    "node-sass": "^0.9.5-rc1"
   }
 }
