@@ -4,7 +4,8 @@
 angular.module('pluffApp.controllers', [])
   .controller('LanguageCtrl', LanguageCtrl)
   .controller('TimeTableCtrl', TimeTableCtrl)
-  .controller('HolidaysCtrl', HolidaysCtrl);
+  .controller('HolidaysCtrl', HolidaysCtrl)
+  .controller('RoomsCtrl', RoomsCtrl);
 
 function LanguageCtrl($scope, $translate, $route) {
   $scope.switch = function($lang) {
@@ -172,6 +173,15 @@ function HolidaysCtrl($scope, holidayService) {
   // Load the holiday JSON and insert it in the scope
   holidayService.getHolidays().then(function(payload) {
     $scope.holidays = payload;
+  });
+
+}
+
+// Holidays dialog
+function RoomsCtrl($scope, roomService) {
+  // Load the free rooms!
+  roomService.getFreeRooms().then(function(payload) {
+    $scope.rooms = payload;
   });
 
 }

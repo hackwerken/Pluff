@@ -27,7 +27,7 @@ angular.module('pluffApp.services', [])
       $scope.tableData.forEach(function(lesson) {
         // Check if the lesson is on the current day and if the current hour is in the mask
         // Ex.: if a mask is 12, the binary code of it is 1100. This means that the lesson is in the third and fourth hour.
-        if (currentDay.isSame(lesson.start, 'day') && filterSubjects.indexOf(lesson.subject) && lesson.hoursMask & hourExp) {
+        if (currentDay.isSame(lesson.start, 'day') && !(filterSubjects.indexOf(lesson.subject) > -1) && lesson.hoursMask & hourExp) {
           hourCallback.push(lesson);
         }
       });
@@ -89,4 +89,57 @@ angular.module('pluffApp.services', [])
         return deferred.promise;
       }
     }
+  })
+  .factory('roomService', function($http, $log, $q) {
+    return {
+      getFreeRooms: function() {
+        var deffered = $q.defer();
+
+        var date = moment().format('YYYY-MM-DD');
+
+        $http.jsonp(APIconfig.url('/Schedule/rooms/occupancy/2014-09-30?test'))
+        .success(function(payload) {
+          var data = [];
+
+          // Loop through each room
+          payload.forEach(function(room) {
+            var hourData = [];
+
+            // Filter all rooms in this array
+            var filterRooms = ['?', 'eindhoven'];
+
+            // TODO: No indexOf
+            if (!(filterRooms.indexOf(room.room) > -1)) {
+
+              // Loop trough all hours and check if the room is free on that hour.
+              // Return true if the room is occupied.
+              for (var hour = 1; hour < 15; hour++) {
+                var hourExp = Math.pow(2, hour - 1);
+
+                if (room.mask & hourExp) {
+                  hourData.push(true);
+                }
+                else {
+                  hourData.push(false);
+                }
+              }
+
+              data.push({
+                name: room.room,
+                hours: hourData
+              });
+
+            }
+          });
+
+          deffered.resolve(data);
+        })
+        .error(function(msg, code) {
+          deffered.reject(msg);
+          $log.error(msg, code);
+        })
+
+        return deffered.promise;
+      }
+    };
   });

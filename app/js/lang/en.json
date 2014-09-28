@@ -20,5 +20,8 @@
   "DAYS": "days",
   "DAYSUNTIL": "days until",
   "START": "Start",
-  "END": "End"
+  "END": "End",
+  "FREE_ROOMS": "Free rooms",
+  "HOLIDAYS": "Holidays",
+  "ROOM": "Room",
 }

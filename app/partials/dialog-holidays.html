@@ -1,4 +1,4 @@
-<h2>Vakanties</h2>
+<h2 translate>HOLIDAYS</h2>
 <table>
   <thead>
     <tr>
@@ -8,8 +8,8 @@
       <th translate>END</th>
     </tr>
   </thead>
-  <tbody ng-repeat="holiday in holidays">
-    <tr>
+  <tbody>
+    <tr ng-repeat="holiday in holidays">
       <td>{{holiday.days}} <span translate>DAYSUNTIL</span></td>
       <td>{{holiday.name | translate}}</td>
       <td>{{holiday.start}}</td>

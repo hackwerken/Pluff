@@ -1,0 +1,42 @@
+<h2 translate>FREE_ROOMS</h2>
+<table>
+  <thead>
+    <tr>
+      <th translate>ROOM</th>
+      <!-- TODO: Do this shit with ng-repeat -->
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="room in rooms">
+      <td>{{room.name}}</td>
+      <td ng-class="{'room-occupied': room.hours[0]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[1]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[2]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[3]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[4]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[5]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[6]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[7]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[8]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[9]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[10]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[11]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[12]}">&nbsp;</td>
+      <td ng-class="{'room-occupied': room.hours[13]}">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
