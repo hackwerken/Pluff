@@ -97,7 +97,7 @@ angular.module('pluffApp.services', [])
 
         var date = moment().format('YYYY-MM-DD');
 
-        $http.jsonp(APIconfig.url('/Schedule/rooms/occupancy/2014-09-30?test'))
+        $http.jsonp(APIconfig.url('/Schedule/rooms/occupancy/' + date + '?test'))
         .success(function(payload) {
           var data = [];
 
@@ -108,7 +108,6 @@ angular.module('pluffApp.services', [])
             // Filter all rooms in this array
             var filterRooms = ['?', 'eindhoven'];
 
-            // TODO: No indexOf
             if (!(filterRooms.indexOf(room.room) > -1)) {
 
               // Loop trough all hours and check if the room is free on that hour.
