@@ -5,13 +5,13 @@ Pluff — Studentenrooster
 
 Uiteraard kan het altijd beter. Wij zijn geïnteresseerd in je feedback! Aarzel niet om hiervoor een issue aan te maken. Meehelpen is ook zeer welkom.
 
-# Installatie
+## Installatie
 
-Om Pluff lokaal te draaien heb je [node.js](http://nodejs.org/), de `npm package manager` (meestal meegeleverd bij node.js) en bower nodig (`npm install -g bower`).
+Om Pluff lokaal te draaien heb je [node.js](http://nodejs.org/), _npm package manager_ (meestal meegeleverd bij node.js) en bower nodig (`npm install -g bower`).
 
 Type (eenmalig) in je Pluff folder `npm install && bower install` om de benodigde dependencies te installeren. Daarna type je simpelweg `grunt` om de ‘server’ te starten. Een standaard regel bij `npm` is dat er altijd iets fout gaat. Google gewoon op de wazige error en je fixt het vanzelf.
 
-# Credits
+## Credits
 
 De mensen achter Pluff:
 
