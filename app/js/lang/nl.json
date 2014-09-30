@@ -23,5 +23,7 @@
   "END": "Einde",
   "FREE_ROOMS": "Vrije lokalen",
   "HOLIDAYS": "Vakanties",
-  "ROOM": "Lokaal"
+  "ROOM": "Lokaal",
+  "FREE": "Vrij",
+  "OCCUPIED": "Bezet"
 }

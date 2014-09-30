@@ -1,8 +1,8 @@
 @import "../bower_components/ngDialog/css/ngDialog.css";
 
 .ngdialog {
-  padding-bottom: 10em;
-  padding-top: 10em;
+  padding-bottom: 3em;
+  padding-top: 3em;
 
   &.ngdialog-closing .ngdialog-content {
     animation: ngdialog-flyout .5s;

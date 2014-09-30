@@ -101,12 +101,12 @@ angular.module('pluffApp.services', [])
         .success(function(payload) {
           var data = [];
 
+          // Filter all rooms in this array
+          var filterRooms = ['?', 'eindhoven'];
+
           // Loop through each room
           payload.forEach(function(room) {
             var hourData = [];
-
-            // Filter all rooms in this array
-            var filterRooms = ['?', 'eindhoven'];
 
             if (!(filterRooms.indexOf(room.room) > -1)) {
 

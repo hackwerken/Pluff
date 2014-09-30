@@ -31,4 +31,18 @@ ng-view {
 
 .room-occupied {
   background: $primary-color;
+  color: $secondary-color;
+}
+
+span.room-occupied {
+  width: .63em;
+  height: .63em;
+  display: inline-block;
+}
+
+span.room-free {
+  border: 1px solid darken($secondary-color, 10%);
+  width: .63em;
+  height: .63em;
+  display: inline-block;
 }
