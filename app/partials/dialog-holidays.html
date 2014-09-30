@@ -9,11 +9,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="holiday in holidays">
-      <td>{{holiday.days}} <span translate>DAYSUNTIL</span></td>
-      <td>{{holiday.name | translate}}</td>
-      <td>{{holiday.start}}</td>
-      <td>{{holiday.end}}</td>
+    <tr ng-repeat="holiday in ::holidays">
+      <td>{{::holiday.days}} {{::'DAYSUNTIL' | translate}}</td>
+      <td>{{::holiday.name | translate}}</td>
+      <td>{{::holiday.start}}</td>
+      <td>{{::holiday.end}}</td>
     </tr>
   </tbody>
 </table>
