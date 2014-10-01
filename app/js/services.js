@@ -95,9 +95,7 @@ angular.module('pluffApp.services', [])
       getFreeRooms: function() {
         var deffered = $q.defer();
 
-        var date = moment().format('YYYY-MM-DD');
-
-        $http.jsonp(APIconfig.url('/Schedule/rooms/occupancy/' + date + '?test'))
+        $http.jsonp(APIconfig.url('/Schedule/rooms/occupancy/today?test'))
         .success(function(payload) {
           var data = [];
 
