@@ -41,7 +41,6 @@ angular.module('pluffApp', [
   };
 })
 // Routing
-// TODO: Make it more DRY, this is insane :)
 .config(function($routeProvider, $locationProvider, $httpProvider, $interpolateProvider) {
   $httpProvider.interceptors.push('httpRequestInterceptor');
 
@@ -58,45 +57,36 @@ angular.module('pluffApp', [
       }
     }
   })
-  .when('/room/:roomQuery', {
+  .when('/search/:category/:query', {
     templateUrl: 'partials/timetable.html',
     controller: 'TimeTableCtrl',
     resolve: {
       timetableData: function($route, dataService) {
-        return dataService.getTimeTable('/room/' + $route.current.params.roomQuery).then(function(payload) {
-          return payload.data;
-        });
-      }
-    }
-  })
-  .when('/class/:classQuery', {
-    templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl',
-    resolve: {
-      timetableData: function($route, dataService) {
-        return dataService.getTimeTable('/class/' + $route.current.params.classQuery).then(function(payload) {
-          return payload.data;
-        });
-      }
-    }
-  })
-  .when('/teacher/:teacherQuery', {
-    templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl',
-    resolve: {
-      timetableData: function($route, dataService) {
-        return dataService.getTimeTable('/teacher/abbreviation/' + $route.current.params.teacherQuery).then(function(payload) {
-          return payload.data;
-        });
-      }
-    }
-  })
-  .when('/subject/:subjectQuery', {
-    templateUrl: 'partials/timetable.html',
-    controller: 'TimeTableCtrl',
-    resolve: {
-      timetableData: function($route, dataService) {
-        return dataService.getTimeTable('/subject/' + $route.current.params.subjectQuery).then(function(payload) {
+        var categoryUrl;
+
+        // Load correct API url
+        switch ($route.current.params.category) {
+          case 'room':
+            categoryUrl = 'room'
+            break;
+          case 'class':
+            categoryUrl = 'class'
+            break;
+          case 'teacher':
+            categoryUrl = 'teacher/abbreviation'
+            break;
+          case 'subject':
+            categoryUrl = 'subject'
+            break;
+          case 'class':
+            categoryUrl = 'class'
+            break;
+          default:
+            categoryUrl = 'query'
+            break;
+        }
+
+        return dataService.getTimeTable('/' + categoryUrl + '/' + $route.current.params.query).then(function(payload) {
           return payload.data;
         });
       }

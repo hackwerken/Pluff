@@ -122,7 +122,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
 
     // Check which category is selected (room or class) to update the url
     console.log('Autocomplete ' + category + ' ' + title);
-    $location.path('/' + category + '/' + title);
+    $location.path('/search/' + category + '/' + title);
   };
 
   $scope.teacherDialog = function(teacherAbr) {
