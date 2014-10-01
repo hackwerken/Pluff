@@ -72,7 +72,6 @@ angular.module('pluffApp.services', [])
   .factory('dataService', function($http, $log, $q) {
     return {
       getTimeTable: function(input) {
-        // TODO: Only pull the timetables for this week (calculate the difference between selected week and current week)
         return $http.jsonp(APIconfig.url('/Schedule' + input + '?includeTeacher=false&IncludeStartOfWeek=true&daysAhead=90'));
       },
       getTeacher: function(teacher) {

@@ -24,6 +24,8 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
 
   // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
   $scope.weekNumberUsed = parseInt((moment().day() > 5) ? moment().add(1, 'w').format('w') : moment().format('w'));
+  // Set the default used year number
+  $scope.yearUsed = parseInt(moment().format('YYYY'));
 
   $scope.weekNumber = function() {
     var weekInfo = {};
@@ -34,16 +36,22 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
     // Set default weeknumber. In the weekend, use the next week number
     weekInfo.current = parseInt((currentTime.day() > 5) ? currentTime.add(1, 'w').format('w') : currentTime.format('w'));
     weekInfo.use = $scope.weekNumberUsed;
+    // Set default year
+    weekInfo.yearCurrent = parseInt(currentTime.format('YYYY'));
+    weekInfo.yearUse = $scope.yearUsed;
 
     // Rotate the number when the year has ended
     if (weekInfo.use === 53) {
       weekInfo.use = 1;
+      weekInfo.yearUse = parseInt(weekInfo.yearCurrent) + 1;
     }
     if (weekInfo.use === 0) {
       weekInfo.use = 52;
+      weekInfo.yearUse = parseInt(weekInfo.yearCurrent);
     }
 
     $scope.weekNumberUsed = weekInfo.use;
+    $scope.yearUsed = weekInfo.yearUse;
 
     return weekInfo;
   };
@@ -84,8 +92,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
 
   // Calculate the date of the current day
   $scope.currentDayDate = function(dayNumber) {
-    // TODO: Don't hardcode the year!
-    return moment('2014-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
+    return moment($scope.weekNumber().yearUse + '-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
   }
 
   // Check if the current day is today
@@ -97,7 +104,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
 
   // Check if the used week is older then or the same as the current week
   $scope.isOldWeek = function() {
-    if ($scope.weekNumberUsed <= $scope.weekNumber().current) {
+    if ($scope.weekNumberUsed <= $scope.weekNumber().current && $scope.yearUsed === $scope.weekNumber().yearCurrent) {
       return true;
     }
     return false;
