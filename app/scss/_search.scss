@@ -16,22 +16,21 @@
 
 .angucomplete-searching {
   color: #acacac;
-  font-size: 14px;
+  font-size: .88em;
 }
 
 .angucomplete-description {
-  font-size: 14px;
+  font-size: .88em;
 }
 
 .angucomplete-row {
-  padding: 5px;
+  padding: .31em;
   color: $body-font-color;
-  margin-bottom: 4px;
+  margin-bottom: .25em;
   clear: both;
 }
 
-.angucomplete-selected-row,
-.angucomplete-row:hover {
+.angucomplete-selected-row {
   background-color: $primary-color;
   color: #fff;
 }
