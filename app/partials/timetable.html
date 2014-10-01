@@ -1,9 +1,9 @@
-<h2 ng-show="tableTitle" class="text-center">{{tableTitle}}<br><small>week {{weekNumber().use}}</small></h2>
+<h2 ng-show="tableTitle" class="text-center">{{tableTitle}}<br><small>week {{weekNumberUsed}}</small></h2>
 
 <ul>
-  <li><a ng-click="previousWeek()" ng-class="{'old-week': isOldWeek()}">{{'PREVIOUS_WEEK' | translate}} &laquo;</a></li>
-  <li><a ng-click="currentWeek()">{{'CURRENT_WEEK' | translate}}</a></li>
-  <li><a ng-click="nextWeek()">{{'NEXT_WEEK' | translate}} &raquo;</a></li>
+  <li><a ng-click="previousWeek()" ng-class="{'old-week': isOldWeek()}">{{::'PREVIOUS_WEEK' | translate}} &laquo;</a></li>
+  <li><a ng-click="currentWeek()">{{::'CURRENT_WEEK' | translate}}</a></li>
+  <li><a ng-click="nextWeek()">{{::'NEXT_WEEK' | translate}} &raquo;</a></li>
 </ul>
 
 <div class="row">
@@ -34,7 +34,7 @@
       <span ng-repeat="lesson in hour.lessons">
         {{::lesson.start}} - {{::lesson.end}}<br>
         {{::lesson.subject}}
-        <span ng-if="lesson.teacher !== '-'">
+        <span ng-if="::lesson.teacher !== '-'">
           - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
         </span><br>
         <small>
