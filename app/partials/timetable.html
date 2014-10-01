@@ -24,19 +24,18 @@
 </div>
 
 <div class="row">
-  <div class="small-15 medium-3 columns" ng-repeat="day in ::days" ng-class="{'activeDay': isActiveDay(day.number)}">
+  <div class="small-15 medium-3 columns" ng-repeat="days in weeks[(weekNumberUsed - 1)]" ng-class="{'activeDay': isActiveDay($index+1)}">
     <h3>
-      {{::day.spelled | translate}}<br>
-      <small>{{currentDayDate(day.number).format('D-M')}}</small>
+      {{::'DAY_' + ($index+1) | translate}}<br>
+      <small>{{currentDayDate($index+1).format('D-M')}}</small>
     </h3>
-
-    <div class="uur" ng-repeat="hour in ::hours">
-    {{::hour.number}}.
-      <span ng-repeat="lesson in getHour(day.number, hour.number) track by lesson.uid">
-        {{::lessonStartEndTime(lesson.start, lesson.end)}}<br>
+    <div class="hour" ng-repeat="hour in days">
+      {{::hour.number}}.
+      <span ng-repeat="lesson in hour.lessons">
+        {{::lesson.start}} - {{::lesson.end}}<br>
         {{::lesson.subject}}
-        <span ng-if="lesson.teacherAbbreviation !== '-'">
-          - <a ng-click="teacherDialog(lesson.teacherAbbreviation)">{{::lesson.teacherAbbreviation}}</a>
+        <span ng-if="lesson.teacher !== '-'">
+          - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
         </span><br>
         <small>
           <a href="room/{{::lesson.room}}">{{::lesson.room}}</a> - </a>

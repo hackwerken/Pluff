@@ -12,39 +12,14 @@ function LanguageCtrl($scope, $translate, $route) {
     // Switch to the given language
     $translate.use($lang);
     // Full page reload to apply all languages
+    // This is necessary because of the one-time bindings used for performance reasons
     window.location.reload();
   }
 }
 
-function TimeTableCtrl($scope, $http, hourService, $window, $location, dataService, timetableData, ngDialog) {
-  $scope.days = [
-    {number: 1, spelled: 'MONDAY'},
-    {number: 2, spelled: 'TUESDAY'},
-    {number: 3, spelled: 'WEDNESDAY'},
-    {number: 4, spelled: 'THURSDAY'},
-    {number: 5, spelled: 'FRIDAY'}
-  ];
-
-  // TODO: start times probably aren't necessary (?)
-  $scope.hours = [
-    {number: 1, start: '08:45'},
-    {number: 2, start: '09:35'},
-    {number: 3, start: '10:45'},
-    {number: 4, start: '11:35'},
-    {number: 5, start: '12:25'},
-    {number: 6, start: '13:15'},
-    {number: 7, start: '14:05'},
-    {number: 8, start: '15:15'},
-    {number: 9, start: '16:05'},
-    {number: 10, start: '16:55'},
-    {number: 11, start: '18:00'},
-    {number: 12, start: '18:50'},
-    {number: 13, start: '20:00'},
-    {number: 14, start: '21:40'}
-  ];
-
+function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataService, timetableData, ngDialog) {
   // Get the personal schedule from the API
-  $scope.tableData = timetableData.data;
+  $scope.weeks = lessonService.getTimeTable(timetableData.data);
   $scope.tableTitle = timetableData.title;
 
   // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
@@ -91,10 +66,6 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, dataServi
     console.log('Op naar de vorige week! ' + $scope.weekNumberUsed);
   };
 
-  $scope.getHour = function(dayNumber, hourNumber) {
-    return hourService.getHour($scope, dayNumber, hourNumber);
-  };
-
   // Bind keybindings to the window to enable right and left arrow navigation
   angular.element($window).on('keydown', function(e) {
     // Go to the next week on right arrow key
@@ -130,14 +101,6 @@ function TimeTableCtrl($scope, $http, hourService, $window, $location, dataServi
       return true;
     }
     return false;
-  };
-
-  // Display the start and end time of a lesson
-  $scope.lessonStartEndTime = function(start, end) {
-    var startTime = moment(start);
-    var endTime = moment(end);
-
-    return startTime.format('H:m') + ' - ' + endTime.format('H:m');
   };
 
   dataService.getSuggestions().then(function(payload) {
@@ -179,7 +142,7 @@ function HolidaysCtrl($scope, holidayService) {
 
 // Holidays dialog
 function RoomsCtrl($scope, roomService) {
-  // Load the free rooms!
+  // Load all the rooms with occupied information!
   roomService.getFreeRooms().then(function(payload) {
     $scope.rooms = payload;
   });

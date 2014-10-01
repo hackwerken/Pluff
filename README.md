@@ -17,7 +17,8 @@ De mensen achter Pluff:
 
 - [Kees](https://www.webduck.nl) - Ontwikkelaar en meesterbrein
 - [Jeroen](https://www.laylo.nl) - Serverbeheer en woordvoerder
-- Een aantal andere FHICT studenten.
+- Jasper Stam - _Programmeer schildknaap_
+- Rutger Schimmel - _Bugtester_
 
 Voor het rooster systeem maken we gebruik van de volgende projecten:
 
