@@ -51,6 +51,12 @@ module.exports = (grunt) ->
         dirs: ["dist"]
 
     uncss:
+      options:
+        ignore: [
+          '.ngdialog', '.ngdialog-content', '.ngdialog-close', '.ngdialog-message', 'input[type="text"]', 'angucomplete-holder',
+          '.angucomplete-dropdown', '.angucomplete-searching', '.angucomplete-description', '.angucomplete-row',
+          '.angucomplete-selected-row'
+        ]
       dist:
         files:
           'dist/css/app.css': ['app/*.html', 'app/partials/*.html']
