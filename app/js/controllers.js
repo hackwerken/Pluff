@@ -93,6 +93,17 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
   // Calculate the date of the current day
   $scope.currentDayDate = function(dayNumber) {
     return moment($scope.weekNumber().yearUse + '-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
+  };
+
+  $scope.countLessons = function(day) {
+    var totalLessons = 0;
+
+    day.forEach(function(hour) {
+      var hourCount = parseInt(hour.lessons.length);
+      totalLessons = totalLessons + hourCount;
+    });
+
+    return totalLessons;
   }
 
   // Check if the current day is today

@@ -24,12 +24,12 @@
 </div>
 
 <div class="row">
-  <div class="small-15 medium-3 columns" ng-repeat="days in weeks[(weekNumberUsed - 1)]" ng-class="{'activeDay': isActiveDay($index+1)}">
+  <div class="small-15 medium-3 columns" ng-repeat="day in weeks[(weekNumberUsed - 1)]" ng-class="{'activeDay': isActiveDay($index+1)}">
     <h3>
       {{::'DAY_' + ($index+1) | translate}}<br>
-      <small>{{currentDayDate($index+1).format('D-M')}}</small>
+      <small>{{currentDayDate($index+1).format('D-M')}} <strong>{{countLessons(day)}} {{::'LESSONS' | translate}}</strong></small>
     </h3>
-    <div class="hour" ng-repeat="hour in days">
+    <div class="hour" ng-repeat="hour in day">
       {{::hour.number}}.
       <span ng-repeat="lesson in hour.lessons">
         {{::lesson.start}} - {{::lesson.end}}<br>
