@@ -1,12 +1,14 @@
-@import "../bower_components/ngDialog/css/ngDialog.css";
-
 .ngdialog {
+  position: fixed;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   padding-bottom: 3em;
   padding-top: 3em;
-
-  &.ngdialog-closing .ngdialog-content {
-    animation: ngdialog-flyout .5s;
-  }
 
   .ngdialog-content {
     animation: ngdialog-flyin .5s;
@@ -17,6 +19,8 @@
     padding: 1em;
     position: relative;
     width: 34.38em;
+    background: #fff;
+    -webkit-backface-visibility: hidden;
   }
 
   .ngdialog-close {
@@ -52,6 +56,37 @@
   }
 }
 
+.ngdialog-overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, .4);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  animation: ngdialog-fadein .5s;
+}
+
+.ngdialog.ngdialog-closing .ngdialog-overlay {
+  -webkit-backface-visibility: hidden;
+  animation: ngdialog-fadeout .5s;
+}
+
+.ngdialog.ngdialog-closing .ngdialog-content {
+  -webkit-backface-visibility: hidden;
+  animation: ngdialog-fadeout .5s;
+}
+
+.ngdialog-close:before {
+  font-family: 'Helvetica', Arial, sans-serif;
+  content: '\00D7';
+  cursor: pointer;
+}
+
+body.ngdialog-open {
+  overflow: hidden;
+}
+
 @keyframes ngdialog-flyin {
   0% {
     opacity: 0;
@@ -78,4 +113,14 @@
     -ms-transform: translateY(-40px);
     transform: translateY(-40px);
   }
+}
+
+@keyframes ngdialog-fadeout {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes ngdialog-fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }

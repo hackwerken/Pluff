@@ -50,16 +50,22 @@ module.exports = (grunt) ->
       options:
         dirs: ["dist"]
 
-    # uncss:
-    #   options:
-    #     ignore: [
-    #       '.ngdialog', '.ngdialog-content', '.ngdialog-close', '.ngdialog-message', 'input[type="text"]', 'angucomplete-holder',
-    #       '.angucomplete-dropdown', '.angucomplete-searching', '.angucomplete-description', '.angucomplete-row',
-    #       '.angucomplete-selected-row', '.ngdialog-overlay'
-    #     ]
-    #   dist:
-    #     files:
-    #       'dist/css/app.css': ['app/*.html', 'app/partials/*.html']
+    uncss:
+      options:
+        ignore: [
+          # REGEX's
+          /ngdialog/g, /angucomplete/g, /input/g,
+          # Specific classes
+          '.ngdialog-overlay'
+        ]
+      dist:
+        files:
+          'dist/css/app.css': ['app/*.html', 'app/partials/*.html']
+
+    cssmin:
+      dist:
+        files:
+          'dist/css/app.css': 'dist/css/app.css',
 
     uglify:
       options:
@@ -151,4 +157,4 @@ module.exports = (grunt) ->
         path: path.resolve() + "/dist"
 
   grunt.registerTask "default", ["sass", "autoprefixer", "connect:app", "open:app", "watch"]
-  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "cacheBust", "buildcontrol", "open:dist", "connect:dist"]
+  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "cacheBust", "uncss", "cssmin", "buildcontrol", "open:dist", "connect:dist"]

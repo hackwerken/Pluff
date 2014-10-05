@@ -21,13 +21,14 @@
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-copy": "^0.6.0",
+    "grunt-contrib-cssmin": "^0.10.0",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-open": "^0.2.3",
     "grunt-sass": "^0.14.2",
-    "grunt-uncss": "^0.3.6",
+    "grunt-uncss": "^0.3.7",
     "grunt-usemin": "^2.4.0",
     "matchdep": "^0.3.0",
-    "node-sass": "^0.9.5-rc1"
+    "node-sass": "^0.9.5"
   }
 }
