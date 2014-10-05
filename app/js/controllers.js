@@ -128,7 +128,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
 
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {
-    var title = selected.originalObject.name;
+    var title = encode(selected.originalObject.name);
     var category = selected.originalObject.category;
 
     // Check which category is selected (room or class) to update the url

@@ -11,6 +11,12 @@ var APIconfig = {
   }
 };
 
+// API url encoding
+// TODO: Needs more testing.
+var encode = function(url) {
+  return encodeURIComponent(url).replace(/\//g, '%2F');
+};
+
 angular.module('pluffApp', [
   'pluffApp.controllers',
   'pluffApp.services',
@@ -63,30 +69,31 @@ angular.module('pluffApp', [
     resolve: {
       timetableData: function($route, dataService) {
         var categoryUrl;
+        var queryUrl = $route.current.params.query;
 
         // Load correct API url
         switch ($route.current.params.category) {
           case 'room':
-            categoryUrl = 'room'
+            categoryUrl = 'room';
             break;
           case 'class':
-            categoryUrl = 'class'
+            categoryUrl = 'class';
             break;
           case 'teacher':
-            categoryUrl = 'teacher/abbreviation'
+            categoryUrl = 'teacher/abbreviation';
             break;
           case 'subject':
-            categoryUrl = 'subject'
+            categoryUrl = 'subject';
             break;
           case 'class':
-            categoryUrl = 'class'
+            categoryUrl = 'class';
             break;
           default:
-            categoryUrl = 'query'
+            categoryUrl = 'query';
             break;
         }
 
-        return dataService.getTimeTable('/' + categoryUrl + '/' + $route.current.params.query).then(function(payload) {
+        return dataService.getTimeTable('/' + categoryUrl + '/' + queryUrl).then(function(payload) {
           return payload.data;
         });
       }

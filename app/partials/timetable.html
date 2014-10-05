@@ -38,10 +38,10 @@
           - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
         </span><br>
         <small>
-          <a href="search/room/{{::lesson.room}}">{{::lesson.room}}</a> - </a>
+          <a href="search/room/{{::encode(lesson.room)}}">{{::lesson.room}}</a> - </a>
 
           <span ng-repeat="class in lesson.classes">
-            <a href="search/class/{{::class}}">{{::class}}</a>{{ (!$last) ? ',' : ''}}
+            <a href="search/class/{{::encode(class)}}">{{::class}}</a>{{ (!$last) ? ',' : ''}}
           </span>
         </small><br>
       </span>
