@@ -56,7 +56,7 @@ module.exports = (grunt) ->
           # REGEX's
           /ngdialog/g, /angucomplete/g, /input/g,
           # Specific classes
-          '.ngdialog-overlay'
+          '.ngdialog-overlay', '.angucomplete-dropdown', '.angucomplete-selected-row'
         ]
       dist:
         files:

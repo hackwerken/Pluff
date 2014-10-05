@@ -129,7 +129,7 @@ angular.module('pluffApp.services', [])
       getFreeRooms: function() {
         var deffered = $q.defer();
 
-        $http.jsonp(APIconfig.url('/Schedule/rooms/occupancy/today?test'))
+        $http.jsonp(APIconfig.url('/schedule/rooms/occupancy/today?test'))
         .success(function(payload) {
           var data = [];
 
@@ -168,7 +168,7 @@ angular.module('pluffApp.services', [])
         .error(function(msg, code) {
           deffered.reject(msg);
           $log.error(msg, code);
-        })
+        });
 
         return deffered.promise;
       }
