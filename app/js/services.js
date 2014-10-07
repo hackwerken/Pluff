@@ -6,6 +6,39 @@ angular.module('pluffApp.services', [])
   .factory('lessonService', function() {
     var data = {};
 
+    data.generateColor = function(name) {
+      // Number between 0 and 1
+      var generatedNumber = (Math.sin(name.charCodeAt(0)) + Math.sin(name.charCodeAt(1)) + Math.sin(name.charCodeAt(2))) / 6 + 0.5;
+
+      // Create whole numbers between 0 and 5
+      var type = Math.floor(generatedNumber * 6);
+
+      // Create a number based on generatedNumber between 64 en 226 -> naar HEX
+      var value = Math.floor((Math.sin(generatedNumber * 2000) + 1) * 81 + 64).toString(16);
+      if (value.length === 1) {
+        value = '0' + value;
+      }
+
+      // Choose part of the color based on the outcome of type (so we can control the colors a little)
+      switch (type) {
+        case 0:
+          return '#e440' + value;
+        case 1:
+          return '#' + value + '40e4';
+        case 2:
+          return '#40' + value + 'e4';
+        case 3:
+          return '#40e4' + value;
+        case 4:
+          return '#' + value + 'e440';
+        case 5:
+        case 6:
+          return '#e4' + value + '40';
+        default:
+          return '#fff';
+      }
+    };
+
     data.getTimeTable = function(payload) {
       var weeks = [];
 
@@ -21,7 +54,7 @@ angular.module('pluffApp.services', [])
             weeks[week][day][hour] = {
               number: (hour + 1),
               lessons: []
-            }
+            };
           }
         }
       }
@@ -57,7 +90,8 @@ angular.module('pluffApp.services', [])
               'teacher': lesson.teacherAbbreviation.toLowerCase(),
               'subject': lesson.subject.toLowerCase(),
               'room': lesson.room,
-              'classes': lesson.classes
+              'classes': lesson.classes,
+              'color': data.generateColor(lesson.subject)
             };
 
             // Select the current hour and push the new lesson to it
@@ -118,11 +152,11 @@ angular.module('pluffApp.services', [])
         .error(function(msg, code) {
           deferred.reject(msg);
           $log.error(msg, code);
-        })
+        });
 
         return deferred.promise;
       }
-    }
+    };
   })
   .factory('roomService', function($http, $log, $q) {
     return {

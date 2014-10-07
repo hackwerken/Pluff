@@ -30,8 +30,8 @@
       <small>{{currentDayDate($index+1).format('D-M')}} <strong>{{countLessons(day)}} {{::'LESSONS' | translate}}</strong></small>
     </h3>
     <div class="hour" ng-repeat="hour in day">
-      {{::hour.number}}.
-      <span ng-repeat="lesson in hour.lessons">
+      <div class="hour-number">{{::hour.number}}</div>
+      <div ng-repeat="lesson in hour.lessons" class="lesson" style="background:{{lesson.color}}">
         {{::lesson.start}} - {{::lesson.end}}<br>
         {{::lesson.subject}}
         <span ng-if="::lesson.teacher !== '-'">
@@ -44,8 +44,7 @@
             <a href="search/class/{{::encode(class)}}">{{::class}}</a>{{ (!$last) ? ',' : ''}}
           </span>
         </small><br>
-      </span>
-      <hr>
+      </div>
     </div>
   </div>
 </div>

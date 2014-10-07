@@ -113,4 +113,9 @@ angular.module('pluffApp', [
   $translateProvider.preferredLanguage('nl');
   // Save the user's choice in a cookie
   $translateProvider.useCookieStorage();
+})
+.run(function($rootScope) {
+  $rootScope.encode = function(url) {
+    return encodeURIComponent(url).replace(/\//g, '%2F');
+  };
 });

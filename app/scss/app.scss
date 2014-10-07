@@ -25,6 +25,30 @@ ng-view {
   }
 }
 
+.hour {
+  position: relative;
+  height: 6em;
+
+  .hour-number {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    color: $secondary-color;
+  }
+
+  a {
+    color: $secondary-color;
+
+    &:hover {
+      color: lighten($secondary-color, 10%);
+    }
+  }
+}
+
+.lesson {
+  height: 100%;
+}
+
 .old-week {
   color: #ccc!important;
 }
