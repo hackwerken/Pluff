@@ -73,7 +73,7 @@ angular.module('pluffApp.services', [])
         var hourLength = lesson.hoursMask.toString(2).length;
 
         // Iterate over every possible hour and check if there's a lesson in it
-        for (var hourNumber = 1; hourNumber < hourLength; hourNumber++) {
+        for (var hourNumber = 1; hourNumber <= hourLength; hourNumber++) {
           // Get the exponent of the hourNumber (current hour) (^2 - 1)
           // Equalize the current hour with the mask
           var hourExp = Math.pow(2, hourNumber - 1);

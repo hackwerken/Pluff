@@ -22,6 +22,13 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
   $scope.tableTitle = timetableData.title;
 
+  // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
+  $scope.hourBreaks = [0, 0, 20, 0, 0, 0, 0, 10, 0, 0, 15, 0, 20, 0, 0];
+  // Fontys starts at 8.45
+  $scope.dayStartTime = moment().hour(8).minute(45).second(0);
+  // And ends at 21.40
+  $scope.dayEndTime = moment().hour(21).minute(40).second(0);
+
   // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
   $scope.weekNumberUsed = parseInt((moment().day() > 5) ? moment().add(1, 'w').format('w') : moment().format('w'));
   // Set the default used year number
@@ -104,7 +111,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
     });
 
     return totalLessons;
-  }
+  };
 
   // Check if the current day is today
   $scope.isActiveDay = function(dayNumber) {
@@ -148,7 +155,18 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
         data: data
       });
     });
-  }
+  };
+
+  $scope.calculateLine = function() {
+    var now = moment();
+    var percentageComplete = (now - $scope.dayStartTime) / ($scope.dayEndTime - $scope.dayStartTime) * 100;
+    var percentageRounded = (Math.round(percentageComplete * 100) / 100);
+
+    return percentageRounded + '%';
+  };
+
+  window.setInterval($scope.calculateLine(), 60000); // Refresh every minute
+
 }
 
 // Holidays dialog

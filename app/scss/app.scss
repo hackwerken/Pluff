@@ -25,9 +25,19 @@ ng-view {
   }
 }
 
+.day {
+  height: 81.25em;
+  position: relative;
+}
+
 .hour {
   position: relative;
-  height: 6em;
+  height: calc(100%/15.3);
+  border-bottom: 1px solid $secondary-color;
+
+  &:last-child {
+    border-bottom: 0;
+  }
 
   .hour-number {
     position: absolute;
@@ -43,10 +53,36 @@ ng-view {
       color: lighten($secondary-color, 10%);
     }
   }
+
+  &.break-10 {
+    height: calc((100%/15.3) + (100%/76.5));
+  }
+
+  &.break-15 {
+    height: calc((100%/15.3) + (100%/51));
+  }
+
+  &.break-20 {
+    height: calc((100%/15.3) + (100%/38.25));
+  }
 }
 
 .lesson {
   height: 100%;
+
+  .lesson-text {
+    position: relative;
+    z-index: 5;
+  }
+}
+
+.line {
+  width: calc(100% - 1.9em);
+  height: 1px;
+  background: rgba(255, 0, 0, .5);
+  position: absolute;
+  top: 0;
+  z-index: 4;
 }
 
 .old-week {

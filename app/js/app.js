@@ -32,7 +32,7 @@ angular.module('pluffApp', [
     responseError: function(rejection) {
       // This is temporary. TODO: Redirect only if the user isn't logged in.
       // TODO: Redirect back to pluff
-      // window.location = APIconfig.loginUrl;
+      window.location = APIconfig.loginUrl;
 
       if (rejection.status === 404) {
         // TODO: Change the view to a 404 template
