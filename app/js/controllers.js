@@ -128,12 +128,14 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
 
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {
-    var title = encode(selected.originalObject.name);
-    var category = selected.originalObject.category;
+    if (selected !== undefined) {
+      var title = encode(selected.originalObject.name);
+      var category = selected.originalObject.category;
 
-    // Check which category is selected (room or class) to update the url
-    console.log('Autocomplete ' + category + ' ' + title);
-    $location.path('/search/' + category + '/' + title);
+      // Check which category is selected (room or class) to update the url
+      console.log('Autocomplete ' + category + ' ' + title);
+      $location.path('/search/' + category + '/' + title);
+    }
   };
 
   $scope.teacherDialog = function(teacherAbr) {

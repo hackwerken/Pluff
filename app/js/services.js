@@ -75,10 +75,10 @@ angular.module('pluffApp.services', [])
   .factory('dataService', function($http, $log, $q) {
     return {
       getTimeTable: function(input) {
-        return $http.jsonp(APIconfig.url('/Schedule' + input + '?includeTeacher=false&IncludeStartOfWeek=true&daysAhead=90'));
+        return $http.jsonp(APIconfig.url('/schedule' + input + '?expandTeacher=false&IncludeStartOfWeek=true&daysAhead=90'));
       },
       getTeacher: function(teacher) {
-        return $http.jsonp(APIconfig.url('/people/afkorting/' + teacher + '?test'));
+        return $http.jsonp(APIconfig.url('/people/abbreviation/' + teacher + '?test'));
       },
       getSuggestions: function() {
         return $http.jsonp(APIconfig.url('/schedule/autocomplete?test'));
