@@ -1,0 +1,59 @@
+.hours {
+  position: relative;
+  height: 75em;
+}
+
+.hour {
+  position: relative;
+  height: calc(100%/15.3);
+  border-bottom: 1px solid $secondary-color;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  .hour-number {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    color: $secondary-color;
+  }
+
+  a {
+    color: $secondary-color;
+
+    &:hover {
+      color: lighten($secondary-color, 10%);
+    }
+  }
+
+  &.break-10 {
+    height: calc((100%/15.3) + (100%/76.5));
+  }
+
+  &.break-15 {
+    height: calc((100%/15.3) + (100%/51));
+  }
+
+  &.break-20 {
+    height: calc((100%/15.3) + (100%/38.25));
+  }
+}
+
+.lesson {
+  height: 100%;
+
+  .lesson-text {
+    position: relative;
+    z-index: 5;
+  }
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 0, 0, .5);
+  position: absolute;
+  top: 0;
+  z-index: 4;
+}
