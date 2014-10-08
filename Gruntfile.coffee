@@ -46,18 +46,6 @@ module.exports = (grunt) ->
       options:
         dirs: ["dist"]
 
-    uncss:
-      options:
-        ignore: [
-          # REGEX's
-          /ngdialog/g, /angucomplete/g, /input/g,
-          # Specific classes
-          '.ngdialog-overlay', '.angucomplete-dropdown', '.angucomplete-selected-row'
-        ]
-      dist:
-        files:
-          'dist/css/app.css': ['app/*.html', 'app/partials/*.html']
-
     cssmin:
       dist:
         files:
@@ -153,4 +141,4 @@ module.exports = (grunt) ->
         path: path.resolve() + "/dist"
 
   grunt.registerTask "default", ["compass", "autoprefixer", "connect:app", "open:app", "watch"]
-  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "cacheBust", "uncss", "cssmin", "buildcontrol", "open:dist", "connect:dist"]
+  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "cacheBust", "cssmin", "buildcontrol", "open:dist", "connect:dist"]
