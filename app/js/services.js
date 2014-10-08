@@ -13,8 +13,8 @@ angular.module('pluffApp.services', [])
       // Create whole numbers between 0 and 5
       var type = Math.floor(generatedNumber * 6);
 
-      // Create a number based on generatedNumber between 64 en 226 -> naar HEX
-      var value = Math.floor((Math.sin(generatedNumber * 2000) + 1) * 81 + 64).toString(16);
+      // Create a number based on generatedNumber between 61 en 223 -> to HEX
+      var value = Math.floor((Math.sin(generatedNumber * 2000) + 1) * 50 + 61).toString(16);
       if (value.length === 1) {
         value = '0' + value;
       }
@@ -22,18 +22,18 @@ angular.module('pluffApp.services', [])
       // Choose part of the color based on the outcome of type (so we can control the colors a little)
       switch (type) {
         case 0:
-          return '#e440' + value;
+          return '#3ddf' + value;
         case 1:
-          return '#' + value + '40e4';
+          return '#' + value + 'df3d';
         case 2:
-          return '#40' + value + 'e4';
+          return '#df' + value + '3d';
         case 3:
-          return '#40e4' + value;
+          return '#df3d' + value;
         case 4:
-          return '#' + value + 'e440';
+          return '#' + value + '3ddf';
         case 5:
         case 6:
-          return '#e4' + value + '40';
+          return '#3d' + value + 'df';
         default:
           return '#fff';
       }
