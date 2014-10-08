@@ -1,0 +1,21 @@
+.text-center {
+  text-align: center;
+}
+
+a {
+  color: $primary-color;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+
+  &:active {
+    color: darken($primary-color, 15%);
+  }
+
+  &:focus {
+    color: lighten($primary-color, 10%);
+  }
+}

@@ -8,7 +8,7 @@
 
   <base href="/">
 
-  <link rel="stylesheet" href="css/app.css?9a4eaa">
+  <link rel="stylesheet" href="css/app.css">
 
   <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
@@ -38,17 +38,15 @@
 </head>
 <body>
 
-  <div class="row">
-    <div class="small-15 columns">
-      <h1>Pluff</h1>
+  <div class="container">
+    <h1>Pluff</h1>
 
-      <ul>
-        <li><a ng-dialog="partials/dialog-holidays.html" ng-dialog-controller="HolidaysCtrl"><span translate>HOLIDAYS</span></a></li>
-        <li><a ng-dialog="partials/dialog-free-rooms.html" ng-dialog-controller="RoomsCtrl"><span translate>FREE_ROOMS</span></a></li>
-      </ul>
+    <ul>
+      <li><a ng-dialog="partials/dialog-holidays.html" ng-dialog-controller="HolidaysCtrl"><span translate>HOLIDAYS</span></a></li>
+      <li><a ng-dialog="partials/dialog-free-rooms.html" ng-dialog-controller="RoomsCtrl"><span translate>FREE_ROOMS</span></a></li>
+    </ul>
 
-      <ng-view></ng-view>
-    </div>
+    <ng-view></ng-view>
 
     <p ng-controller="LanguageCtrl">
       <em>Pluff</em> 2.0.

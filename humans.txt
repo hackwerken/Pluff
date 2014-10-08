@@ -19,7 +19,5 @@ LAYLO - http://laylo.nl
 Mashed Creative - http://mashedcreative.nl
 
 Verdere mensen die hieraan hebben bijgedragen:
-- De mensen bij Zurb, die het geweldige CSS-framework 'Foundation' hebben gemaakt.
-- De jQuery nerds.
 - Jeff Atwood, bedenker van Stackoverflow die indirect ons enorm veel geholpen heeft.
 - De leraren bij Fontys ICT, die (nog) niet hebben gezeurd dat we hier deels tijdens hun lessen mee bezig zijn.

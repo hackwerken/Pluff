@@ -9,16 +9,12 @@ module.exports = (grunt) ->
 
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
-    sass:
-      options:
-        includePaths: ["app/bower_components/foundation/scss"]
-
+    compass:
       dist:
         options:
-          outputStyle: "compressed"
-
-        files:
-          "app/css/app.css": "app/scss/app.scss"
+          sassDir: "app/scss"
+          cssDir: "app/css"
+          cacheDir: ".tmp"
 
     autoprefixer:
       build:
@@ -100,11 +96,11 @@ module.exports = (grunt) ->
     watch:
       grunt:
         files: ["Gruntfile.coffee"]
-        tasks: ["sass"]
+        tasks: ["compass"]
 
-      sass:
+      compass:
         files: ["app/scss/{,*/}*.scss", "app/bower_components/{,*/}*.scss"]
-        tasks: ["sass", "autoprefixer"]
+        tasks: ["compass", "autoprefixer"]
 
       livereload:
         files: ["app/*.html", "app/partials/*.html", "app/js/{,*/}*.js", "app/css/{,*/}*.css", "app/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
@@ -156,5 +152,5 @@ module.exports = (grunt) ->
       projectDist:
         path: path.resolve() + "/dist"
 
-  grunt.registerTask "default", ["sass", "autoprefixer", "connect:app", "open:app", "watch"]
+  grunt.registerTask "default", ["compass", "autoprefixer", "connect:app", "open:app", "watch"]
   grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "cacheBust", "uncss", "cssmin", "buildcontrol", "open:dist", "connect:dist"]

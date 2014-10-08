@@ -1,0 +1,12 @@
+.rooms-heading {
+  display: flex;
+  align-items: flex-end;
+
+  .left {
+    align-self: flex-start;
+  }
+
+  .right {
+    margin: 0 5em 0 auto;
+  }
+}
