@@ -38,6 +38,18 @@
     color: $secondary-color;
   }
 
+
+  .multiple-hours-icon {
+    display: none;
+
+    @include bp(break-timetable) {
+      display: block;
+      position: absolute;
+      bottom: 1em;
+      right: 1em;
+    }
+  }
+
   a {
     color: $secondary-color;
 
@@ -68,14 +80,6 @@
   @include bp(break-timetable) {
     width: 50%;
     flex-grow: 1; // Fill available space
-  }
-
-
-  // TODO: Fix multiple lessons view
-  display: none;
-
-  &.lesson-1 {
-    display: flex;
   }
 
   .lesson-text {

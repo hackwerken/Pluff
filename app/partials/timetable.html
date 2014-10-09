@@ -29,15 +29,18 @@
     </h3>
     <div class="hours">
       <div class="line" style="top:{{calculateLine()}}" ng-if="isActiveDay($index+1)"></div>
-      <div ng-repeat="hour in day" class="hour break-{{hourBreaks[hour.number]}}">
+      <div ng-repeat="hour in day" class="hour break-{{::hourBreaks[hour.number]}}">
         <div class="hour-number">{{::hour.number}}</div>
-        <div ng-repeat="lesson in hour.lessons" class="lesson lesson-{{$index+1}}" style="background:{{lesson.color}}">
+
+        <div class="lesson" ng-if="::hour.lessons.length > 0" ng-init="::lesson = hour.lessons[0]" ng-style="::{ background: hour.lessons[0].color }">
           <div class="lesson-text">
             {{::lesson.start}} - {{::lesson.end}}<br>
             {{::lesson.subject}}
+
             <span ng-if="::lesson.teacher !== '-'">
               - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
             </span><br>
+
             <small>
               <a href="search/room/{{::encode(lesson.room)}}">{{::lesson.room}}</a> - </a>
 
@@ -47,6 +50,18 @@
             </small>
           </div>
         </div>
+
+        <div class="multiple-hours" ng-if="hour.lessons.length > 1">
+          <a href="#" class="multiple-hours-icon">+</a>
+          <!--
+          What do we want to see here?
+
+          Plus icon that expands on hover with all the extra lessons (minus first one)
+            - On touchscreens this works with a click
+            - OR: on touchscreens the lessons are displayed next to each other
+           -->
+        </div>
+
       </div>
     </div>
   </div>
