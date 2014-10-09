@@ -1,18 +1,27 @@
 @charset "UTF-8";
 
+// Style guide: http://css-tricks.com/sass-style-guide/
+
+// Vendor dependencies
 @import "../bower_components/normalize.scss/_normalize.scss";
+
+// Authored dependencies
 @import "base";
-@import "search";
-@import "typography";
+@import "zindex";
 
-@import "timetable";
+// Patterns
+@import "patterns/typography";
+@import "patterns/table";
+@import "patterns/search";
+@import "patterns/dialog";
+@import "patterns/links";
 
-// Dialogs
-@import "dialog";
-@import "dialog-room";
+// Sections
+@import "sections/week-nav";
+@import "sections/timetable";
+@import "sections/dialog-room";
 
 body {
-  background: $body-bg;
   color: $body-font-color;
   font-family: $body-font-family;
   font-weight: $body-font-weight;
@@ -27,25 +36,4 @@ ng-view {
   }
 }
 
-.old-week {
-  color: #ccc!important;
-}
-
-.room-occupied {
-  background: $primary-color;
-  color: $secondary-color;
-}
-
-span.room-occupied {
-  width: .63em;
-  height: .63em;
-  display: inline-block;
-  border: 1px solid transparent;
-}
-
-span.room-free {
-  border: 1px solid darken($secondary-color, 10%);
-  width: .63em;
-  height: .63em;
-  display: inline-block;
-}
+@import "shame"

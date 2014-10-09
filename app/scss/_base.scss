@@ -1,14 +1,25 @@
+// Colors
 $primary-color: #008cba;
 $secondary-color: #e7e7e7;
-
 $body-bg: #fff;
 $body-font-color: #222;
+
+// Fonts
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $body-font-weight: normal;
 $body-font-style: normal;
+
 $global-radius: 3px;
 
 // Breaks
 $break-timetable: 50em;
 
-// Custom mixins etc. here
+// Custom mixins
+
+@mixin bp($point) {
+  // Breakpoint mixin
+  // Design mobile-first!
+  @if $point == break-timetable {
+    @media (min-width: 50em) { @content; }
+  }
+}

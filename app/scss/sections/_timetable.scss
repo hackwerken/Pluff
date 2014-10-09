@@ -5,7 +5,7 @@
   .day {
     width: 100%;
 
-    @media screen and (min-width: $break-timetable) {
+    @include bp(break-timetable) {
       width: (100% / 5); // 5 days
     }
   }
@@ -65,7 +65,7 @@
   height: 100%;
 
   // WIP
-  @media screen and (max-width: $break-timetable) {
+  @include bp(break-timetable) {
     width: 50%;
     flex-grow: 1; // Fill available space
   }
@@ -80,7 +80,7 @@
 
   .lesson-text {
     position: relative;
-    z-index: 10;
+    z-index: $z-tt-lesson-text;
   }
 }
 
@@ -90,5 +90,5 @@
   background: rgba(255, 0, 0, .5);
   position: absolute;
   top: 0;
-  z-index: 4;
+  z-index: $z-tt-line;
 }

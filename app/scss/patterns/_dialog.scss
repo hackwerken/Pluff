@@ -2,7 +2,7 @@
   position: fixed;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  z-index: 10000;
+  z-index: $z-dialog;
   top: 0;
   right: 0;
   bottom: 0;
