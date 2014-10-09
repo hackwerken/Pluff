@@ -5,8 +5,8 @@
   .day {
     width: 100%;
 
-    @media screen and (min-width: 50em) {
-      width: (100% / 5);
+    @media screen and (min-width: $break-timetable) {
+      width: (100% / 5); // 5 days
     }
   }
 }
@@ -18,8 +18,14 @@
 
 .hour {
   position: relative;
-  height: calc(100%/15.3);
+  height: calc(100%/15.3); // 14 lessons of 50 minutes + 65 minutes break (= 1.3 hour)
   border-bottom: 1px solid $secondary-color;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0, 0, 0, .7); // Temporary
+
+  // Hour is a container for the lessons
+  display: flex;
+  flex-flow: row wrap;
 
   &:last-child {
     border-bottom: 0;
@@ -41,6 +47,7 @@
   }
 
   &.break-10 {
+    // TODO: Simplify calculation
     height: calc((100%/15.3) + (100%/76.5));
   }
 
@@ -54,11 +61,26 @@
 }
 
 .lesson {
+  width: 100%;
   height: 100%;
+
+  // WIP
+  @media screen and (max-width: $break-timetable) {
+    width: 50%;
+    flex-grow: 1; // Fill available space
+  }
+
+
+  // TODO: Fix multiple lessons view
+  display: none;
+
+  &.lesson-1 {
+    display: flex;
+  }
 
   .lesson-text {
     position: relative;
-    z-index: 5;
+    z-index: 10;
   }
 }
 

@@ -31,7 +31,7 @@
       <div class="line" style="top:{{calculateLine()}}" ng-if="isActiveDay($index+1)"></div>
       <div ng-repeat="hour in day" class="hour break-{{hourBreaks[hour.number]}}">
         <div class="hour-number">{{::hour.number}}</div>
-        <div ng-repeat="lesson in hour.lessons" class="lesson" style="background:{{lesson.color}}">
+        <div ng-repeat="lesson in hour.lessons" class="lesson lesson-{{$index+1}}" style="background:{{lesson.color}}">
           <div class="lesson-text">
             {{::lesson.start}} - {{::lesson.end}}<br>
             {{::lesson.subject}}
