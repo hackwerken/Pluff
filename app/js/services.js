@@ -93,10 +93,10 @@ angular.module('pluffApp.services', [])
         return $http.jsonp(APIconfig.url('/schedule' + input + '?expandTeacher=false&IncludeStartOfWeek=true&daysAhead=90'));
       },
       getTeacher: function(teacher) {
-        return $http.jsonp(APIconfig.url('/people/abbreviation/' + teacher + '?test'));
+        return $http.jsonp(APIconfig.url('/people/abbreviation/' + teacher));
       },
       getSuggestions: function() {
-        return $http.jsonp(APIconfig.url('/schedule/autocomplete?test'));
+        return $http.jsonp(APIconfig.url('/schedule/autocomplete'));
       }
     };
   })
@@ -144,7 +144,7 @@ angular.module('pluffApp.services', [])
       getFreeRooms: function() {
         var deffered = $q.defer();
 
-        $http.jsonp(APIconfig.url('/schedule/rooms/occupancy/today?test'))
+        $http.jsonp(APIconfig.url('/schedule/rooms/occupancy/today'))
           .success(function(payload) {
             var data = [];
 
