@@ -98,7 +98,7 @@ angular.module('pluffApp.services', [])
       getSuggestions: function() {
         return $http.jsonp(APIconfig.url('/schedule/autocomplete?test'));
       }
-    }
+    };
   })
   .factory('holidayService', function($http, $log, $q) {
     return {
@@ -107,33 +107,33 @@ angular.module('pluffApp.services', [])
         var deferred = $q.defer();
 
         $http.get('json/holidays.json')
-        .success(function(payload) {
-          var data = [];
-          var now = moment();
+          .success(function(payload) {
+            var data = [];
+            var now = moment();
 
-          payload.forEach(function(holiday) {
-            var startDate = moment(holiday.start);
-            var endDate = moment(holiday.end);
-            // Calculate the difference in days between the start date and now
-            var calcDays = startDate.diff(now, 'days');
+            payload.forEach(function(holiday) {
+              var startDate = moment(holiday.start);
+              var endDate = moment(holiday.end);
+              // Calculate the difference in days between the start date and now
+              var calcDays = startDate.diff(now, 'days');
 
-            // We don't want holidays from the past
-            if (calcDays > 0) {
-              data.push({
-                name: holiday.name,
-                start: startDate.format('DD-MM-YYYY'),
-                end: endDate.format('DD-MM-YYYY'),
-                days: calcDays
-              });
-            }
+              // We don't want holidays from the past
+              if (calcDays > 0) {
+                data.push({
+                  name: holiday.name,
+                  start: startDate.format('DD-MM-YYYY'),
+                  end: endDate.format('DD-MM-YYYY'),
+                  days: calcDays
+                });
+              }
+            });
+
+            deferred.resolve(data);
+          })
+          .error(function(msg, code) {
+            deferred.reject(msg);
+            $log.error(msg, code);
           });
-
-          deferred.resolve(data);
-        })
-        .error(function(msg, code) {
-          deferred.reject(msg);
-          $log.error(msg, code);
-        });
 
         return deferred.promise;
       }
@@ -145,45 +145,44 @@ angular.module('pluffApp.services', [])
         var deffered = $q.defer();
 
         $http.jsonp(APIconfig.url('/schedule/rooms/occupancy/today?test'))
-        .success(function(payload) {
-          var data = [];
+          .success(function(payload) {
+            var data = [];
 
-          // Filter all rooms in this array
-          var filterRooms = ['?', 'eindhoven'];
+            // Filter all rooms in this array
+            var filterRooms = ['?', 'eindhoven'];
 
-          // Loop through each room
-          payload.forEach(function(room) {
-            var hourData = [];
+            // Loop through each room
+            payload.forEach(function(room) {
+              var hourData = [];
 
-            if (!(filterRooms.indexOf(room.room) > -1)) {
+              if (!(filterRooms.indexOf(room.room) > -1)) {
 
-              // Loop trough all hours and check if the room is free on that hour
-              // Return true if the room is occupied
-              for (var hour = 1; hour < 15; hour++) {
-                var hourExp = Math.pow(2, hour - 1);
+                // Loop trough all hours and check if the room is free on that hour
+                // Return true if the room is occupied
+                for (var hour = 1; hour < 15; hour++) {
+                  var hourExp = Math.pow(2, hour - 1);
 
-                if (room.mask & hourExp) {
-                  hourData.push(true);
+                  if (room.mask & hourExp) {
+                    hourData.push(true);
+                  } else {
+                    hourData.push(false);
+                  }
                 }
-                else {
-                  hourData.push(false);
-                }
+
+                data.push({
+                  name: room.room,
+                  hours: hourData
+                });
+
               }
+            });
 
-              data.push({
-                name: room.room,
-                hours: hourData
-              });
-
-            }
+            deffered.resolve(data);
+          })
+          .error(function(msg, code) {
+            deffered.reject(msg);
+            $log.error(msg, code);
           });
-
-          deffered.resolve(data);
-        })
-        .error(function(msg, code) {
-          deffered.reject(msg);
-          $log.error(msg, code);
-        });
 
         return deffered.promise;
       }

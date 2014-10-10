@@ -14,7 +14,7 @@ function LanguageCtrl($scope, $translate, $route) {
     // Full page reload to apply all languages
     // This is necessary because of the one-time bindings used for performance reasons
     window.location.reload();
-  }
+  };
 }
 
 function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataService, timetableData, ngDialog) {
