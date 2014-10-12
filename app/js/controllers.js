@@ -17,7 +17,7 @@ function LanguageCtrl($scope, $translate, $route) {
   };
 }
 
-function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataService, timetableData, ngDialog) {
+function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataService, timetableData, autocompleteData, ngDialog) {
   // Get the personal schedule from the API
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
   $scope.tableTitle = timetableData.title;
@@ -128,10 +128,8 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
     return false;
   };
 
-  dataService.getSuggestions().then(function(payload) {
-    // Add the resulting array in the global scope for the autocomplete plugin to use it
-    $scope.searchAuto = payload.data;
-  });
+  // Add the resulting array in the global scope for the autocomplete plugin to use it
+  $scope.searchAuto = autocompleteData;
 
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {

@@ -89,14 +89,20 @@ angular.module('pluffApp.services', [])
   })
   .factory('dataService', function($http, $log, $q) {
     return {
+      getSuggestions: function() {
+        return $http.jsonp(APIconfig.url('/schedule/autocomplete'))
+          .error(function() {
+            // User isn't logged in, so redirect to portal
+            // This is the most reliable method I found yet.
+            // If you know something better, PLEASE don't hesitate to create a PR. You would be my hero.
+            window.location = APIconfig.loginUrl;
+          });
+      },
       getTimeTable: function(input) {
         return $http.jsonp(APIconfig.url('/schedule' + input + '?expandTeacher=false&IncludeStartOfWeek=true&daysAhead=90'));
       },
       getTeacher: function(teacher) {
         return $http.jsonp(APIconfig.url('/people/abbreviation/' + teacher));
-      },
-      getSuggestions: function() {
-        return $http.jsonp(APIconfig.url('/schedule/autocomplete'));
       }
     };
   })

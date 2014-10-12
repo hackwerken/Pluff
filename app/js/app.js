@@ -26,34 +26,21 @@ angular.module('pluffApp', [
   'ngAnimate',
   'ngDialog'
 ])
-  .factory('httpRequestInterceptor', function($q, $location) {
-    return {
-      responseError: function(rejection) {
-        // This is temporary. TODO: Redirect only if the user isn't logged in.
-        // TODO: Redirect back to pluff
-        window.location = APIconfig.loginUrl;
-
-        if (rejection.status === 404) {
-          // TODO: Change the view to a 404 template
-          return $q.reject(rejection);
-        }
-        // Redirect the user to the login portal
-        // Unfortunately this doesn't work (yet) goddammit :(
-        else if (rejection.status === 302) {
-          window.location = APIconfig.loginUrl;
-        }
-      }
-    };
-  })
   // Routing
-  .config(function($routeProvider, $locationProvider, $httpProvider, $interpolateProvider) {
-    $httpProvider.interceptors.push('httpRequestInterceptor');
+  .config(function($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider
       .when('/', {
         templateUrl: 'partials/timetable.html',
         controller: 'TimeTableCtrl',
         resolve: {
+          // Load the autocomplete data first.
+          // If this data can't be loaded the user isn't authenticated yet
+          autocompleteData: function(dataService) {
+            return dataService.getSuggestions().then(function(payload) {
+              return payload.data;
+            });
+          },
           // Load the timetable JSON before the controller
           timetableData: function(dataService) {
             return dataService.getTimeTable('/me').then(function(payload) {
@@ -66,6 +53,11 @@ angular.module('pluffApp', [
         templateUrl: 'partials/timetable.html',
         controller: 'TimeTableCtrl',
         resolve: {
+          autocompleteData: function(dataService) {
+            return dataService.getSuggestions().then(function(payload) {
+              return payload.data;
+            });
+          },
           timetableData: function($route, dataService) {
             var categoryUrl;
             var queryUrl = $route.current.params.query;
@@ -99,6 +91,7 @@ angular.module('pluffApp', [
         }
       });
 
+    // We don't want no fake hashbangs we want the real shite
     $locationProvider.html5Mode(true);
   })
   // Translation
