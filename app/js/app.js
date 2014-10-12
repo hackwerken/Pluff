@@ -3,7 +3,7 @@
 var APIconfig = {
   rawUrl: 'https://apps.fhict.nl/api/v1',
   callback: 'callback=JSON_CALLBACK',
-  loginUrl: 'https://apps.fhict.nl/link/pluff',
+  loginUrl: 'https://apps.fhict.nl/link/pluff' + (window.location.host === 'webduck.nl' ? '-dev' : ''),
   url: function(url) {
     // Enclose the given _relative_ url with the absolute url + callback.
     return this.rawUrl + url + (url.indexOf('?') === -1 ? '?' : '&') + this.callback;
