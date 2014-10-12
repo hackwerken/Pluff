@@ -26,5 +26,6 @@
   "ROOM": "Room",
   "FREE": "Vrij",
   "OCCUPIED": "Bezet",
-  "LESSONS": "lessons"
+  "LESSONS": "lessons",
+  "NOT_OPENED": "Fontys is not open today."
 }

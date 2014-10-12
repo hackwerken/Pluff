@@ -30,7 +30,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
   $scope.dayEndTime = moment().hour(21).minute(40).second(0);
 
   // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
-  $scope.weekNumberUsed = parseInt((moment().day() > 5) ? moment().add(1, 'w').format('w') : moment().format('w'));
+  $scope.weekNumberUsed = parseInt((moment().day() === 0 || moment().day() === 6) ? moment().add(1, 'w').format('w') : moment().format('w'));
   // Set the default used year number
   $scope.yearUsed = parseInt(moment().format('YYYY'));
 
@@ -41,7 +41,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
     var currentTime = moment();
 
     // Set default weeknumber. In the weekend, use the next week number
-    weekInfo.current = parseInt((currentTime.day() > 5) ? currentTime.add(1, 'w').format('w') : currentTime.format('w'));
+    weekInfo.current = parseInt((currentTime.day() === 0 || moment().day() === 6) ? currentTime.add(1, 'w').format('w') : currentTime.format('w'));
     weekInfo.use = $scope.weekNumberUsed;
     // Set default year
     weekInfo.yearCurrent = parseInt(currentTime.format('YYYY'));
@@ -180,9 +180,13 @@ function HolidaysCtrl($scope, holidayService) {
 
 // Holidays dialog
 function RoomsCtrl($scope, roomService) {
-  // Load all the rooms with occupied information!
-  roomService.getFreeRooms().then(function(payload) {
-    $scope.rooms = payload;
-  });
+  // Load all the rooms with occupied information if it isn't sunday (API gives an error on sundays)
+  var isSunday = moment().day() === 0;
+
+  if (!isSunday) {
+    roomService.getFreeRooms().then(function(payload) {
+      $scope.rooms = payload;
+    });
+  }
 
 }
