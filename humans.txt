@@ -1,12 +1,23 @@
 Dit roostersysteem is bedacht & gemaakt uit pure frustratie. Wij zijn ICT'ers en dan moeten wij met een roostersysteem werken dat eruit ziet alsof het door communisten in de jaren '80 gemaakt is?
 
-Dit kan zo niet. Hier moet wat aan gedaan worden.
+Dit kan zo niet. Hier moest wat aan gedaan worden.
 
 Kees had eerst een oplossing bedacht met iframes. Dit werkte wel, maar na een paar maanden kwamen we erachter dat het beter kon. Door motivatie van Jeroen om hieraan verder te werken heeft hij verder uitgezocht hoe je met JSON het rooster op kunt halen.
 
-Kees heeft dit vervolgens gebouwd. Later realiseerden we ons dat het nog handiger is om dit met een database te doen, zodat er meer controle mogelijk is. We zijn toen ook het Laravel framework gaan gebruiken.
+Kees heeft dit vervolgens gebouwd. Later realiseerden we ons dat het nog handiger is om dit met een database te doen, zodat er meer controle mogelijk is. We zijn toen ook het Laravel framework gaan gebruiken. Dit resulteerde in een database van ~40.000 rows die 3x per dag werd ververst.
 
 Bram van de Sommen heeft uiteindelijk de finale kick gegeven en een leuk ontwerp voor de roostersite gemaakt.
+
+Een paar maanden later kreeg Kees een mailtje van Stephan van Rooij (van Fontys) dat het niet toegestaan is om het rooster voor docenten te publiceren zonder dat het achter de portal staat. Ook melde hij dat er een API beschikbaar is om de roosterdata (en meer) op te halen. Op die manier zouden we onze volledige back-end weg kunnen doen en er een client-side applicatie van kunnen maken. Ook zou de roosterdata dan betrouwbaarder zijn, omdat we toen via talloze hacks / trucjes de roosterdata in de database kregen.
+
+Na de zomervakantie van 2014 is Kees dan ook begonnen met de client-side herbouw, met het JS framework AngularJS (moest die knul nog leren haha). Na veel email contact met Stephan, wederzijdse feedback over de API en Pluff, hebben we de roostersite precies zo gekregen zoals we voor ogen hadden.
+
+Ook kregen we van een aantal studenten hulp:
+
+- Jasper Stam - programmeer schildknaap
+- Rutger Schimmel - creatieve JS coder
+- Quinten van Wagenberg - design, research, promotie
+- Jop Smits - design, research, promotie
 
 Jeroen van LAYLO verzorgt de hosting van Pluff en staat paraat met een accuraat antwoord op vragen indien gewenst.
 
@@ -18,6 +29,10 @@ WebDuck Industries - http://webduck.nl
 LAYLO - http://laylo.nl
 Mashed Creative - http://mashedcreative.nl
 
+Pluff is voor mij (Kees) een groot leerproject. Zodra ik een nieuwe techniek vindt die ik wil leren, leer ik die techniek via Pluff. Vandaar dat ik er ook al 150+ uur in heb zitten. Dingen die ik zoal geleerd / verbeterd heb dankzij Pluff: Laravel, Flexbox, Grunt, AngularJS.
+
 Verdere mensen die hieraan hebben bijgedragen:
 - Jeff Atwood, bedenker van Stackoverflow die indirect ons enorm veel geholpen heeft.
 - De leraren bij Fontys ICT, die (nog) niet hebben gezeurd dat we hier deels tijdens hun lessen mee bezig zijn.
+
+Sidenote: In derde persoon schrijven is leuk.
