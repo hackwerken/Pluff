@@ -89,6 +89,19 @@ angular.module('pluffApp', [
             });
           }
         }
+      })
+      .when('/colors', {
+        templateUrl: 'partials/colors.html',
+        controller: 'ColorsCtrl',
+        resolve: {
+          // Load the autocomplete data first.
+          // If this data can't be loaded the user isn't authenticated yet
+          autocompleteData: function(dataService) {
+            return dataService.getSuggestions().then(function(payload) {
+              return payload.data;
+            });
+          }
+        }
       });
 
     // We don't want no fake hashbangs we want the real shite

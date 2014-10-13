@@ -6,9 +6,18 @@ angular.module('pluffApp.services', [])
   .factory('lessonService', function() {
     var data = {};
 
-    data.generateColor = function(name) {
+    data.isTooLightYIQ = function(hexcolor) {
+      var r = parseInt(hexcolor.substr(0, 2), 16);
+      var g = parseInt(hexcolor.substr(2, 2), 16);
+      var b = parseInt(hexcolor.substr(4, 2), 16);
+      var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+
+      return yiq >= 200;
+    };
+
+    data.generateColor = function(name, total) {
       // Generator seed, can be every high number (above ~ 6 million)
-      var total = 6000000;
+      total = total || 6000000;
 
       // Loop every character and multiply with the generator seed
       for (var i = 0; i < name.length; i++) {
@@ -16,6 +25,10 @@ angular.module('pluffApp.services', [])
       }
 
       var color = total.toString(16).substr(2, 6);
+
+      if (data.isTooLightYIQ(color)) {
+        color = (total * 200000).toString(16).substr(2, 6);
+      }
 
       return '#' + color;
     };
@@ -191,6 +204,13 @@ angular.module('pluffApp.services', [])
           });
 
         return deffered.promise;
+      }
+    }
+  })
+  .factory('colorService', function($http) {
+    return {
+      getSubjects: function() {
+        return $http.jsonp(APIconfig.url('/schedule/subjects'));
       }
     };
   });

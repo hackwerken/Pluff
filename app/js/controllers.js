@@ -5,7 +5,8 @@ angular.module('pluffApp.controllers', [])
   .controller('LanguageCtrl', LanguageCtrl)
   .controller('TimeTableCtrl', TimeTableCtrl)
   .controller('HolidaysCtrl', HolidaysCtrl)
-  .controller('RoomsCtrl', RoomsCtrl);
+  .controller('RoomsCtrl', RoomsCtrl)
+  .controller('ColorsCtrl', ColorsCtrl);
 
 function LanguageCtrl($scope, $translate, $route) {
   $scope.switch = function($lang) {
@@ -163,7 +164,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
     return percentageRounded + '%';
   };
 
-  window.setInterval($scope.calculateLine, 600); // Refresh every minute
+  window.setInterval($scope.calculateLine, 60000); // Refresh every minute
 
 }
 
@@ -186,5 +187,17 @@ function RoomsCtrl($scope, roomService) {
       $scope.rooms = payload;
     });
   }
+
+}
+
+// Colors controllers
+function ColorsCtrl($scope, colorService, lessonService) {
+  colorService.getSubjects().then(function(payload) {
+    $scope.subjects = payload.data;
+  });
+
+  $scope.setColor = function(name) {
+    return lessonService.generateColor(name);
+  };
 
 }
