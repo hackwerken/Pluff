@@ -163,7 +163,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
     return percentageRounded + '%';
   };
 
-  window.setInterval($scope.calculateLine(), 60000); // Refresh every minute
+  window.setInterval($scope.calculateLine, 600); // Refresh every minute
 
 }
 
