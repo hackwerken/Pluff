@@ -26,6 +26,7 @@ angular.module('pluffApp.services', [])
 
       var color = total.toString(16).substr(2, 6);
 
+      // Multiply the color with 200.000 if it was too bright
       if (data.isTooLightYIQ(color)) {
         color = (total * 200000).toString(16).substr(2, 6);
       }

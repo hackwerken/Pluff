@@ -28,12 +28,15 @@ body {
 }
 
 ng-view {
+  transition: 100ms 0 all ease;
+  display: block;
   opacity: 1;
-  transition: all linear .5s;
 
-  &.ng-hide {
+  &.ng-enter,
+  &.ng-leave {
     opacity: 0;
   }
 }
+
 
 @import "shame"
