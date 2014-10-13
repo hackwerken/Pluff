@@ -38,7 +38,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="room in ::rooms">
-      <td><a href="search/room/{{::encode(room.name)}}">{{::room.name}}</a></td>
+      <td><a href="search/room/{{::encode(room.name)}}" ng-click="::closeThisDialog(0)">{{::room.name}}</a></td>
       <td ng-class="::{'room-occupied': room.hours[0]}">1</td>
       <td ng-class="::{'room-occupied': room.hours[1]}">2</td>
       <td ng-class="::{'room-occupied': room.hours[2]}">3</td>

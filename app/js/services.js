@@ -65,14 +65,14 @@ angular.module('pluffApp.services', [])
           if (lesson.hoursMask & hourExp && !(filterSubjects.indexOf(lesson.subject) > -1)) {
             // Reformat the lesson data to include only what is needed
             var lessonData = {
-              'start': start.format('H:mm'),
-              'end': end.format('H:mm'),
-              'date': start.format('YYYY-MM-DD'),
-              'teacher': lesson.teacherAbbreviation.toLowerCase(),
-              'subject': lesson.subject.toLowerCase(),
-              'room': lesson.room,
-              'classes': lesson.classes,
-              'color': data.generateColor(lesson.subject)
+              start: start.format('H:mm'),
+              end: end.format('H:mm'),
+              date: start.format('YYYY-MM-DD'),
+              teacher: lesson.teacherAbbreviation.toLowerCase(),
+              subject: lesson.subject.toLowerCase(),
+              room: lesson.room,
+              classes: lesson.classes,
+              color: data.generateColor(lesson.subject)
             };
 
             // Select the current hour and push the new lesson to it
