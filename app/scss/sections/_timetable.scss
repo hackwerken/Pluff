@@ -92,6 +92,10 @@
   opacity: 1;
   display: block;
 
+  &.ng-hide-add {
+    transition-delay: 400ms;
+  }
+
   &.ng-hide {
     opacity: 0;
   }
