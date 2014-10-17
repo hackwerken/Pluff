@@ -1,15 +1,21 @@
 // Colors
 $primary-color: #008cba;
 $secondary-color: #e7e7e7;
-$body-bg: #fff;
-$body-font-color: #222;
+$body-bg: #f9f9f9;
+$body-font-color: #515050;
+$border-color: #dcdbdb;
+$day-background: #fcfcfc;
+$hour-background: #fff;
 
 // Fonts
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $body-font-weight: normal;
 $body-font-style: normal;
 
-$global-radius: 3px;
+$global-radius: 7px;
+
+// Padding
+$padding-day-hour-left: 0.75rem;
 
 // Breaks
 $break-timetable: 50em;
