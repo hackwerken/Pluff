@@ -3,10 +3,16 @@
   flex-flow: row wrap;
 
   .day {
-    width: 100%;
-
+    width: 95%;
+    background: $day-background;
+    border: 1px solid $border-color;
+    border-radius: $global-radius;
     @include bp(break-timetable) {
-      width: (100% / 5); // 5 days
+      width: (90% / 5); // 5 days
+    }
+    margin: 0 auto;
+    h3 {
+      padding-left: $padding-day-hour-left;
     }
   }
 }
@@ -20,6 +26,7 @@
   height: calc(100%/15.3); // 14 lessons of 50 minutes + 65 minutes break (= 1.3 hour)
   border-bottom: 1px solid $secondary-color;
   color: #fff;
+  background: $hour-background;
   position: relative;
   // Hour is a container for the lessons
   display: flex;
@@ -78,6 +85,7 @@
   .lesson-text {
     position: relative;
     z-index: $z-tt-lesson-text;
+    padding-left: $padding-day-hour-left;
   }
 }
 

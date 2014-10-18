@@ -25,6 +25,7 @@ body {
   color: $body-font-color;
   font-family: $body-font-family;
   font-weight: $body-font-weight;
+  background: $body-bg;
 }
 
 ng-view {
@@ -38,5 +39,19 @@ ng-view {
   }
 }
 
+.search {
+  input {
+    border: 1px solid $border-color;
+    border-radius: $global-radius;
+    padding: 0.6rem 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: none;
+    width: 100%;
+    &:focus {
+      border-color: #99;
+      outline: none;
+    }
+  }
+}
 
-@import "shame"
+@import "shame";
