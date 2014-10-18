@@ -38,15 +38,11 @@
 
 
   .multiple-hours-icon {
-    display: none;
-
-    @include bp(break-timetable) {
-      display: block;
-      position: absolute;
-      bottom: 1em;
-      right: 1em;
-      z-index: 11;
-    }
+    display: block;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    z-index: 11;
   }
 
   a {
@@ -59,15 +55,15 @@
 
   &.break-10 {
     // TODO: Simplify calculation
-    height: calc((100%/15.3) + (100%/76.5));
+    margin-bottom: calc(400% / 76.5);
   }
 
   &.break-15 {
-    height: calc((100%/15.3) + (100%/51));
+    margin-bottom: calc(400% / 51);
   }
 
   &.break-20 {
-    height: calc((100%/15.3) + (100%/38.25));
+    margin-bottom: calc(400% / 38.25);
   }
 }
 
@@ -85,16 +81,21 @@
   background: rgba(0, 0, 0, .8);
   width: auto;
   position: absolute;
-  right: -.8em;
   z-index: 1000;
   padding: 1em;
   transition: 300ms 0 all ease;
   opacity: 1;
   display: block;
+  right: 1em;
 
-  &.ng-hide-add {
-    transition-delay: 400ms;
+  @include bp(break-timetable) {
+    right: -.8em;
+
+    &.ng-hide-add {
+      transition-delay: 600ms;
+    }
   }
+
 
   &.ng-hide {
     opacity: 0;

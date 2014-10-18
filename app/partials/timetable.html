@@ -51,7 +51,7 @@
             </small>
           </div><!-- .lesson-text -->
           <div class="multiple-hours" ng-if="hour.lessons.length > 1">
-            <a href="#" class="multiple-hours-icon" ng-mouseenter="showExtra = true" ng-mouseleave="showExtra = false">+</a>
+            <a href="#" class="multiple-hours-icon" ng-click="showExtra = !showExtra" ng-mouseenter="showExtra = true" ng-mouseleave="showExtra = false">+</a>
 
             <div class="hidden-lessons" ng-show="showExtra" ng-mouseenter="showExtra = true" ng-mouseleave="showExtra = false">
               <div ng-repeat="lesson in hour.lessons" ng-show="!$first">
