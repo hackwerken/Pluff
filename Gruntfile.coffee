@@ -35,6 +35,13 @@ module.exports = (grunt) ->
           dest: "dist/"
         ]
 
+      ignore:
+        files: [
+          expand: false
+          src: [".gitignore"]
+          dest: "dist/"
+        ]
+
     useminPrepare:
       html: "app/*.html"
       options:
@@ -141,4 +148,4 @@ module.exports = (grunt) ->
         path: path.resolve() + "/dist"
 
   grunt.registerTask "default", ["compass", "autoprefixer", "connect:app", "open:app", "watch"]
-  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy:dist", "concat", "uglify", "usemin", "cacheBust", "cssmin", "buildcontrol", "open:dist", "connect:dist"]
+  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy", "concat", "uglify", "usemin", "cacheBust", "cssmin", "buildcontrol", "open:dist", "connect:dist"]
