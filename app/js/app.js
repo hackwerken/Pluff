@@ -10,12 +10,6 @@ var APIconfig = {
   }
 };
 
-// API url encoding
-// TODO: Needs more testing.
-var encode = function(url) {
-  return encodeURIComponent(url).replace(/\//g, '%2F');
-};
-
 angular.module('pluffApp', [
   'pluffApp.controllers',
   'pluffApp.services',
@@ -121,6 +115,7 @@ angular.module('pluffApp', [
     $translateProvider.useCookieStorage();
   })
   .run(function($rootScope) {
+    // API URL encoding
     $rootScope.encode = function(url) {
       return encodeURIComponent(url).replace(/\//g, '%2F');
     };
