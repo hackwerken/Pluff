@@ -23,6 +23,7 @@ angular.module('pluffApp', [
   'ngCookies',
   'pascalprecht.translate',
   'angucomplete-alt',
+  'angular-loading-bar',
   'ngAnimate',
   'ngDialog'
 ])
