@@ -18,7 +18,7 @@ function LanguageCtrl($scope, $translate, $route) {
   };
 }
 
-function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataService, timetableData, autocompleteData, ngDialog) {
+function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, dataService, timetableData, autocompleteData, ngDialog) {
   // Get the personal schedule from the API
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
   $scope.tableTitle = timetableData.title;
@@ -135,7 +135,7 @@ function TimeTableCtrl($scope, $http, lessonService, $window, $location, dataSer
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {
     if (selected !== undefined) {
-      var title = encode(selected.originalObject.name);
+      var title = $rootScope.encode(selected.originalObject.name);
       var category = selected.originalObject.category;
 
       // Check which category is selected (room or class) to update the url
