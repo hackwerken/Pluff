@@ -43,7 +43,9 @@
             </span><br>
 
             <small>
-              <a href="search/room/{{::encode(lesson.room)}}">{{::lesson.room}}</a> - </a>
+              <span ng-if="::lesson.room !== ''">
+                <a href="search/room/{{::encode(lesson.room)}}">{{::lesson.room}}</a> -
+              </span>
 
               <span ng-repeat="class in lesson.classes">
                 <a href="search/class/{{::encode(class)}}">{{::class}}</a>{{ (!$last) ? ',' : ''}}
@@ -63,7 +65,9 @@
                   </span><br>
 
                   <small>
-                    <a href="search/room/{{::encode(lesson.room)}}">{{::lesson.room}}</a> - </a>
+                    <span ng-if="::lesson.room !== ''">
+                      <a href="search/room/{{::encode(lesson.room)}}">{{::lesson.room}}</a> -
+                    </span>
 
                     <span ng-repeat="class in lesson.classes">
                       <a href="search/class/{{::encode(class)}}">{{::class}}</a>{{ (!$last) ? ',' : ''}}
