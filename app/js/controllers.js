@@ -40,7 +40,7 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
     var weekInfo = {};
 
     // Set default weeknumber. In the weekend, use the next week number
-    weekInfo.current = parseInt(($scope.currentTime.day() === 0 || $scope.currentTime.day() === 6) ? $scope.currentTime.add(1, 'w').format('w') : $scope.currentTime.format('w'));
+    weekInfo.current = parseInt(($scope.currentTime.day() === 0 || $scope.currentTime.day() === 6) ? moment().add(1, 'w').format('w') : $scope.currentTime.format('w'));
     weekInfo.use = $scope.weekNumberUsed;
     // Set default year
     weekInfo.yearCurrent = parseInt($scope.currentTime.format('YYYY'));
