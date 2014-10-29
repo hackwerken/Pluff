@@ -27,9 +27,9 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
   // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
   $scope.hourBreaks = [0, 0, 20, 0, 0, 0, 0, 10, 0, 0, 15, 0, 20, 0, 0];
   // Fontys starts at 8.45
-  $scope.dayStartTime = $scope.currentTime.hour(8).minute(45).second(0);
+  $scope.dayStartTime = moment().hour(8).minute(45).second(0);
   // And ends at 21.40
-  $scope.dayEndTime = $scope.currentTime.hour(21).minute(40).second(0);
+  $scope.dayEndTime = moment().hour(21).minute(40).second(0);
 
   // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
   $scope.weekNumberUsed = parseInt(($scope.currentTime.day() === 0 || $scope.currentTime.day() === 6) ? $scope.currentTime.add(1, 'w').format('w') : $scope.currentTime.format('w'));
