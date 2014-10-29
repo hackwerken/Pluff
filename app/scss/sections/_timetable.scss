@@ -102,7 +102,7 @@ h3 {
   right: 1em;
 
   @include bp(break-timetable) {
-    right: -.8em;
+    right: 0;
 
     &.ng-hide-add {
       transition-delay: 600ms;
@@ -117,7 +117,7 @@ h3 {
   // Arrow
   &:after {
     bottom: 100%;
-    right: 13%;
+    right: 9%;
     border: solid transparent;
     content: " ";
     height: 0;

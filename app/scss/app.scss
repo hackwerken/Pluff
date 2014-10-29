@@ -16,12 +16,14 @@
 @import "patterns/dialog";
 @import "patterns/links";
 @import "patterns/loading";
+@import "patterns/button";
 
 // Sections
 @import "sections/top-nav";
 @import "sections/week-nav";
 @import "sections/timetable";
 @import "sections/dialog-room";
+@import "sections/dialog-teacher";
 @import "sections/footer";
 
 body {

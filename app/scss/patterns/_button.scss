@@ -1,0 +1,14 @@
+.button {
+  display: inline-block;
+  background: $body-font-color;
+  transition: 100ms linear all;
+  color: #fff;
+  padding: 1em;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: lighten($body-font-color, 7%);
+    color: #fff;
+  }
+}
