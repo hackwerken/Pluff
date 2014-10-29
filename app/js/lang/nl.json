@@ -27,5 +27,6 @@
   "FREE": "Vrij",
   "OCCUPIED": "Bezet",
   "LESSONS": "lessen",
-  "NOT_OPENED": "Fontys is vandaag niet geopend."
+  "NOT_OPENED": "Fontys is vandaag niet geopend.",
+  "TIMETABLE": "Rooster"
 }

@@ -27,5 +27,6 @@
   "FREE": "Vrij",
   "OCCUPIED": "Bezet",
   "LESSONS": "lessons",
-  "NOT_OPENED": "Fontys is not open today."
+  "NOT_OPENED": "Fontys is not open today.",
+  "TIMETABLE": "Timetable"
 }

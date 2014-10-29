@@ -18,10 +18,14 @@ function LanguageCtrl($scope, $translate, $route) {
   };
 }
 
-function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, dataService, timetableData, autocompleteData, ngDialog) {
+function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $window, $location, dataService, timetableData, autocompleteData, ngDialog) {
   // Get the personal schedule from the API
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
-  $scope.tableTitle = timetableData.title;
+
+  // Get the title of the timetable and filter some words out of it
+  var titleFilters = ['Rooster'];
+  $scope.tableTitle = timetableData.title.replace(new RegExp(titleFilters.join('|')),'');
+
   $scope.currentTime = moment();
 
   // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
@@ -163,6 +167,26 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
   };
 
   window.setInterval($scope.calculateLine, 60000); // Refresh every minute
+
+  // TODO: Fix Search form re-appearing when the search icon is clicked.
+  $scope.showSearchFormFunc = function() {
+    $scope.showSearchForm = !$scope.showSearchForm;
+    $scope.setSearchFormFocus();
+
+    // why is this returning true after the second click???
+    console.log($scope.showSearchForm);
+  };
+
+  $scope.setSearchFormFocus = function() {
+    $timeout(function() {
+      var searchInput = document.getElementById('search-query_value');
+      searchInput.focus();
+    }, 0);
+  };
+
+  $scope.searchFormFocusOut = function() {
+    $scope.showSearchForm = false;
+  };
 
 }
 

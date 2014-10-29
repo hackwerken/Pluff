@@ -1,12 +1,24 @@
+h3 {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.day-info {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
 .timetable {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 0 1em;
 
   .day {
     width: 100%;
 
     @include bp(break-timetable) {
-      width: (100% / 5); // 5 days
+      width: calc(20% - 4px);
     }
   }
 }
@@ -70,6 +82,7 @@
 .lesson {
   width: 100%;
   height: 100%;
+  padding: 0 1em;
 
   .lesson-text {
     position: relative;

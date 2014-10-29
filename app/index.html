@@ -39,23 +39,18 @@
 <body>
 
   <div class="container">
-    <h1>Pluff</h1>
-
-    <ul>
-      <li><a ng-dialog="partials/dialog-holidays.html" ng-dialog-controller="HolidaysCtrl"><span translate>HOLIDAYS</span></a></li>
-      <li><a ng-dialog="partials/dialog-free-rooms.html" ng-dialog-controller="RoomsCtrl"><span translate>FREE_ROOMS</span></a></li>
-    </ul>
-
     <ng-view></ng-view>
 
-    <p ng-controller="LanguageCtrl">
-      <em>Pluff</em> 2.0.
-      <span translate>CHOOSE_LANGUAGE</span>
-      <a ng-click="switch('nl')">NL</a>
-      <a ng-click="switch('en')">EN</a>
-      <a ng-click="switch('de')">DE</a>.
-      <span translate>HELP_US</span> <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
-    </p>
+    <footer ng-controller="LanguageCtrl">
+      <p>
+        <em>Pluff</em> 2.0.
+        <span translate>CHOOSE_LANGUAGE</span>
+        <a ng-click="switch('nl')">NL</a>
+        <a ng-click="switch('en')">EN</a>
+        <a ng-click="switch('de')">DE</a>.
+        <span translate>HELP_US</span> <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
+      </p>
+    </footer>
   </div>
 
   <!-- build:js js/plugins.min.js -->
