@@ -11,12 +11,12 @@
   z-index: $z-search-dropdown;
   position: absolute;
   margin-top: -6px;
-  background-color: #fff;
+  background-color: $light-color;
 }
 
 .angucomplete-searching {
-  color: #acacac;
-  font-size: .88em;
+  color: $body-font-color;
+  font-size: 1em;
 }
 
 .angucomplete-description {
@@ -31,6 +31,6 @@
 }
 
 .angucomplete-selected-row {
-  background-color: $primary-color;
+  background-color: $body-font-color;
   color: #fff;
 }

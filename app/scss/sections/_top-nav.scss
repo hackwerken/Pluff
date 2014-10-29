@@ -18,6 +18,7 @@
   color: $nav-main-color;
   padding-top: .1em;
   margin: 0 .2em 0 .1em;
+  pointer-events: none;
 
   @include bp(break-top-nav) {
     margin-right: .7em;
