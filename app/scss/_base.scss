@@ -31,6 +31,9 @@ $break-timetable: 50em;
   @if $point == break-top-nav {
     @media (min-width: 38.8em) { @content; }
   }
+  @if $point == very-small {
+    @media (max-width: 21.875em) { @content; }
+  }
 }
 
 // Fonts
