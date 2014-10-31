@@ -60,6 +60,8 @@ module.exports = (grunt) ->
 
     uglify:
       options:
+        compress:
+          drop_console: true
         mangle: false # preserve variables etc., bc angular doesn't like it (pussy)
         preserveComments: 'all' # we don't want no license trouble
 
