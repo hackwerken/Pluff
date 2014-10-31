@@ -57,8 +57,8 @@
     color: $nav-main-color;
 
     @include bp(break-top-nav) {
-      border-left: 1px solid rgba(255, 255, 255, .5);
-      border-right: 1px solid rgba(255, 255, 255, .5);
+      border-left: 1px solid $nav-border-color;
+      border-right: 1px solid $nav-border-color;
     }
 
     &:hover {
@@ -89,7 +89,7 @@
     display: block;
 
     @include bp(break-top-nav) {
-      border-left: 1px solid rgba(255, 255, 255, .5);
+      border-left: 1px solid $nav-border-color;
     }
 
     padding: 1.2em 1em .7em;
@@ -110,7 +110,8 @@
   background: #222;
   right: 0;
   padding: 1.2em;
-  border-top: 1px solid rgba(255, 255, 255, .5);
+  border-top: 1px solid $nav-border-color;
+  z-index: $z-search-form;
 
   transition: 100ms 0 all ease;
   display: block;

@@ -170,24 +170,25 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
 
   window.setInterval($scope.calculateLine, 60000); // Refresh every minute
 
-  // TODO: Fix Search form re-appearing when the search icon is clicked.
   $scope.showSearchFormFunc = function() {
-    $scope.showSearchForm = !$scope.showSearchForm;
-    $scope.setSearchFormFocus();
+    if (!$scope.searchFormFocused) {
+      $scope.showSearchForm = !$scope.showSearchForm;
 
-    // why is this returning true after the second click???
-    console.log($scope.showSearchForm);
-  };
-
-  $scope.setSearchFormFocus = function() {
-    $timeout(function() {
-      var searchInput = document.getElementById('search-query_value');
-      searchInput.focus();
-    }, 0);
+      if ($scope.showSearchForm === true) {
+        $timeout(function() {
+          var searchInput = document.getElementById('search-query_value');
+          searchInput.focus();
+        }, 0);
+      }
+    }
+    $scope.searchFormFocused = false;
   };
 
   $scope.searchFormFocusOut = function() {
     $scope.showSearchForm = false;
+
+    // If the form was hidden because of a focus out event, the showSearchFormFunc needs to know this
+    $scope.searchFormFocused = true;
   };
 
 }
