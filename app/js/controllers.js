@@ -23,8 +23,8 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
 
   // Get the title of the timetable and filter some words out of it
-  var titleFilters = ['Rooster'];
-  $scope.tableTitle = timetableData.title.replace(new RegExp(titleFilters.join('|')),'');
+
+  $scope.tableTitle = lessonService.getTitle(timetableData.title);
 
   $scope.currentTime = moment();
 

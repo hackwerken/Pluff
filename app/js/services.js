@@ -6,6 +6,15 @@ angular.module('pluffApp.services', [])
   .factory('lessonService', function() {
     var data = {};
 
+    // Parse the timetable title
+    data.getTitle = function(title) {
+      // We don't need some words in the title, so get them out of here.
+      var titleFilters = ['Rooster '];
+
+      return title.replace(new RegExp(titleFilters.join('|')), '');
+    };
+
+    // Checks if a hex color is too bright (contrast too low)
     data.isTooLightYIQ = function(hexcolor) {
       var r = parseInt(hexcolor.substr(0, 2), 16);
       var g = parseInt(hexcolor.substr(2, 2), 16);
@@ -15,6 +24,7 @@ angular.module('pluffApp.services', [])
       return yiq >= 200;
     };
 
+    // Generate a color based on a string
     data.generateColor = function(name, total) {
       // Generator seed, can be every high number (above ~ 6 million)
       total = total || 6000000;
