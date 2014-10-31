@@ -79,9 +79,11 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
   };
 
   $scope.previousWeek = function() {
-    // Subtract 1 from the weeknumber in use
-    $scope.weekNumberUsed--;
-    console.log('Op naar de vorige week! ' + $scope.weekNumberUsed);
+    if (!$scope.isOldWeek()) {
+      // Subtract 1 from the weeknumber in use
+      $scope.weekNumberUsed--;
+      console.log('Op naar de vorige week! ' + $scope.weekNumberUsed);
+    }
   };
 
   // Bind keybindings to the window to enable right and left arrow navigation
