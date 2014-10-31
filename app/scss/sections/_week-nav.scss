@@ -1,0 +1,42 @@
+.old-week {
+  visibility: hidden;
+}
+
+.week-nav {
+  @include bp(break-top-nav) {
+    margin-top: 2.3em;
+  }
+
+  display: flex;
+  font-size: 1.5em;
+  justify-content: center;
+  background: $light-color;
+  padding: 1em 0;
+  position: relative;
+
+  a {
+    color: $body-font-color;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.week-previous,
+.week-next {
+  &:hover {
+    fill: $primary-color;
+  }
+}
+
+.languages {
+  position: absolute;
+  right: .9em;
+  padding-top: .15em;
+  font-size: .7em;
+
+  @include bp(very-small) {
+    font-size: .5em;
+  }
+}

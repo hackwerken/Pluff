@@ -1,0 +1,59 @@
+// Colors
+// TODO: Fix color naming mess
+$primary-color: #008cba;
+$secondary-color: #e7e7e7;
+$light-color: #f9f9f9;
+$body-bg: #fff;
+$body-font-color: #222;
+
+$nav-color: #ccc;
+$nav-main-color: #fff;
+
+// Fonts
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-weight: normal;
+$body-font-style: normal;
+
+$heading-font-family: "Goudy Bookletter 1911", sans-serif;
+
+$global-radius: 3px;
+
+// Breaks
+$break-timetable: 50em;
+
+// Custom mixins
+
+@mixin bp($point) {
+  // Breakpoint mixin
+  // Design mobile-first!
+  @if $point == break-timetable {
+    @media (min-width: 50em) { @content; }
+  }
+  @if $point == break-top-nav {
+    @media (min-width: 38.8em) { @content; }
+  }
+  @if $point == very-small {
+    @media (max-width: 21.875em) { @content; }
+  }
+}
+
+// Fonts
+@font-face {
+  font-family: 'Goudy Bookletter 1911';
+  src: url('../fonts/goudy_bookletter_1911.woff') format('woff'),
+       url('../fonts/goudy_bookletter_1911.ttf') format('truetype'),
+       url('../fonts/goudy_bookletter_1911.svg#goudy_bookletter_1911') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Border-box
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

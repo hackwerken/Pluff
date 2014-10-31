@@ -1,92 +1,151 @@
 "use strict"
 path = require("path")
-shell = require("shelljs")
+
 
 module.exports = (grunt) ->
   # load all grunt tasks
   require("matchdep").filterDev("grunt-*").forEach grunt.loadNpmTasks
+  modRewrite = require("connect-modrewrite")
+
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
-
-    sass:
-      options:
-        includePaths: ["public/bower_components/foundation/scss", "public/bower_components/selectize/dist/css"],
+    compass:
       dist:
         options:
-          outputStyle: "compressed"
-        files:
-          "public/css/app.css": "public/scss/app.scss"
-          "public/css/graph.css": "public/scss/graph.scss"
+          sassDir: "app/scss"
+          cssDir: "app/css"
+          cacheDir: ".tmp"
 
     autoprefixer:
       build:
         expand: true
-        cwd: "public/css"
+        cwd: "app/css"
         src: ["**/*.css"]
-        dest: "public/css"
+        dest: "app/css"
+
+    clean:
+      dist: ["dist/*", "!.*", "!robots.txt"]
 
     copy:
       dist:
         files: [
           expand: true
-          flatten: true
-          src: ["public/bower_components/jquery/jquery.min.js",
-            "public/bower_components/selectize/dist/js/standalone/selectize.min.js",
-            "public/bower_components/d3/d3.min.js",
-            "public/bower_components/nvd3/nv.d3.min.js"]
-          dest: "public/js/vendor/"
-          filter: "isFile"
+          cwd: "app/"
+          src: ["css/**", "js/**", "img/**/*", "fonts/**", "*.html", "partials/**", "json/**/*"]
+          dest: "dist/"
         ]
 
-    concat:
+      ignore:
+        files: [
+          expand: false
+          src: [".gitignore"]
+          dest: "dist/"
+        ]
+
+    useminPrepare:
+      html: "app/*.html"
       options:
-        separator: ";"
+        dest: "dist"
+
+    usemin:
+      html: ["dist/*.html"]
+      css: ["dist/css/*.css"]
+      options:
+        dirs: ["dist"]
+
+    cssmin:
       dist:
-        src: ["public/js/vendor/selectize.min.js", "public/js/app.js", "public/js/popup.js"]
-        dest: "public/js/all.js"
-      graph:
-        src: ["public/js/vendor/d3.min.js", "public/js/vendor/nv.d3.min.js", "public/js/vendor/selectize.min.js", "public/js/graph.js"]
-        dest: "public/js/all-graph.js"
+        files:
+          'dist/css/app.css': 'dist/css/app.css',
 
     uglify:
       options:
-        compress:
-          drop_console: true
-      dist:
-        files:
-          "public/js/all.js": ["public/js/all.js"]
+        mangle: false # preserve variables etc., bc angular doesn't like it (pussy)
+        preserveComments: 'all' # we don't want no license trouble
 
     cacheBust:
       options:
-        length: 6
-        baseDir: "public/"
-      files: ["app/views/home.blade.php", "app/views/graph.blade.php", "app/views/graph-klas.blade.php"]
+        encoding: "utf8"
+        algorithm: "md5"
+        length: 12
+        # TODO: Setting this to true is better, but then this plugins renames the files and we don't want that shizzle
+        # There is a pull request for this luckily. Let's wait. (19 september 2014)
+        rename: false
+      assets:
+        files: [
+          src: ["dist/index.html"]
+        ]
+
+    buildcontrol:
+      options:
+        dir: "dist"
+        commit: true
+        push: true
+        message: "Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%"
+
+      production:
+        options:
+          remote: "https://github.com/SpaceK33z/Pluff.git"
+          branch: "production"
 
     watch:
       grunt:
         files: ["Gruntfile.coffee"]
-        tasks: ["sass"]
-      sass:
-        files: ["public/scss/{,*/}*.scss", "public/bower_components/{,*/}*.scss"]
-        tasks: ["sass", "autoprefixer"]
-      concat:
-        files: ["public/js/app.js", "public/js/popup.js"]
-        tasks: ["concat", "uglify"]
-      cacheBust:
-        files: ["public/css/{,*/}*.css", "public/js/{,*/}*.js"]
-        tasks: ["cacheBust"]
+        tasks: ["compass"]
+
+      compass:
+        files: ["app/scss/{,*/}*.scss", "app/bower_components/{,*/}*.scss"]
+        tasks: ["compass", "autoprefixer"]
+
       livereload:
-        files: ["app/{,*/}*.php", "public/js/{,*/}*.js", "public/css/{,*/}*.css", "public/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
+        files: ["app/*.html", "app/partials/*.html", "app/js/{,*/}*.js", "app/css/{,*/}*.css", "app/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
         options:
           livereload: true
 
+    connect:
+      app:
+        options:
+          port: 9000
+          hostname: "*"
+          livereload: true
+          base: "app/"
+          middleware: (connect, options) ->
+            middlewares = []
+            directory = options.directory or options.base[options.base.length - 1]
+
+            # enable Angular's HTML5 mode
+            middlewares.push modRewrite(["!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]"])
+            options.base = [options.base]  unless Array.isArray(options.base)
+            options.base.forEach (base) ->
+
+              # Serve static files.
+              middlewares.push connect.static(base)
+              return
+
+
+            # Make directory browse-able.
+            middlewares.push connect.directory(directory)
+            middlewares
+      dist:
+        options:
+          port: 9001
+          base: "dist/"
+          hostname: "*"
+          keepalive: true
+          livereload: false
+
     open:
       app:
-        path: "http://pluff.dev/"
+        path: "http://localhost:9000"
+
+      dist:
+        path: "http://localhost:9001"
 
       project:
         path: path.resolve()
 
-  grunt.registerTask "vagrant-up", ->
-    shell.exec "vagrant up"
-  grunt.registerTask "default", ["vagrant-up", "sass", "autoprefixer", "copy", "concat", "uglify", "cacheBust", "open:app", "watch"]
+      projectDist:
+        path: path.resolve() + "/dist"
+
+  grunt.registerTask "default", ["compass", "autoprefixer", "connect:app", "open:app", "watch"]
+  grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy", "concat", "uglify", "usemin", "cacheBust", "cssmin", "buildcontrol", "open:dist", "connect:dist"]

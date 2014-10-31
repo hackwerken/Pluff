@@ -1,0 +1,129 @@
+.top-nav {
+  display: flex;
+  flex-flow: row wrap;
+  background: #222;
+  padding: 0;
+  width: 100%;
+  top: 0;
+  z-index: $z-top-nav;
+
+  @include bp(break-top-nav) {
+    position: fixed;
+  }
+}
+
+.logo {
+  font-size: 2em;
+  font-weight: normal;
+  color: $nav-main-color;
+  padding-top: .1em;
+  margin: 0 .2em 0 .1em;
+  pointer-events: none;
+
+  @include bp(break-top-nav) {
+    margin-right: .7em;
+    padding: .2em 0 0 .7em;
+  }
+}
+
+.nav-list {
+  margin: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
+
+  a {
+    padding: 1em .4em;
+
+    @include bp(break-top-nav) {
+      padding-left: .7em;
+      padding-right: .7em;
+    }
+
+    display: block;
+    color: $nav-color;
+
+    &:hover {
+      color: $nav-main-color;
+    }
+
+  }
+
+  li:last-child a {
+    padding-right: 0;
+  }
+
+  .main a {
+    color: $nav-main-color;
+
+    @include bp(break-top-nav) {
+      border-left: 1px solid rgba(255, 255, 255, .5);
+      border-right: 1px solid rgba(255, 255, 255, .5);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .7);
+    }
+  }
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+}
+
+.nav-timetable-name {
+  margin: 0;
+  color: $nav-main-color;
+  font-size: 1.3em;
+  font-weight: normal;
+  padding-top: .4em;
+}
+
+.nav-search {
+  position: relative;
+  margin-left: 1em;
+
+  a {
+    display: block;
+
+    @include bp(break-top-nav) {
+      border-left: 1px solid rgba(255, 255, 255, .5);
+    }
+
+    padding: 1.2em 1em .7em;
+
+    svg {
+      fill: $nav-main-color;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .7);
+    }
+  }
+}
+
+.search-form {
+  position: absolute;
+  background: #222;
+  right: 0;
+  padding: 1.2em;
+  border-top: 1px solid rgba(255, 255, 255, .5);
+
+  transition: 100ms 0 all ease;
+  display: block;
+  opacity: 1;
+
+  &.ng-enter,
+  &.ng-leave {
+    opacity: 0;
+  }
+
+  input {
+    border: 0;
+    padding: .5em;
+    width: 15.63em;
+  }
+}
