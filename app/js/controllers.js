@@ -53,11 +53,11 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
     // Rotate the number when the year has ended
     if (weekInfo.use === 53) {
       weekInfo.use = 1;
-      weekInfo.yearUse = parseInt(weekInfo.yearCurrent) + 1;
+      weekInfo.yearUse = weekInfo.yearCurrent + 1;
     }
     if (weekInfo.use === 0) {
       weekInfo.use = 52;
-      weekInfo.yearUse = parseInt(weekInfo.yearCurrent);
+      weekInfo.yearUse = weekInfo.yearCurrent;
     }
 
     $scope.weekNumberUsed = weekInfo.use;
@@ -69,20 +69,21 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
   $scope.nextWeek = function() {
     // Add 1 to the weeknumber in use
     $scope.weekNumberUsed++;
-    console.log('Op naar volgende week! ' + $scope.weekNumberUsed);
+    console.log('To the next week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
   };
 
   $scope.currentWeek = function() {
     // Reset to the current week
     $scope.weekNumberUsed = $scope.weekNumber().current;
-    console.log('Op naar de huidige week! ' + $scope.weekNumberUsed);
+    $scope.yearUsed = $scope.weekNumber().yearCurrent;
+    console.log('To the current week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
   };
 
   $scope.previousWeek = function() {
     if (!$scope.isOldWeek()) {
       // Subtract 1 from the weeknumber in use
       $scope.weekNumberUsed--;
-      console.log('Op naar de vorige week! ' + $scope.weekNumberUsed);
+      console.log('To the previous week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
     }
   };
 
