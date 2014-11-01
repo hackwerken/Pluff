@@ -78,7 +78,7 @@ function LanguageCtrl($scope, $translate, $route) {
   };
 }
 
-function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, dataService, timetableData, ngDialog) {
+function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, weekService, dataService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
 
@@ -94,58 +94,38 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
   // And ends at 21.40
   $scope.dayEndTime = moment().hour(21).minute(40).second(0);
 
-  // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
-  $scope.weekNumberUsed = parseInt(($scope.currentTime.day() === 0 || $scope.currentTime.day() === 6) ? $scope.currentTime.add(1, 'w').format('w') : $scope.currentTime.format('w'));
-  // Set the default used year number
-  $scope.yearUsed = parseInt($scope.currentTime.format('YYYY'));
-
-  $scope.weekNumber = function() {
-    var weekInfo = {};
-
-    // Set default weeknumber. In the weekend, use the next week number
-    weekInfo.current = parseInt(($scope.currentTime.day() === 0 || $scope.currentTime.day() === 6) ? moment().add(1, 'w').format('w') : $scope.currentTime.format('w'));
-    weekInfo.use = $scope.weekNumberUsed;
-    // Set default year
-    weekInfo.yearCurrent = parseInt($scope.currentTime.format('YYYY'));
-    weekInfo.yearUse = $scope.yearUsed;
-
-    // Rotate the number when the year has ended
-    if (weekInfo.use === 53) {
-      weekInfo.use = 1;
-      weekInfo.yearUse = weekInfo.yearCurrent + 1;
+  // Watch for changes in the weeknumber
+  $scope.$watch(function() {
+    return weekService.getWeekUsed();
+  }, function(newValue) {
+    if (newValue) {
+      $scope.weekNumberUsed = newValue;
     }
-    if (weekInfo.use === 0) {
-      weekInfo.use = 52;
-      weekInfo.yearUse = weekInfo.yearCurrent;
-    }
-
-    $scope.weekNumberUsed = weekInfo.use;
-    $scope.yearUsed = weekInfo.yearUse;
-
-    return weekInfo;
-  };
+  });
 
   $scope.nextWeek = function() {
-    // Add 1 to the weeknumber in use
-    if (!$scope.isNewWeek()) {
-      $scope.weekNumberUsed++;
-      console.log('To the next week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
+    if (weekService.addWeek()) {
+      console.log('To the next week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
     }
   };
 
   $scope.currentWeek = function() {
-    // Reset to the current week
-    $scope.weekNumberUsed = $scope.weekNumber().current;
-    $scope.yearUsed = $scope.weekNumber().yearCurrent;
-    console.log('To the current week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
+    weekService.currentWeek();
+    console.log('To the current week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
   };
 
   $scope.previousWeek = function() {
-    if (!$scope.isOldWeek()) {
-      // Subtract 1 from the weeknumber in use
-      $scope.weekNumberUsed--;
-      console.log('To the previous week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
+    if (weekService.subtractWeek()) {
+      console.log('To the previous week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
     }
+  };
+
+  $scope.isOldWeek = function() {
+    return weekService.isOldWeek();
+  };
+
+  $scope.isNewWeek = function() {
+    return weekService.isNewWeek();
   };
 
   // Bind keybindings to the window to enable right and left arrow navigation
@@ -166,7 +146,7 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
 
   // Calculate the date of the current day
   $scope.currentDayDate = function(dayNumber) {
-    return moment($scope.weekNumber().yearUse + '-' + $scope.weekNumber().use + '-' + dayNumber, 'YYYY-w-d');
+    return moment(weekService.getYearUsed() + '-' + weekService.getWeekUsed() + '-' + dayNumber, 'YYYY-w-d');
   };
 
   $scope.countLessons = function(day) {
@@ -197,22 +177,6 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
     if (($scope.currentTime.day() === 6 || $scope.currentTime.day() === 0) && dayDate.day() === 1) {
       return true;
     }
-  };
-
-  // Check if the used week is older then or the same as the current week
-  $scope.isOldWeek = function() {
-    if ($scope.weekNumberUsed <= $scope.weekNumber().current && $scope.yearUsed === $scope.weekNumber().yearCurrent) {
-      return true;
-    }
-    return false;
-  };
-
-  // Check if the used week is too far away (the next year + 12 weeks)
-  $scope.isNewWeek = function() {
-    if ($scope.weekNumberUsed >= 12 && $scope.yearUsed === ($scope.weekNumber().yearCurrent + 1)) {
-      return true;
-    }
-    return false;
   };
 
   $scope.teacherDialog = function(teacherAbr) {
