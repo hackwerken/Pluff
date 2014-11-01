@@ -52,8 +52,8 @@
   </div>
 </div>
 
-<div class="timetable">
-  <div class="day" ng-repeat="day in weeks[(weekNumberUsed - 1)]" ng-class="{'activeDay': isActiveDay($index+1)}">
+<div class="timetable" ng-class="{'show-all-days': showAllDays}">
+  <div class="day" ng-repeat="day in weeks[(weekNumberUsed - 1)]" ng-class="{'active-day': isActiveDay($index+1)}">
     <h3>
       {{::'DAY_' + ($index+1) | translate}}
     </h3>
@@ -61,7 +61,7 @@
       {{currentDayDate($index+1).format('D-M')}} <strong> &ndash; {{countLessons(day)}} {{::'LESSONS' | translate}}</strong>
     </div>
     <div class="hours">
-      <div class="line" style="top:{{calculateLine()}}" ng-if="isActiveDay($index+1)"></div>
+      <div class="line" style="top:{{calculateLine()}}" ng-if="isCurrentDay($index+1)"></div>
       <div ng-repeat="hour in day" class="hour break-{{::hourBreaks[hour.number]}}">
         <div class="hour-number">{{::hour.number}}</div>
 
@@ -115,4 +115,12 @@
       </div><!-- .hour -->
     </div><!-- .hours -->
   </div><!-- .day -->
+  <a class="button button-show-all-days" ng-click="showAllDays = !showAllDays">
+    <span ng-if="showAllDays" translate>
+      HIDE_DAYS
+    </span>
+    <span ng-if="!showAllDays" translate>
+      SHOW_DAYS
+    </span>
+  </a>
 </div><!-- .timetable -->

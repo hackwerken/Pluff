@@ -27,5 +27,7 @@
     "OCCUPIED": "Besetzt",
     "LESSONS": "unterrichten",
     "NOT_OPENED": "Fontys ist heute nicht geöffnet.",
-    "TIMETABLE": "Zeitplan"
+    "TIMETABLE": "Zeitplan",
+    "SHOW_DAYS": "Alle Tage anzeigen",
+    "HIDE_DAYS": "Zeigen aktuellen Tag"
 }

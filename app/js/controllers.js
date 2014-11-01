@@ -122,8 +122,20 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
   };
 
   // Check if the current day is today
-  $scope.isActiveDay = function(dayNumber) {
+  $scope.isCurrentDay = function(dayNumber) {
     if ($scope.currentTime.isSame($scope.currentDayDate(dayNumber), 'day')) {
+      return true;
+    }
+  };
+
+  // Check if the current day is today, and if it's weekend, select monday
+  $scope.isActiveDay = function(dayNumber) {
+    var dayDate = $scope.currentDayDate(dayNumber);
+
+    if ($scope.currentTime.isSame(dayDate, 'day')) {
+      return true;
+    }
+    if (($scope.currentTime.day() === 6 || $scope.currentTime.day() === 0) && dayDate.day() === 1) {
       return true;
     }
   };

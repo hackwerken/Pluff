@@ -16,20 +16,48 @@ h3 {
 
   .day {
     width: 100%;
+    display: none;
 
     @include bp(break-timetable) {
       width: calc(20% - 4px);
+      display: block;
     }
+  }
+
+  .active-day {
+    display: block;
+  }
+
+  &.show-all-days .day {
+    display: block;
+  }
+}
+
+.button-show-all-days {
+  width: 100%;
+  margin-top: 1em;
+
+  @include bp(break-timetable) {
+    display: none;
   }
 }
 
 .hours {
   position: relative;
-  height: 75em;
+  height: 66em;
+
+  @include bp(break-timetable) {
+    height: 75em;
+  }
 }
 
 .hour {
-  height: calc(100%/15.3); // 14 lessons of 50 minutes + 65 minutes break (= 1.3 hour)
+  height: calc(100% / 14);
+
+  @include bp(break-timetable) {
+    height: calc(100% / 15.3); // 14 lessons of 50 minutes + 65 minutes break (= 1.3 hour)
+  }
+
   border-bottom: 1px solid $secondary-color;
   color: #fff;
   position: relative;
@@ -65,17 +93,19 @@ h3 {
     }
   }
 
-  &.break-10 {
-    // TODO: Simplify calculation
-    margin-bottom: calc(400% / 76.5);
-  }
+  // TODO: Fix breaks for small screens
+  @include bp(break-timetable) {
+    &.break-10 {
+      margin-bottom: calc(400% / 76.5);
+    }
 
-  &.break-15 {
-    margin-bottom: calc(400% / 51);
-  }
+    &.break-15 {
+      margin-bottom: calc(400% / 51);
+    }
 
-  &.break-20 {
-    margin-bottom: calc(400% / 38.25);
+    &.break-20 {
+      margin-bottom: calc(400% / 38.25);
+    }
   }
 }
 
@@ -133,10 +163,12 @@ h3 {
 
 
 .line {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 0, 0, .5);
-  position: absolute;
-  top: 0;
-  z-index: $z-tt-line;
+  @include bp(break-timetable) {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 0, 0, .5);
+    position: absolute;
+    top: 0;
+    z-index: $z-tt-line;
+  }
 }

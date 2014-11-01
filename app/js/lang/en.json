@@ -27,5 +27,7 @@
   "OCCUPIED": "Bezet",
   "LESSONS": "lessons",
   "NOT_OPENED": "Fontys is not open today.",
-  "TIMETABLE": "Timetable"
+  "TIMETABLE": "Timetable",
+  "SHOW_DAYS": "Show all days",
+  "HIDE_DAYS": "Show current day"
 }

@@ -27,5 +27,7 @@
   "OCCUPIED": "Bezet",
   "LESSONS": "lessen",
   "NOT_OPENED": "Fontys is vandaag niet geopend.",
-  "TIMETABLE": "Rooster"
+  "TIMETABLE": "Rooster",
+  "SHOW_DAYS": "Toon alle dagen",
+  "HIDE_DAYS": "Toon alleen huidige dag"
 }
