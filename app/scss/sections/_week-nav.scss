@@ -3,10 +3,6 @@
 }
 
 .week-nav {
-  @include bp(break-top-nav) {
-    margin-top: 2.3em;
-  }
-
   display: flex;
   font-size: 1.5em;
   justify-content: center;

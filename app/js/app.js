@@ -31,13 +31,6 @@ angular.module('pluffApp', [
         templateUrl: 'partials/timetable.html',
         controller: 'TimeTableCtrl',
         resolve: {
-          // Load the autocomplete data first.
-          // If this data can't be loaded the user isn't authenticated yet
-          autocompleteData: function(dataService) {
-            return dataService.getSuggestions().then(function(payload) {
-              return payload.data;
-            });
-          },
           // Load the timetable JSON before the controller
           timetableData: function(dataService) {
             return dataService.getTimeTable('/me').then(function(payload) {
@@ -50,11 +43,6 @@ angular.module('pluffApp', [
         templateUrl: 'partials/timetable.html',
         controller: 'TimeTableCtrl',
         resolve: {
-          autocompleteData: function(dataService) {
-            return dataService.getSuggestions().then(function(payload) {
-              return payload.data;
-            });
-          },
           timetableData: function($route, dataService) {
             var categoryUrl;
             var queryUrl = $route.current.params.query;
@@ -99,6 +87,10 @@ angular.module('pluffApp', [
             });
           }
         }
+      })
+      .otherwise({
+        templateUrl: 'partials/errors/missing.html',
+        controller: 'ErrorCtrl'
       });
 
     // We don't want no fake hashbangs we want the real shite

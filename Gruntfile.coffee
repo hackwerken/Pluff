@@ -116,7 +116,7 @@ module.exports = (grunt) ->
             directory = options.directory or options.base[options.base.length - 1]
 
             # enable Angular's HTML5 mode
-            middlewares.push modRewrite(["!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]"])
+            middlewares.push modRewrite(["!\\.html|\\.js|\\.svg|\\.css|\\.woff|\\.ttf|\\.png$ /index.html [L]"])
             options.base = [options.base]  unless Array.isArray(options.base)
             options.base.forEach (base) ->
 

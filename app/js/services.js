@@ -6,12 +6,18 @@ angular.module('pluffApp.services', [])
   .factory('lessonService', function() {
     var data = {};
 
+    data.title = '';
+
     // Parse the timetable title
-    data.getTitle = function(title) {
+    data.setTitle = function(title) {
       // We don't need some words in the title, so get them out of here.
       var titleFilters = ['Rooster '];
 
-      return title.replace(new RegExp(titleFilters.join('|')), '');
+      data.title = title.replace(new RegExp(titleFilters.join('|')), '');
+    };
+
+    data.getTitle = function() {
+      return data.title;
     };
 
     // Checks if a hex color is too bright (contrast too low)
@@ -120,7 +126,7 @@ angular.module('pluffApp.services', [])
             // This is the most reliable method I found yet.
             // If you know something better, PLEASE don't hesitate to create a PR. You would be my hero.
             window.location = APIconfig.loginUrl;
-          });
+          });;
       },
       getTimeTable: function(input) {
         return $http.jsonp(APIconfig.url('/schedule' + input + '?expandTeacher=false&IncludeStartOfWeek=true&daysAhead=90'));

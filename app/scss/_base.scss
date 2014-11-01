@@ -58,3 +58,13 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
+// Angular stuff
+[ng\:cloak],
+[ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+

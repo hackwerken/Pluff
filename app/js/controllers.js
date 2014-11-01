@@ -2,11 +2,71 @@
 
 /* Controllers */
 angular.module('pluffApp.controllers', [])
+  .controller('MainCtrl', MainCtrl)
   .controller('LanguageCtrl', LanguageCtrl)
+  .controller('NavCtrl', NavCtrl)
   .controller('TimeTableCtrl', TimeTableCtrl)
   .controller('HolidaysCtrl', HolidaysCtrl)
   .controller('RoomsCtrl', RoomsCtrl)
-  .controller('ColorsCtrl', ColorsCtrl);
+  .controller('ColorsCtrl', ColorsCtrl)
+  .controller('ErrorCtrl', ErrorCtrl);
+
+function MainCtrl($scope) {
+  // Show footer when ngView is loaded
+  $scope.$on('$viewContentLoaded', function(){
+    $scope.showFooter = true;
+  });
+}
+
+function NavCtrl($scope, dataService, $timeout, $rootScope, $location, lessonService) {
+  // Get timetable title (from TimeTableCtrl) and update if the title changes
+  $scope.$watch(function() {
+    return lessonService.getTitle();
+  }, function(newValue) {
+    if (newValue) {
+      $scope.tableTitle = newValue;
+    }
+  });
+
+  // If this data can't be loaded the user isn't authenticated yet
+  // Add the resulting array in the global scope for the autocomplete plugin to use it
+  dataService.getSuggestions().then(function(payload) {
+    $scope.searchAuto = payload.data;
+  });
+
+  // Fired when a search suggestion is selected
+  $scope.searchSelected = function(selected) {
+    if (selected !== undefined) {
+      var title = $rootScope.encode(selected.originalObject.name);
+      var category = selected.originalObject.category;
+
+      // Check which category is selected (room or class) to update the url
+      console.log('Autocomplete ' + category + ' ' + title);
+      $location.path('/search/' + category + '/' + title);
+    }
+  };
+
+  $scope.showSearchFormFunc = function() {
+    if (!$scope.searchFormFocused) {
+      $scope.showSearchForm = !$scope.showSearchForm;
+
+      if ($scope.showSearchForm === true) {
+        $timeout(function() {
+          var searchInput = document.getElementById('search-query_value');
+          searchInput.focus();
+        }, 0);
+      }
+    }
+    $scope.searchFormFocused = false;
+  };
+
+  $scope.searchFormFocusOut = function() {
+    $scope.showSearchForm = false;
+
+    // If the form was hidden because of a focus out event, the showSearchFormFunc needs to know this
+    $scope.searchFormFocused = true;
+  };
+}
 
 function LanguageCtrl($scope, $translate, $route) {
   $scope.switch = function($lang) {
@@ -18,13 +78,12 @@ function LanguageCtrl($scope, $translate, $route) {
   };
 }
 
-function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $window, $location, dataService, timetableData, autocompleteData, ngDialog) {
+function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, dataService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
 
   // Get the title of the timetable and filter some words out of it
-
-  $scope.tableTitle = lessonService.getTitle(timetableData.title);
+  $scope.tableTitle = lessonService.setTitle(timetableData.title);
 
   $scope.currentTime = moment();
 
@@ -156,21 +215,6 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
     return false;
   };
 
-  // Add the resulting array in the global scope for the autocomplete plugin to use it
-  $scope.searchAuto = autocompleteData;
-
-  // Fired when a search suggestion is selected
-  $scope.searchSelected = function(selected) {
-    if (selected !== undefined) {
-      var title = $rootScope.encode(selected.originalObject.name);
-      var category = selected.originalObject.category;
-
-      // Check which category is selected (room or class) to update the url
-      console.log('Autocomplete ' + category + ' ' + title);
-      $location.path('/search/' + category + '/' + title);
-    }
-  };
-
   $scope.teacherDialog = function(teacherAbr) {
     // When the API data is loaded, open the dialog
     dataService.getTeacher(teacherAbr).then(function(payload) {
@@ -192,28 +236,6 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
   };
 
   window.setInterval($scope.calculateLine, 60000); // Refresh every minute
-
-  $scope.showSearchFormFunc = function() {
-    if (!$scope.searchFormFocused) {
-      $scope.showSearchForm = !$scope.showSearchForm;
-
-      if ($scope.showSearchForm === true) {
-        $timeout(function() {
-          var searchInput = document.getElementById('search-query_value');
-          searchInput.focus();
-        }, 0);
-      }
-    }
-    $scope.searchFormFocused = false;
-  };
-
-  $scope.searchFormFocusOut = function() {
-    $scope.showSearchForm = false;
-
-    // If the form was hidden because of a focus out event, the showSearchFormFunc needs to know this
-    $scope.searchFormFocused = true;
-  };
-
 }
 
 // Holidays dialog
@@ -238,7 +260,7 @@ function RoomsCtrl($scope, roomService) {
 
 }
 
-// Colors controllers
+// Colors controller (only for testing purposes)
 function ColorsCtrl($scope, colorService, lessonService) {
   colorService.getSubjects().then(function(payload) {
     $scope.subjects = payload.data;
@@ -248,4 +270,9 @@ function ColorsCtrl($scope, colorService, lessonService) {
     return lessonService.generateColor(name);
   };
 
+}
+
+// Error controller
+function ErrorCtrl() {
+  //
 }
