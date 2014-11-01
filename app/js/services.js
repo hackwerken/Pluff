@@ -3,7 +3,7 @@
 /* Services */
 
 angular.module('pluffApp.services', [])
-  .factory('lessonService', function() {
+  .factory('lessonService', function(moment) {
     var data = {};
 
     data.title = '';
@@ -117,7 +117,7 @@ angular.module('pluffApp.services', [])
 
     return data;
   })
-  .factory('weekService', function() {
+  .factory('weekService', function(moment) {
     var data = {};
 
     var time = moment();
@@ -196,7 +196,7 @@ angular.module('pluffApp.services', [])
       }
     };
   })
-  .factory('dataService', function($http, $log, $q) {
+  .factory('dataService', function($http, $window) {
     return {
       getSuggestions: function() {
         return $http.jsonp(APIconfig.url('/schedule/autocomplete'))
@@ -204,7 +204,7 @@ angular.module('pluffApp.services', [])
             // User isn't logged in, so redirect to portal
             // This is the most reliable method I found yet.
             // If you know something better, PLEASE don't hesitate to create a PR. You would be my hero.
-            window.location = APIconfig.loginUrl;
+            $window.location = APIconfig.loginUrl;
           });;
       },
       getTimeTable: function(input) {
@@ -215,7 +215,7 @@ angular.module('pluffApp.services', [])
       }
     };
   })
-  .factory('holidayService', function($http, $log, $q) {
+  .factory('holidayService', function($http, $log, $q, moment) {
     return {
       getHolidays: function() {
         // Get the json with all the holiday dates in it

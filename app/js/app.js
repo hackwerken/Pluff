@@ -113,4 +113,6 @@ angular.module('pluffApp', [
     $rootScope.encode = function(url) {
       return encodeURIComponent(url).replace(/\//g, '%2F');
     };
-  });
+  })
+  // Make moment injectable
+  .constant('moment', moment);

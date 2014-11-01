@@ -68,17 +68,17 @@ function NavCtrl($scope, dataService, $timeout, $rootScope, $location, lessonSer
   };
 }
 
-function LanguageCtrl($scope, $translate, $route) {
+function LanguageCtrl($scope, $translate, $route, $window) {
   $scope.switch = function($lang) {
     // Switch to the given language
     $translate.use($lang);
     // Full page reload to apply all languages
     // This is necessary because of the one-time bindings used for performance reasons
-    window.location.reload();
+    $window.location.reload();
   };
 }
 
-function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, weekService, dataService, timetableData, ngDialog) {
+function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, weekService, dataService, timetableData, ngDialog, moment) {
   // Get the personal schedule from the API
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
 
@@ -199,7 +199,7 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
     return percentageRounded + '%';
   };
 
-  window.setInterval($scope.calculateLine, 60000); // Refresh every minute
+  $window.setInterval($scope.calculateLine, 60000); // Refresh every minute
 }
 
 // Holidays dialog
@@ -212,7 +212,7 @@ function HolidaysCtrl($scope, holidayService) {
 }
 
 // Holidays dialog
-function RoomsCtrl($scope, roomService) {
+function RoomsCtrl($scope, roomService, moment) {
   // Load all the rooms with occupied information if it isn't sunday (API gives an error on sundays)
   var isSunday = moment().day() === 0;
 
