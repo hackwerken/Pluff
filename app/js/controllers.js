@@ -18,7 +18,7 @@ function MainCtrl($scope) {
   });
 }
 
-function NavCtrl($scope, dataService, $timeout, $rootScope, $location, lessonService) {
+function NavCtrl($scope, dataService, $timeout, $rootScope, $location, lessonService, dayService) {
   // Get timetable title (from TimeTableCtrl) and update if the title changes
   $scope.$watch(function() {
     return lessonService.getTitle();
@@ -78,21 +78,12 @@ function LanguageCtrl($scope, $translate, $route, $window) {
   };
 }
 
-function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, weekService, dataService, timetableData, ngDialog, moment) {
+function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $location, weekService, dataService, dayService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   $scope.weeks = lessonService.getTimeTable(timetableData.data);
 
   // Get the title of the timetable and filter some words out of it
   $scope.tableTitle = lessonService.setTitle(timetableData.title);
-
-  $scope.currentTime = moment();
-
-  // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
-  $scope.hourBreaks = [0, 0, 20, 0, 0, 0, 0, 10, 0, 0, 15, 0, 20, 0, 0];
-  // Fontys starts at 8.45
-  $scope.dayStartTime = moment().hour(8).minute(45).second(0);
-  // And ends at 21.40
-  $scope.dayEndTime = moment().hour(21).minute(40).second(0);
 
   // Watch for changes in the weeknumber
   $scope.$watch(function() {
@@ -144,39 +135,22 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
     }
   });
 
-  // Calculate the date of the current day
   $scope.currentDayDate = function(dayNumber) {
-    return moment(weekService.getYearUsed() + '-' + weekService.getWeekUsed() + '-' + dayNumber, 'YYYY-w-d');
+    return dayService.getCurrentDayDate(dayNumber);
   };
 
   $scope.countLessons = function(day) {
-    var totalLessons = 0;
-
-    day.forEach(function(hour) {
-      var hourCount = parseInt(hour.lessons.length);
-      totalLessons = totalLessons + hourCount;
-    });
-
-    return totalLessons;
+    return lessonService.countLessons(day);
   };
 
   // Check if the current day is today
   $scope.isCurrentDay = function(dayNumber) {
-    if ($scope.currentTime.isSame($scope.currentDayDate(dayNumber), 'day')) {
-      return true;
-    }
+    return dayService.isCurrentDay(dayNumber);
   };
 
   // Check if the current day is today, and if it's weekend, select monday
   $scope.isActiveDay = function(dayNumber) {
-    var dayDate = $scope.currentDayDate(dayNumber);
-
-    if ($scope.currentTime.isSame(dayDate, 'day')) {
-      return true;
-    }
-    if (($scope.currentTime.day() === 6 || $scope.currentTime.day() === 0) && dayDate.day() === 1) {
-      return true;
-    }
+    return dayService.isActiveDay(dayNumber);
   };
 
   $scope.teacherDialog = function(teacherAbr) {
@@ -192,11 +166,7 @@ function TimeTableCtrl($scope, $rootScope, $http, lessonService, $window, $locat
   };
 
   $scope.calculateLine = function() {
-    var now = moment();
-    var percentageComplete = (now - $scope.dayStartTime) / ($scope.dayEndTime - $scope.dayStartTime) * 100;
-    var percentageRounded = (Math.round(percentageComplete * 100) / 100);
-
-    return percentageRounded + '%';
+    dayService.setCalculateLine();
   };
 
   $window.setInterval($scope.calculateLine, 60000); // Refresh every minute
