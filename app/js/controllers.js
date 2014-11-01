@@ -68,8 +68,10 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
 
   $scope.nextWeek = function() {
     // Add 1 to the weeknumber in use
-    $scope.weekNumberUsed++;
-    console.log('To the next week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
+    if (!$scope.isNewWeek()) {
+      $scope.weekNumberUsed++;
+      console.log('To the next week! ' + $scope.weekNumberUsed + ' year:' + $scope.yearUsed);
+    }
   };
 
   $scope.currentWeek = function() {
@@ -129,6 +131,14 @@ function TimeTableCtrl($scope, $rootScope, $http, $timeout, lessonService, $wind
   // Check if the used week is older then or the same as the current week
   $scope.isOldWeek = function() {
     if ($scope.weekNumberUsed <= $scope.weekNumber().current && $scope.yearUsed === $scope.weekNumber().yearCurrent) {
+      return true;
+    }
+    return false;
+  };
+
+  // Check if the used week is too far away (the next year + 12 weeks)
+  $scope.isNewWeek = function() {
+    if ($scope.weekNumberUsed >= 12 && $scope.yearUsed === ($scope.weekNumber().yearCurrent + 1)) {
       return true;
     }
     return false;
