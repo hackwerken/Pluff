@@ -43,8 +43,8 @@
 
     <ul class="nav-list">
       <li class="main"><a href="/" translate>TIMETABLE</a></li>
-      <li><a ng-dialog="partials/dialog-holidays.html" ng-dialog-controller="HolidaysCtrl"><span translate>HOLIDAYS</span></a></li>
-      <li><a ng-dialog="partials/dialog-free-rooms.html" ng-dialog-controller="RoomsCtrl"><span translate>FREE_ROOMS</span></a></li>
+      <li><a ng-dialog="partials/dialog-holidays.html" ng-dialog-controller="HolidayCtrl"><span translate>HOLIDAYS</span></a></li>
+      <li><a ng-dialog="partials/dialog-free-rooms.html" ng-dialog-controller="RoomCtrl"><span translate>FREE_ROOMS</span></a></li>
     </ul>
     <div class="nav-right">
       <h2 class="nav-timetable-name" ng-show="tableTitle">{{tableTitle}}</h2>
@@ -98,8 +98,26 @@
   <!-- endbuild -->
   <!-- build:js js/bigapp.min.js -->
   <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/config.js"></script>
+  <!-- Services -->
+  <script src="js/services/data.js"></script>
+  <script src="js/services/day.js"></script>
+  <script src="js/services/week.js"></script>
+  <script src="js/services/lesson.js"></script>
+  <script src="js/services/room.js"></script>
+  <script src="js/services/color.js"></script>
+  <script src="js/services/holiday.js"></script>
+  <!-- Controllers -->
   <script src="js/controllers.js"></script>
+  <script src="js/controllers/main.js"></script>
+  <script src="js/controllers/language.js"></script>
+  <script src="js/controllers/navigation.js"></script>
+  <script src="js/controllers/timetable.js"></script>
+  <script src="js/controllers/holiday.js"></script>
+  <script src="js/controllers/room.js"></script>
+  <script src="js/controllers/color.js"></script>
+  <script src="js/controllers/error.js"></script>
   <!-- endbuild -->
 </body>
 </html>
