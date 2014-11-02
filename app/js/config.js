@@ -4,8 +4,15 @@ app.config(function($translateProvider, $cookieStoreProvider) {
     prefix: 'js/lang/',
     suffix: '.json'
   });
-  // Dutch is the most used language in here ofcourse, so that's the default
-  $translateProvider.preferredLanguage('nl');
+  // TODO: Needs more testing, but works for now
+  $translateProvider.registerAvailableLanguageKeys(['en', 'de', 'nl'], {
+    'en_US': 'en',
+    'en_UK': 'en',
+    'de_DE': 'de',
+    'de_CH': 'de',
+    'nl_NL': 'nl',
+    'nl_BE': 'nl'
+  }).determinePreferredLanguage();
   // Save the user's choice in a cookie
   $translateProvider.useCookieStorage();
 });
