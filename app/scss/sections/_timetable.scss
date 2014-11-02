@@ -12,7 +12,9 @@ h3 {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin: 0 1em;
+  margin: 0 auto;
+  padding: 0 1em;
+  max-width: 75em;
 
   .day {
     width: 100%;
