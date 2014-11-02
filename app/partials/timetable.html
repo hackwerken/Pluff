@@ -4,7 +4,7 @@
       <path d="M57.596 69.672c1.072 1.084 1.072 2.832 0 3.916s-2.804 1.084-3.876 0l-31.32-31.628c-1.072-1.084-1.072-2.836 0-3.916l31.32-31.632c1.072-1.084 2.804-1.084 3.876 0s1.072 2.832 0 3.916l-28.56 29.672 28.56 29.672z"></path>
     </svg>
   </a>
-  <a class="week-current" ng-click="currentWeek()">week {{weekNumberUsed}}</a>
+  <a class="week-current" ng-click="currentWeek()">{{::'WEEK' | translate}} {{weekNumberUsed}}</a>
   <a class="week-next" ng-click="nextWeek()" ng-class="{'unclickable-week': isNewWeek()}">
     <svg version="1.1" width="25" height="25" viewBox="0 0 80 80">
       <path transform="rotate(180 40 40)" d="M57.596 69.672c1.072 1.084 1.072 2.832 0 3.916s-2.804 1.084-3.876 0l-31.32-31.628c-1.072-1.084-1.072-2.836 0-3.916l31.32-31.632c1.072-1.084 2.804-1.084 3.876 0s1.072 2.832 0 3.916l-28.56 29.672 28.56 29.672z"></path>
