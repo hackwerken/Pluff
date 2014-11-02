@@ -2,6 +2,7 @@ a {
   color: $primary-color;
   cursor: pointer;
   text-decoration: none;
+  transition: 100ms linear all;
 
   &:hover {
     color: darken($primary-color, 10%);
