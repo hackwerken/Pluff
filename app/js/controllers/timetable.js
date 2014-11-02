@@ -5,6 +5,8 @@ appCtrls.controller('TimeTableCtrl', function($scope, $rootScope, $http, lessonS
   // Get the title of the timetable and filter some words out of it
   $scope.tableTitle = lessonService.setTitle(timetableData.title);
 
+  $scope.hourBreaks = dayService.getHourBreaks();
+
   // Watch for changes in the weeknumber
   $scope.$watch(function() {
     return weekService.getWeekUsed();

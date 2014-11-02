@@ -1,5 +1,9 @@
 footer {
   background: $light-color;
   padding: 1em;
-  margin-top: 4.5em;
+  margin-top: 1em;
+
+  @include bp(break-timetable) {
+    margin-top: 0;
+  }
 }
