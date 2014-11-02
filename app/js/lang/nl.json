@@ -29,5 +29,11 @@
   "NOT_OPENED": "Fontys is vandaag niet geopend.",
   "TIMETABLE": "Rooster",
   "SHOW_DAYS": "Toon alle dagen",
-  "HIDE_DAYS": "Toon alleen huidige dag"
+  "HIDE_DAYS": "Toon alleen huidige dag",
+  "SHOW_TIMETABLE": "Bekijk rooster",
+  "OFFICE": "Kantoor:",
+  "TITLE": "Titel:",
+  "TEL": "Tel:",
+  "MAIL": "Mail:",
+  "FULL_NAME": "Volledige naam:"
 }

@@ -29,5 +29,11 @@
   "NOT_OPENED": "Fontys is not open today.",
   "TIMETABLE": "Timetable",
   "SHOW_DAYS": "Show all days",
-  "HIDE_DAYS": "Show current day"
+  "HIDE_DAYS": "Show current day",
+  "SHOW_TIMETABLE": "Show timetable",
+  "OFFICE": "Office:",
+  "TITLE": "Title:",
+  "TEL": "Tel:",
+  "MAIL": "Mail:",
+  "FULL_NAME": "Full name:"
 }
