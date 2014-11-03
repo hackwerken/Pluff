@@ -88,7 +88,7 @@ appCtrls.controller('TimeTableCtrl', function($scope, $rootScope, $http, lessonS
   };
 
   $scope.calculateLine = function() {
-    dayService.setCalculateLine();
+    return dayService.setCalculateLine();
   };
 
   $window.setInterval($scope.calculateLine, 60000); // Refresh every minute
