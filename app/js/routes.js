@@ -9,6 +9,8 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         timetableData: function(dataService) {
           return dataService.getTimeTable('/me').then(function(payload) {
             return payload.data;
+          }, function() {
+            return false;
           });
         }
       }
@@ -45,6 +47,8 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
 
           return dataService.getTimeTable('/' + categoryUrl + '/' + queryUrl).then(function(payload) {
             return payload.data;
+          }, function() {
+            return false;
           });
         }
       }

@@ -1,9 +1,14 @@
 appCtrls.controller('TimeTableCtrl', function($scope, $rootScope, $http, lessonService, $window, $location, weekService, dataService, dayService, timetableData, ngDialog) {
   // Get the personal schedule from the API
-  $scope.weeks = lessonService.getTimeTable(timetableData.data);
+  if (timetableData !== false) {
+    // Get the title of the timetable and filter some words out of it
+    $scope.tableTitle = lessonService.setTitle(timetableData.title);
 
-  // Get the title of the timetable and filter some words out of it
-  $scope.tableTitle = lessonService.setTitle(timetableData.title);
+    $scope.weeks = lessonService.getTimeTable(timetableData.data);
+  }
+  else {
+    $scope.showError = true;
+  }
 
   $scope.hourBreaks = dayService.getHourBreaks();
 

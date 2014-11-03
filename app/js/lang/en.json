@@ -36,5 +36,8 @@
   "TITLE": "Title:",
   "TEL": "Tel:",
   "MAIL": "Mail:",
-  "FULL_NAME": "Full name:"
+  "FULL_NAME": "Full name:",
+  "TIMETABLE_NOT_FOUND": "No timetable",
+  "TIMETABLE_NOT_FOUND_LONG": "We couldn't find a timetable.",
+  "TIMETABLE_TEMP_EXPLANATION": "At this moment, FHICT is adding timetables to the acounts of students. It is possible your timetable hasn't been added to your account yet. Meanwhile, use the search (top-right) to manually find your class."
 }

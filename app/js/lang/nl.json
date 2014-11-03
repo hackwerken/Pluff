@@ -36,5 +36,8 @@
   "TITLE": "Titel:",
   "TEL": "Tel:",
   "MAIL": "Mail:",
-  "FULL_NAME": "Volledige naam:"
+  "FULL_NAME": "Volledige naam:",
+  "TIMETABLE_NOT_FOUND": "Geen rooster",
+  "TIMETABLE_NOT_FOUND_LONG": "Er kon geen rooster gevonden worden.",
+  "TIMETABLE_TEMP_EXPLANATION": "Het FHICT is nog bezig met het toevoegen van klassen aan de accounts van studenten. Het kan zijn dat hierdoor je rooster nog niet zichtbaar is. Je kunt nog altijd handmatig zoeken op je klas met de zoekknop rechtsboven."
 }
