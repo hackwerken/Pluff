@@ -31,7 +31,7 @@
 
     &:before {
       background: transparent;
-      color: #bbb;
+      color: $dialog-close-color;
       content: '\00D7';
       font-size: 1.63em;
       font-weight: 400;
@@ -46,7 +46,7 @@
 
     &:hover:before,
     &:active:before {
-      color: #777;
+      color: lighten($dialog-close-color, 20%);
     }
   }
 
@@ -57,7 +57,7 @@
 
 .ngdialog-overlay {
   position: fixed;
-  background: rgba(0, 0, 0, .4);
+  background: $dialog-overlay-bg;
   top: 0;
   right: 0;
   bottom: 0;

@@ -1,8 +1,7 @@
 // Colors
-// TODO: Fix color naming mess
 $primary-color: #008cba;
 $secondary-color: #e7e7e7;
-$light-color: #f9f9f9;
+$secondary-light-color: #f9f9f9;
 $body-bg: #fff;
 $body-font-color: #222;
 
@@ -11,6 +10,13 @@ $nav-main-color: #fff;
 $nav-border-color: rgba(255, 255, 255, .5);
 $nav-hover-bg: rgba(255, 255, 255, .1);
 $nav-hover-border: rgba(255, 255, 255, .7);
+
+$timetable-link: rgba(255, 255, 255, .8);
+$multiple-lessons-bg: rgba(0, 0, 0, .8);
+$time-line-bg: rgba(255, 0, 0, .5);
+
+$dialog-overlay-bg: rgba(0, 0, 0, .4);
+$dialog-close-color: $body-font-color;
 
 // Fonts
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;

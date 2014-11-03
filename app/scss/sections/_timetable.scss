@@ -16,23 +16,24 @@ h3 {
   padding: 0 1em;
   max-width: 75em;
 
-  .day {
-    width: 100%;
-    display: none;
-
-    @include bp(break-timetable) {
-      width: calc(20% - 4px);
-      display: block;
-    }
-  }
-
-  .active-day {
-    display: block;
-  }
 
   &.show-all-days .day {
     display: block;
   }
+}
+
+.day {
+  width: 100%;
+  display: none;
+
+  @include bp(break-timetable) {
+    width: calc(20% - 4px);
+    display: block;
+  }
+}
+
+.active-day {
+  display: block;
 }
 
 .button-show-all-days {
@@ -88,7 +89,7 @@ h3 {
   }
 
   a {
-    color: rgba(255, 255, 255, .8);
+    color: $timetable-link;
 
     &:hover {
       color: lighten($secondary-color, 10%);
@@ -123,7 +124,7 @@ h3 {
 }
 
 .hidden-lessons {
-  background: rgba(0, 0, 0, .8);
+  background: $multiple-lessons-bg;
   width: auto;
   position: absolute;
   z-index: 1000;
@@ -156,8 +157,8 @@ h3 {
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, .8);
+    border-color: transparent;
+    border-bottom-color: $multiple-lessons-bg;
     border-width: 10px;
     margin-left: -10px;
   }
@@ -168,7 +169,7 @@ h3 {
   @include bp(break-timetable) {
     width: 100%;
     height: 1px;
-    background: rgba(255, 0, 0, .5);
+    background: $time-line-bg;
     position: absolute;
     top: 0;
     z-index: $z-tt-line;
