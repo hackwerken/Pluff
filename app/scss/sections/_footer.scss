@@ -2,6 +2,8 @@ footer {
   background: $secondary-light-color;
   padding: .5em 1em;
   margin-top: 1em;
+  position: relative;
+  z-index: $z-footer;
 
   p {
     margin-top: 1.5em;

@@ -34,11 +34,17 @@ appServices.factory('dayService', function(moment, weekService) {
     },
     setCalculateLine: function() {
       var now = moment();
-      var percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
-      console.log(percentageComplete);
-      var percentageRounded = (Math.round(percentageComplete * 100) / 100);
 
-      return percentageRounded + '%';
+      if (data.dayEndTime > now && data.dayStartTime < now) {
+        var percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
+        console.log(percentageComplete);
+        var percentageRounded = (Math.round(percentageComplete * 100) / 100);
+
+        return percentageRounded + '%';
+      }
+
+      // Hide line under footer when there are no lessons. Quick 'n dirty
+      return '101%';
     }
   };
 });
