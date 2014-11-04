@@ -1,9 +1,19 @@
 footer {
   background: $secondary-light-color;
-  padding: 1em;
+  padding: .5em 1em;
   margin-top: 1em;
+
+  p {
+    margin-top: 1.5em;
+  }
 
   @include bp(break-timetable) {
     margin-top: 0;
   }
+}
+
+.container {
+  width: 100%;
+  max-width: 75em;
+  margin: 0 auto;
 }

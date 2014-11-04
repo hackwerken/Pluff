@@ -76,10 +76,12 @@
   <ng-view></ng-view>
 
   <footer ng-cloak ng-if="showFooter">
-    <p>
-      <em>Pluff</em> 2.0.
-      <span translate>HELP_US</span> <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>!
-    </p>
+    <div class="container">
+      <p>
+        <em>Pluff</em> 2.0.
+        <span translate>HELP_US</span> <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>! <a ng-dialog="partials/dialog-faq.html" class="button small">{{::'FAQ_SHORT' | translate}}</a>
+      </p>
+    </div>
   </footer>
 
   <!-- build:js js/plugins.min.js -->
