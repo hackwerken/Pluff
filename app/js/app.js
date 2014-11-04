@@ -12,10 +12,9 @@ var app = angular.module('pluffApp', [
   'ngDialog'
 ]);
 
-app.run(function($rootScope) {
-  // API URL encoding
+app.run(function($rootScope, dataService) {
   $rootScope.encode = function(url) {
-    return encodeURIComponent(url).replace(/\//g, '%2F');
+    return dataService.encode(url);
   };
 });
 

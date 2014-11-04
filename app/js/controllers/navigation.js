@@ -1,4 +1,4 @@
-appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $rootScope, $location, lessonService, dayService) {
+appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location, lessonService, dayService) {
   // Get timetable title (from TimeTableCtrl) and update if the title changes
   $scope.$watch(function() {
     return lessonService.getTitle();
@@ -17,7 +17,7 @@ appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $rootScop
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {
     if (selected !== undefined) {
-      var title = $rootScope.encode(selected.originalObject.name);
+      var title = dataService.encode(selected.originalObject.name);
       var category = selected.originalObject.category;
 
       // Check which category is selected (room or class) to update the url

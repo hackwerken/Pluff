@@ -30,6 +30,10 @@ appServices.factory('dataService', function($http, $window) {
     },
     getConfig: function() {
       return config;
+    },
+    // API URL encoding
+    encode: function(url) {
+      return encodeURIComponent(url);
     }
   };
 });
