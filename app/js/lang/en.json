@@ -43,7 +43,7 @@
 
   "FAQ_SHORT": "FAQ",
   "FAQ_LONG": "Frequently Asked Questions",
-  "FAQ_QUESTION_HOW": "How is Pluff able to see my timetable",
+  "FAQ_QUESTION_HOW": "How is Pluff able to see my timetable?",
   "FAQ_ANSWER_HOW": "We’re using an <abbr title=\"Webservice\">API</abbr>, made available by FHICT. Hence, if you have already signed in on the portal we can see your timetable and name. Nothing scary ‘bout that!",
   "FAQ_QUESTION_WHAT": "What is Pluff?",
   "FAQ_ANSWER_WHAT": "Pluff is a open-source timetable service made by and for Fontys ICT students. It’s our vision of a better timetable service, how it should be. Fontys’ own timetable service is severely outdated and is made in the eighties by communists. They even like Comic Sans! This is no joke. We could’nt live with this, so we made something better.",
