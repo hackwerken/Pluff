@@ -37,6 +37,42 @@
   <meta property="og:type" content="website">
   <meta property="og:description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
 
+  <!-- build:js js/plugins.min.js -->
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+  <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+  <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/moment/min/moment.min.js"></script>
+  <script src="bower_components/moment/locale/nl.js"></script>
+  <script src="bower_components/ngDialog/js/ngDialog.min.js"></script>
+  <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/bigapp.min.js -->
+  <script src="js/app.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/config.js"></script>
+  <!-- Services -->
+  <script src="js/services/data.js"></script>
+  <script src="js/services/day.js"></script>
+  <script src="js/services/week.js"></script>
+  <script src="js/services/lesson.js"></script>
+  <script src="js/services/room.js"></script>
+  <script src="js/services/color.js"></script>
+  <script src="js/services/holiday.js"></script>
+  <!-- Controllers -->
+  <script src="js/controllers/main.js"></script>
+  <script src="js/controllers/language.js"></script>
+  <script src="js/controllers/navigation.js"></script>
+  <script src="js/controllers/timetable.js"></script>
+  <script src="js/controllers/holiday.js"></script>
+  <script src="js/controllers/room.js"></script>
+  <script src="js/controllers/color.js"></script>
+  <script src="js/controllers/error.js"></script>
+  <!-- endbuild -->
 </head>
 <body ng-controller="MainCtrl">
 
@@ -85,42 +121,5 @@
       </p>
     </div>
   </footer>
-
-  <!-- build:js js/plugins.min.js -->
-  <script src="bower_components/angular/angular.min.js"></script>
-  <script src="bower_components/angular-route/angular-route.min.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-  <script src="bower_components/angular-translate/angular-translate.min.js"></script>
-  <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
-  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-  <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script src="bower_components/moment/min/moment.min.js"></script>
-  <script src="bower_components/moment/locale/nl.js"></script>
-  <script src="bower_components/ngDialog/js/ngDialog.min.js"></script>
-  <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-  <!-- endbuild -->
-  <!-- build:js js/bigapp.min.js -->
-  <script src="js/app.js"></script>
-  <script src="js/routes.js"></script>
-  <script src="js/config.js"></script>
-  <!-- Services -->
-  <script src="js/services/data.js"></script>
-  <script src="js/services/day.js"></script>
-  <script src="js/services/week.js"></script>
-  <script src="js/services/lesson.js"></script>
-  <script src="js/services/room.js"></script>
-  <script src="js/services/color.js"></script>
-  <script src="js/services/holiday.js"></script>
-  <!-- Controllers -->
-  <script src="js/controllers/main.js"></script>
-  <script src="js/controllers/language.js"></script>
-  <script src="js/controllers/navigation.js"></script>
-  <script src="js/controllers/timetable.js"></script>
-  <script src="js/controllers/holiday.js"></script>
-  <script src="js/controllers/room.js"></script>
-  <script src="js/controllers/color.js"></script>
-  <script src="js/controllers/error.js"></script>
-  <!-- endbuild -->
 </body>
 </html>
