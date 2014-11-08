@@ -23,7 +23,7 @@
       {{::'DAY_' + ($index+1) | translate}}
     </h3>
     <div class="day-info">
-      {{currentDayDate($index+1).format('D-M')}} <strong> &ndash; {{countLessons(day)}} {{::'LESSONS' | translate}}</strong>
+      {{currentDayDate($index+1).format('D-M')}} <strong> &ndash; {{countLessons(day)}} {{(countLessons(day) === 1 ? 'LESSON' : 'LESSONS') | translate}}</strong>
     </div>
     <div class="hours">
       <div class="line" style="top:{{calculateLine()}}" ng-if="isCurrentDay($index+1)"></div>

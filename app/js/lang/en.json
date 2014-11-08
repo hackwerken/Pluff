@@ -26,6 +26,7 @@
   "ROOM": "Room",
   "FREE": "Free",
   "OCCUPIED": "Occupied",
+  "LESSON": "lesson",
   "LESSONS": "lessons",
   "NOT_OPENED": "Fontys is not open today.",
   "TIMETABLE": "Timetable",
