@@ -20,29 +20,13 @@
 @import "patterns/box";
 
 // Sections
+@import "sections/app";
 @import "sections/top-nav";
 @import "sections/week-nav";
 @import "sections/timetable";
 @import "sections/room";
 @import "sections/dialog-teacher";
 @import "sections/footer";
-
-body {
-  color: $body-font-color;
-  font-family: $body-font-family;
-  font-weight: $body-font-weight;
-}
-
-ng-view {
-  transition: 100ms 0 all ease;
-  display: block;
-  opacity: 1;
-
-  &.ng-enter,
-  &.ng-leave {
-    opacity: 0;
-  }
-}
 
 
 @import "shame";
