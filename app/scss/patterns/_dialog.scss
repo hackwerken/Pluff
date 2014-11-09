@@ -19,7 +19,8 @@
     position: relative;
     width: 34.38em;
     background: #fff;
-    -webkit-backface-visibility: hidden;
+    max-width: 100%;
+    backface-visibility: hidden;
   }
 
   .ngdialog-close {

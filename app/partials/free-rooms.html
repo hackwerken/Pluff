@@ -1,0 +1,60 @@
+<div class="top-nav-margin box">
+  <div class="rooms-heading">
+    <div class="left">
+      <h1 translate>FREE_ROOMS</h1>
+    </div>
+    <div class="right">
+      <p>
+        <span class="room-occupied"></span> = {{::'OCCUPIED' | translate}}<br>
+        <span class="room-free"></span> = {{::'FREE' | translate}}
+      </p>
+    </div>
+  </div>
+
+  <div ng-if="!rooms">
+    <p translate>
+      NOT_OPENED
+    </p>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th translate>ROOM</th>
+        <!-- TODO: Do this shit with ng-repeat -->
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="room in ::rooms">
+        <td><a href="search/room/{{::encode(room.name)}}" ng-click="::closeThisDialog(0)">{{::room.name}}</a></td>
+        <td ng-class="::{'room-occupied': room.hours[0]}">1</td>
+        <td ng-class="::{'room-occupied': room.hours[1]}">2</td>
+        <td ng-class="::{'room-occupied': room.hours[2]}">3</td>
+        <td ng-class="::{'room-occupied': room.hours[3]}">4</td>
+        <td ng-class="::{'room-occupied': room.hours[4]}">5</td>
+        <td ng-class="::{'room-occupied': room.hours[5]}">6</td>
+        <td ng-class="::{'room-occupied': room.hours[6]}">7</td>
+        <td ng-class="::{'room-occupied': room.hours[7]}">8</td>
+        <td ng-class="::{'room-occupied': room.hours[8]}">9</td>
+        <td ng-class="::{'room-occupied': room.hours[9]}">10</td>
+        <td ng-class="::{'room-occupied': room.hours[10]}">11</td>
+        <td ng-class="::{'room-occupied': room.hours[11]}">12</td>
+        <td ng-class="::{'room-occupied': room.hours[12]}">13</td>
+        <td ng-class="::{'room-occupied': room.hours[13]}">14</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

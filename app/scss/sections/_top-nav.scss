@@ -140,5 +140,6 @@
 .top-nav-margin {
   @include bp(break-top-nav) {
     margin-top: 3.5rem;
+    border: 1px solid transparent; // I have no idea why this is necessary, but otherwise the margin is 1em off.
   }
 }

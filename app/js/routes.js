@@ -66,6 +66,14 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         }
       }
     })
+    .when('/holidays', {
+      templateUrl: 'partials/holidays.html',
+      controller: 'HolidayCtrl'
+    })
+    .when('/free-rooms', {
+      templateUrl: 'partials/free-rooms.html',
+      controller: 'RoomCtrl'
+    })
     .otherwise({
       templateUrl: 'partials/errors/missing.html',
       controller: 'ErrorCtrl'
