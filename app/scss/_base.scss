@@ -44,6 +44,9 @@ $break-timetable: 50em;
   @if $point == very-small {
     @media (max-width: 21.875em) { @content; }
   }
+  @if $point == break-free-rooms-table {
+    @media (max-width: 35.625em) { @content; }
+  }
 }
 
 // Fonts

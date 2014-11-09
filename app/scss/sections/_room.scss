@@ -29,3 +29,32 @@ span.room-free {
   height: .63em;
   display: inline-block;
 }
+
+@include bp(break-free-rooms-table) {
+  .rooms-table {
+    display: flex;
+    flex-flow: row wrap;
+
+    tr {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    td {
+      display: block;
+      width: 7.14%; // 100% / 14
+      text-align: center;
+    }
+
+    .room-name {
+      width: 100%;
+      background: lighten($secondary-color, 5%);
+      text-align: left;
+    }
+
+    thead {
+      display: none;
+    }
+  }
+}
+
