@@ -9,7 +9,8 @@ var app = angular.module('pluffApp', [
   'angucomplete-alt',
   'angular-loading-bar',
   'ngAnimate',
-  'ngDialog'
+  'ngDialog',
+  'ngTouch'
 ]);
 
 app.run(function($rootScope, dataService) {
