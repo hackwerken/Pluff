@@ -21,19 +21,32 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
     }
   });
 
+  $scope.currentWeekActive = function() {
+    if (weekService.isCurrentWeek()) {
+      $scope.showAllDays = false;
+    }
+    else {
+      $scope.showAllDays = true;
+    }
+  };
+
   $scope.nextWeek = function() {
     if (weekService.addWeek()) {
+      $scope.currentWeekActive();
       console.log('To the next week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
     }
   };
 
   $scope.currentWeek = function() {
-    weekService.currentWeek();
-    console.log('To the current week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
+    if (weekService.currentWeek()) {
+      $scope.currentWeekActive();
+      console.log('To the current week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
+    }
   };
 
   $scope.previousWeek = function() {
     if (weekService.subtractWeek()) {
+      $scope.currentWeekActive();
       console.log('To the previous week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
     }
   };

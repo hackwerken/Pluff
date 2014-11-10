@@ -56,6 +56,12 @@ appServices.factory('weekService', function(moment) {
       }
       return false;
     },
+    isCurrentWeek: function() {
+      if (data.weekUse === data.weekCurrent) {
+        return true;
+      }
+      return false;
+    },
     addWeek: function() {
       if (this.isNewWeek() === false) {
         this.setWeek(data.weekUse + 1);
@@ -74,6 +80,7 @@ appServices.factory('weekService', function(moment) {
       // Reset to the current week
       this.setWeek(data.weekCurrent);
       this.setYear(data.yearCurrent);
+      return true;
     }
   };
 });
