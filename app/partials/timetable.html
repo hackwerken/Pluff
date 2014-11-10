@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div class="timetable" ng-class="{'show-all-days': showAllDays}" ng-if="!showError">
+<div class="timetable" ng-class="{'show-all-days': showAllDays}" ng-if="!showError" ng-swipe-left="nextWeek()" ng-swipe-right="previousWeek()">
   <div class="day" ng-repeat="day in weeks[(weekNumberUsed - 1)]" ng-class="{'active-day': isActiveDay($index+1)}">
     <h3>
       {{::'DAY_' + ($index+1) | translate}}
