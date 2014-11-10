@@ -37,7 +37,6 @@ appServices.factory('dayService', function(moment, weekService) {
 
       if (data.dayEndTime > now && data.dayStartTime < now) {
         var percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
-        console.log(percentageComplete);
         var percentageRounded = (Math.round(percentageComplete * 100) / 100);
 
         return percentageRounded + '%';

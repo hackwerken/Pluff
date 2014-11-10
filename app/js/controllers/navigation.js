@@ -46,4 +46,13 @@ appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location
     // If the form was hidden because of a focus out event, the showSearchFormFunc needs to know this
     $scope.searchFormFocused = true;
   };
+
+  // Keep track of the last used timetable, so when a user navigates to another URL he can easily navigate back
+  $scope.lastTimeTableUrl = '/';
+
+  $scope.$on('$routeChangeSuccess', function() {
+    if ($location.path() === '/' || $location.path().indexOf('/search/') > -1) {
+      $scope.lastTimeTableUrl = $location.path();
+    }
+  });
 });
