@@ -8,7 +8,7 @@ appServices.factory('roomService', function($http, $log, $q, dataService) {
           var data = [];
 
           // Filter all rooms in this array
-          var filterRooms = ['?', 'eindhoven', 'helmond'];
+          var filterRooms = ['?', 'eindhoven', 'helmond', 'extern'];
 
           // Loop through each room
           payload.forEach(function(room) {
