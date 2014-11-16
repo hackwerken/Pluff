@@ -120,6 +120,9 @@
   .lesson-text {
     position: relative;
     z-index: $z-tt-lesson-text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
