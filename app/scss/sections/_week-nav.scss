@@ -12,6 +12,7 @@
 
   a {
     color: $body-font-color;
+    user-select: none;
 
     &:hover {
       color: $primary-color;
