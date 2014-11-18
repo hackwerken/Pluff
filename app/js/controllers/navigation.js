@@ -34,7 +34,7 @@ appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location
         $timeout(function() {
           var searchInput = document.getElementById('search-query_value');
           searchInput.focus();
-        }, 0);
+        }, 300);
       }
     }
     $scope.searchFormFocused = false;
