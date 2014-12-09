@@ -25,7 +25,7 @@
     <div class="day-info">
       {{currentDayDate($index+1).format('D-M')}} <strong> &ndash; {{countLessons(day)}} {{(countLessons(day) === 1 ? 'LESSON' : 'LESSONS') | translate}}</strong>
     </div>
-    <div class="hours">
+    <div class="hours" ng-class="{'no-lessons': countLessons(day) === 0}">
       <div class="line" style="top:{{calculateLine()}}" ng-if="isCurrentDay($index+1)"></div>
       <div ng-repeat="hour in day" class="hour break-{{::hourBreaks[hour.number]}}">
         <div class="hour-number">{{::hour.number}}</div>

@@ -49,8 +49,16 @@
   position: relative;
   height: 66em;
 
+  &.no-lessons {
+    display: none;
+  }
+
   @include bp(break-timetable) {
     height: 75em;
+
+    &.no-lessons {
+      display: block;
+    }
   }
 }
 
