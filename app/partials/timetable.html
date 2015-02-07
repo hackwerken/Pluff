@@ -37,7 +37,11 @@
 
             <span ng-if="::lesson.teacher !== '-'">
               - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
-            </span><br>
+            </span>
+            <span ng-if="::lesson.description">
+              ({{::lesson.description}})
+            </span>
+            <br>
 
             <small>
               <span ng-if="::lesson.room !== ''">

@@ -107,6 +107,7 @@ appServices.factory('lessonService', function(moment) {
             teacher: lesson.teacherAbbreviation.toLowerCase(),
             subject: lesson.subject.toLowerCase(),
             room: lesson.room,
+            description: lesson.description,
             classes: lesson.classes,
             color: data.generateColor(lesson.subject)
           };
