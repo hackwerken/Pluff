@@ -33,7 +33,7 @@
         <div class="lesson" ng-if="::hour.lessons.length > 0" ng-init="::lesson = hour.lessons[0]; showExtra = false" ng-style="::{ background: lesson.color }">
           <div class="lesson-text">
             {{::lesson.start}} - {{::lesson.end}}<br>
-            {{::lesson.subject}}
+            <a href="search/subject/{{::encode(lesson.subject)}}">{{::lesson.subject}}</a>
 
             <span ng-if="::lesson.teacher !== '-'">
               - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
