@@ -45,9 +45,9 @@ appServices.factory('lessonService', function(moment) {
     var maxLightness = 47;
 
     // Calculate values
-    hue = parseInt(total.substring(0,3), 16)%360;
-    saturation = parseInt(total.substring(1,3), 16)%(99 - minSaturation) + minSaturation;
-    lightness = parseInt(total.substring(2,4), 16)%(maxLightness - minLightness + 1) + minLightness;
+    var hue = parseInt(total.substring(0, 3), 16) % 360;
+    var saturation = parseInt(total.substring(1, 3), 16) % (99 - minSaturation) + minSaturation;
+    var lightness = parseInt(total.substring(2, 4), 16) % (maxLightness - minLightness + 1) + minLightness;
 
     // Output to the HSL color format
     var color = 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
