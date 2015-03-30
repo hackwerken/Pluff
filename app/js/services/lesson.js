@@ -26,34 +26,32 @@ appServices.factory('lessonService', function(moment) {
     return totalLessons;
   };
 
-  // Checks if a hex color is too bright (contrast too low)
-  data.isTooLightYIQ = function(hexcolor) {
-    var r = parseInt(hexcolor.substr(0, 2), 16);
-    var g = parseInt(hexcolor.substr(2, 2), 16);
-    var b = parseInt(hexcolor.substr(4, 2), 16);
-    var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-
-    return yiq >= 200;
-  };
-
   // Generate a color based on a string
   data.generateColor = function(name, total) {
-    // Generator seed, can be every high number (above ~ 6 million)
-    total = total || 6000000;
+    // Generator seed, must leave a hex of at least 1000 (so 4096 or above)
+    total = total || 4096;
 
     // Loop every character and multiply with the generator seed
     for (var i = 0; i < name.length; i++) {
       total = total * name.charCodeAt(i);
     }
 
-    var color = total.toString(16).substr(2, 6);
+    // Convert total to hex
+    total = total.toString(16);
 
-    // Multiply the color with 200.000 if it was too bright
-    if (data.isTooLightYIQ(color)) {
-      color = (total * 200000).toString(16).substr(2, 6);
-    }
+    // Variables
+    var minSaturation = 50;
+    var minLightness = 35;
+    var maxLightness = 47;
 
-    return '#' + color;
+    // Calculate values
+    hue = parseInt(total.substring(0,3), 16)%360;
+    saturation = parseInt(total.substring(1,3), 16)%(99 - minSaturation) + minSaturation;
+    lightness = parseInt(total.substring(2,4), 16)%(maxLightness - minLightness + 1) + minLightness;
+
+    // Output to the HSL color format
+    var color = 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
+    return color;
   };
 
   data.getTimeTable = function(payload) {
