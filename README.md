@@ -19,7 +19,7 @@ De mensen achter Pluff:
 - Stephan van Rooij - API beheerder
 - [Jeroen](https://www.laylo.nl) - Serverbeheer
 - Jasper Stam - _Programmeer schildknaap_
-- Rutger Schimmel - _Bugtester_
+- Rutger Schimmel - _Bugtester_ & kleurentovenaar
 
 Voor het rooster systeem maken we gebruik van de volgende projecten:
 
