@@ -3,7 +3,7 @@
 // Style guide: http://css-tricks.com/sass-style-guide/
 
 // Vendor dependencies
-@import "../bower_components/normalize.scss/_normalize.scss";
+@import "../../node_modules/normalize-scss/normalize";
 
 // Authored dependencies
 @import "base";

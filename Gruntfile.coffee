@@ -9,12 +9,12 @@ module.exports = (grunt) ->
 
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
-    compass:
+    sass:
+      options:
+        sourceMap: true
       dist:
-        options:
-          sassDir: "app/scss"
-          cssDir: "app/css"
-          cacheDir: ".tmp"
+        files:
+          "app/css/app.css": "app/scss/app.scss"
 
     autoprefixer:
       build:
@@ -93,11 +93,11 @@ module.exports = (grunt) ->
     watch:
       grunt:
         files: ["Gruntfile.coffee"]
-        tasks: ["compass"]
+        tasks: ["sass"]
 
-      compass:
-        files: ["app/scss/{,*/}*.scss", "app/bower_components/{,*/}*.scss"]
-        tasks: ["compass", "autoprefixer"]
+      sass:
+        files: ["app/scss/{,*/}*.scss", "node_modules/{,*/}*.scss"]
+        tasks: ["sass", "autoprefixer"]
 
       livereload:
         files: ["app/*.html", "app/partials/*.html", "app/js/{,*/}*.js", "app/css/{,*/}*.css", "app/img/{,*/}*.{jpg,gif,svg,jpeg,png}"]
@@ -149,5 +149,5 @@ module.exports = (grunt) ->
       projectDist:
         path: path.resolve() + "/dist"
 
-  grunt.registerTask "default", ["compass", "autoprefixer", "connect:app", "open:app", "watch"]
+  grunt.registerTask "default", ["sass", "autoprefixer", "connect:app", "open:app", "watch"]
   grunt.registerTask "publish", ["clean:dist", "useminPrepare", "copy", "concat", "uglify", "usemin", "cacheBust", "cssmin", "buildcontrol", "open:dist", "connect:dist"]
