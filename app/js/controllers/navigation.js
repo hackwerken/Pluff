@@ -55,4 +55,9 @@ appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location
       $scope.lastTimeTableUrl = $location.path();
     }
   });
+
+  $scope.isActive = function (viewLocation) {
+    return viewLocation === $location.path();
+  };
+
 });
