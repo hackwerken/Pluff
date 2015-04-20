@@ -61,17 +61,20 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
 
   // Bind keybindings to the window to enable right and left arrow navigation
   angular.element($window).on('keydown', function(e) {
-    // Go to the next week on right arrow key
-    if (e.keyCode === 39) {
-      $scope.$apply(function() {
-        $scope.nextWeek();
-      });
-    }
-    // Go to the previous week on left arrow key
-    if (e.keyCode === 37) {
-      $scope.$apply(function() {
-        $scope.previousWeek();
-      });
+    // Check if not using arrow keys in searchfield
+    if (document.activeElement.nodeName.toLowerCase() != 'input') {
+      // Go to the next week on right arrow key
+      if (e.keyCode === 39) {
+        $scope.$apply(function() {
+          $scope.nextWeek();
+        });
+      }
+      // Go to the previous week on left arrow key
+      if (e.keyCode === 37) {
+        $scope.$apply(function() {
+          $scope.previousWeek();
+        });
+      }
     }
   });
 
