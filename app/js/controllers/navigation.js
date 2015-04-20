@@ -57,7 +57,13 @@ appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location
   });
 
   $scope.isActive = function (viewLocation) {
-    return viewLocation === $location.path();
+    var regexp = new RegExp("(\/search\/.*)");
+    if (regexp.test($location.path())) {
+      return viewLocation === '/';
+    }
+    else {
+      return viewLocation === $location.path();
+    }
   };
 
 });
