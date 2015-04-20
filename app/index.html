@@ -81,9 +81,9 @@
     <h1 class="logo"><a href="/">Pluff</a></h1>
 
     <ul class="nav-list">
-      <li class="main"><a ng-href="{{lastTimeTableUrl}}" translate>TIMETABLE</a></li>
-      <li><a href="/holidays"><span translate>HOLIDAYS</span></a></li>
-      <li><a href="/free-rooms"><span translate>FREE_ROOMS</span></a></li>
+      <li ng-class="{ main: isActive('/')}"><a ng-href="{{lastTimeTableUrl}}" translate>TIMETABLE</a></li>
+      <li ng-class="{ main: isActive('/holidays')}"><a href="/holidays" translate>HOLIDAYS</a></li>
+      <li ng-class="{ main: isActive('/free-rooms')}"><a href="/free-rooms" translate>FREE_ROOMS</a></li>
     </ul>
     <div class="nav-right">
       <h2 class="nav-timetable-name" ng-show="tableTitle">{{tableTitle}}</h2>
