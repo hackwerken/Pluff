@@ -15,9 +15,24 @@
     "end": "2015-02-22"
   },
   {
+    "name": "KINGSDAY",
+    "start": "2015-04-27",
+    "end": "2015-04-27"
+  },
+  {
     "name": "MAY_HOLIDAY",
     "start": "2015-05-02",
     "end": "2015-05-10"
+  },
+  {
+    "name": "FEAST_OF_THE_ASCENSION",
+    "start": "2015-05-14",
+    "end": "2015-05-15"
+  },
+  {
+    "name": "WHIT_MONDAY",
+    "start": "2015-05-25",
+    "end": "2015-05-25"
   },
   {
     "name": "SUMMER_HOLIDAY",
