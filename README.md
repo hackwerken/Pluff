@@ -16,6 +16,7 @@ Type (eenmalig) in je Pluff folder `npm install && bower install` om de benodigd
 De mensen achter Pluff:
 
 - [Kees Kluskens](https://www.webduck.nl) - Ontwikkelaar en meesterbrein
+- Tim van den Biggelaar - Ontwikkelaar
 - Stephan van Rooij - API beheerder
 - [Jeroen](https://www.laylo.nl) - Serverbeheer
 - Jasper Stam - _Programmeer schildknaap_
