@@ -1,8 +1,6 @@
 {
   "name": "Pluff",
   "dependencies": {
-    "angular-translate-loader-static-files": "2.6.1",
-    "angular-translate-storage-cookie": "2.6.1",
     "angucomplete-alt": "0.0.38"
   }
 }
