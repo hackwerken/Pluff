@@ -43,6 +43,9 @@ function handleError (err) {
     this.emit('end');
 }
 
+/**
+ * Convert Sass files to css and add necessary browser prefixes.
+ */
 gulp.task('sass', function () {
     return gulp.src(stylesFiles)
         .pipe(sass())
@@ -66,6 +69,9 @@ gulp.task('server:dev', function () {
     open('http://localhost:8080');
 });
 
+/**
+ * Concatenate Javascript files to one big file.
+ */
 gulp.task('javascript', function () {
     return gulp.src(jsFiles)
         .pipe(concat('all.js'))
@@ -78,12 +84,18 @@ gulp.task('html', function () {
         .pipe(connect.reload());
 });
 
+/**
+ * Watch Sass, javascript and html files and reload them when changed.
+ */
 gulp.task('watch', function () {
     gulp.watch(stylesWatch, ['sass']);
     gulp.watch(jsWatch, ['javascript']);
     gulp.watch(htmlWatch, ['html']);
 });
 
+/**
+ * Minify Javascript files.
+ */
 gulp.task('uglify', ['javascript'], function () {
     return gulp.src('app/js/all.js')
         .pipe(uglify({
@@ -101,17 +113,27 @@ gulp.task('clean:dist', function (cb) {
     ], cb);
 });
 
+/**
+ * Copy files from app/ over to dist/ and build them.
+ */
 gulp.task('copy:dist', ['clean:dist', 'uglify', 'sass'], function () {
     gulp.src('app/**/*')
         .pipe(gulp.dest('dist'));
+
+    gutil.log(gutil.colors.green.bold('To test this build, run \'gulp stage\'.'));
 });
 
+/**
+ * Enable a 'stage' server to preview the new, built, version.
+ */
 gulp.task('server:stage', function () {
     connect.server({
         root: 'dist',
         port: 8080,
         fallback: 'dist/index.html'
     });
+
+    gutil.log(gutil.colors.green.bold('When you’re happy, run \'gulp deploy\'.'));
 
     open('http://localhost:8080');
 });
@@ -124,7 +146,7 @@ gulp.task('deploy', function () {
     }
 
     return gulp.src('dist')
-        .pipe(prompt.confirm('Are you sure you want to deploy?'))
+        .pipe(prompt.confirm('Have you commited your files and are you sure you want to deploy?'))
         .pipe(rsync({
             root: 'dist',
             recursive: true,
