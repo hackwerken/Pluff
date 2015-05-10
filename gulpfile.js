@@ -170,7 +170,7 @@ gulp.task('deploy', ['appendhash'], function () {
         .pipe(rsync({
             root: 'dist',
             recursive: true,
-            destination: '/var/www/pluff-rsync',
+            destination: '/var/www/pluff',
             hostname: 'touwtjescentrale',
             clean: true
         }));
