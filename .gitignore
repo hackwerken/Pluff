@@ -1,5 +1,5 @@
 .DS_Store
-app/bower_components/
+app/js/all.js
 app/css/*
 node_modules/
 .tmp/
