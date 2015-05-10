@@ -23,6 +23,8 @@ appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location
       // Check which category is selected (room or class) to update the url
       console.log('Autocomplete ' + category + ' ' + title);
       $location.path('/search/' + category + '/' + title);
+      $scope.showSearchForm = false;
+      $scope.searchFormFocused = false;
     }
   };
 
@@ -41,8 +43,6 @@ appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location
   };
 
   $scope.searchFormFocusOut = function() {
-    $scope.showSearchForm = false;
-
     // If the form was hidden because of a focus out event, the showSearchFormFunc needs to know this
     $scope.searchFormFocused = true;
   };
