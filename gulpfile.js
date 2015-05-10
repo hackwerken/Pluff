@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     del = require('del'),
     rsync = require('gulp-rsync'),
     fs = require('fs'),
+    spawn = require('child_process').spawn,
     prompt = require('gulp-prompt'),
     open = require('open');
 
@@ -138,7 +139,26 @@ gulp.task('server:stage', function () {
     open('http://localhost:8080');
 });
 
-gulp.task('deploy', function () {
+/**
+ * Append a comment to dist/index.html with the current commit hash.
+ */
+gulp.task('appendhash', function () {
+    spawn('git', ['rev-parse', '--short', 'HEAD'])
+        .stdout.on('data', appendHash)
+
+    function appendHash (hash) {
+        hash = hash.toString().trim();
+
+        fs.appendFile('dist/index.html', '<!-- Built from commit: '+ hash +' -->', function (err) {
+            if(err)
+                gutil.log(err);
+
+            gutil.log('Appended version to index.html');
+        });
+    }
+});
+
+gulp.task('deploy', ['appendhash'], function () {
     // Check to be sure this is not an accidental deploy.
     if (!fs.existsSync('dist/js/all.js')) {
         gutil.log(gutil.colors.red.bold('Hold your horses! dist/js/all.js does not exist, so you have not ran \'gulp build\' yet.'));
