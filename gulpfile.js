@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
+    rev = require('gulp-rev-append'),
     del = require('del'),
     rsync = require('gulp-rsync'),
     fs = require('fs'),
@@ -115,6 +116,14 @@ gulp.task('clean:dist', function (cb) {
 });
 
 /**
+ * Add hashes to index.html
+ */
+ gulp.task('cachebust', function() {
+    gulp.src('dist/index.html')
+        .pipe(rev())
+        .pipe(gulp.dest('dist'));
+ });
+/**
  * Copy files from app/ over to dist/ and build them.
  */
 gulp.task('copy:dist', ['clean:dist', 'uglify', 'sass'], function () {
@@ -158,7 +167,7 @@ gulp.task('appendhash', function () {
     }
 });
 
-gulp.task('deploy', ['appendhash'], function () {
+gulp.task('deploy', ['appendhash', 'cachebust'], function () {
     // Check to be sure this is not an accidental deploy.
     if (!fs.existsSync('dist/js/all.js')) {
         gutil.log(gutil.colors.red.bold('Hold your horses! dist/js/all.js does not exist, so you have not ran \'gulp build\' yet.'));
