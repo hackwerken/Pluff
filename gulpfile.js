@@ -21,6 +21,7 @@ var serverRoot = 'app',
     stylesDist = 'app/css',
     jsWatch = ['app/js/**/*.js'],
     jsFiles = [
+        // Include each dependency manually.
         'node_modules/angular/angular.min.js',
         'node_modules/angular-route/angular-route.min.js',
         'node_modules/angular-cookies/angular-cookies.min.js',
@@ -34,7 +35,9 @@ var serverRoot = 'app',
         'node_modules/ng-dialog/js/ngDialog.min.js',
         'node_modules/angular-loading-bar/build/loading-bar.min.js',
         'node_modules/angular-touch/angular-touch.min.js',
+        // Include ever js file from our app.
         'app/js/**/*.js',
+        // Except the file all the above files are concatenated in.
         '!app/js/all.js'
     ];
     htmlWatch = ['app/**/*.html'];
@@ -167,6 +170,9 @@ gulp.task('appendhash', function () {
     }
 });
 
+/**
+ * Deploy to the pluff.nl server (need to have SSH access to it).
+ */
 gulp.task('deploy', ['appendhash', 'cachebust'], function () {
     // Check to be sure this is not an accidental deploy.
     if (!fs.existsSync('dist/js/all.js')) {
