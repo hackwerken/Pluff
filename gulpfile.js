@@ -35,11 +35,11 @@ var serverRoot = 'app',
         'node_modules/ng-dialog/js/ngDialog.min.js',
         'node_modules/angular-loading-bar/build/loading-bar.min.js',
         'node_modules/angular-touch/angular-touch.min.js',
-        // Include ever js file from our app.
+        // Include every js file from our app.
         'app/js/**/*.js',
         // Except the file all the above files are concatenated in.
         '!app/js/all.js'
-    ];
+    ],
     htmlWatch = ['app/**/*.html'];
 
 // Handle errors while preventing the watch function from quitting.
@@ -51,7 +51,7 @@ function handleError (err) {
 /**
  * Convert Sass files to css and add necessary browser prefixes.
  */
-gulp.task('sass', function () {
+function buildSass () {
     return gulp.src(stylesFiles)
         .pipe(sass())
         .on('error', handleError)
@@ -61,9 +61,9 @@ gulp.task('sass', function () {
         }))
         .pipe(gulp.dest(stylesDist))
         .pipe(connect.reload());
-});
+}
 
-gulp.task('server:dev', function () {
+function connectDevServer () {
     connect.server({
         root: serverRoot,
         livereload: true,
@@ -72,36 +72,36 @@ gulp.task('server:dev', function () {
     });
 
     open('http://localhost:8080');
-});
+}
 
 /**
  * Concatenate Javascript files to one big file.
  */
-gulp.task('javascript', function () {
+function buildJavascript () {
     return gulp.src(jsFiles)
         .pipe(concat('all.js'))
         .pipe(gulp.dest('app/js'))
         .pipe(connect.reload());
-});
+}
 
-gulp.task('html', function () {
+function reloadHtml () {
     return gulp.src(htmlWatch)
         .pipe(connect.reload());
-});
+}
 
 /**
  * Watch Sass, javascript and html files and reload them when changed.
  */
-gulp.task('watch', function () {
-    gulp.watch(stylesWatch, ['sass']);
-    gulp.watch(jsWatch, ['javascript']);
-    gulp.watch(htmlWatch, ['html']);
-});
+function watch () {
+    gulp.watch(stylesWatch, buildSass);
+    gulp.watch(jsWatch, buildJavascript);
+    gulp.watch(htmlWatch, reloadHtml);
+}
 
 /**
  * Minify Javascript files.
  */
-gulp.task('uglify', ['javascript'], function () {
+function uglifyJavascript () {
     return gulp.src('app/js/all.js')
         .pipe(uglify({
             compress: {
@@ -110,36 +110,37 @@ gulp.task('uglify', ['javascript'], function () {
             mangle: false
         }))
         .pipe(gulp.dest('app/js'));
-});
+}
 
-gulp.task('clean:dist', function (cb) {
+function cleanDist (cb) {
     del([
         'dist/**/*'
     ], cb);
-});
+}
 
 /**
  * Add hashes to index.html
  */
- gulp.task('cachebust', function() {
-    gulp.src('dist/index.html')
-        .pipe(rev())
-        .pipe(gulp.dest('dist'));
- });
+function bustCache () {
+    return gulp.src('dist/index.html')
+       .pipe(rev())
+       .pipe(gulp.dest('dist'));
+}
+
 /**
  * Copy files from app/ over to dist/ and build them.
  */
-gulp.task('copy:dist', ['clean:dist', 'uglify', 'sass'], function () {
-    gulp.src('app/**/*')
+function copyDist () {
+    return gulp.src('app/**/*')
         .pipe(gulp.dest('dist'));
-
-    gutil.log(gutil.colors.green.bold('To test this build, run \'gulp stage\'.'));
-});
+}
 
 /**
  * Enable a 'stage' server to preview the new, built, version.
  */
-gulp.task('server:stage', function () {
+function connectStageServer () {
+    gutil.log(gutil.colors.green.bold('Opening stage server, please test all your changes.'));
+
     connect.server({
         root: 'dist',
         port: 8080,
@@ -149,31 +150,32 @@ gulp.task('server:stage', function () {
     gutil.log(gutil.colors.green.bold('When you’re happy, run \'gulp deploy\'.'));
 
     open('http://localhost:8080');
-});
+}
 
 /**
  * Append a comment to dist/index.html with the current commit hash.
  */
-gulp.task('appendhash', function () {
+function appendHashToFile (cb) {
     spawn('git', ['rev-parse', '--short', 'HEAD'])
-        .stdout.on('data', appendHash)
+        .stdout.on('data', appendHash);
 
     function appendHash (hash) {
         hash = hash.toString().trim();
 
         fs.appendFile('dist/index.html', '<!-- Built from commit: '+ hash +' -->', function (err) {
-            if(err)
+            if (err)
                 gutil.log(err);
 
             gutil.log('Appended version to index.html');
+            cb();
         });
     }
-});
+}
 
 /**
  * Deploy to the pluff.nl server (need to have SSH access to it).
  */
-gulp.task('deploy', ['appendhash', 'cachebust'], function () {
+function pushToServer () {
     // Check to be sure this is not an accidental deploy.
     if (!fs.existsSync('dist/js/all.js')) {
         gutil.log(gutil.colors.red.bold('Hold your horses! dist/js/all.js does not exist, so you have not ran \'gulp build\' yet.'));
@@ -181,7 +183,7 @@ gulp.task('deploy', ['appendhash', 'cachebust'], function () {
     }
 
     return gulp.src('dist')
-        .pipe(prompt.confirm('Have you commited your files and are you sure you want to deploy?'))
+        .pipe(prompt.confirm('Have you committed your files and are you sure you want to deploy?'))
         .pipe(rsync({
             root: 'dist',
             recursive: true,
@@ -189,8 +191,23 @@ gulp.task('deploy', ['appendhash', 'cachebust'], function () {
             hostname: 'touwtjescentrale',
             clean: true
         }));
-});
+}
 
-gulp.task('default', ['sass', 'javascript', 'server:dev', 'watch']);
-gulp.task('build', ['copy:dist']);
-gulp.task('stage', ['server:stage']);
+gulp.task('dev', gulp.parallel(buildSass, buildJavascript, connectDevServer, watch));
+
+gulp.task('build', gulp.series(
+    cleanDist,
+    buildJavascript,
+    uglifyJavascript,
+    buildSass,
+    copyDist,
+    connectStageServer
+));
+
+gulp.task('deploy', gulp.series(
+    appendHashToFile,
+    bustCache,
+    pushToServer
+));
+
+gulp.task('default', gulp.series('dev'));
