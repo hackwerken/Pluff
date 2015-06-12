@@ -128,6 +128,7 @@
   width: 100%;
   height: 100%;
   padding: 0 1em;
+  line-height: 1.3;
 
   .lesson-text {
     position: relative;
@@ -135,6 +136,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .lesson-description {
+    float: left;
+    font-size: 13px;
+    width: 100%;
+  }
+  .lesson-room-class {
+    float: left;
   }
 }
 

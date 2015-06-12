@@ -38,12 +38,12 @@
             <span ng-if="::lesson.teacher !== '-'">
               - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
             </span>
-            <span ng-if="::lesson.description">
+            <span ng-if="::lesson.description" class="lesson-description">
               ({{::lesson.description}})
             </span>
             <br>
 
-            <small>
+            <small class="lesson-room-class">
               <span ng-if="::lesson.room !== ''">
                 <a href="search/room/{{::encode(lesson.room)}}">{{::lesson.room}}</a> -
               </span>
