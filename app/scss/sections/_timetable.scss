@@ -159,7 +159,8 @@
   right: 1em;
 
   @include bp(break-timetable) {
-    right: 0;
+    right: -10px;
+    margin-top: -10px;
 
     &.ng-hide-add {
       transition-delay: 600ms;

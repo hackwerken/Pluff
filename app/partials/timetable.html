@@ -30,7 +30,7 @@
       <div ng-repeat="hour in day" class="hour break-{{::hourBreaks[hour.number]}}">
         <div class="hour-number">{{::hour.number}}</div>
 
-        <div class="lesson" ng-if="::hour.lessons.length > 0" ng-init="::lesson = hour.lessons[0]; showExtra = false" ng-style="::{ background: lesson.color }">
+        <div class="lesson" ng-if="::hour.lessons.length > 0" ng-init="::lesson = hour.lessons[0]; showExtra = false" ng-style="::{ background: lesson.color }" >
           <div class="lesson-text">
             {{::lesson.start}} - {{::lesson.end}}<br>
             <a href="search/subject/{{::encode(lesson.subject)}}">{{::lesson.subject}}</a>
@@ -54,7 +54,7 @@
             </small>
           </div><!-- .lesson-text -->
           <div class="multiple-hours" ng-if="hour.lessons.length > 1">
-            <a href="#" class="multiple-hours-icon" ng-click="showExtra = !showExtra" ng-mouseenter="showExtra = true" ng-mouseleave="showExtra = false">+</a>
+            <a href="#" class="multiple-hours-icon" ng-click="showExtra = !showExtra" ng-mouseenter="showExtra = true">+</a>
 
             <div class="hidden-lessons" ng-show="showExtra" ng-mouseenter="showExtra = true" ng-mouseleave="showExtra = false">
               <div ng-repeat="lesson in hour.lessons" ng-show="!$first">
