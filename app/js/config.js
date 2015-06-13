@@ -14,8 +14,11 @@ app.config(function($translateProvider, $cookieStoreProvider) {
       'nl_NL': 'nl',
       'nl_BE': 'nl'
     })
+    .uniformLanguageTag('java')
     .determinePreferredLanguage()
     .fallbackLanguage('en');
   // Save the user's choice in a cookie
   $translateProvider.useCookieStorage();
+
+  $translateProvider.useSanitizeValueStrategy(null);
 });
