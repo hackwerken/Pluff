@@ -1,9 +1,9 @@
-appServices.factory('roomService', function($http, $log, $q, dataService) {
+appServices.factory('roomService', function($log, $q, apiService) {
   return {
     getFreeRooms: function() {
       var deffered = $q.defer();
 
-      $http.jsonp(dataService.getConfig().url('/schedule/rooms/occupancy/today'))
+      apiService.get('/schedule/rooms/occupancy/today')
         .success(function(payload) {
           var data = [];
 

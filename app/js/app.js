@@ -13,9 +13,9 @@ var app = angular.module('pluffApp', [
   'ngTouch'
 ]);
 
-app.run(function($rootScope, dataService) {
+app.run(function($rootScope, apiService) {
   $rootScope.encode = function(url) {
-    return dataService.encode(url);
+    return apiService.encode(url);
   };
 });
 

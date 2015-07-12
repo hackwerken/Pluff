@@ -1,4 +1,4 @@
-appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $window, $location, weekService, dataService, dayService, timetableData, ngDialog) {
+appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $window, $location, weekService, apiService, dayService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   if (timetableData !== false) {
     // Get the title of the timetable and filter some words out of it
@@ -98,7 +98,7 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
 
   $scope.teacherDialog = function(teacherAbr) {
     // When the API data is loaded, open the dialog
-    dataService.getTeacher(teacherAbr).then(function(payload) {
+    apiService.getTeacher(teacherAbr).then(function(payload) {
       var data = payload.data;
 
       ngDialog.open({
