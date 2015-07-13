@@ -12,7 +12,7 @@
     <tbody>
       <tr ng-repeat="holiday in ::holidays">
         <td>{{::holiday.days}} {{::'DAYSUNTIL' | translate}}</td>
-        <td>{{::holiday.name | translate}}</td>
+        <td>{{::holiday.title | translate}}</td>
         <td>{{::holiday.start}}</td>
         <td>{{::holiday.end}}</td>
       </tr>

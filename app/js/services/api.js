@@ -1,4 +1,4 @@
-appServices.factory('apiService', function($http, $window, $location, $auth) {
+appServices.factory('apiService', function($http, $auth) {
   function authorize() {
     if (!$auth.isAuthenticated()) {
       return $auth.authenticate('fhict').then(function () {
@@ -36,6 +36,9 @@ appServices.factory('apiService', function($http, $window, $location, $auth) {
     },
     getTeacher: function(teacher) {
       return get('/people/abbreviation/' + teacher);
+    },
+    getHolidays: function() {
+      return get('/schedule/holidays');
     },
     get: get,
     // API URL encoding
