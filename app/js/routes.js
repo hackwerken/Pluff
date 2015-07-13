@@ -5,9 +5,6 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
       templateUrl: 'partials/timetable.html',
       controller: 'TimeTableCtrl',
       resolve: {
-        authenticate: function(apiService) {
-          return apiService.authorize();
-        },
         // Load the timetable JSON before the controller
         timetableData: function(apiService) {
           return apiService.getTimeTable('/me').then(function(payload) {

@@ -1,4 +1,4 @@
-app.config(function($translateProvider, $cookieStoreProvider) {
+app.config(function($translateProvider, $cookieStoreProvider, $authProvider) {
   // Lazyload the language files
   $translateProvider.useStaticFilesLoader({
     prefix: 'js/lang/',
@@ -21,4 +21,18 @@ app.config(function($translateProvider, $cookieStoreProvider) {
   $translateProvider.useCookieStorage();
 
   $translateProvider.useSanitizeValueStrategy(null);
+
+  $authProvider.oauth2({
+    name: 'fhict',
+    clientId: 'pluff-implicit',
+    authorizationEndpoint: 'https://tas.fhict.nl/identity/connect/authorize',
+    redirectUri: window.location.origin + '/',
+    scope: ['fhict', 'fhict_schedule', 'fhict_people', 'fhict_personal'],
+    scopeDelimiter: ' ',
+    responseType: 'token',
+    popupOptions: null,
+    responseParams: null,
+    requiredUrlParams: ['scope'],
+    optionalUrlParams: null
+  });
 });

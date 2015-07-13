@@ -10,7 +10,8 @@ var app = angular.module('pluffApp', [
   'angular-loading-bar',
   'ngAnimate',
   'ngDialog',
-  'ngTouch'
+  'ngTouch',
+  'satellizer'
 ]);
 
 app.run(function($rootScope, apiService) {

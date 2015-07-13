@@ -35,6 +35,7 @@ var serverRoot = 'app',
         'node_modules/ng-dialog/js/ngDialog.min.js',
         'node_modules/angular-loading-bar/build/loading-bar.min.js',
         'node_modules/angular-touch/angular-touch.min.js',
+        'node_modules/satellizer/satellizer.min.js',
         // Include every js file from our app.
         'app/js/**/*.js',
         // Except the file all the above files are concatenated in.
