@@ -11,15 +11,12 @@ appServices.factory('apiService', function($http, $window, $location, $auth) {
     return true;
   }
 
-  function get(url) {
+  function get(url, params) {
     if (authorize()) {
       return $http({
         url: 'https://tas.fhict.nl/api/v1' + url,
-        'method': 'GET'
-      }).then(function () {
-        console.log('done');
-      }, function (err, hoi) {
-        console.log(err, hoi);
+        method: 'GET',
+        params: params
       });
     }
 
@@ -28,10 +25,14 @@ appServices.factory('apiService', function($http, $window, $location, $auth) {
 
   return {
     getSuggestions: function() {
-      return get('/schedule/autocomplete/Any');
+      return get('/schedule/autocomplete/Class');
     },
     getTimeTable: function(input) {
-      return get('/schedule' + input + '?expandTeacher=false&IncludeStartOfWeek=true&daysAhead=90');
+      return get('/schedule' + input, {
+        expandTeacher: false,
+        startLastMonday: true,
+        days: 90
+      });
     },
     getTeacher: function(teacher) {
       return get('/people/abbreviation/' + teacher);

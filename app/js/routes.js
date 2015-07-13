@@ -32,7 +32,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
               categoryUrl = 'class';
               break;
             case 'teacher':
-              categoryUrl = 'teacher/abbreviation';
+              categoryUrl = 'teacher';
               break;
             case 'subject':
               categoryUrl = 'subject';
