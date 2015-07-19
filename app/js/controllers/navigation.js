@@ -18,11 +18,11 @@ appCtrls.controller('NavCtrl', function($scope, apiService, $timeout, $location,
   $scope.searchSelected = function(selected) {
     if (selected !== undefined) {
       var title = apiService.encode(selected.originalObject.name);
-      var category = selected.originalObject.category;
+      var kind = selected.originalObject.kind.toLowerCase();
 
-      // Check which category is selected (room or class) to update the url
-      console.log('Autocomplete ' + category + ' ' + title);
-      $location.path('/search/' + category + '/' + title);
+      // Check which kind is selected (room or class) to update the url
+      console.log('Autocomplete ' + kind + ' ' + title);
+      $location.path('/search/' + kind + '/' + title);
       $scope.showSearchForm = false;
       $scope.searchFormFocused = false;
     }

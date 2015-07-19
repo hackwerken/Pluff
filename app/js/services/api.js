@@ -25,7 +25,7 @@ appServices.factory('apiService', function($http, $auth) {
 
   return {
     getSuggestions: function() {
-      return get('/schedule/autocomplete/Class');
+      return get('/schedule/autocomplete/Any');
     },
     getTimeTable: function(input) {
       return get('/schedule' + input, {
