@@ -45,6 +45,10 @@
   "TIMETABLE_NOT_FOUND_LONG": "Er kon geen rooster gevonden worden.",
   "TIMETABLE_TEMP_EXPLANATION": "Het FHICT is nog bezig met het toevoegen van klassen aan de accounts van studenten. Het kan zijn dat hierdoor je rooster nog niet zichtbaar is. Je kunt nog altijd handmatig zoeken op je klas met de zoekknop rechtsboven.",
 
+  "AUTH_HEADER": "Login op Fontys ICT",
+  "AUTH_DESCRIPTION": "Er is een popup geopend. Log via deze popup in op Fontys ICT en geef Pluff de gevraagde permissies (eenmalig).",
+  "AUTH_NOPE_TO_DATA_MINING": "Blijf kalm, Pluff slaat geen data op. Helemaal noppes.",
+
   "FAQ_SHORT": "FAQ",
   "FAQ_LONG": "Veelgestelde vragen",
   "FAQ_QUESTION_HOW": "Hoe kan Pluff mijn rooster zien?",
