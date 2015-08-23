@@ -3,18 +3,17 @@ appServices.factory('roomService', function($log, $q, apiService) {
     getFreeRooms: function() {
       var deffered = $q.defer();
 
-      apiService.get('/schedule/rooms/occupancy/today')
-        .success(function(payload) {
+      apiService.getRoomOccupancy('today')
+        .then(function(payload) {
           var data = [];
-
           // Filter all rooms in this array
           var filterRooms = ['?', 'eindhoven', 'helmond', 'extern'];
 
           // Loop through each room
-          payload.forEach(function(room) {
+          payload.data.forEach(function(room) {
             var hourData = [];
 
-            if (!(filterRooms.indexOf(room.room) > -1)) {
+            if (!(filterRooms.indexOf(room.roomId) > -1)) {
 
               // Loop trough all hours and check if the room is free on that hour
               // Return true if the room is occupied
@@ -29,7 +28,7 @@ appServices.factory('roomService', function($log, $q, apiService) {
               }
 
               data.push({
-                name: room.room,
+                name: room.roomId,
                 hours: hourData
               });
 
@@ -37,8 +36,7 @@ appServices.factory('roomService', function($log, $q, apiService) {
           });
 
           deffered.resolve(data);
-        })
-        .error(function(msg, code) {
+        }, function(msg, code) {
           deffered.reject(msg);
           $log.error(msg, code);
         });

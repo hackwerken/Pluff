@@ -54,6 +54,9 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog) {
     getHolidays: function() {
       return get('/schedule/holidays');
     },
+    getRoomOccupancy: function(date) {
+      return get('/rooms/occupancy/' + date);
+    },
     get: get,
     // API URL encoding
     encode: function(url) {

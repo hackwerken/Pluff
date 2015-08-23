@@ -5,11 +5,11 @@ appServices.factory('holidayService', function(apiService, $log, $q, moment) {
       var deferred = $q.defer();
 
       apiService.getHolidays()
-        .success(function(payload) {
+        .then(function(payload) {
           var data = [];
           var now = moment();
 
-          payload.forEach(function(holiday) {
+          payload.data.forEach(function(holiday) {
             var startDate = moment(holiday.start);
             var endDate = moment(holiday.end);
             // Calculate the difference in days between the start date and now
@@ -27,8 +27,7 @@ appServices.factory('holidayService', function(apiService, $log, $q, moment) {
           });
 
           deferred.resolve(data);
-        })
-        .error(function(msg, code) {
+        }, function(msg, code) {
           deferred.reject(msg);
           $log.error(msg, code);
         });
