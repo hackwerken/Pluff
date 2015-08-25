@@ -1,6 +1,25 @@
-appServices.factory('apiService', function($http, $auth, $q, ngDialog) {
-  function validateAuth() {
-    if (!$auth.isAuthenticated()) {
+appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
+  function isAuthenticated() {
+    if ($auth.isAuthenticated()) {
+      // Now check if the token is not expired yet.
+      var expires = localStorage.getItem('satellizer_expires');
+      var isStillValid = expires >= moment().format('X');
+
+      if (!isStillValid) {
+        console.log('Token is no longer valid, removing...');
+        localStorage.removeItem('satellizer_expires');
+        $auth.removeToken();
+      } else {
+        console.log('Token is valid, please continue!');
+      }
+
+      return isStillValid;
+    }
+    return false;
+  }
+
+  function authenticate() {
+    if (!isAuthenticated()) {
       // Show dialog about why the user must authenticate.
       var dialog = ngDialog.open({
         template: 'partials/dialog-authenticate.html',
@@ -9,7 +28,14 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog) {
         closeByDocument: false
       });
 
-      return $auth.authenticate('fhict').then(function () {
+      return $auth.authenticate('fhict').then(function (response, a, b) {
+        // The token is only valid for x seconds, so save this.
+        if (response.expires_in) {
+          var expires = moment().add(response.expires_in, 's').format('X');
+          console.log('Setting token as expired after;', expires);
+          localStorage.setItem('satellizer_expires', expires);
+        }
+
         // User is successfully authenticated now, so close the dialog.
         dialog.close();
       }, function (data) {
@@ -28,7 +54,7 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog) {
 
   function get(url, params) {
     // Authenticate before trying to load the url.
-    return validateAuth().then(function () {
+    return authenticate().then(function () {
       return $http({
         url: 'https://tas.fhict.nl/api/v1' + url,
         method: 'GET',
