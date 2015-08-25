@@ -39,5 +39,10 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "open": "0.0.5"
+  },
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "deploy": "gulp deploy"
   }
 }
