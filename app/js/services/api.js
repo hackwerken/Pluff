@@ -52,13 +52,14 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
     return deferred.promise;
   }
 
-  function get(url, params) {
+  function get(url, params, responseType) {
     // Authenticate before trying to load the url.
     return authenticate().then(function () {
       return $http({
         url: 'https://tas.fhict.nl/api/v1' + url,
         method: 'GET',
-        params: params
+        params: params,
+        responseType: responseType || 'json'
       });
     });
   }
@@ -69,7 +70,7 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
     },
     getTimeTable: function(input) {
       return get('/schedule' + input, {
-        expandTeacher: false,
+        expandTeacher: true,
         startLastMonday: true,
         days: 90
       });
@@ -82,6 +83,9 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
     },
     getRoomOccupancy: function(date) {
       return get('/rooms/occupancy/' + date);
+    },
+    getPicture: function(id, size) {
+      return get('/pictures/' + id + '/' + size, null, 'blob');
     },
     get: get,
     // API URL encoding

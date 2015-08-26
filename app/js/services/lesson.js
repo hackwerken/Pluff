@@ -1,6 +1,12 @@
 appServices.factory('lessonService', function(moment) {
   var data = {};
 
+  function getTeacher(teachers, teacherAbbr) {
+    return teachers.filter(function(teacher) {
+      return teacher.personalTitle.toLowerCase() === teacherAbbr;
+    })[0];
+  }
+
   // Parse the timetable title
   var tableTitle;
   data.setTitle = function(title) {
@@ -78,7 +84,7 @@ appServices.factory('lessonService', function(moment) {
     var filterSubjects = ['delta'];
 
     // Process the timetable data
-    payload.forEach(function(lesson) {
+    payload.data.forEach(function(lesson) {
       var start = moment(lesson.start);
       var end = moment(lesson.end);
       var startWeeknumber = start.format('w'); // Output: weeknumber (without leading zero)
@@ -102,7 +108,7 @@ appServices.factory('lessonService', function(moment) {
             start: start.format('H:mm'),
             end: end.format('H:mm'),
             date: start.format('YYYY-MM-DD'),
-            teacher: lesson.teacherAbbreviation.toLowerCase(),
+            teacher: getTeacher(payload.teachers, lesson.teacherAbbreviation),
             subject: lesson.subject.toLowerCase(),
             room: lesson.room,
             description: lesson.description,

@@ -35,8 +35,8 @@
             {{::lesson.start}} - {{::lesson.end}}<br>
             <a href="search/subject/{{::encode(lesson.subject)}}">{{::lesson.subject}}</a>
 
-            <span ng-if="::lesson.teacher !== '-'">
-              - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
+            <span ng-if="::lesson.teacher.personalTitle !== '-'">
+              - <a ng-click="teacherDialog(lesson.teacher)" title="{{::lesson.teacher.displayName}}">{{::lesson.teacher.personalTitle}}</a>
             </span>
             <span ng-if="::lesson.description" class="lesson-description">
               ({{::lesson.description}})
@@ -61,8 +61,8 @@
                 <div class="lesson-text">
                   {{::lesson.subject}}
 
-                  <span ng-if="::lesson.teacher !== '-'">
-                    - <a ng-click="teacherDialog(lesson.teacher)">{{::lesson.teacher}}</a>
+                  <span ng-if="::lesson.teacher.personalTitle !== '-'">
+                    - <a ng-click="teacherDialog(lesson.teacher)" title="{{::lesson.teacher.displayName}}">{{::lesson.teacher.personalTitle}}</a>
                   </span><br>
 
                   <small>
