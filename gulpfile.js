@@ -7,8 +7,9 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     rev = require('gulp-rev-append'),
+    dotenv = require('dotenv'),
     del = require('del'),
-    rsync = require('gulp-rsync'),
+    ftp = require('vinyl-ftp'),
     fs = require('fs'),
     spawn = require('child_process').spawn,
     prompt = require('gulp-prompt'),
@@ -174,7 +175,7 @@ function appendHashToFile (cb) {
 }
 
 /**
- * Deploy to the pluff.nl server (need to have SSH access to it).
+ * Deploy to the given FTP server.
  */
 function pushToServer () {
     // Check to be sure this is not an accidental deploy.
@@ -183,15 +184,20 @@ function pushToServer () {
         process.exit(1);
     }
 
-    return gulp.src('dist')
+    dotenv.load();
+
+    var conn = ftp.create({
+        host: process.env.PLUFF_FTP_HOST,
+        user: process.env.PLUFF_FTP_USER,
+        password: process.env.PLUFF_FTP_PASSWORD,
+        parallel: 10,
+        log: gutil.log
+    });
+
+    return gulp.src('dist/**', {base: 'dist', buffer: false})
         .pipe(prompt.confirm('Have you committed your files and are you sure you want to deploy?'))
-        .pipe(rsync({
-            root: 'dist',
-            recursive: true,
-            destination: '/var/www/pluff',
-            hostname: 'touwtjescentrale',
-            clean: true
-        }));
+        .pipe(conn.newerOrDifferentSize(process.env.PLUFF_FTP_DIST))
+        .pipe(conn.dest(process.env.PLUFF_FTP_DIST));
 }
 
 gulp.task('dev', gulp.parallel(buildSass, buildJavascript, connectDevServer, watch));
