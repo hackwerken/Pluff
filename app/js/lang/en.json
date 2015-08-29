@@ -46,8 +46,9 @@
   "TIMETABLE_TEMP_EXPLANATION": "At this moment, FHICT is adding timetables to the acounts of students. It is possible your timetable hasn't been added to your account yet. Meanwhile, use the search (top-right) to manually find your class.",
 
   "AUTH_HEADER": "Login to Fontys ICT",
-  "AUTH_DESCRIPTION": "A popup was opened for you to login with your Fontys ICT account and grant Pluff access to your schedule.",
+  "AUTH_DESCRIPTION": "You need to login on Fontys ICT and grant Pluff access to view your schedule.",
   "AUTH_NOPE_TO_DATA_MINING": "Rest assured, Pluff does not store anything at all.",
+  "AUTH_BUTTON": "Login on Fontys ICT",
 
   "FAQ_SHORT": "FAQ",
   "FAQ_LONG": "Frequently Asked Questions",

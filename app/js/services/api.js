@@ -18,35 +18,49 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
     return false;
   }
 
+  function setExpires(expiresIn) {
+    // The token is only valid for x seconds, so save this.
+    if (expiresIn) {
+      var expires = moment().add(expiresIn, 's').format('X');
+      console.log('Setting token as expired after;', expires);
+      localStorage.setItem('satellizer_expires', expires);
+    }
+  }
+
   function authenticate() {
     if (!isAuthenticated()) {
       // Show dialog about why the user must authenticate.
+      // TODO: Prevent that multiple dialogs are opened.
       var dialog = ngDialog.open({
+        name: 'auth',
         template: 'partials/dialog-authenticate.html',
+        // User shouldn't be able to ignore this dialog.
         showClose: false,
         closeByEscape: false,
-        closeByDocument: false
+        closeByDocument: false,
+        data: {
+          clickButton: function() {
+            var authPromise = $auth.authenticate('fhict').then(function (response) {
+              setExpires(response.expires_in);
+
+              ngDialog.close('auth', authPromise);
+            }, function (data) {
+              // TODO: Create a nice dialog explaining that something weird went wrong.
+              // Don't know yet when this would occur.
+              console.error('FHICT authentication went wrong.', data);
+            });
+          }
+        }
       });
 
-      return $auth.authenticate('fhict').then(function (response, a, b) {
-        // The token is only valid for x seconds, so save this.
-        if (response.expires_in) {
-          var expires = moment().add(response.expires_in, 's').format('X');
-          console.log('Setting token as expired after;', expires);
-          localStorage.setItem('satellizer_expires', expires);
-        }
-
-        // User is successfully authenticated now, so close the dialog.
-        dialog.close();
-      }, function (data) {
-        // TODO: Create a nice dialog explaining that something weird went wrong.
-        // Don't know yet when this would occur.
-        console.error('FHICT authentication went wrong.', data);
+      return dialog.closePromise.then(function (closedDialog) {
+        // Forward the authPromise.
+        return closedDialog.value;
       });
     }
 
     // Create a fake promise if already authenticated.
-    // Hm, there must be a better solution...
+    // TODO: Hm, there must be a better solution...
     var deferred = $q.defer();
     deferred.resolve();
     return deferred.promise;
