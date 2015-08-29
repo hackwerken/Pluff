@@ -149,7 +149,7 @@ function connectStageServer () {
         fallback: 'dist/index.html'
     });
 
-    gutil.log(gutil.colors.green.bold('When you’re happy, run \'gulp deploy\'.'));
+    gutil.log(gutil.colors.green.bold('When you’re happy, run \'npm run deploy\'.'));
 
     open('http://localhost:8080');
 }
@@ -207,9 +207,10 @@ gulp.task('build', gulp.series(
     buildJavascript,
     uglifyJavascript,
     buildSass,
-    copyDist,
-    connectStageServer
+    copyDist
 ));
+
+gulp.task('stage', gulp.series(connectStageServer))
 
 gulp.task('deploy', gulp.series(
     appendHashToFile,

@@ -44,6 +44,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "deploy": "gulp deploy"
+    "deploy": "gulp deploy",
+    "deploy-auto": "git pull && rm -rf node_modules && npm install && npm run -s build && npm run -s deploy"
   }
 }

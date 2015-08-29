@@ -15,6 +15,8 @@ Type (eenmalig) in je Pluff folder `npm install` om de benodigde dependencies te
 
 Om Pluff op een website te plaatsen, kopieer je eerst `.env.example` naar `.env`. Vul vervolgens je FTP gegevens hier in. Daarna kun je de bestanden bouwen door `npm run build` uit te voeren, en vervolgens uploaden op de FTP server met `npm run deploy`.
 
+Als je de recentste versie van Pluff wilt uploaden zonder handmatig deze repository te hoeven updaten, kun je ook `npm run deploy-auto` uitvoeren.
+
 ## Credits
 
 De mensen achter Pluff:
