@@ -46,7 +46,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
           }
 
           return apiService.getTimeTable('/' + categoryUrl + '/' + queryUrl).then(function(payload) {
-            return payload.data;
+            return {data: payload.data, kind: categoryUrl};
           }, function() {
             return false;
           });

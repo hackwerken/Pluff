@@ -8,16 +8,19 @@ appServices.factory('lessonService', function(moment) {
   }
 
   // Parse the timetable title
-  var tableTitle;
-  data.setTitle = function(title) {
-    // We don't need some words in the title, so get them out of here.
-    var titleFilters = ['Rooster '];
+  var tableInfo;
+  data.setInfo = function(title, kind) {
+    tableInfo = {
+      // We only want a small part of the title.
+      title: title.replace(/Rooster |Schedule /, '').replace(/\((.*)\)$/, ''),
+      kind: kind
+    };
 
-    tableTitle = title.replace(new RegExp(titleFilters.join('|')), '');
+    return tableInfo;
   };
 
-  data.getTitle = function() {
-    return tableTitle;
+  data.getInfo = function() {
+    return tableInfo;
   };
 
   // Count the lessons in the day

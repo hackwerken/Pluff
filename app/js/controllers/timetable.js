@@ -2,9 +2,9 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
   // Get the personal schedule from the API
   if (timetableData !== false) {
     // Get the title of the timetable and filter some words out of it
-    $scope.tableTitle = lessonService.setTitle(timetableData.title);
+    lessonService.setInfo(timetableData.data.title, timetableData.kind);
 
-    $scope.weeks = lessonService.getTimeTable(timetableData);
+    $scope.weeks = lessonService.getTimeTable(timetableData.data);
   }
   else {
     $scope.showError = true;
