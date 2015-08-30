@@ -66,27 +66,33 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
     return deferred.promise;
   }
 
-  function get(url, params, responseType) {
+  function get(url, options) {
     // Authenticate before trying to load the url.
     return authenticate().then(function () {
-      return $http({
+      return $http(angular.extend({
         url: 'https://tas.fhict.nl/api/v1' + url,
         method: 'GET',
-        params: params,
-        responseType: responseType || 'json'
-      });
+        responseType: 'json'
+      }, options));
     });
   }
 
   return {
-    getSuggestions: function() {
-      return get('/schedule/autocomplete/Any');
+    getSuggestions: function(query, timeoutPromise) {
+      return get('/schedule/autocomplete/Any', {
+        params: {
+          filter: query
+        },
+        timeout: timeoutPromise
+      });
     },
     getTimeTable: function(input) {
       return get('/schedule' + input, {
-        expandTeacher: true,
-        startLastMonday: true,
-        days: 90
+        params: {
+          expandTeacher: true,
+          startLastMonday: true,
+          days: 90
+        }
       });
     },
     getTeacher: function(teacher) {
@@ -99,9 +105,10 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
       return get('/rooms/occupancy/' + date);
     },
     getPicture: function(id, size) {
-      return get('/pictures/' + id + '/' + size, null, 'blob');
+      return get('/pictures/' + id + '/' + size, {
+        responseType: 'blob'
+      });
     },
-    get: get,
     // API URL encoding
     encode: function(url) {
       return encodeURIComponent(url);

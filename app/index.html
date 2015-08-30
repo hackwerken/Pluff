@@ -60,10 +60,9 @@
         <div class="search-form" ng-if="showSearchForm">
           <angucomplete-alt id="search-query"
             placeholder="{{::'SEARCH_PLACEHOLDER' | translate}}"
-            pause="100"
+            pause="300"
             selected-object="searchSelected"
-            local-data="searchAuto"
-            search-fields="name,description"
+            remote-api-handler="searchApi"
             description-field="description"
             title-field="name"
             minlength="2"

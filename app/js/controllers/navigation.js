@@ -8,11 +8,9 @@ appCtrls.controller('NavCtrl', function($scope, apiService, $timeout, $location,
     }
   });
 
-  // If this data can't be loaded the user isn't authenticated yet
-  // Add the resulting array in the global scope for the autocomplete plugin to use it
-  apiService.getSuggestions().then(function(payload) {
-    $scope.searchAuto = payload.data;
-  });
+  $scope.searchApi = function(userInputString, timeoutPromise) {
+    return apiService.getSuggestions(userInputString, timeoutPromise);
+  };
 
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {
