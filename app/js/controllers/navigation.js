@@ -1,28 +1,26 @@
-appCtrls.controller('NavCtrl', function($scope, dataService, $timeout, $location, lessonService, dayService) {
+appCtrls.controller('NavCtrl', function($scope, apiService, $timeout, $location, lessonService, dayService) {
   // Get timetable title (from TimeTableCtrl) and update if the title changes
   $scope.$watch(function() {
-    return lessonService.getTitle();
+    return lessonService.getInfo();
   }, function(newValue) {
     if (newValue) {
-      $scope.tableTitle = newValue;
+      $scope.tableInfo = newValue;
     }
   });
 
-  // If this data can't be loaded the user isn't authenticated yet
-  // Add the resulting array in the global scope for the autocomplete plugin to use it
-  dataService.getSuggestions().then(function(payload) {
-    $scope.searchAuto = payload.data;
-  });
+  $scope.searchApi = function(userInputString, timeoutPromise) {
+    return apiService.getSuggestions(userInputString, timeoutPromise);
+  };
 
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {
     if (selected !== undefined) {
-      var title = dataService.encode(selected.originalObject.name);
-      var category = selected.originalObject.category;
+      var title = apiService.encode(selected.originalObject.name);
+      var kind = selected.originalObject.kind.toLowerCase();
 
-      // Check which category is selected (room or class) to update the url
-      console.log('Autocomplete ' + category + ' ' + title);
-      $location.path('/search/' + category + '/' + title);
+      // Check which kind is selected (room or class) to update the url
+      console.log('Autocomplete ' + kind + ' ' + title);
+      $location.path('/search/' + kind + '/' + title);
       $scope.showSearchForm = false;
       $scope.searchFormFocused = false;
     }

@@ -1,17 +1,26 @@
 appServices.factory('lessonService', function(moment) {
   var data = {};
 
-  // Parse the timetable title
-  var tableTitle;
-  data.setTitle = function(title) {
-    // We don't need some words in the title, so get them out of here.
-    var titleFilters = ['Rooster '];
+  function getTeacher(teachers, teacherAbbr) {
+    return teachers.filter(function(teacher) {
+      return teacher.personalTitle.toLowerCase() === teacherAbbr;
+    })[0];
+  }
 
-    tableTitle = title.replace(new RegExp(titleFilters.join('|')), '');
+  // Parse the timetable title
+  var tableInfo;
+  data.setInfo = function(title, kind) {
+    tableInfo = {
+      // We only want a small part of the title.
+      title: title.replace(/Rooster |Schedule /, '').replace(/\((.*)\)$/, ''),
+      kind: kind
+    };
+
+    return tableInfo;
   };
 
-  data.getTitle = function() {
-    return tableTitle;
+  data.getInfo = function() {
+    return tableInfo;
   };
 
   // Count the lessons in the day
@@ -78,7 +87,7 @@ appServices.factory('lessonService', function(moment) {
     var filterSubjects = ['delta'];
 
     // Process the timetable data
-    payload.forEach(function(lesson) {
+    payload.data.forEach(function(lesson) {
       var start = moment(lesson.start);
       var end = moment(lesson.end);
       var startWeeknumber = start.format('w'); // Output: weeknumber (without leading zero)
@@ -102,7 +111,7 @@ appServices.factory('lessonService', function(moment) {
             start: start.format('H:mm'),
             end: end.format('H:mm'),
             date: start.format('YYYY-MM-DD'),
-            teacher: lesson.teacherAbbreviation.toLowerCase(),
+            teacher: getTeacher(payload.teachers, lesson.teacherAbbreviation),
             subject: lesson.subject.toLowerCase(),
             room: lesson.room,
             description: lesson.description,

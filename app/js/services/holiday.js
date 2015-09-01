@@ -1,15 +1,15 @@
-appServices.factory('holidayService', function($http, $log, $q, moment) {
+appServices.factory('holidayService', function(apiService, $log, $q, moment) {
   return {
     getHolidays: function() {
       // Get the json with all the holiday dates in it
       var deferred = $q.defer();
 
-      $http.get('json/holidays.json')
-        .success(function(payload) {
+      apiService.getHolidays()
+        .then(function(payload) {
           var data = [];
           var now = moment();
 
-          payload.forEach(function(holiday) {
+          payload.data.forEach(function(holiday) {
             var startDate = moment(holiday.start);
             var endDate = moment(holiday.end);
             // Calculate the difference in days between the start date and now
@@ -18,7 +18,7 @@ appServices.factory('holidayService', function($http, $log, $q, moment) {
             // We don't want holidays from the past
             if (calcDays > 0) {
               data.push({
-                name: holiday.name,
+                title: holiday.title,
                 start: startDate.format('DD-MM-YYYY'),
                 end: endDate.format('DD-MM-YYYY'),
                 days: calcDays
@@ -27,8 +27,7 @@ appServices.factory('holidayService', function($http, $log, $q, moment) {
           });
 
           deferred.resolve(data);
-        })
-        .error(function(msg, code) {
+        }, function(msg, code) {
           deferred.reject(msg);
           $log.error(msg, code);
         });

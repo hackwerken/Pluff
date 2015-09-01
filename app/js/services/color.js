@@ -1,7 +1,7 @@
-appServices.factory('colorService', function($http, dataService) {
+appServices.factory('colorService', function(apiService) {
   return {
     getSubjects: function() {
-      return $http.jsonp(dataService.getConfig().url('/schedule/subjects'));
+      return apiService.get('/schedule/subjects');
     }
   };
 });

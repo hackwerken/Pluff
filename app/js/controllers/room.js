@@ -9,5 +9,4 @@ appCtrls.controller('RoomCtrl', function($scope, roomService, moment, dayService
       $scope.rooms = payload;
     });
   }
-
 });

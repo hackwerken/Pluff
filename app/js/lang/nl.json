@@ -27,6 +27,8 @@
   "FREE_ROOMS": "Vrije lokalen",
   "HOLIDAYS": "Vakanties",
   "ROOM": "Lokaal",
+  "TEACHER": "Docent",
+  "SUBJECT": "Vak",
   "FREE": "Vrij",
   "OCCUPIED": "Bezet",
   "LESSON": "les",
@@ -44,6 +46,11 @@
   "TIMETABLE_NOT_FOUND": "Geen rooster",
   "TIMETABLE_NOT_FOUND_LONG": "Er kon geen rooster gevonden worden.",
   "TIMETABLE_TEMP_EXPLANATION": "Het FHICT is nog bezig met het toevoegen van klassen aan de accounts van studenten. Het kan zijn dat hierdoor je rooster nog niet zichtbaar is. Je kunt nog altijd handmatig zoeken op je klas met de zoekknop rechtsboven.",
+
+  "AUTH_HEADER": "Login op Fontys ICT",
+  "AUTH_DESCRIPTION": "Klik op de onderstaande knop om in te loggen op Fontys ICT. Als dit de eerste keer is, geef dan Pluff de gevraagde permissies.",
+  "AUTH_NOPE_TO_DATA_MINING": "Blijf kalm, Pluff slaat geen data op. Helemaal noppes.",
+  "AUTH_BUTTON": "Login op Fontys ICT",
 
   "FAQ_SHORT": "FAQ",
   "FAQ_LONG": "Veelgestelde vragen",

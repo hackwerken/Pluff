@@ -1,8 +1,8 @@
-appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $window, $location, weekService, dataService, dayService, timetableData, ngDialog) {
+appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $window, $location, weekService, apiService, dayService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   if (timetableData !== false) {
     // Get the title of the timetable and filter some words out of it
-    $scope.tableTitle = lessonService.setTitle(timetableData.title);
+    lessonService.setInfo(timetableData.data.title, timetableData.kind);
 
     $scope.weeks = lessonService.getTimeTable(timetableData.data);
   }
@@ -96,15 +96,19 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
     return dayService.isActiveDay(dayNumber);
   };
 
-  $scope.teacherDialog = function(teacherAbr) {
-    // When the API data is loaded, open the dialog
-    dataService.getTeacher(teacherAbr).then(function(payload) {
-      var data = payload.data;
+  $scope.teacherDialog = function(teacher) {
+    apiService.getPicture(teacher.id, 'large').then(function(payload) {
+      // The image is a blob; encode it to base64 so it can be put in an <img>
+      var FR = new FileReader();
+      FR.onload = function(e) {
+        teacher.encodedPhoto = e.target.result;
+      };
+      FR.readAsDataURL(payload.data);
+    });
 
-      ngDialog.open({
-        template: 'partials/dialog-teacher.html',
-        data: data
-      });
+    ngDialog.open({
+      template: 'partials/dialog-teacher.html',
+      data: teacher
     });
   };
 

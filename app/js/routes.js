@@ -6,8 +6,8 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
       controller: 'TimeTableCtrl',
       resolve: {
         // Load the timetable JSON before the controller
-        timetableData: function(dataService) {
-          return dataService.getTimeTable('/me').then(function(payload) {
+        timetableData: function(apiService) {
+          return apiService.getTimeTable('/me').then(function(payload) {
             return payload.data;
           }, function() {
             return false;
@@ -19,7 +19,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
       templateUrl: 'partials/timetable.html',
       controller: 'TimeTableCtrl',
       resolve: {
-        timetableData: function($route, dataService) {
+        timetableData: function($route, apiService) {
           var categoryUrl;
           var queryUrl = $route.current.params.query;
 
@@ -32,7 +32,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
               categoryUrl = 'class';
               break;
             case 'teacher':
-              categoryUrl = 'teacher/abbreviation';
+              categoryUrl = 'teacher';
               break;
             case 'subject':
               categoryUrl = 'subject';
@@ -45,8 +45,8 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
               break;
           }
 
-          return dataService.getTimeTable('/' + categoryUrl + '/' + queryUrl).then(function(payload) {
-            return payload.data;
+          return apiService.getTimeTable('/' + categoryUrl + '/' + queryUrl).then(function(payload) {
+            return {data: payload.data, kind: categoryUrl};
           }, function() {
             return false;
           });
@@ -59,8 +59,8 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
       resolve: {
         // Load the autocomplete data first.
         // If this data can't be loaded the user isn't authenticated yet
-        autocompleteData: function(dataService) {
-          return dataService.getSuggestions().then(function(payload) {
+        autocompleteData: function(apiService) {
+          return apiService.getSuggestions().then(function(payload) {
             return payload.data;
           });
         }
@@ -81,4 +81,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
 
   // We don't want no fake hashbangs we want the real shite
   $locationProvider.html5Mode(true);
+  // With html5Mode on true, Angular sets up a fallback for older browsers with '#'.
+  // However, this strips out the hash. We need this for the API
+  $locationProvider.hashPrefix('!');
 });

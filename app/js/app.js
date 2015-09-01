@@ -10,12 +10,13 @@ var app = angular.module('pluffApp', [
   'angular-loading-bar',
   'ngAnimate',
   'ngDialog',
-  'ngTouch'
+  'ngTouch',
+  'satellizer'
 ]);
 
-app.run(function($rootScope, dataService) {
+app.run(function($rootScope, apiService) {
   $rootScope.encode = function(url) {
-    return dataService.encode(url);
+    return apiService.encode(url);
   };
 });
 

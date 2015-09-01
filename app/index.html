@@ -51,7 +51,10 @@
       <li ng-class="{ main: isActive('/free-rooms')}"><a href="/free-rooms" translate>FREE_ROOMS</a></li>
     </ul>
     <div class="nav-right">
-      <h2 class="nav-timetable-name" ng-show="tableTitle">{{tableTitle}}</h2>
+      <h2 class="nav-timetable-name" ng-show="tableInfo">
+        {{tableInfo.kind | uppercase | translate}}
+        {{tableInfo.title}}
+      </h2>
       <div class="nav-search">
         <a href="#" ng-click="showSearchFormFunc()">
           <svg version="1.1" width="20" height="20" viewBox="0 0 16 16"><path d="M15.56 15.56c-0.587 0.587-1.538 0.587-2.125 0l-2.652-2.652c-1.090 0.699-2.379 1.116-3.771 1.116-3.872 0-7.012-3.139-7.012-7.012s3.14-7.012 7.012-7.012c3.873 0 7.012 3.139 7.012 7.012 0 1.391-0.417 2.68-1.116 3.771l2.652 2.652c0.587 0.587 0.587 1.538 0 2.125zM7.012 2.003c-2.766 0-5.009 2.242-5.009 5.009s2.243 5.009 5.009 5.009c2.766 0 5.009-2.242 5.009-5.009s-2.242-5.009-5.009-5.009z"></path></svg>
@@ -60,14 +63,12 @@
         <div class="search-form" ng-if="showSearchForm">
           <angucomplete-alt id="search-query"
             placeholder="{{::'SEARCH_PLACEHOLDER' | translate}}"
-            pause="100"
+            pause="300"
             selected-object="searchSelected"
-            local-data="searchAuto"
-            search-fields="name,description"
+            remote-api-handler="searchApi"
             description-field="description"
             title-field="name"
             minlength="2"
-            auto-match="true"
             text-searching="{{::'SEARCH_BUSY' | translate}}"
             text-no-results="{{::'SEARCH_NO_RESULTS' | translate}}"
             input-class=""
