@@ -115,9 +115,7 @@ function uglifyJavascript () {
 }
 
 function cleanDist (cb) {
-    del([
-        'dist/**/*'
-    ], cb);
+    del(['dist/**/*']).then(cb);
 }
 
 /**
