@@ -133,7 +133,7 @@ function bustCache () {
  * Copy files from app/ over to dist/ and build them.
  */
 function copyDist () {
-    return gulp.src('app/**/*')
+    return gulp.src(['app/**/*', 'humans.txt'])
         .pipe(gulp.dest('dist'));
 }
 
