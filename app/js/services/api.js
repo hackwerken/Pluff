@@ -80,8 +80,8 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
   }
 
   return {
-    getSuggestions: function(query, timeoutPromise) {
-      return get('/schedule/autocomplete/Any', {
+    getSuggestions: function(kind, query, timeoutPromise) {
+      return get('/schedule/autocomplete/' + kind, {
         params: {
           filter: query
         },

@@ -10,6 +10,13 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
     $scope.showError = true;
   }
 
+  // Timetable could not be found. Show a list of the classes and teachers. 
+  if ($scope.showError) {
+    apiService.getSuggestions('User').then(function(payload) {
+      $scope.autocompleteList = payload.data;
+    });
+  }
+
   $scope.hourBreaks = dayService.getHourBreaks();
 
   // Watch for changes in the weeknumber

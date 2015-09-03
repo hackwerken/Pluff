@@ -9,7 +9,7 @@ appCtrls.controller('NavCtrl', function($scope, apiService, $timeout, $location,
   });
 
   $scope.searchApi = function(userInputString, timeoutPromise) {
-    return apiService.getSuggestions(userInputString, timeoutPromise);
+    return apiService.getSuggestions('Any', userInputString, timeoutPromise);
   };
 
   // Fired when a search suggestion is selected

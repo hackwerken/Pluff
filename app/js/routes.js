@@ -53,19 +53,6 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         }
       }
     })
-    .when('/colors', {
-      templateUrl: 'partials/colors.html',
-      controller: 'ColorCtrl',
-      resolve: {
-        // Load the autocomplete data first.
-        // If this data can't be loaded the user isn't authenticated yet
-        autocompleteData: function(apiService) {
-          return apiService.getSuggestions().then(function(payload) {
-            return payload.data;
-          });
-        }
-      }
-    })
     .when('/holidays', {
       templateUrl: 'partials/holidays.html',
       controller: 'HolidayCtrl'
