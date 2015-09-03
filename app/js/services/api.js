@@ -2,6 +2,8 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
   function isAuthenticated() {
     if ($auth.isAuthenticated()) {
       // Now check if the token is not expired yet.
+      // TODO: Maybe we can use Satellizer's built-in shit for this.
+      //       For this to work, we need to mimic the JWT standard.
       var expires = localStorage.getItem('satellizer_expires');
       var isStillValid = expires >= moment().format('X');
 
