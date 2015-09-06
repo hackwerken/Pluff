@@ -60,7 +60,7 @@
   "FAQ_QUESTION_HOW": "Hoe kan Pluff mijn rooster zien?",
   "FAQ_ANSWER_HOW": "We maken gebruik van een <abbr title=\"Webservice\">API</abbr> beschikbaar gesteld door FHICT. Als je op de portal ingelogd bent kunnen we daardoor je roosterdata ophalen en je naam zien. Niks engs aan!",
   "FAQ_QUESTION_WHAT": "Wat is Pluff?",
-  "FAQ_ANSWER_WHAT": "Pluff is een open-source roostersysteem gemaakt door en voor Fontys ICT studenten. Het is onze visie, hoe het eigenlijk zou moeten. Het systeem dat door Fontys ICT zelf aangeboden wordt, is in onze ogen verouderd. We vinden het eruit zien en werken alsof het in de jaren '80 is gemaakt door een stelletje communisten. Kom op. Framesets, Comic Sans en zelfs GIF-jes met glitters. No joke.",
+  "FAQ_ANSWER_WHAT": "Pluff is een open-source roostersysteem gemaakt door en voor Fontys ICT studenten. Het is onze visie, hoe het eigenlijk zou moeten. Het systeem dat door Fontys ICT zelf aangeboden wordt, is in onze ogen verouderd. We vinden het eruit zien en werken alsof het in de jaren '80 is gemaakt. Kom op. Framesets, Comic Sans en zelfs GIF-jes met glitters. No joke.",
   "FAQ_QUESTION_CONNECTED": "Is Pluff verbonden aan Fontys?",
   "FAQ_ANSWER_CONNECTED": "Nee. Pluff is een initiatief dat is ontwikkeld door een aantal studenten die studeren aan de Fontys Hogeschool ICT.",
   "FAQ_QUESTION_WHY_AUTH": "Waarom krijg ik een inlogscherm als ik Pluff open?",
