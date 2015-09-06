@@ -7,8 +7,8 @@ export default function($http, $auth, $q, ngDialog) {
       // Now check if the token is not expired yet.
       // TODO: Maybe we can use Satellizer's built-in shit for this.
       //       For this to work, we need to mimic the JWT standard.
-      var expires = localStorage.getItem('satellizer_expires');
-      var isStillValid = expires >= moment().format('X');
+      const expires = localStorage.getItem('satellizer_expires');
+      const isStillValid = expires >= moment().format('X');
 
       if (!isStillValid) {
         console.log('Token is no longer valid, removing...');
@@ -26,7 +26,7 @@ export default function($http, $auth, $q, ngDialog) {
   function setExpires(expiresIn) {
     // The token is only valid for x seconds, so save this.
     if (expiresIn) {
-      var expires = moment().add(expiresIn, 's').format('X');
+      const expires = moment().add(expiresIn, 's').format('X');
       console.log('Setting token as expired after;', expires);
       localStorage.setItem('satellizer_expires', expires);
     }
@@ -36,7 +36,7 @@ export default function($http, $auth, $q, ngDialog) {
     if (!isAuthenticated()) {
       // Show dialog about why the user must authenticate.
       // TODO: Prevent that multiple dialogs are opened.
-      var dialog = ngDialog.open({
+      const dialog = ngDialog.open({
         name: 'auth',
         template: authenticatePartial,
         plain: true,
@@ -45,21 +45,21 @@ export default function($http, $auth, $q, ngDialog) {
         closeByEscape: false,
         closeByDocument: false,
         data: {
-          clickButton: function() {
-            var authPromise = $auth.authenticate('fhict').then(function (response) {
+          clickButton() {
+            const authPromise = $auth.authenticate('fhict').then(function(response) {
               setExpires(response.expires_in);
 
               ngDialog.close('auth', authPromise);
-            }, function (data) {
+            }, function(data) {
               // TODO: Create a nice dialog explaining that something weird went wrong.
               // Don't know yet when this would occur.
               console.error('FHICT authentication went wrong.', data);
             });
-          }
-        }
+          },
+        },
       });
 
-      return dialog.closePromise.then(function (closedDialog) {
+      return dialog.closePromise.then(function(closedDialog) {
         // Forward the authPromise.
         return closedDialog.value;
       });
@@ -67,57 +67,57 @@ export default function($http, $auth, $q, ngDialog) {
 
     // Create a fake promise if already authenticated.
     // TODO: Hm, there must be a better solution...
-    var deferred = $q.defer();
+    const deferred = $q.defer();
     deferred.resolve();
     return deferred.promise;
   }
 
   function get(url, options) {
     // Authenticate before trying to load the url.
-    return authenticate().then(function () {
+    return authenticate().then(function() {
       return $http(angular.extend({
         url: 'https://tas.fhict.nl/api/v1' + url,
         method: 'GET',
-        responseType: 'json'
+        responseType: 'json',
       }, options));
     });
   }
 
   return {
-    getSuggestions: function(kind, query, timeoutPromise) {
+    getSuggestions(kind, query, timeoutPromise) {
       return get('/schedule/autocomplete/' + kind, {
         params: {
-          filter: query
+          filter: query,
         },
-        timeout: timeoutPromise
+        timeout: timeoutPromise,
       });
     },
-    getTimeTable: function(input) {
+    getTimeTable(input) {
       return get('/schedule' + input, {
         params: {
           expandTeacher: true,
           startLastMonday: true,
-          days: 90
-        }
+          days: 90,
+        },
       });
     },
-    getTeacher: function(teacher) {
+    getTeacher(teacher) {
       return get('/people/abbreviation/' + teacher);
     },
-    getHolidays: function() {
+    getHolidays() {
       return get('/schedule/holidays');
     },
-    getRoomOccupancy: function(date) {
+    getRoomOccupancy(date) {
       return get('/rooms/occupancy/' + date);
     },
-    getPicture: function(id, size) {
+    getPicture(id, size) {
       return get('/pictures/' + id + '/' + size, {
-        responseType: 'blob'
+        responseType: 'blob',
       });
     },
     // API URL encoding
-    encode: function(url) {
+    encode(url) {
       return encodeURIComponent(url);
-    }
+    },
   };
 }

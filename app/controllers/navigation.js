@@ -1,4 +1,4 @@
-export default function($scope, apiService, $timeout, $location, lessonService, dayService) {
+export default function($scope, apiService, $timeout, $location, lessonService) {
   // Get timetable title (from TimeTableCtrl) and update if the title changes
   $scope.$watch(function() {
     return lessonService.getInfo();
@@ -15,8 +15,8 @@ export default function($scope, apiService, $timeout, $location, lessonService, 
   // Fired when a search suggestion is selected
   $scope.searchSelected = function(selected) {
     if (selected !== undefined) {
-      var title = apiService.encode(selected.originalObject.name);
-      var kind = selected.originalObject.kind.toLowerCase();
+      const title = apiService.encode(selected.originalObject.name);
+      const kind = selected.originalObject.kind.toLowerCase();
 
       // Check which kind is selected (room or class) to update the url
       console.log('Autocomplete ' + kind + ' ' + title);
@@ -32,7 +32,7 @@ export default function($scope, apiService, $timeout, $location, lessonService, 
 
       if ($scope.showSearchForm === true) {
         $timeout(function() {
-          var searchInput = document.getElementById('search-query_value');
+          const searchInput = document.getElementById('search-query_value');
           searchInput.focus();
         }, 300);
       }
@@ -54,14 +54,11 @@ export default function($scope, apiService, $timeout, $location, lessonService, 
     }
   });
 
-  $scope.isActive = function (viewLocation) {
-    var regexp = new RegExp("(\/search\/.*)");
+  $scope.isActive = function(viewLocation) {
+    const regexp = new RegExp('(\/search\/.*)');
     if (regexp.test($location.path())) {
       return viewLocation === '/';
     }
-    else {
-      return viewLocation === $location.path();
-    }
+    return viewLocation === $location.path();
   };
-
 }

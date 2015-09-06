@@ -7,12 +7,11 @@ export default function($scope, $http, lessonService, $window, $location, weekSe
     lessonService.setInfo(timetableData.data.title, timetableData.kind);
 
     $scope.weeks = lessonService.getTimeTable(timetableData.data);
-  }
-  else {
+  } else {
     $scope.showError = true;
   }
 
-  // Timetable could not be found. Show a list of the classes and teachers. 
+  // Timetable could not be found. Show a list of the classes and teachers.
   if ($scope.showError) {
     apiService.getSuggestions('User').then(function(payload) {
       $scope.autocompleteList = payload.data;
@@ -33,8 +32,7 @@ export default function($scope, $http, lessonService, $window, $location, weekSe
   $scope.currentWeekActive = function() {
     if (weekService.isCurrentWeek()) {
       $scope.showAllDays = false;
-    }
-    else {
+    } else {
       $scope.showAllDays = true;
     }
   };
@@ -71,7 +69,7 @@ export default function($scope, $http, lessonService, $window, $location, weekSe
   // Bind keybindings to the window to enable right and left arrow navigation
   angular.element($window).on('keydown', function(e) {
     // Check if not using arrow keys in searchfield
-    if (document.activeElement.nodeName.toLowerCase() != 'input') {
+    if (document.activeElement.nodeName.toLowerCase() !== 'input') {
       // Go to the next week on right arrow key
       if (e.keyCode === 39) {
         $scope.$apply(function() {
@@ -108,7 +106,7 @@ export default function($scope, $http, lessonService, $window, $location, weekSe
   $scope.teacherDialog = function(teacher) {
     apiService.getPicture(teacher.id, 'large').then(function(payload) {
       // The image is a blob; encode it to base64 so it can be put in an <img>
-      var FR = new FileReader();
+      const FR = new FileReader();
       FR.onload = function(e) {
         teacher.encodedPhoto = e.target.result;
       };
@@ -118,7 +116,7 @@ export default function($scope, $http, lessonService, $window, $location, weekSe
     ngDialog.open({
       template: teacherDialogPartial,
       plain: true,
-      data: teacher
+      data: teacher,
     });
   };
 

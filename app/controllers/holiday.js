@@ -3,5 +3,4 @@ export default function($scope, holidayService) {
   holidayService.getHolidays().then(function(payload) {
     $scope.holidays = payload;
   });
-
 }

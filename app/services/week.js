@@ -1,15 +1,14 @@
 import moment from 'moment';
 
 export default function() {
-  var data = {};
+  const data = {};
 
-  var time = moment();
+  const time = moment();
 
   // Set default weeknumber. In the weekend, use the next week number
   if (time.day() === 0 || time.day() === 6) {
     data.weekCurrent = parseInt(time.add(1, 'w').format('w'));
-  }
-  else {
+  } else {
     data.weekCurrent = parseInt(time.format('w'));
   }
 
@@ -21,68 +20,66 @@ export default function() {
   data.yearUse = data.yearCurrent;
 
   return {
-    getYearUsed: function() {
+    getYearUsed() {
       return data.yearUse;
     },
-    getWeekUsed: function() {
+    getWeekUsed() {
       return data.weekUse;
     },
-    setWeek: function(newWeek) {
+    setWeek(newWeek) {
       // Rotate the number when the year has ended
       if (newWeek === 53) {
         data.weekUse = 1;
         data.yearUse = data.yearCurrent + 1;
-      }
-      else if (newWeek === 0) {
+      } else if (newWeek === 0) {
         data.weekUse = 52;
         data.yearUse = data.yearCurrent;
-      }
-      else {
+      } else {
         data.weekUse = newWeek;
       }
     },
-    setYear: function(newYear) {
+    setYear(newYear) {
       data.yearUse = newYear;
     },
     // Check if the used week is older then or the same as the current week
-    isOldWeek: function() {
+    isOldWeek() {
       if (data.weekUse <= data.weekCurrent && data.yearUse === data.yearCurrent) {
         return true;
       }
       return false;
     },
     // Check if the used week is too far away (the next year + 12 weeks)
-    isNewWeek: function() {
+    isNewWeek() {
       if (data.weekUse >= 12 && data.yearUse === (data.yearCurrent + 1)) {
         return true;
       }
       return false;
     },
-    isCurrentWeek: function() {
+    isCurrentWeek() {
       if (data.weekUse === data.weekCurrent) {
         return true;
       }
       return false;
     },
-    addWeek: function() {
+    addWeek() {
       if (this.isNewWeek() === false) {
         this.setWeek(data.weekUse + 1);
         return true;
       }
       return false;
     },
-    subtractWeek: function() {
+    subtractWeek() {
       if (this.isOldWeek() === false) {
         this.setWeek(data.weekUse - 1);
         return true;
       }
       return false;
     },
-    currentWeek: function() {
+    currentWeek() {
       // Reset to the current week
       this.setWeek(data.weekCurrent);
       this.setYear(data.yearCurrent);
       return true;
-    }
+    },
   };
 }

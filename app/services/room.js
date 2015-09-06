@@ -1,24 +1,23 @@
 export default function($log, $q, apiService) {
   return {
-    getFreeRooms: function() {
-      var deffered = $q.defer();
+    getFreeRooms() {
+      const deffered = $q.defer();
 
       apiService.getRoomOccupancy('today')
         .then(function(payload) {
-          var data = [];
+          const data = [];
           // Filter all rooms in this array
-          var filterRooms = ['?', 'eindhoven', 'helmond', 'extern'];
+          const filterRooms = ['?', 'eindhoven', 'helmond', 'extern'];
 
           // Loop through each room
           payload.data.forEach(function(room) {
-            var hourData = [];
+            const hourData = [];
 
             if (!(filterRooms.indexOf(room.roomId) > -1)) {
-
               // Loop trough all hours and check if the room is free on that hour
               // Return true if the room is occupied
-              for (var hour = 1; hour < 15; hour++) {
-                var hourExp = Math.pow(2, hour - 1);
+              for (let hour = 1; hour < 15; hour++) {
+                const hourExp = Math.pow(2, hour - 1);
 
                 if (room.mask & hourExp) {
                   hourData.push(true);
@@ -29,9 +28,8 @@ export default function($log, $q, apiService) {
 
               data.push({
                 name: room.roomId,
-                hours: hourData
+                hours: hourData,
               });
-
             }
           });
 
@@ -42,6 +40,6 @@ export default function($log, $q, apiService) {
         });
 
       return deffered.promise;
-    }
+    },
   };
 }

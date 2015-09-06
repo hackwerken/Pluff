@@ -23,7 +23,7 @@ import ngCookies from 'angular-cookies';
 import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
 import ngTouch from 'angular-touch';
-import angucompleteAlt from 'angucomplete-alt';
+import 'angucomplete-alt';
 import 'satellizer';
 import 'angucomplete-alt';
 import ngLoadingBar from 'angular-loading-bar';
@@ -60,7 +60,7 @@ app.factory('weekService', weekService);
 app.config(config);
 app.config(routes);
 
-app.run(function($rootScope, apiService) {
+app.run(function($rootScope) {
   $rootScope.encode = function(url) {
     return apiService.encode(url);
   };

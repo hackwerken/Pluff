@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 export default function(weekService) {
-  var data = {};
-  var time = moment();
+  const data = {};
+  const time = moment();
 
   // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
   data.hourBreaks = [0, 0, 20, 0, 0, 0, 0, 10, 0, 0, 15, 0, 20, 0, 0];
@@ -21,7 +21,7 @@ export default function(weekService) {
     {number: 11},
     {number: 12},
     {number: 13},
-    {number: 14}
+    {number: 14},
   ];
   // Fontys starts at 8.45
   data.dayStartTime = moment().hour(8).minute(45).second(0);
@@ -29,23 +29,23 @@ export default function(weekService) {
   data.dayEndTime = moment().hour(21).minute(40).second(0);
 
   return {
-    getHourBreaks: function() {
+    getHourBreaks() {
       return data.hourBreaks;
     },
-    getHourNumbers: function() {
+    getHourNumbers() {
       return data.hourNumbers;
     },
     // Calculate the date of the current day
-    getCurrentDayDate: function(dayNumber) {
+    getCurrentDayDate(dayNumber) {
       return moment(weekService.getYearUsed() + '-' + weekService.getWeekUsed() + '-' + dayNumber, 'YYYY-w-d');
     },
-    isCurrentDay: function(dayNumber) {
+    isCurrentDay(dayNumber) {
       if (time.isSame(this.getCurrentDayDate(dayNumber), 'day')) {
         return true;
       }
     },
-    isActiveDay: function(dayNumber) {
-      var dayDate = this.getCurrentDayDate(dayNumber);
+    isActiveDay(dayNumber) {
+      const dayDate = this.getCurrentDayDate(dayNumber);
 
       if (time.isSame(dayDate, 'day')) {
         return true;
@@ -54,18 +54,18 @@ export default function(weekService) {
         return true;
       }
     },
-    setCalculateLine: function() {
-      var now = moment();
+    setCalculateLine() {
+      const now = moment();
 
       if (data.dayEndTime > now && data.dayStartTime < now) {
-        var percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
-        var percentageRounded = (Math.round(percentageComplete * 100) / 100);
+        const percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
+        const percentageRounded = (Math.round(percentageComplete * 100) / 100);
 
         return percentageRounded + '%';
       }
 
       // Hide line under footer when there are no lessons. Quick 'n dirty
       return '101%';
-    }
+    },
   };
 }

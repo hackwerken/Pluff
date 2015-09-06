@@ -2,20 +2,20 @@ import moment from 'moment';
 
 export default function($log, $q, apiService) {
   return {
-    getHolidays: function() {
+    getHolidays() {
       // Get the json with all the holiday dates in it
-      var deferred = $q.defer();
+      const deferred = $q.defer();
 
       apiService.getHolidays()
         .then(function(payload) {
-          var data = [];
-          var now = moment();
+          const data = [];
+          const now = moment();
 
           payload.data.forEach(function(holiday) {
-            var startDate = moment(holiday.start);
-            var endDate = moment(holiday.end);
+            const startDate = moment(holiday.start);
+            const endDate = moment(holiday.end);
             // Calculate the difference in days between the start date and now
-            var calcDays = startDate.diff(now, 'days');
+            const calcDays = startDate.diff(now, 'days');
 
             // We don't want holidays from the past
             if (calcDays > 0) {
@@ -23,7 +23,7 @@ export default function($log, $q, apiService) {
                 title: holiday.title,
                 start: startDate.format('DD-MM-YYYY'),
                 end: endDate.format('DD-MM-YYYY'),
-                days: calcDays
+                days: calcDays,
               });
             }
           });
@@ -35,6 +35,6 @@ export default function($log, $q, apiService) {
         });
 
       return deferred.promise;
-    }
+    },
   };
 }

@@ -2,7 +2,7 @@ import enLang from 'lang/en.json';
 import deLang from 'lang/de.json';
 import nlLang from 'lang/nl.json';
 
-module.exports = function($translateProvider, $cookieStoreProvider, $authProvider) {
+export default function($translateProvider, $cookieStoreProvider, $authProvider) {
   $translateProvider.translations('en', enLang);
   $translateProvider.translations('de', deLang);
   $translateProvider.translations('nl', nlLang);
@@ -15,7 +15,7 @@ module.exports = function($translateProvider, $cookieStoreProvider, $authProvide
       'de_DE': 'de',
       'de_CH': 'de',
       'nl_NL': 'nl',
-      'nl_BE': 'nl'
+      'nl_BE': 'nl',
     })
     .uniformLanguageTag('java')
     .determinePreferredLanguage()
@@ -36,6 +36,6 @@ module.exports = function($translateProvider, $cookieStoreProvider, $authProvide
     popupOptions: null,
     responseParams: null,
     requiredUrlParams: ['scope'],
-    optionalUrlParams: null
+    optionalUrlParams: null,
   });
 }

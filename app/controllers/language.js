@@ -6,7 +6,7 @@ export default function($scope, $translate, $window) {
     // Full page reload to apply all languages
     // This is necessary because of the one-time bindings used for performance reasons
     // setTimeout() is necessary because otherwise Safari doesn't set the cookie
-    setTimeout(function () {
+    setTimeout(function() {
       $window.location.reload();
     });
   };

@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export default function() {
-  var data = {};
+  const data = {};
 
   function getTeacher(teachers, teacherAbbr) {
     return teachers.filter(function(teacher) {
@@ -10,12 +10,12 @@ export default function() {
   }
 
   // Parse the timetable title
-  var tableInfo;
+  let tableInfo;
   data.setInfo = function(title, kind) {
     tableInfo = {
       // We only want a small part of the title.
       title: title.replace(/Rooster |Schedule /, '').replace(/\((.*)\)$/, ''),
-      kind: kind
+      kind,
     };
 
     return tableInfo;
@@ -27,10 +27,10 @@ export default function() {
 
   // Count the lessons in the day
   data.countLessons = function(day) {
-    var totalLessons = 0;
+    let totalLessons = 0;
 
     day.forEach(function(hour) {
-      var hourCount = parseInt(hour.lessons.length);
+      const hourCount = parseInt(hour.lessons.length);
       totalLessons = totalLessons + hourCount;
     });
 
@@ -43,7 +43,7 @@ export default function() {
     total = total || 4096;
 
     // Loop every character and multiply with the generator seed
-    for (var i = 0; i < name.length; i++) {
+    for (let i = 0; i < name.length; i++) {
       total = total * name.charCodeAt(i);
     }
 
@@ -51,65 +51,65 @@ export default function() {
     total = total.toString(16);
 
     // Variables
-    var minSaturation = 50;
-    var minLightness = 35;
-    var maxLightness = 47;
+    const minSaturation = 50;
+    const minLightness = 35;
+    const maxLightness = 47;
 
     // Calculate values
-    var hue = parseInt(total.substring(0, 3), 16) % 360;
-    var saturation = parseInt(total.substring(1, 3), 16) % (99 - minSaturation) + minSaturation;
-    var lightness = parseInt(total.substring(2, 4), 16) % (maxLightness - minLightness + 1) + minLightness;
+    const hue = parseInt(total.substring(0, 3), 16) % 360;
+    const saturation = parseInt(total.substring(1, 3), 16) % (99 - minSaturation) + minSaturation;
+    const lightness = parseInt(total.substring(2, 4), 16) % (maxLightness - minLightness + 1) + minLightness;
 
     // Output to the HSL color format
-    var color = 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
+    const color = 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
     return color;
   };
 
   data.getTimeTable = function(payload) {
-    var weeks = [];
+    const weeks = [];
 
     // Create 52 empty weeks, create within every week 5 days (Mo - Fr) and 14 hours
     // TODO: Seperate from the rest
-    for (var week = 0; week < 52; week++) {
+    for (let week = 0; week < 52; week++) {
       weeks[week] = [];
 
-      for (var day = 0; day < 5; day++) {
+      for (let day = 0; day < 5; day++) {
         weeks[week][day] = [];
 
-        for (var hour = 0; hour < 14; hour++) {
+        for (let hour = 0; hour < 14; hour++) {
           weeks[week][day][hour] = {
             number: (hour + 1),
-            lessons: []
+            lessons: [],
           };
         }
       }
     }
 
     // Filter all subjects in this array
-    var filterSubjects = ['delta'];
+    const filterSubjects = ['delta'];
 
     // Process the timetable data
     payload.data.forEach(function(lesson) {
-      var start = moment(lesson.start);
-      var end = moment(lesson.end);
-      var startWeeknumber = start.format('w'); // Output: weeknumber (without leading zero)
-      var startDaynumber = start.format('d'); // Output: daynumber of week (1 - 5), 1 = Monday
+      const start = moment(lesson.start);
+      const end = moment(lesson.end);
+      const startWeeknumber = start.format('w'); // Output: weeknumber (without leading zero)
+      const startDaynumber = start.format('d'); // Output: daynumber of week (1 - 5), 1 = Monday
 
       // Convert mask to binary and get the length to minimize needed loops
-      var hourLength = lesson.hoursMask.toString(2).length;
+      const hourLength = lesson.hoursMask.toString(2).length;
 
       // Iterate over every possible hour and check if there's a lesson in it
-      for (var hourNumber = 1; hourNumber <= hourLength; hourNumber++) {
+      for (let hourNumber = 1; hourNumber <= hourLength; hourNumber++) {
         // Get the exponent of the hourNumber (current hour) (^2 - 1)
         // Equalize the current hour with the mask
-        var hourExp = Math.pow(2, hourNumber - 1);
+        const hourExp = Math.pow(2, hourNumber - 1);
 
         // Check if the current hour (hourNumber) is in the mask
         // And if the subject isn't in the filterSubjects array
         // Ex.: if a mask is 12, the binary code of it is 1100. This means that the lesson is in the third and fourth hour
         if (lesson.hoursMask & hourExp && !(filterSubjects.indexOf(lesson.subject) > -1)) {
           // Reformat the lesson data to include only what is needed
-          var lessonData = {
+          const lessonData = {
             start: start.format('H:mm'),
             end: end.format('H:mm'),
             date: start.format('YYYY-MM-DD'),
@@ -118,7 +118,7 @@ export default function() {
             room: lesson.room,
             description: lesson.description,
             classes: lesson.classes,
-            color: data.generateColor(lesson.subject)
+            color: data.generateColor(lesson.subject),
           };
 
           // Select the current hour and push the new lesson to it
