@@ -1,19 +1,19 @@
 import angular from 'angular';
 import 'stylesheet/style.scss';
 
-import TimeTableCtrl from 'controllers/timetable';
-import ErrorCtrl from 'controllers/error';
-import HolidayCtrl from 'controllers/holiday';
-import LanguageCtrl from 'controllers/language';
-import MainCtrl from 'controllers/main';
-import NavigationCtrl from 'controllers/navigation';
-import RoomCtrl from 'controllers/room';
-import apiService from 'services/api';
-import dayService from 'services/day';
-import holidayService from 'services/holiday';
-import lessonService from 'services/lesson';
-import roomService from 'services/room';
-import weekService from 'services/week';
+import CTimetable from 'controllers/timetable';
+import CError from 'controllers/error';
+import CHoliday from 'controllers/holiday';
+import CLanguage from 'controllers/language';
+import CMain from 'controllers/main';
+import CNavigation from 'controllers/navigation';
+import CRoom from 'controllers/room';
+import SApi from 'services/api';
+import SDay from 'services/day';
+import SHoliday from 'services/holiday';
+import SLesson from 'services/lesson';
+import SRoom from 'services/room';
+import SWeek from 'services/week';
 
 import config from './config';
 import routes from './routes';
@@ -42,25 +42,25 @@ const app = angular.module('pluffApp', [
   'angucomplete-alt',
 ]);
 
-app.controller('TimeTableCtrl', TimeTableCtrl);
-app.controller('ErrorCtrl', ErrorCtrl);
-app.controller('HolidayCtrl', HolidayCtrl);
-app.controller('LanguageCtrl', LanguageCtrl);
-app.controller('MainCtrl', MainCtrl);
-app.controller('NavCtrl', NavigationCtrl);
-app.controller('RoomCtrl', RoomCtrl);
+app.controller('TimeTableCtrl', CTimetable);
+app.controller('ErrorCtrl', CError);
+app.controller('HolidayCtrl', CHoliday);
+app.controller('LanguageCtrl', CLanguage);
+app.controller('MainCtrl', CMain);
+app.controller('NavCtrl', CNavigation);
+app.controller('RoomCtrl', CRoom);
 
-app.factory('apiService', apiService);
-app.factory('dayService', dayService);
-app.factory('holidayService', holidayService);
-app.factory('lessonService', lessonService);
-app.factory('roomService', roomService);
-app.factory('weekService', weekService);
+app.factory('apiService', SApi);
+app.factory('dayService', SDay);
+app.factory('holidayService', SHoliday);
+app.factory('lessonService', SLesson);
+app.factory('roomService', SRoom);
+app.factory('weekService', SWeek);
 
 app.config(config);
 app.config(routes);
 
-app.run(function($rootScope) {
+app.run(function($rootScope, apiService) {
   $rootScope.encode = function(url) {
     return apiService.encode(url);
   };
