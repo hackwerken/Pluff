@@ -1,7 +1,16 @@
 import moment from 'moment';
 import authenticatePartial from 'partials/dialog-authenticate.html';
 
-export default function($http, $auth, $q, ngDialog) {
+export default function($http, $auth, $q, $rootScope, ngDialog) {
+  let isAlreadyInApp = false;
+
+  // When requesting an URL without user interaction, a dialog should be shown
+  // to prevent the browser from blocking the popup.
+  const removeEvent = $rootScope.$on('$routeChangeSuccess', function() {
+    isAlreadyInApp = true;
+    removeEvent();
+  });
+
   function isAuthenticated() {
     if ($auth.isAuthenticated()) {
       // Now check if the token is not expired yet.
@@ -32,37 +41,44 @@ export default function($http, $auth, $q, ngDialog) {
     }
   }
 
+  // Popup a authentication popup from FHICT where the user can login.
+  function showAuthPopup(dialogId) {
+    const authPromise = $auth.authenticate('fhict').then(function(response) {
+      setExpires(response.expires_in);
+
+      if (dialogId) ngDialog.close(dialogId, authPromise);
+    }, function(data) {
+      // TODO: Create a nice dialog explaining that something weird went wrong.
+      // Don't know yet when this would occur.
+      console.error('FHICT authentication went wrong.', data);
+    });
+
+    return authPromise;
+  }
+
   function authenticate() {
     if (!isAuthenticated()) {
-      // Show dialog about why the user must authenticate.
-      // TODO: Prevent that multiple dialogs are opened.
-      const dialog = ngDialog.open({
-        name: 'auth',
-        template: authenticatePartial,
-        plain: true,
-        // User shouldn't be able to ignore this dialog.
-        showClose: false,
-        closeByEscape: false,
-        closeByDocument: false,
-        data: {
-          clickButton() {
-            const authPromise = $auth.authenticate('fhict').then(function(response) {
-              setExpires(response.expires_in);
+      if (!isAlreadyInApp) {
+        // Show dialog about why the user must authenticate.
+        // TODO: Prevent that multiple dialogs are opened.
+        const dialog = ngDialog.open({
+          name: 'auth',
+          template: authenticatePartial,
+          plain: true,
+          // User shouldn't be able to ignore this dialog.
+          showClose: false,
+          closeByEscape: false,
+          closeByDocument: false,
+          data: {showAuthPopup},
+        });
 
-              ngDialog.close('auth', authPromise);
-            }, function(data) {
-              // TODO: Create a nice dialog explaining that something weird went wrong.
-              // Don't know yet when this would occur.
-              console.error('FHICT authentication went wrong.', data);
-            });
-          },
-        },
-      });
-
-      return dialog.closePromise.then(function(closedDialog) {
-        // Forward the authPromise.
-        return closedDialog.value;
-      });
+        return dialog.closePromise.then(function(closedDialog) {
+          // Forward the authPromise.
+          return closedDialog.value;
+        });
+      }
+      // The user is already in the app, so show him the auth directly.
+      return showAuthPopup();
     }
 
     // Create a fake promise if already authenticated.
