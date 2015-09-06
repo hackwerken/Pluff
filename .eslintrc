@@ -1,0 +1,10 @@
+{
+  "extends": "./node_modules/codeyellow-style/.eslintrc",
+  "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}]
+  },
+  "globals": {
+    "_": true,
+    "angular": true
+  }
+}

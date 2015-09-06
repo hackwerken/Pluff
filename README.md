@@ -5,11 +5,13 @@ Pluff — Studentenrooster
 
 Uiteraard kan het altijd beter. Wij zijn geïnteresseerd in je feedback! Aarzel niet om hiervoor een issue aan te maken. Meehelpen is ook zeer welkom.
 
-## Installatie
+## Development
 
 Om Pluff lokaal te draaien heb je [node.js](http://nodejs.org/) en _node package manager_ (meestal meegeleverd bij node.js) nodig.
 
-Clone deze repository en kopieer `.env.example` naar `.env`. Type (eenmalig) in je Pluff folder `npm install` om de benodigde dependencies te installeren. Daarna type je simpelweg `npm start` om de ‘server’ te starten. Dit opent meteen je browser op `http://localhost:8080`, waar je als het goed is meteen een werkende Pluff ziet staan.
+Clone deze repository en kopieer `.env.example` naar `.env`. Type (eenmalig) in je Pluff folder `npm install` om de benodigde dependencies te installeren. Daarna type je simpelweg `npm start` om de ‘server’ te starten. Ga nu naar `http://localhost:8080`, waar je als het goed is meteen een werkende Pluff ziet staan.
+
+Houd je bij het ontwikkelen aan de  [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript). Check of je voldoet aan deze standaard met `npm run lint`. Ook wordt [EditorConfig](http://editorconfig.org/) gebruikt zodat iedereen dezelfde line endings etc. gebruikt. Deze kun je voor vrijwel elke editor installeren.
 
 ## Uploaden via FTP
 
