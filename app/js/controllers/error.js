@@ -1,3 +1,0 @@
-appCtrls.controller('ErrorCtrl', function() {
-  //
-});

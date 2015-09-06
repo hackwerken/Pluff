@@ -1,4 +1,4 @@
-appCtrls.controller('NavCtrl', function($scope, apiService, $timeout, $location, lessonService, dayService) {
+export default function($scope, apiService, $timeout, $location, lessonService, dayService) {
   // Get timetable title (from TimeTableCtrl) and update if the title changes
   $scope.$watch(function() {
     return lessonService.getInfo();
@@ -64,4 +64,4 @@ appCtrls.controller('NavCtrl', function($scope, apiService, $timeout, $location,
     }
   };
 
-});
+}

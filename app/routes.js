@@ -1,8 +1,13 @@
-app.config(function($routeProvider, $locationProvider, $httpProvider) {
+import timetablePartial from 'partials/timetable.html';
+import holidaysPartial from 'partials/holidays.html';
+import freeRoomsPartial from 'partials/free-rooms.html';
+import missingPartial from 'partials/errors/missing.html';
+
+export default function($routeProvider, $locationProvider, $httpProvider) {
 
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/timetable.html',
+      template: timetablePartial,
       controller: 'TimeTableCtrl',
       resolve: {
         // Load the timetable JSON before the controller
@@ -16,7 +21,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
       }
     })
     .when('/search/:category/:query', {
-      templateUrl: 'partials/timetable.html',
+      template: timetablePartial,
       controller: 'TimeTableCtrl',
       resolve: {
         timetableData: function($route, apiService) {
@@ -54,15 +59,15 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
       }
     })
     .when('/holidays', {
-      templateUrl: 'partials/holidays.html',
+      template: holidaysPartial,
       controller: 'HolidayCtrl'
     })
     .when('/free-rooms', {
-      templateUrl: 'partials/free-rooms.html',
+      template: freeRoomsPartial,
       controller: 'RoomCtrl'
     })
     .otherwise({
-      templateUrl: 'partials/errors/missing.html',
+      template: missingPartial,
       controller: 'ErrorCtrl'
     });
 
@@ -71,4 +76,4 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
   // With html5Mode on true, Angular sets up a fallback for older browsers with '#'.
   // However, this strips out the hash. We need this for the API
   $locationProvider.hashPrefix('!');
-});
+}

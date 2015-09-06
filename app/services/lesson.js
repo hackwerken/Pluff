@@ -1,4 +1,6 @@
-appServices.factory('lessonService', function(moment) {
+import moment from 'moment';
+
+export default function() {
   var data = {};
 
   function getTeacher(teachers, teacherAbbr) {
@@ -130,4 +132,4 @@ appServices.factory('lessonService', function(moment) {
   };
 
   return data;
-});
+}

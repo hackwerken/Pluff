@@ -1,4 +1,6 @@
-appServices.factory('holidayService', function(apiService, $log, $q, moment) {
+import moment from 'moment';
+
+export default function($log, $q, apiService) {
   return {
     getHolidays: function() {
       // Get the json with all the holiday dates in it
@@ -35,4 +37,4 @@ appServices.factory('holidayService', function(apiService, $log, $q, moment) {
       return deferred.promise;
     }
   };
-});
+}

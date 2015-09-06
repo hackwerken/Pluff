@@ -1,9 +1,12 @@
-app.config(function($translateProvider, $cookieStoreProvider, $authProvider) {
-  // Lazyload the language files
-  $translateProvider.useStaticFilesLoader({
-    prefix: 'js/lang/',
-    suffix: '.json'
-  });
+import enLang from 'lang/en.json';
+import deLang from 'lang/de.json';
+import nlLang from 'lang/nl.json';
+
+module.exports = function($translateProvider, $cookieStoreProvider, $authProvider) {
+  $translateProvider.translations('en', enLang);
+  $translateProvider.translations('de', deLang);
+  $translateProvider.translations('nl', nlLang);
+
   // TODO: Needs more testing, but works for now
   $translateProvider
     .registerAvailableLanguageKeys(['en', 'de', 'nl'], {
@@ -35,4 +38,4 @@ app.config(function($translateProvider, $cookieStoreProvider, $authProvider) {
     requiredUrlParams: ['scope'],
     optionalUrlParams: null
   });
-});
+}

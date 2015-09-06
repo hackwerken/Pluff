@@ -1,4 +1,6 @@
-appServices.factory('weekService', function(moment) {
+import moment from 'moment';
+
+export default function() {
   var data = {};
 
   var time = moment();
@@ -83,4 +85,4 @@ appServices.factory('weekService', function(moment) {
       return true;
     }
   };
-});
+}

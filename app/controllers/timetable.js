@@ -1,4 +1,6 @@
-appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $window, $location, weekService, apiService, dayService, timetableData, ngDialog) {
+import teacherDialogPartial from 'partials/dialog-teacher.html';
+
+export default function($scope, $http, lessonService, $window, $location, weekService, apiService, dayService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   if (timetableData !== false) {
     // Get the title of the timetable and filter some words out of it
@@ -114,7 +116,8 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
     });
 
     ngDialog.open({
-      template: 'partials/dialog-teacher.html',
+      template: teacherDialogPartial,
+      plain: true,
       data: teacher
     });
   };
@@ -124,4 +127,4 @@ appCtrls.controller('TimeTableCtrl', function($scope, $http, lessonService, $win
   };
 
   $window.setInterval($scope.calculateLine, 60000); // Refresh every minute
-});
+}

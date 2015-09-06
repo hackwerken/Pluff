@@ -1,4 +1,4 @@
-appCtrls.controller('LanguageCtrl', function($scope, $translate, $window) {
+export default function($scope, $translate, $window) {
   $scope.switch = function($lang) {
     // Switch to the given language
     $translate.use($lang);
@@ -10,4 +10,4 @@ appCtrls.controller('LanguageCtrl', function($scope, $translate, $window) {
       $window.location.reload();
     });
   };
-});
+}

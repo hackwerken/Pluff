@@ -7,13 +7,13 @@ Uiteraard kan het altijd beter. Wij zijn geïnteresseerd in je feedback! Aarzel 
 
 ## Installatie
 
-Om Pluff lokaal te draaien heb je [node.js](http://nodejs.org/) en _npm package manager_ (meestal meegeleverd bij node.js) nodig.
+Om Pluff lokaal te draaien heb je [node.js](http://nodejs.org/) en _node package manager_ (meestal meegeleverd bij node.js) nodig.
 
-Type (eenmalig) in je Pluff folder `npm install` om de benodigde dependencies te installeren. Daarna type je simpelweg `npm start` om de ‘server’ te starten. Dit opent meteen je browser op `http://localhost:8080`, waar je als het goed is meteen een werkende Pluff ziet staan.
+Clone deze repository en kopieer `.env.example` naar `.env`. Type (eenmalig) in je Pluff folder `npm install` om de benodigde dependencies te installeren. Daarna type je simpelweg `npm start` om de ‘server’ te starten. Dit opent meteen je browser op `http://localhost:8080`, waar je als het goed is meteen een werkende Pluff ziet staan.
 
 ## Uploaden via FTP
 
-Om Pluff op een website te plaatsen, kopieer je eerst `.env.example` naar `.env`. Vul vervolgens je FTP gegevens hier in. Daarna kun je de bestanden bouwen door `npm run build` uit te voeren, en vervolgens uploaden op de FTP server met `npm run deploy`.
+Om Pluff op een website te plaatsen, kopieer je eerst `.env.example` naar `.env`. Vul vervolgens je FTP gegevens hier in en zet `PLUFF_DEBUG` op `false`. Daarna kun je de bestanden bouwen door `npm run build` uit te voeren, en vervolgens uploaden op de FTP server met `npm run deploy`.
 
 Als je de recentste versie van Pluff wilt uploaden zonder handmatig deze repository te hoeven updaten, kun je ook `npm run deploy-auto` uitvoeren.
 
@@ -31,5 +31,5 @@ De mensen achter Pluff:
 Voor het rooster systeem maken we gebruik van de volgende projecten:
 
 - [Angular](https://angularjs.org/) - JS framework
-- [Gulp](http://gulpjs.com/) - JS task runner
+- [Webpack](https://webpack.github.io/) - Module bundler
 - [Sass](http://sass-lang.com/) - *CSS with superpowers*

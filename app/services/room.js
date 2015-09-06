@@ -1,4 +1,4 @@
-appServices.factory('roomService', function($log, $q, apiService) {
+export default function($log, $q, apiService) {
   return {
     getFreeRooms: function() {
       var deffered = $q.defer();
@@ -44,4 +44,4 @@ appServices.factory('roomService', function($log, $q, apiService) {
       return deffered.promise;
     }
   };
-});
+}

@@ -8,8 +8,6 @@
 
   <base href="/">
 
-  <link rel="stylesheet" href="css/app.css?rev=dev">
-
   <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
   <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
@@ -37,8 +35,6 @@
   <meta property="og:image" content="img/logo.png">
   <meta property="og:type" content="website">
   <meta property="og:description" content="Pluff laat je op een snelle manier je Fontys rooster zien. Sla het op in je bladwijzers en kijk met 1 klik je rooster terug!">
-
-  <script src="js/all.js?rev=dev"></script>
 </head>
 <body ng-controller="MainCtrl">
 
@@ -84,9 +80,10 @@
     <div class="container">
       <p>
         <em>Pluff</em> 2.0.
-        <span translate>HELP_US</span> <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>! <a ng-dialog="partials/dialog-faq.html" class="button small">{{::'FAQ_SHORT' | translate}}</a>
+        <span translate>HELP_US</span> <a href="https://github.com/SpaceK33z/FHICT-Rooster">Github</a>! <a ng-click="faqDialog()" class="button small">{{::'FAQ_SHORT' | translate}}</a>
       </p>
     </div>
   </footer>
+  <!-- Built from commit: <%-htmlWebpackPlugin.options.commitHash%> -->
 </body>
 </html>

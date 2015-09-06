@@ -1,4 +1,7 @@
-appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
+import moment from 'moment';
+import authenticatePartial from 'partials/dialog-authenticate.html';
+
+export default function($http, $auth, $q, ngDialog) {
   function isAuthenticated() {
     if ($auth.isAuthenticated()) {
       // Now check if the token is not expired yet.
@@ -35,7 +38,8 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
       // TODO: Prevent that multiple dialogs are opened.
       var dialog = ngDialog.open({
         name: 'auth',
-        template: 'partials/dialog-authenticate.html',
+        template: authenticatePartial,
+        plain: true,
         // User shouldn't be able to ignore this dialog.
         showClose: false,
         closeByEscape: false,
@@ -116,4 +120,4 @@ appServices.factory('apiService', function($http, $auth, $q, ngDialog, moment) {
       return encodeURIComponent(url);
     }
   };
-});
+}
