@@ -12,7 +12,7 @@ export default function($routeProvider, $locationProvider) {
         // Load the timetable JSON before the controller
         timetableData(apiService) {
           return apiService.getTimeTable('/me').then(function(payload) {
-            return payload.data;
+            return {data: payload.data, kind: 'me'};
           }, function() {
             return false;
           });
