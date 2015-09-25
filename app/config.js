@@ -30,7 +30,7 @@ export default function($translateProvider, $cookieStoreProvider, $authProvider)
     clientId: 'pluff-implicit',
     authorizationEndpoint: 'https://tas.fhict.nl/identity/connect/authorize',
     redirectUri: window.location.origin + '/',
-    scope: ['fhict', 'fhict_schedule', 'fhict_people', 'fhict_personal'],
+    scope: ['fhict', 'fhict_personal'],
     scopeDelimiter: ' ',
     responseType: 'token',
     popupOptions: null,
