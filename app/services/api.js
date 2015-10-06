@@ -1,7 +1,7 @@
 import moment from 'moment';
 import authenticatePartial from 'partials/dialog-authenticate.html';
 
-export default function($http, $auth, $q, $rootScope, ngDialog) {
+export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils) {
   let isAlreadyInApp = false;
 
   // When requesting an URL without user interaction, a dialog should be shown
@@ -57,6 +57,19 @@ export default function($http, $auth, $q, $rootScope, ngDialog) {
   }
 
   function authenticate() {
+    // If coming from the authentication server, parse and save the hash.
+    // This allows one to direct link to the FHICT auth URL.
+    if (location.hash.startsWith('#access_token')) {
+      const hashParams = location.hash.substring(1).replace(/\/$/, '');
+      const hash = SatellizerUtils.parseQueryString(hashParams);
+      console.log('Trying to use given hash to set access token', hash);
+
+      $auth.setToken(hash.access_token);
+      setExpires(hash.expires_in);
+      // Cleanup after yourself.
+      location.hash = '';
+    }
+
     if (!isAuthenticated()) {
       if (!isAlreadyInApp) {
         // Show dialog about why the user must authenticate.
