@@ -7,16 +7,16 @@ export default function() {
 
   // Set default weeknumber. In the weekend, use the next week number
   if (time.day() === 0 || time.day() === 6) {
-    data.weekCurrent = parseInt(time.add(1, 'w').format('w'));
+    data.weekCurrent = time.add(2, 'd').isoWeek();
   } else {
-    data.weekCurrent = parseInt(time.format('w'));
+    data.weekCurrent = time.isoWeek();
   }
 
   // Set the default used weeknumber (without leading zero). In the weekend, use the next week number
   data.weekUse = data.weekCurrent;
 
   // Set default year
-  data.yearCurrent = parseInt(time.format('YYYY'));
+  data.yearCurrent = time.year();
   data.yearUse = data.yearCurrent;
 
   return {
