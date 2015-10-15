@@ -59,7 +59,8 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
   function authenticate() {
     // If coming from the authentication server, parse and save the hash.
     // This allows one to direct link to the FHICT auth URL.
-    if (location.hash.startsWith('#access_token')) {
+    // It shouldn't happen if the window is in a popup.
+    if (location.hash.startsWith('#access_token') && !window.opener) {
       const hashParams = location.hash.substring(1).replace(/\/$/, '');
       const hash = SatellizerUtils.parseQueryString(hashParams);
       console.log('Trying to use given hash to set access token', hash);
