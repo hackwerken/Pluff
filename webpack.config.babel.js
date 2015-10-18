@@ -3,17 +3,17 @@ import webpack from 'webpack';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
-import {execSync} from 'child_process';
+import { execSync } from 'child_process';
 import dotenv from 'dotenv';
 
-dotenv.load({silent: true});
+dotenv.load({ silent: true });
 
 const IS_DEBUG = process.env.PLUFF_DEBUG === 'true';
 
 console.log('Building for ' + (IS_DEBUG ? 'DEVELOPMENT' : 'production') + '!');
 
 // Get the current git commit hash.
-const commitHash = execSync('git rev-parse --short HEAD', {encoding: 'utf8'}).trim();
+const commitHash = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
 
 // Plugins that are used for all environments.
 const plugins = [
@@ -39,7 +39,7 @@ if (!IS_DEBUG) {
   plugins.push(new webpack.optimize.DedupePlugin());
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     // UglifyJs produces nonsense warnings by default.
-    compress: {warnings: false},
+    compress: { warnings: false },
     // Mangling fucks up Angular.
     mangle: false,
   }));
@@ -85,7 +85,7 @@ export default {
             'postcss!' +
             'sass?sourceMap&outputStyle=compressed',
             // Paths in CSS are relative to dist/static/ instead of dist/
-            {publicPath: ''}
+            { publicPath: '' }
         ),
       }, {
         test: /\.json$/,
@@ -113,7 +113,7 @@ export default {
   },
   postcss() {
     return [
-      autoprefixer({browsers: ['last 1 versions']}),
+      autoprefixer({ browsers: ['last 1 versions'] }),
     ];
   },
   devServer: {

@@ -83,7 +83,7 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
           showClose: false,
           closeByEscape: false,
           closeByDocument: false,
-          data: {showAuthPopup},
+          data: { showAuthPopup },
         });
 
         return dialog.closePromise.then(function(closedDialog) {

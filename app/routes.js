@@ -12,7 +12,7 @@ export default function($routeProvider, $locationProvider) {
         // Load the timetable JSON before the controller
         timetableData(apiService) {
           return apiService.getTimeTable('/me').then(function(payload) {
-            return {data: payload.data, kind: 'me'};
+            return { data: payload.data, kind: 'me' };
           }, function() {
             return false;
           });
@@ -47,7 +47,7 @@ export default function($routeProvider, $locationProvider) {
           }
 
           return apiService.getTimeTable('/' + categoryUrl + '/' + queryUrl).then(function(payload) {
-            return {data: payload.data, kind: categoryUrl};
+            return { data: payload.data, kind: categoryUrl };
           }, function() {
             return false;
           });

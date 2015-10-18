@@ -8,20 +8,20 @@ export default function(weekService) {
   data.hourBreaks = [0, 0, 20, 0, 0, 0, 0, 10, 0, 0, 15, 0, 20, 0, 0];
   // List of hours
   data.hourNumbers = [
-    {number: 1},
-    {number: 2},
-    {number: 3},
-    {number: 4},
-    {number: 5},
-    {number: 6},
-    {number: 7},
-    {number: 8},
-    {number: 9},
-    {number: 10},
-    {number: 11},
-    {number: 12},
-    {number: 13},
-    {number: 14},
+    { number: 1 },
+    { number: 2 },
+    { number: 3 },
+    { number: 4 },
+    { number: 5 },
+    { number: 6 },
+    { number: 7 },
+    { number: 8 },
+    { number: 9 },
+    { number: 10 },
+    { number: 11 },
+    { number: 12 },
+    { number: 13 },
+    { number: 14 },
   ];
   // Fontys starts at 8.45
   data.dayStartTime = moment().hour(8).minute(45).second(0);

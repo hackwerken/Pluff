@@ -27,7 +27,7 @@ import 'angucomplete-alt';
 import 'satellizer';
 import 'angucomplete-alt';
 import ngLoadingBar from 'angular-loading-bar';
-import {name as ngDialog} from 'ng-dialog';
+import { name as ngDialog } from 'ng-dialog';
 import 'angular-translate-cookie';
 
 const app = angular.module('pluffApp', [
