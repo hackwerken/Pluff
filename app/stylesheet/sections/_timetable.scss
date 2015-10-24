@@ -70,7 +70,8 @@
   height: calc(100% / 14);
 
   @include bp(break-timetable) {
-    height: calc(100% / 15.3); // 14 lessons of 50 minutes + 65 minutes break (= 1.3 hour)
+    // 14 lessons of 45 minutes + 75 minutes break (= 1.67 hour)
+    height: calc(100% / 15.6667);
   }
 
   border-bottom: 1px solid $secondary-color;
@@ -91,7 +92,6 @@
     color: $secondary-color;
   }
 
-
   .multiple-hours-icon {
     display: block;
     position: absolute;
@@ -109,17 +109,21 @@
   }
 
   // TODO: Fix breaks for small screens
+  // TODO: Simplify this overly complex shit.
   @include bp(break-timetable) {
-    &.break-10 {
-      margin-bottom: calc(400% / 76.5);
-    }
-
+    // To calculate the length of a break:
+    // L = total lessons + hours (e.g. 15.667)
+    // M = minutes of the break
+    // H = minutes of a lesson
+    // L / (M / H)
+    // Example:
+    // 15.6667 / (30 / 45) = 23.5
     &.break-15 {
-      margin-bottom: calc(400% / 51);
+      margin-bottom: calc(300% / 47);
     }
 
-    &.break-20 {
-      margin-bottom: calc(400% / 38.25);
+    &.break-30 {
+      margin-bottom: calc(350% / 23.5);
     }
   }
 }
