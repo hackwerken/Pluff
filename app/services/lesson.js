@@ -5,7 +5,10 @@ export default function() {
 
   function getTeacher(teachers, teacherAbbr) {
     return teachers.filter(function(teacher) {
-      return teacher.personalTitle.toLowerCase() === teacherAbbr;
+      // Some lessons don't have a teacher
+      if (teacher !== null) {
+        return teacher.personalTitle.toLowerCase() === teacherAbbr;
+      }
     })[0];
   }
 
