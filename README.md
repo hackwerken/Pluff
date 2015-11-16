@@ -25,7 +25,7 @@ De mensen achter Pluff:
 
 - [Kees Kluskens](https://www.webduck.nl) - Ontwikkelaar en meesterbrein
 - Tim van den Biggelaar - Ontwikkelaar
-- Stephan van Rooij - API beheerder
+- [Stephan van Rooij](https://svrooij.nl) - Ontwikkelaar FHICT Api
 - [Jeroen](https://www.laylo.nl) - Serverbeheer
 - Jasper Stam - _Programmeer schildknaap_
 - Rutger Schimmel - _Bugtester_ & kleurentovenaar

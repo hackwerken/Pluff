@@ -3,10 +3,21 @@
   "description": "Een betere rooster website voor Fontys ICT.",
   "version": "2.0.0",
   "license": "MIT",
-  "homepage": "https://pluff.nl",
+  "homepage": "https://pluff.iris.fhict.nl",
   "author": {
     "name": "Kees Kluskens",
-    "email": "kees@webduck.nl"
+    "email": "kees@webduck.nl",
+    "url":"https://www.webduck.nl"
+  },
+  "contributors":[
+    {
+      "name":"Stephan van Rooij",
+      "email":"github@svrooij.nl",
+      "url":"https://svrooij.nl"
+    }
+  ],
+  "bugs": {
+    "url" : "https://github.com/SpaceK33z/Pluff/issues"
   },
   "repository": {
     "type": "git",
@@ -60,6 +71,6 @@
     "clean": "rm -rf dist/**",
     "lint": "eslint . && echo 'Linting succeeded.'",
     "deploy": "node deploy.js",
-    "deploy-auto": "git pull && rm -rf node_modules && npm install && npm run -s build && npm run -s deploy"
+    "deploy-auto": "git pull && npm install && npm run -s build && npm run -s deploy"
   }
 }

@@ -1,6 +1,5 @@
 Dit roostersysteem is bedacht & gemaakt uit pure frustratie. Wij zijn ICT'ers
-en dan moeten wij met een roostersysteem werken dat eruit ziet alsof het door
-communisten in de jaren '80 gemaakt is?
+en dan moeten wij met een verouderd roostersysteem werken?
 
 Dit kan zo niet. Hier moest wat aan gedaan worden.
 
@@ -55,3 +54,5 @@ heeft.
 tijdens hun lessen mee bezig zijn.
 
 Sidenote: In derde persoon schrijven is leuk.
+
+Ps. Maak even een pull request als je vindt dat we jou onterecht niet vermelden in package.json
