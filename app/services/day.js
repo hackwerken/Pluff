@@ -2,7 +2,13 @@ import moment from 'moment';
 
 export default function(weekService) {
   const data = {};
-  const now = moment();
+  let now;
+
+  function updateTime() {
+    now = moment();
+  }
+
+  updateTime();
 
   // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
   data.hourBreaks = [0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 30, 0];
@@ -55,6 +61,8 @@ export default function(weekService) {
       }
     },
     setCalculateLine() {
+      updateTime();
+
       if (data.dayEndTime > now && data.dayStartTime < now) {
         const percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
         const percentageRounded = (Math.round(percentageComplete * 100) / 100);

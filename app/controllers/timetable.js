@@ -1,6 +1,6 @@
 import teacherDialogPartial from 'partials/dialog-teacher.html';
 
-export default function($scope, $http, lessonService, $window, $location, weekService, apiService, dayService, timetableData, ngDialog) {
+export default function($scope, $http, lessonService, $window, $location, $interval, weekService, apiService, dayService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   if (timetableData !== false) {
     // Get the title of the timetable and filter some words out of it
@@ -124,5 +124,5 @@ export default function($scope, $http, lessonService, $window, $location, weekSe
     return dayService.setCalculateLine();
   };
 
-  $window.setInterval($scope.calculateLine, 60000); // Refresh every minute
+  $interval($scope.calculateLine, 60000); // Refresh every minute
 }
