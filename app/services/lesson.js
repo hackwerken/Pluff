@@ -95,7 +95,7 @@ export default function() {
     payload.data.forEach(function(lesson) {
       const start = moment(lesson.start);
       const end = moment(lesson.end);
-      const startWeeknumber = start.format('w'); // Output: weeknumber (without leading zero)
+      const startWeeknumber = start.isoWeek(); // Output: weeknumber (without leading zero)
       const startDaynumber = start.format('d'); // Output: daynumber of week (1 - 5), 1 = Monday
 
       // Convert mask to binary and get the length to minimize needed loops
