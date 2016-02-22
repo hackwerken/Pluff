@@ -43,7 +43,7 @@ export default function(weekService) {
     },
     // Calculate the date of the current day
     getCurrentDayDate(dayNumber) {
-      return moment(weekService.getYearUsed() + '-' + weekService.getWeekUsed() + '-' + dayNumber, 'YYYY-w-d');
+      return moment(weekService.getYearUsed() + '-' + weekService.getWeekUsed() + '-' + dayNumber, 'YYYY-W-E');
     },
     isCurrentDay(dayNumber) {
       if (now.isSame(this.getCurrentDayDate(dayNumber), 'day')) {
