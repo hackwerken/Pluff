@@ -27,7 +27,7 @@
     </div>
     <div class="hours" ng-class="{'no-lessons': countLessons(day) === 0}">
       <div class="line" style="top:{{calculateLine()}}" ng-if="isCurrentDay($index+1)"></div>
-      <div ng-repeat="hour in day" class="hour hour-duration-{{::hourDurations[hour.number-1]}} break-{{::hourBreaks[hour.number]}}">
+      <div ng-repeat="hour in day" class="hour hour-duration-{{::hourDurations[hour.number-1]}} break-{{::hourBreaks[hour.number-1]}}">
         <div class="hour-number">{{::hour.number}}</div>
 
         <div class="lesson" ng-if="::hour.lessons.length > 0" ng-init="::lesson = hour.lessons[0]; showExtra = false" ng-style="::{ background: lesson.color }" >

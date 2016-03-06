@@ -13,7 +13,7 @@ export default function (weekService) {
   updateTime();
 
   // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
-  data.hourBreaks = [0, 0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 30, 0, 30, 0];
+  data.hourBreaks = [0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 30, 0, 30, 0];
   // List of hours
   data.hourNumbers = [
     { number: 1, duration: 45 },
