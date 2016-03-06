@@ -157,7 +157,6 @@
   position: absolute;
   z-index: 1000;
   padding: 1em;
-  transition: 300ms 0 all ease;
   opacity: 1;
   display: block;
   right: 1em;
@@ -166,8 +165,18 @@
     right: -10px;
     margin-top: -10px;
 
-    &.ng-hide-add {
-      transition-delay: 600ms;
+    &.ng-hide-add,
+    &.ng-hide-remove {
+      transition: 0s ease all;
+    }
+
+    &.ng-hide-add-active,
+    &.ng-hide-remove-active {
+      transition-duration: 300ms;
+    }
+
+    &.ng-hide-add-active {
+      transition-delay: 400ms;
     }
   }
 
