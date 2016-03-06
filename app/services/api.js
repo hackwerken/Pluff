@@ -106,7 +106,7 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
     // Authenticate before trying to load the url.
     return authenticate().then(function() {
       return $http(angular.extend({
-        url: 'https://tas.fhict.nl/api/v1' + url,
+        url: 'https://api.fhict.nl' + url,
         method: 'GET',
         responseType: 'json',
       }, options));

@@ -28,7 +28,7 @@ export default function($translateProvider, $cookieStoreProvider, $authProvider)
   $authProvider.oauth2({
     name: 'fhict',
     clientId: 'pluff-implicit',
-    authorizationEndpoint: 'https://tas.fhict.nl/identity/connect/authorize',
+    authorizationEndpoint: 'https://identity.fhict.nl/connect/authorize',
     redirectUri: window.location.origin + '/',
     scope: ['fhict', 'fhict_personal'],
     scopeDelimiter: ' ',
