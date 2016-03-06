@@ -27,12 +27,14 @@ export default function () {
       return data.weekUse;
     },
     setWeek(newWeek) {
+      const weeksInUseYear = moment().year(data.yearUse).isoWeeksInYear();
       // Rotate the number when the year has ended
-      if (newWeek === 53) {
+      if (newWeek === weeksInUseYear + 1) {
         data.weekUse = 1;
         data.yearUse = data.yearCurrent + 1;
       } else if (newWeek === 0) {
-        data.weekUse = 52;
+        const weeksInCurrentYear = moment().year(data.yearCurrent).isoWeeksInYear();
+        data.weekUse = weeksInCurrentYear;
         data.yearUse = data.yearCurrent;
       } else {
         data.weekUse = newWeek;
