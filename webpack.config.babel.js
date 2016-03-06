@@ -63,7 +63,7 @@ export default {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
         loader: 'babel',
       }, {
         // Nasty hack to work around a bug in html-webpack-plugin / extract-text-webpack-plugin,
