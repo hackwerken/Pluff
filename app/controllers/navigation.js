@@ -20,27 +20,18 @@ export default function ($scope, apiService, $timeout, $location, lessonService)
       console.log(`Autocomplete ${kind} ${title}`);
       $location.path(`/search/${kind}/${title}`);
       $scope.showSearchForm = false;
-      $scope.searchFormFocused = false;
     }
   };
 
   $scope.showSearchFormFunc = function () {
-    if (!$scope.searchFormFocused) {
-      $scope.showSearchForm = !$scope.showSearchForm;
+    $scope.showSearchForm = !$scope.showSearchForm;
 
-      if ($scope.showSearchForm === true) {
-        $timeout(() => {
-          const searchInput = document.getElementById('search-query_value');
-          searchInput.focus();
-        }, 300);
-      }
+    if ($scope.showSearchForm === true) {
+      $timeout(() => {
+        const searchInput = document.getElementById('search-query_value');
+        searchInput.focus();
+      }, 300);
     }
-    $scope.searchFormFocused = false;
-  };
-
-  $scope.searchFormFocusOut = function () {
-    // If the form was hidden because of a focus out event, the showSearchFormFunc needs to know this
-    $scope.searchFormFocused = true;
   };
 
   // Keep track of the last used timetable, so when a user navigates to another URL he can easily navigate back
