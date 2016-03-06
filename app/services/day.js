@@ -6,6 +6,8 @@ export default function (weekService) {
 
   function updateTime() {
     now = moment();
+    // For debugging you can override this to a fixed day like this:
+    // now = moment('2016-03-11 14:15', 'YYYY-MM-DD HH:mm');
   }
 
   updateTime();
@@ -14,20 +16,20 @@ export default function (weekService) {
   data.hourBreaks = [0, 0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 30, 0, 30, 0];
   // List of hours
   data.hourNumbers = [
-    { number: 1 },
-    { number: 2 },
-    { number: 3 },
-    { number: 4 },
-    { number: 5 },
-    { number: 6 },
-    { number: 7 },
-    { number: 8 },
-    { number: 9 },
-    { number: 10 },
-    { number: 11 },
-    { number: 12 },
-    { number: 13 },
-    { number: 14 },
+    { number: 1, duration: 45 },
+    { number: 2, duration: 45 },
+    { number: 3, duration: 45 },
+    { number: 4, duration: 45 },
+    { number: 5, duration: 45 },
+    { number: 6, duration: 45 },
+    { number: 7, duration: 45 },
+    { number: 8, duration: 45 },
+    { number: 9, duration: 45 },
+    { number: 10, duration: 45 },
+    { number: 11, duration: 45 },
+    { number: 12, duration: 45 },
+    { number: 13, duration: 45 },
+    { number: 14, duration: 90 },
   ];
   // Fontys starts at 8.45
   data.dayStartTime = now.clone().hour(8).minute(45).second(0);
@@ -37,6 +39,9 @@ export default function (weekService) {
   return {
     getHourBreaks() {
       return data.hourBreaks;
+    },
+    getHourDurations() {
+      return data.hourNumbers.map((hour) => hour.duration);
     },
     getHourNumbers() {
       return data.hourNumbers;

@@ -19,6 +19,7 @@ export default function ($scope, $http, lessonService, $window, $location, $inte
   }
 
   $scope.hourBreaks = dayService.getHourBreaks();
+  $scope.hourDurations = dayService.getHourDurations();
 
   // Watch for changes in the weeknumber
   $scope.$watch(() => weekService.getWeekUsed(), (newValue) => {

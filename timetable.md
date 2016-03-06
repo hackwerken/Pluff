@@ -16,11 +16,9 @@ Uur 11 - 16:45 - 17:30 (45m)
 Pauze 3 - 17:30 - 18:00 (30m)  
 Uur 12 - 18:00 - 18:45 (45m)  
 Uur 13 - 18:45 - 19:30 (45m)  
-Pauze 3 - 19:30 - 20:00 (30m)  
-Uur 14 - 20:00 - 21:30 (45m)  
+Pauze 4 - 19:30 - 20:00 (30m)  
+Uur 14 - 20:00 - 21:30 (90m)  
 
-Totaal pauze: 75min (1,67 lesuur)
+Totaal pauze: 90min
 
-Het veranderen van dit schema is op het moment nog wat complex; vooral het CSS gedeelte dat ervoor zorgt dat het rode lijntje de tijd goed weergeeft is (overbodig) complex.
-
-De configuratie voor de uren staat in `app/services/day.js`.
+Bij verandering van dit tijdschema moeten er aanpassing gedaan worden in `app/stylesheet/sections/_timetable.scss` en in `app/services/day.js`.

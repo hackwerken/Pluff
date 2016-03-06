@@ -1,3 +1,13 @@
+// Configuration based on timetable.md
+// Length of a standard lesson hour in minutes.
+$hour-base-duration: 45;
+// Unique durations of lesson hours.
+$hour-durations: 45, 90;
+// Unique breaks in minutes.
+$break-types: 15, 30;
+
+$hour-base-height: 4.75em;
+
 .day-info {
   text-align: center;
   margin-bottom: 1em;
@@ -51,15 +61,12 @@
 
 .hours {
   position: relative;
-  height: 66em;
 
   &.no-lessons {
     display: none;
   }
 
   @include bp(break-timetable) {
-    height: 75em;
-
     &.no-lessons {
       display: block;
     }
@@ -67,19 +74,18 @@
 }
 
 .hour {
-  height: calc(100% / 14);
-
-  @include bp(break-timetable) {
-    // 14 lessons of 45 minutes + 75 minutes break (= 1.67 hour)
-    height: calc(100% / 15.6667);
-  }
-
   border-bottom: 1px solid $secondary-color;
   color: #fff;
   position: relative;
   // Hour is a container for the lessons
   display: flex;
   flex-flow: row wrap;
+
+  @each $duration in $hour-durations {
+    &.hour-duration-#{$duration} {
+      height: ($duration / $hour-base-duration) * $hour-base-height;
+    }
+  }
 
   &:last-child {
     border-bottom: 0;
@@ -108,22 +114,10 @@
     }
   }
 
-  // TODO: Fix breaks for small screens
-  // TODO: Simplify this overly complex shit.
-  @include bp(break-timetable) {
-    // To calculate the length of a break:
-    // L = total lessons + hours (e.g. 15.667)
-    // M = minutes of the break
-    // H = minutes of a lesson
-    // L / (M / H)
-    // Example:
-    // 15.6667 / (30 / 45) = 23.5
-    &.break-15 {
-      margin-bottom: calc(300% / 47);
-    }
-
-    &.break-30 {
-      margin-bottom: calc(350% / 23.5);
+  // Calculate the margin-bottom that an hour must have to fake a break.
+  @each $break-minutes in $break-types {
+    &.break-#{$break-minutes} {
+      margin-bottom: ($break-minutes / $hour-base-duration) * $hour-base-height;
     }
   }
 }
