@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 export default function (weekService) {
-  const data = {};
   let now;
 
   function updateTime() {
@@ -13,9 +12,9 @@ export default function (weekService) {
   updateTime();
 
   // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
-  data.hourBreaks = [0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 30, 0, 30, 0];
+  const hourBreaks = [0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 30, 0, 30, 0];
   // List of hours
-  data.hourNumbers = [
+  const hourNumbers = [
     { number: 1, duration: 45 },
     { number: 2, duration: 45 },
     { number: 3, duration: 45 },
@@ -32,19 +31,19 @@ export default function (weekService) {
     { number: 14, duration: 90 },
   ];
   // Fontys starts at 8.45
-  data.dayStartTime = now.clone().hour(8).minute(45).second(0);
+  const dayStartTime = now.clone().hour(8).minute(45).second(0);
   // And ends at 21.30
-  data.dayEndTime = now.clone().hour(21).minute(30).second(0);
+  const dayEndTime = now.clone().hour(21).minute(30).second(0);
 
   return {
     getHourBreaks() {
-      return data.hourBreaks;
+      return hourBreaks;
     },
     getHourDurations() {
-      return data.hourNumbers.map((hour) => hour.duration);
+      return hourNumbers.map((hour) => hour.duration);
     },
     getHourNumbers() {
-      return data.hourNumbers;
+      return hourNumbers;
     },
     // Calculate the date of the current day
     getCurrentDayDate(dayNumber) {
@@ -70,8 +69,8 @@ export default function (weekService) {
     setCalculateLine() {
       updateTime();
 
-      if (data.dayEndTime > now && data.dayStartTime < now) {
-        const percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
+      if (dayEndTime > now && dayStartTime < now) {
+        const percentageComplete = (now - dayStartTime) / (dayEndTime - dayStartTime) * 100;
         const percentageRounded = (Math.round(percentageComplete * 100) / 100);
 
         return `${percentageRounded}%`;
