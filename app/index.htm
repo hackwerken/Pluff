@@ -80,7 +80,7 @@
   <ng-view id="top"></ng-view>
 
   <footer ng-cloak ng-if="showFooter">
-    <div class="container">
+    <div class="container container-footer">
       <p>
         <em>Pluff</em> 2.0.
         <span translate>HELP_US</span>
@@ -88,8 +88,11 @@
         <a ng-click="faqDialog()" class="button small">{{::'FAQ_SHORT' | translate}}</a>
         <a href="https://api.fhict.nl/" class="button small" target="_blank">FHICT API Documentation</a>
       </p>
+      <p class="footer-version">
+        Build:
+        <a href="https://github.com/SpaceK33z/Pluff/commit/<%-htmlWebpackPlugin.options.commitHash%>"><%-htmlWebpackPlugin.options.commitHash%></a>
+      </p>
     </div>
   </footer>
-  <!-- Built from commit: <%-htmlWebpackPlugin.options.commitHash%> -->
 </body>
 </html>
