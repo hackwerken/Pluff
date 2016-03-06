@@ -198,12 +198,10 @@ $hour-base-height: 4.75em;
 
 
 .line {
-  @include bp(break-timetable) {
-    width: 100%;
-    height: 1px;
-    background: $time-line-bg;
-    position: absolute;
-    top: 0;
-    z-index: $z-tt-line;
-  }
+  width: 100%;
+  height: 1px;
+  background: $time-line-bg;
+  position: absolute;
+  top: 0;
+  z-index: $z-tt-line;
 }
