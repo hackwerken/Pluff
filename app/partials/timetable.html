@@ -59,7 +59,7 @@
             <div class="hidden-lessons" ng-show="showExtra" ng-mouseenter="showExtra = true" ng-mouseleave="showExtra = false">
               <div ng-repeat="lesson in hour.lessons" ng-show="!$first">
                 <div class="lesson-text">
-                  {{::lesson.subject}}
+                  <a href="search/subject/{{::encode(lesson.subject)}}">{{::lesson.subject}}</a>
 
                   <span ng-if="::lesson.teacher.personalTitle !== '-'">
                     - <a ng-click="teacherDialog(lesson.teacher)" title="{{::lesson.teacher.displayName}}">{{::lesson.teacher.personalTitle}}</a>
