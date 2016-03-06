@@ -1,6 +1,6 @@
 import teacherDialogPartial from 'partials/dialog-teacher.html';
 
-export default function($scope, $http, lessonService, $window, $location, $interval, weekService, apiService, dayService, timetableData, ngDialog) {
+export default function ($scope, $http, lessonService, $window, $location, $interval, weekService, apiService, dayService, timetableData, ngDialog) {
   // Get the personal schedule from the API
   if (timetableData !== false) {
     // Get the title of the timetable and filter some words out of it
@@ -13,7 +13,7 @@ export default function($scope, $http, lessonService, $window, $location, $inter
 
   // Timetable could not be found. Show a list of the classes and teachers.
   if ($scope.showError) {
-    apiService.getSuggestions('User').then(function(payload) {
+    apiService.getSuggestions('User').then((payload) => {
       $scope.autocompleteList = payload.data;
     });
   }
@@ -21,15 +21,13 @@ export default function($scope, $http, lessonService, $window, $location, $inter
   $scope.hourBreaks = dayService.getHourBreaks();
 
   // Watch for changes in the weeknumber
-  $scope.$watch(function() {
-    return weekService.getWeekUsed();
-  }, function(newValue) {
+  $scope.$watch(() => weekService.getWeekUsed(), (newValue) => {
     if (newValue) {
       $scope.weekNumberUsed = newValue;
     }
   });
 
-  $scope.currentWeekActive = function() {
+  $scope.currentWeekActive = function () {
     if (weekService.isCurrentWeek()) {
       $scope.showAllDays = false;
     } else {
@@ -37,77 +35,77 @@ export default function($scope, $http, lessonService, $window, $location, $inter
     }
   };
 
-  $scope.nextWeek = function() {
+  $scope.nextWeek = function () {
     if (weekService.addWeek()) {
       $scope.currentWeekActive();
-      console.log('To the next week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
+      console.log(`To the next week! ${weekService.getWeekUsed()} year: ${weekService.getYearUsed()}`);
     }
   };
 
-  $scope.currentWeek = function() {
+  $scope.currentWeek = function () {
     if (weekService.currentWeek()) {
       $scope.currentWeekActive();
-      console.log('To the current week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
+      console.log(`To the current week! ${weekService.getWeekUsed()} year: ${weekService.getYearUsed()}`);
     }
   };
 
-  $scope.previousWeek = function() {
+  $scope.previousWeek = function () {
     if (weekService.subtractWeek()) {
       $scope.currentWeekActive();
-      console.log('To the previous week! ' + weekService.getWeekUsed() + ' year:' + weekService.getYearUsed());
+      console.log(`To the previous week! ${weekService.getWeekUsed()} year: ${weekService.getYearUsed()}`);
     }
   };
 
-  $scope.isOldWeek = function() {
+  $scope.isOldWeek = function () {
     return weekService.isOldWeek();
   };
 
-  $scope.isNewWeek = function() {
+  $scope.isNewWeek = function () {
     return weekService.isNewWeek();
   };
 
   // Bind keybindings to the window to enable right and left arrow navigation
-  angular.element($window).on('keydown', function(e) {
+  angular.element($window).on('keydown', (e) => {
     // Check if not using arrow keys in searchfield
     if (document.activeElement.nodeName.toLowerCase() !== 'input') {
       // Go to the next week on right arrow key
       if (e.keyCode === 39) {
-        $scope.$apply(function() {
+        $scope.$apply(() => {
           $scope.nextWeek();
         });
       }
       // Go to the previous week on left arrow key
       if (e.keyCode === 37) {
-        $scope.$apply(function() {
+        $scope.$apply(() => {
           $scope.previousWeek();
         });
       }
     }
   });
 
-  $scope.currentDayDate = function(dayNumber) {
+  $scope.currentDayDate = function (dayNumber) {
     return dayService.getCurrentDayDate(dayNumber);
   };
 
-  $scope.countLessons = function(day) {
+  $scope.countLessons = function (day) {
     return lessonService.countLessons(day);
   };
 
   // Check if the current day is today
-  $scope.isCurrentDay = function(dayNumber) {
+  $scope.isCurrentDay = function (dayNumber) {
     return dayService.isCurrentDay(dayNumber);
   };
 
   // Check if the current day is today, and if it's weekend, select monday
-  $scope.isActiveDay = function(dayNumber) {
+  $scope.isActiveDay = function (dayNumber) {
     return dayService.isActiveDay(dayNumber);
   };
 
-  $scope.teacherDialog = function(teacher) {
-    apiService.getPicture(teacher.id, 'large').then(function(payload) {
+  $scope.teacherDialog = function (teacher) {
+    apiService.getPicture(teacher.id, 'large').then((payload) => {
       // The image is a blob; encode it to base64 so it can be put in an <img>
       const FR = new FileReader();
-      FR.onload = function(e) {
+      FR.onload = function (e) {
         teacher.encodedPhoto = e.target.result;
       };
       FR.readAsDataURL(payload.data);
@@ -120,7 +118,7 @@ export default function($scope, $http, lessonService, $window, $location, $inter
     });
   };
 
-  $scope.calculateLine = function() {
+  $scope.calculateLine = function () {
     return dayService.setCalculateLine();
   };
 

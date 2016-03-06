@@ -1,17 +1,17 @@
 import moment from 'moment';
 
-export default function($log, $q, apiService) {
+export default function ($log, $q, apiService) {
   return {
     getHolidays() {
       // Get the json with all the holiday dates in it
       const deferred = $q.defer();
 
       apiService.getHolidays()
-        .then(function(payload) {
+        .then((payload) => {
           const data = [];
           const now = moment();
 
-          payload.data.forEach(function(holiday) {
+          payload.data.forEach((holiday) => {
             const startDate = moment(holiday.start);
             const endDate = moment(holiday.end);
             // Calculate the difference in days between the start date and now
@@ -29,7 +29,7 @@ export default function($log, $q, apiService) {
           });
 
           deferred.resolve(data);
-        }, function(msg, code) {
+        }, (msg, code) => {
           deferred.reject(msg);
           $log.error(msg, code);
         });

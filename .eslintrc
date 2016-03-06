@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/codeyellow-style/.eslintrc",
+  "extends": "codeyellow",
   "rules": {
     "indent": [2, 2, {"SwitchCase": 1}]
   },

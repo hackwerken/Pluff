@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export default function() {
+export default function () {
   const data = {};
 
   const time = moment();

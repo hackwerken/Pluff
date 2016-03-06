@@ -1,16 +1,16 @@
-export default function($log, $q, apiService) {
+export default function ($log, $q, apiService) {
   return {
     getFreeRooms() {
       const deffered = $q.defer();
 
       apiService.getRoomOccupancy('today')
-        .then(function(payload) {
+        .then((payload) => {
           const data = [];
           // Filter all rooms in this array
           const filterRooms = ['?', 'eindhoven', 'helmond', 'extern'];
 
           // Loop through each room
-          payload.data.forEach(function(room) {
+          payload.data.forEach((room) => {
             const hourData = [];
 
             if (!(filterRooms.indexOf(room.roomId) > -1)) {
@@ -34,7 +34,7 @@ export default function($log, $q, apiService) {
           });
 
           deffered.resolve(data);
-        }, function(msg, code) {
+        }, (msg, code) => {
           deffered.reject(msg);
           $log.error(msg, code);
         });

@@ -1,20 +1,21 @@
 import moment from 'moment';
 
-export default function() {
+export default function () {
   const data = {};
 
   function getTeacher(teachers, teacherAbbr) {
-    return teachers.filter(function(teacher) {
+    return teachers.find((teacher) => {
       // Some lessons don't have a teacher
       if (teacher !== null) {
         return teacher.personalTitle.toLowerCase() === teacherAbbr;
       }
-    })[0];
+      return null;
+    });
   }
 
   // Parse the timetable title
   let tableInfo;
-  data.setInfo = function(title, kind) {
+  data.setInfo = function (title, kind) {
     tableInfo = {
       // We only want a small part of the title.
       title: title ? title.replace(/Rooster |Schedule /, '').replace(/\((.*)\)$/, '') : '',
@@ -24,15 +25,15 @@ export default function() {
     return tableInfo;
   };
 
-  data.getInfo = function() {
+  data.getInfo = function () {
     return tableInfo;
   };
 
   // Count the lessons in the day
-  data.countLessons = function(day) {
+  data.countLessons = function (day) {
     let totalLessons = 0;
 
-    day.forEach(function(hour) {
+    day.forEach((hour) => {
       const hourCount = parseInt(hour.lessons.length);
       totalLessons = totalLessons + hourCount;
     });
@@ -41,7 +42,7 @@ export default function() {
   };
 
   // Generate a color based on a string
-  data.generateColor = function(name, total) {
+  data.generateColor = function (name, total) {
     // Generator seed, must leave a hex of at least 1000 (so 4096 or above)
     total = total || 4096;
 
@@ -64,11 +65,11 @@ export default function() {
     const lightness = parseInt(total.substring(2, 4), 16) % (maxLightness - minLightness + 1) + minLightness;
 
     // Output to the HSL color format
-    const color = 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
+    const color = `hsl(${hue},${saturation}%,${lightness}%)`;
     return color;
   };
 
-  data.getTimeTable = function(payload) {
+  data.getTimeTable = function (payload) {
     const weeks = [];
 
     // Create 52 empty weeks, create within every week 5 days (Mo - Fr) and 14 hours
@@ -92,7 +93,7 @@ export default function() {
     const filterSubjects = ['delta'];
 
     // Process the timetable data
-    payload.data.forEach(function(lesson) {
+    payload.data.forEach((lesson) => {
       const start = moment(lesson.start);
       const end = moment(lesson.end);
       const startWeeknumber = start.isoWeek(); // Output: weeknumber (without leading zero)

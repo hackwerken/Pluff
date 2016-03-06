@@ -10,7 +10,7 @@ dotenv.config({ silent: true });
 
 const IS_DEBUG = process.env.PLUFF_DEBUG === 'true';
 
-console.log('Building for ' + (IS_DEBUG ? 'DEVELOPMENT' : 'production') + '!');
+console.log(`Building for ${IS_DEBUG ? 'DEVELOPMENT' : 'production'}!`);
 
 // Get the current git commit hash.
 const commitHash = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();

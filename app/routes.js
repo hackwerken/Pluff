@@ -3,7 +3,7 @@ import holidaysPartial from 'partials/holidays.html';
 import freeRoomsPartial from 'partials/free-rooms.html';
 import missingPartial from 'partials/errors/missing.html';
 
-export default function($routeProvider, $locationProvider) {
+export default function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
       template: timetablePartial,
@@ -11,11 +11,9 @@ export default function($routeProvider, $locationProvider) {
       resolve: {
         // Load the timetable JSON before the controller
         timetableData(apiService) {
-          return apiService.getTimeTable('/me').then(function(payload) {
-            return { data: payload.data, kind: 'me' };
-          }, function() {
-            return false;
-          });
+          return apiService.getTimeTable('/me').then((payload) => (
+            { data: payload.data, kind: 'me' }
+          ), () => false);
         },
       },
     })
@@ -46,11 +44,9 @@ export default function($routeProvider, $locationProvider) {
               break;
           }
 
-          return apiService.getTimeTable('/' + categoryUrl + '/' + queryUrl).then(function(payload) {
-            return { data: payload.data, kind: categoryUrl };
-          }, function() {
-            return false;
-          });
+          return apiService.getTimeTable(`/${categoryUrl}/${queryUrl}`).then((payload) => (
+            { data: payload.data, kind: categoryUrl }
+          ), () => false);
         },
       },
     })

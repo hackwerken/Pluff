@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export default function(weekService) {
+export default function (weekService) {
   const data = {};
   let now;
 
@@ -43,12 +43,13 @@ export default function(weekService) {
     },
     // Calculate the date of the current day
     getCurrentDayDate(dayNumber) {
-      return moment(weekService.getYearUsed() + '-' + weekService.getWeekUsed() + '-' + dayNumber, 'YYYY-W-E');
+      return moment(`${weekService.getYearUsed()}-${weekService.getWeekUsed()}-${dayNumber}`, 'YYYY-W-E');
     },
     isCurrentDay(dayNumber) {
       if (now.isSame(this.getCurrentDayDate(dayNumber), 'day')) {
         return true;
       }
+      return false;
     },
     isActiveDay(dayNumber) {
       const dayDate = this.getCurrentDayDate(dayNumber);
@@ -59,6 +60,7 @@ export default function(weekService) {
       if ((now.day() === 6 || now.day() === 0) && dayDate.day() === 1) {
         return true;
       }
+      return false;
     },
     setCalculateLine() {
       updateTime();
@@ -67,7 +69,7 @@ export default function(weekService) {
         const percentageComplete = (now - data.dayStartTime) / (data.dayEndTime - data.dayStartTime) * 100;
         const percentageRounded = (Math.round(percentageComplete * 100) / 100);
 
-        return percentageRounded + '%';
+        return `${percentageRounded}%`;
       }
 
       // Hide line under footer when there are no lessons. Quick 'n dirty

@@ -1,12 +1,12 @@
 import moment from 'moment';
 import authenticatePartial from 'partials/dialog-authenticate.html';
 
-export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils) {
+export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils) {
   let isAlreadyInApp = false;
 
   // When requesting an URL without user interaction, a dialog should be shown
   // to prevent the browser from blocking the popup.
-  const removeEvent = $rootScope.$on('$routeChangeSuccess', function() {
+  const removeEvent = $rootScope.$on('$routeChangeSuccess', () => {
     isAlreadyInApp = true;
     removeEvent();
   });
@@ -43,11 +43,11 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
 
   // Popup a authentication popup from FHICT where the user can login.
   function showAuthPopup(dialogId) {
-    const authPromise = $auth.authenticate('fhict').then(function(response) {
+    const authPromise = $auth.authenticate('fhict').then((response) => {
       setExpires(response.expires_in);
 
       if (dialogId) ngDialog.close(dialogId, authPromise);
-    }, function(data) {
+    }, (data) => {
       // TODO: Create a nice dialog explaining that something weird went wrong.
       // Don't know yet when this would occur.
       console.error('FHICT authentication went wrong.', data);
@@ -86,10 +86,8 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
           data: { showAuthPopup },
         });
 
-        return dialog.closePromise.then(function(closedDialog) {
-          // Forward the authPromise.
-          return closedDialog.value;
-        });
+        // Forward the authPromise.
+        return dialog.closePromise.then((closedDialog) => closedDialog.value);
       }
       // The user is already in the app, so show him the auth directly.
       return showAuthPopup();
@@ -104,18 +102,18 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
 
   function get(url, options) {
     // Authenticate before trying to load the url.
-    return authenticate().then(function() {
-      return $http(angular.extend({
-        url: 'https://api.fhict.nl' + url,
+    return authenticate().then(() =>
+      $http(angular.extend({
+        url: `https://api.fhict.nl${url}`,
         method: 'GET',
         responseType: 'json',
-      }, options));
-    });
+      }, options))
+    );
   }
 
   return {
     getSuggestions(kind, query, timeoutPromise) {
-      return get('/schedule/autocomplete/' + kind, {
+      return get(`/schedule/autocomplete/${kind}`, {
         params: {
           filter: query,
         },
@@ -123,7 +121,7 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
       });
     },
     getTimeTable(input) {
-      return get('/schedule' + input, {
+      return get(`/schedule${input}`, {
         params: {
           expandTeacher: true,
           startLastMonday: true,
@@ -132,16 +130,16 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
       });
     },
     getTeacher(teacher) {
-      return get('/people/abbreviation/' + teacher);
+      return get(`/people/abbreviation/${teacher}`);
     },
     getHolidays() {
       return get('/schedule/holidays');
     },
     getRoomOccupancy(date) {
-      return get('/rooms/occupancy/' + date);
+      return get(`/rooms/occupancy/${date}`);
     },
     getPicture(id, size) {
-      return get('/pictures/' + id + '/' + size, {
+      return get(`/pictures/${id}/${size}`, {
         responseType: 'blob',
       });
     },

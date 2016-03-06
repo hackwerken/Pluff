@@ -60,8 +60,8 @@ app.factory('weekService', SWeek);
 app.config(config);
 app.config(routes);
 
-app.run(function($rootScope, apiService) {
-  $rootScope.encode = function(url) {
+app.run(($rootScope, apiService) => {
+  $rootScope.encode = function (url) {
     return apiService.encode(url);
   };
 });
