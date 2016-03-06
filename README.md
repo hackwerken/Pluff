@@ -15,9 +15,7 @@ Houd je bij het ontwikkelen aan de  [Airbnb Javascript Style Guide](https://gith
 
 ## Uploaden via FTP
 
-Om Pluff op een website te plaatsen, kopieer je eerst `.env.example` naar `.env`. Vul vervolgens je FTP gegevens hier in en zet `PLUFF_DEBUG` op `false`. Daarna kun je de bestanden bouwen door `npm run build` uit te voeren, en vervolgens uploaden op de FTP server met `npm run deploy`.
-
-Als je de recentste versie van Pluff wilt uploaden zonder handmatig deze repository te hoeven updaten, kun je ook `npm run deploy-auto` uitvoeren.
+Om Pluff op een website te plaatsen, kopieer je eerst `.env.example` naar `.env`. Vul vervolgens je FTP gegevens hier in. Daarna kun je de bestanden bouwen en uploaden op je FTP server door `npm run deploy-auto` uit te voeren.
 
 ## Credits
 
