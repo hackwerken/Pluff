@@ -6,6 +6,7 @@
   display: flex;
   font-size: 1.5em;
   justify-content: center;
+  align-items: center;
   background: $secondary-light-color;
   padding: 1em 0;
   position: relative;
@@ -22,6 +23,7 @@
 
 .week-previous,
 .week-next {
+  font-size: 0;
   &:hover {
     fill: $primary-color;
   }
