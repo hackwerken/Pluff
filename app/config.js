@@ -27,15 +27,15 @@ export default function($translateProvider, $cookieStoreProvider, $authProvider)
 
   $authProvider.oauth2({
     name: 'fhict',
+    // HACK: If `url` is not set, satellizer wil not save the access token.
+    url: '/satelizzer-bypass',
     clientId: 'pluff-implicit',
     authorizationEndpoint: 'https://identity.fhict.nl/connect/authorize',
+    // FHICT auth only accepts uri's with an appended slash (same as Facebook).
     redirectUri: window.location.origin + '/',
     scope: ['fhict', 'fhict_personal'],
     scopeDelimiter: ' ',
     responseType: 'token',
-    popupOptions: null,
-    responseParams: null,
     requiredUrlParams: ['scope'],
-    optionalUrlParams: null,
   });
 }

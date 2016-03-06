@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer';
 import { execSync } from 'child_process';
 import dotenv from 'dotenv';
 
-dotenv.load({ silent: true });
+dotenv.config({ silent: true });
 
 const IS_DEBUG = process.env.PLUFF_DEBUG === 'true';
 

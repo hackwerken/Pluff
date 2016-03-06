@@ -24,10 +24,10 @@ import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
 import ngTouch from 'angular-touch';
 import 'angucomplete-alt';
-import 'satellizer';
+import satellizer from 'satellizer';
 import 'angucomplete-alt';
 import ngLoadingBar from 'angular-loading-bar';
-import { name as ngDialog } from 'ng-dialog';
+import ngDialog from 'ng-dialog';
 import 'angular-translate-cookie';
 
 const app = angular.module('pluffApp', [
@@ -38,7 +38,7 @@ const app = angular.module('pluffApp', [
   ngAnimate,
   ngDialog,
   ngTouch,
-  'satellizer',
+  satellizer,
   'angucomplete-alt',
 ]);
 

@@ -24,7 +24,7 @@ export default function($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils)
         localStorage.removeItem('satellizer_expires');
         $auth.removeToken();
       } else {
-        console.log('Token is valid, please continue!');
+        console.log('Token is valid, continuing!');
       }
 
       return isStillValid;
