@@ -17,9 +17,6 @@ const commitHash = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).
 
 // Plugins that are used for all environments.
 const plugins = [
-  new webpack.ProvidePlugin({
-    _: 'lodash',
-  }),
   // Prevent including all locales of moment.
   new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
   // Main static file.
