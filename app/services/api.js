@@ -44,6 +44,7 @@ export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils
   // Popup a authentication popup from FHICT where the user can login.
   function showAuthPopup(dialogId) {
     const authPromise = $auth.authenticate('fhict').then((response) => {
+      $auth.setToken(response.access_token);
       setExpires(response.expires_in);
 
       if (dialogId) ngDialog.close(dialogId, authPromise);
