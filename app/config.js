@@ -29,7 +29,7 @@ export default function ($translateProvider, $cookieStoreProvider, $authProvider
     name: 'fhict',
     // HACK: If `url` is not set, satellizer wil not save the access token.
     url: '/satelizzer-bypass',
-    clientId: 'pluff-implicit',
+    clientId: __DEV__ ? 'pluff-dev' : 'pluff-implicit',
     authorizationEndpoint: 'https://identity.fhict.nl/connect/authorize',
     // FHICT auth only accepts uri's with an appended slash (same as Facebook).
     redirectUri: `${window.location.origin}/`,

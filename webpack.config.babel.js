@@ -30,6 +30,10 @@ const plugins = [
   new ExtractTextPlugin('[name]-[contenthash:7].css', {
     allChunks: true,
   }),
+  // Define globals that get inserted in plugin.
+  new webpack.DefinePlugin({
+    __DEV__: IS_DEBUG,
+  }),
 ];
 
 if (!IS_DEBUG) {

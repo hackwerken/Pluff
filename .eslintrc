@@ -5,6 +5,7 @@
   },
   "globals": {
     "_": true,
+    "__DEV__": true,
     "angular": true
   }
 }
