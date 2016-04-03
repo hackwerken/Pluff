@@ -7,7 +7,24 @@ export default function ($scope, apiService, $timeout, $location, lessonService)
   });
 
   $scope.searchApi = function (userInputString, timeoutPromise) {
-    return apiService.getSuggestions('Any', userInputString, timeoutPromise);
+    return apiService
+      .getSuggestions('Any', userInputString, timeoutPromise)
+      .then((response) => {
+        // If one of the results has the exact name that the user filled in,
+        // sort this as the first result.
+        function nameMatchesUserInput(item) {
+          return item && item.name && item.name.toLowerCase() === userInputString.toLowerCase();
+        }
+        if (Array.isArray(response.data)) {
+          response.data.sort((a, b) => {
+            if (nameMatchesUserInput(a)) {
+              return -1;
+            }
+            return nameMatchesUserInput(b) ? 1 : 0;
+          });
+        }
+        return response;
+      });
   };
 
   // Fired when a search suggestion is selected
