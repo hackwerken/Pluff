@@ -71,6 +71,7 @@
     "build": "npm run -s clean && webpack --colors --progress --bail",
     "clean": "rm -rf dist/**",
     "lint": "eslint . && echo 'Linting succeeded.'",
+    "test": "npm run -s lint",
     "deploy": "node deploy.js",
     "deploy-auto": "git pull && npm install && PLUFF_DEBUG=false npm run -s build && npm run -s deploy"
   }
