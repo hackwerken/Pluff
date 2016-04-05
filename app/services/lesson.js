@@ -1,5 +1,6 @@
 import moment from 'moment';
-import generateColor from './lesson/color';
+import generateColor from './lesson/generateColor';
+import emptyWeeks from './lesson/emptyWeeks';
 
 export default function () {
   const data = {};
@@ -47,24 +48,7 @@ export default function () {
   // and create all weeks between that.
 
   data.getTimeTable = function (payload) {
-    const weeks = [];
-
-    // Create 52 empty weeks, create within every week 5 days (Mo - Fr) and 14 hours
-    // TODO: Seperate from the rest
-    for (let week = 0; week < 52; week++) {
-      weeks[week] = [];
-
-      for (let day = 0; day < 5; day++) {
-        weeks[week][day] = [];
-
-        for (let hour = 0; hour < 14; hour++) {
-          weeks[week][day][hour] = {
-            number: (hour + 1),
-            lessons: [],
-          };
-        }
-      }
-    }
+    const weeks = emptyWeeks(0, 52);
 
     // Filter all subjects in this array
     const filterSubjects = ['delta'];
