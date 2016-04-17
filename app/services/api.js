@@ -2,14 +2,9 @@ import moment from 'moment';
 import authenticatePartial from 'partials/dialog-authenticate.html';
 
 export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils) {
-  let isAlreadyInApp = false;
-
   // When requesting an URL without user interaction, a dialog should be shown
   // to prevent the browser from blocking the popup.
-  const removeEvent = $rootScope.$on('$routeChangeSuccess', () => {
-    isAlreadyInApp = true;
-    removeEvent();
-  });
+  let isFirstAuthAttempt = true;
 
   function isAuthenticated() {
     if ($auth.isAuthenticated()) {
@@ -73,7 +68,8 @@ export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils
     }
 
     if (!isAuthenticated()) {
-      if (!isAlreadyInApp) {
+      if (!isFirstAuthAttempt) {
+        isFirstAuthAttempt = false;
         // Show dialog about why the user must authenticate.
         // TODO: Prevent that multiple dialogs are opened.
         const dialog = ngDialog.open({
