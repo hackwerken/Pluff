@@ -5,7 +5,7 @@
     </svg>
   </a>
   <a class="week-current" ng-click="toPresentWeek()" aria-label="{{::'CALENDAR_WEEK' | translate}} {{currentWeekDate.format('W')}}">
-    {{weekTitle || 'Cal. week ' + currentWeekDate.format('W') || 'Week ??'}}
+    {{weekTitle || ('CALENDAR_WEEK' | translate) + ' ' + currentWeekDate.format('W') || 'Week ??'}}
   </a>
   <a class="week-next" ng-click="toNextWeek()">
     <svg version="1.1" width="25" height="25" viewBox="0 0 80 80">
