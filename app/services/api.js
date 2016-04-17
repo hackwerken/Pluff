@@ -125,6 +125,7 @@ export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils
       return get(`/schedule${input}`, {
         params: {
           expandTeacher: true,
+          expandWeeks: true,
           start: start.format('YYYY-MM-DD'),
           days: 7,
         },

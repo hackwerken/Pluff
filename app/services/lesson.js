@@ -43,6 +43,19 @@ export default function () {
     return totalLessons;
   };
 
+  data.setSchoolWeek = function (currentDate, weeks) {
+    if (!weeks || !weeks.length) {
+      console.error('No schoolweek found, this should not happen!');
+      return null;
+    }
+    // The API returns multiple weeks that can be the current school week,
+    // so try to find the right one.
+    const schoolWeek = weeks.find((week) =>
+      currentDate.isSame(week.start)
+    );
+    return schoolWeek && schoolWeek.title;
+  };
+
   data.getTimeTable = function (payload) {
     const week = emptyWeek();
 

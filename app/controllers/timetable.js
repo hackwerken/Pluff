@@ -2,15 +2,20 @@ import teacherDialogPartial from 'partials/dialog-teacher.html';
 
 export default function ($scope, $http, lessonService, $window, $location, $interval, weekService, apiService, dayService, timetableInfo, ngDialog) {
   function parseTimetable(kind, data) {
+    const currentDate = weekService.getCurrent();
     $scope.showError = false;
     // Get the title of the timetable and filter some words out of it
     lessonService.setInfo(data.title, kind);
+    $scope.currentWeekDate = currentDate;
+    $scope.weekTitle = lessonService.setSchoolWeek(currentDate, data.weeks);
 
     $scope.week = lessonService.getTimeTable(data);
   }
 
   function failedTimetable() {
     $scope.showError = true;
+    $scope.currentWeekDate = weekService.getCurrent();
+    $scope.weekTitle = null;
     // Fetch a list of classes and teachers if timetable could not be found
     apiService.getSuggestions('User').then((payload) => {
       $scope.autocompleteList = payload.data;
@@ -27,13 +32,6 @@ export default function ($scope, $http, lessonService, $window, $location, $inte
 
   $scope.hourBreaks = dayService.getHourBreaks();
   $scope.hourDurations = dayService.getHourDurations();
-
-  // Watch for changes in the weeknumber
-  $scope.$watch(() => weekService.getCurrent(), (newValue) => {
-    if (newValue) {
-      $scope.currentWeekDate = newValue;
-    }
-  });
 
   $scope.currentWeekActive = function () {
     if (weekService.isCurrentWeek()) {
