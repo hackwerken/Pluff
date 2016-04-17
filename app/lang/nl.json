@@ -48,7 +48,6 @@
   "FULL_NAME": "Volledige naam:",
   "TIMETABLE_NOT_FOUND": "Geen rooster",
   "TIMETABLE_NOT_FOUND_LONG": "Er kon geen rooster gevonden worden.",
-  "TIMETABLE_TEMP_EXPLANATION": "Je persoonlijke rooster wordt opgezocht door de klas(sen) of roosterafkorting exact te matchen met lessen in het rooster. Mocht dit bij jou account (nog) niet zijn ingevuld (of niet exact gelijk zijn), dan kan het zijn dat hierdoor geen persoonlijk rooster te zien krijgt. Kies hieronder de correcte klas of afkorting. Of gebruik de zoekfunctionaliteit rechtsboven.",
 
   "AUTH_HEADER": "Login op Fontys ICT",
   "AUTH_DESCRIPTION": "Klik op de onderstaande knop om in te loggen op Fontys ICT. Als dit de eerste keer is, geef dan Pluff de gevraagde permissies.",

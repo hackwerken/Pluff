@@ -47,13 +47,11 @@ export default function (weekService) {
     },
     // Calculate the date of the current day
     getCurrentDayDate(dayNumber) {
-      return moment(`${weekService.getYearUsed()}-${weekService.getWeekUsed()}-${dayNumber}`, 'YYYY-W-E');
+      // TODO: check if this actually works.
+      return weekService.getCurrent().clone().isoWeekday(dayNumber);
     },
     isCurrentDay(dayNumber) {
-      if (now.isSame(this.getCurrentDayDate(dayNumber), 'day')) {
-        return true;
-      }
-      return false;
+      return now.isSame(this.getCurrentDayDate(dayNumber), 'day');
     },
     isActiveDay(dayNumber) {
       const dayDate = this.getCurrentDayDate(dayNumber);

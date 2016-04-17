@@ -1,30 +1,37 @@
 import teacherDialogPartial from 'partials/dialog-teacher.html';
 
-export default function ($scope, $http, lessonService, $window, $location, $interval, weekService, apiService, dayService, timetableData, ngDialog) {
-  // Get the personal schedule from the API
-  if (timetableData !== false) {
+export default function ($scope, $http, lessonService, $window, $location, $interval, weekService, apiService, dayService, timetableInfo, ngDialog) {
+  function parseTimetable(kind, data) {
+    $scope.showError = false;
     // Get the title of the timetable and filter some words out of it
-    lessonService.setInfo(timetableData.data.title, timetableData.kind);
+    lessonService.setInfo(data.title, kind);
 
-    $scope.weeks = lessonService.getTimeTable(timetableData.data);
-  } else {
-    $scope.showError = true;
+    $scope.week = lessonService.getTimeTable(data);
   }
 
-  // Timetable could not be found. Show a list of the classes and teachers.
-  if ($scope.showError) {
+  function failedTimetable() {
+    $scope.showError = true;
+    // Fetch a list of classes and teachers if timetable could not be found
     apiService.getSuggestions('User').then((payload) => {
       $scope.autocompleteList = payload.data;
     });
   }
 
+  function fetchTimetable(date) {
+    return apiService.getTimeTable(timetableInfo.url, date).then((payload) => (
+      parseTimetable(timetableInfo.kind, payload.data)
+    ), failedTimetable);
+  }
+
+  fetchTimetable(weekService.now());
+
   $scope.hourBreaks = dayService.getHourBreaks();
   $scope.hourDurations = dayService.getHourDurations();
 
   // Watch for changes in the weeknumber
-  $scope.$watch(() => weekService.getWeekUsed(), (newValue) => {
+  $scope.$watch(() => weekService.getCurrent(), (newValue) => {
     if (newValue) {
-      $scope.weekNumberUsed = newValue;
+      $scope.currentWeekDate = newValue;
     }
   });
 
@@ -36,33 +43,29 @@ export default function ($scope, $http, lessonService, $window, $location, $inte
     }
   };
 
-  $scope.nextWeek = function () {
-    if (weekService.addWeek()) {
-      $scope.currentWeekActive();
-      console.log(`To the next week! ${weekService.getWeekUsed()} year: ${weekService.getYearUsed()}`);
-    }
+  $scope.toNextWeek = function () {
+    fetchTimetable(weekService.next());
+    $scope.currentWeekActive();
+    console.log(`To the next week! ${weekService.getCurrent().format('W')}`);
   };
 
-  $scope.currentWeek = function () {
-    if (weekService.currentWeek()) {
-      $scope.currentWeekActive();
-      console.log(`To the current week! ${weekService.getWeekUsed()} year: ${weekService.getYearUsed()}`);
-    }
+  $scope.toPresentWeek = function () {
+    fetchTimetable(weekService.now());
+    $scope.currentWeekActive();
+    console.log(`To the current week! ${weekService.getCurrent().format('W')}`);
   };
 
-  $scope.previousWeek = function () {
-    if (weekService.subtractWeek()) {
+  $scope.toPreviousWeek = function () {
+    const date = weekService.previous();
+    if (date) {
+      fetchTimetable(date);
       $scope.currentWeekActive();
-      console.log(`To the previous week! ${weekService.getWeekUsed()} year: ${weekService.getYearUsed()}`);
+      console.log(`To the previous week! ${weekService.getCurrent().format('W')}`);
     }
   };
 
   $scope.isOldWeek = function () {
-    return weekService.isOldWeek();
-  };
-
-  $scope.isNewWeek = function () {
-    return weekService.isNewWeek();
+    return weekService.isBeforeNow();
   };
 
   // Bind keybindings to the window to enable right and left arrow navigation
@@ -72,13 +75,13 @@ export default function ($scope, $http, lessonService, $window, $location, $inte
       // Go to the next week on right arrow key
       if (e.keyCode === 39) {
         $scope.$apply(() => {
-          $scope.nextWeek();
+          $scope.toNextWeek();
         });
       }
       // Go to the previous week on left arrow key
       if (e.keyCode === 37) {
         $scope.$apply(() => {
-          $scope.previousWeek();
+          $scope.toPreviousWeek();
         });
       }
     }

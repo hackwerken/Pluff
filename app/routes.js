@@ -10,10 +10,8 @@ export default function ($routeProvider, $locationProvider) {
       controller: 'TimeTableCtrl',
       resolve: {
         // Load the timetable JSON before the controller
-        timetableData(apiService) {
-          return apiService.getTimeTable('/me').then((payload) => (
-            { data: payload.data, kind: 'me' }
-          ), () => false);
+        timetableInfo() {
+          return { url: '/me', kind: 'me' };
         },
       },
     })
@@ -21,7 +19,7 @@ export default function ($routeProvider, $locationProvider) {
       template: timetablePartial,
       controller: 'TimeTableCtrl',
       resolve: {
-        timetableData($route, apiService) {
+        timetableInfo($route) {
           let categoryUrl;
           const queryUrl = $route.current.params.query;
 
@@ -44,9 +42,7 @@ export default function ($routeProvider, $locationProvider) {
               break;
           }
 
-          return apiService.getTimeTable(`/${categoryUrl}/${queryUrl}`).then((payload) => (
-            { data: payload.data, kind: categoryUrl }
-          ), () => false);
+          return { url: `/${categoryUrl}/${queryUrl}`, kind: categoryUrl };
         },
       },
     })

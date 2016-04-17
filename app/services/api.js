@@ -121,12 +121,12 @@ export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils
         timeout: timeoutPromise,
       });
     },
-    getTimeTable(input) {
+    getTimeTable(input, start) {
       return get(`/schedule${input}`, {
         params: {
           expandTeacher: true,
-          startLastMonday: true,
-          days: 90,
+          start: start.format('YYYY-MM-DD'),
+          days: 7,
         },
       });
     },

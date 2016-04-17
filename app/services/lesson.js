@@ -1,6 +1,6 @@
 import moment from 'moment';
 import generateColor from './lesson/generateColor';
-import emptyWeeks from './lesson/emptyWeeks';
+import emptyWeek from './lesson/emptyWeek';
 
 export default function () {
   const data = {};
@@ -43,12 +43,8 @@ export default function () {
     return totalLessons;
   };
 
-  // TODO:
-  // Get the start and end week from the first returned lesson,
-  // and create all weeks between that.
-
   data.getTimeTable = function (payload) {
-    const weeks = emptyWeeks(0, 52);
+    const week = emptyWeek();
 
     // Filter all subjects in this array
     const filterSubjects = ['delta'];
@@ -57,7 +53,6 @@ export default function () {
     payload.data.forEach((lesson) => {
       const start = moment(lesson.start);
       const end = moment(lesson.end);
-      const startWeeknumber = start.isoWeek(); // Output: weeknumber (without leading zero)
       const startDaynumber = start.format('d'); // Output: daynumber of week (1 - 5), 1 = Monday
 
       // Convert mask to binary and get the length to minimize needed loops
@@ -88,12 +83,12 @@ export default function () {
 
           // Select the current hour and push the new lesson to it
           // Array keys are zero based, and skipping the first key results in a hell
-          weeks[(startWeeknumber - 1)][(startDaynumber - 1)][(hourNumber - 1)].lessons.push(lessonData);
+          week[(startDaynumber - 1)][(hourNumber - 1)].lessons.push(lessonData);
         }
       }
     });
 
-    return weeks;
+    return week;
   };
 
   return data;
