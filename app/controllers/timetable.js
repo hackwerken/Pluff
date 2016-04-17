@@ -7,7 +7,7 @@ export default function ($scope, $http, lessonService, $window, $location, $inte
     // Get the title of the timetable and filter some words out of it
     lessonService.setInfo(data.title, kind);
     $scope.currentWeekDate = currentDate;
-    $scope.weekTitle = lessonService.setSchoolWeek(currentDate, data.weeks);
+    $scope.weekTitle = lessonService.schoolWeek(currentDate, data.weeks);
 
     $scope.week = lessonService.getTimeTable(data);
   }

@@ -146,7 +146,7 @@ $hour-base-height: 4.75em;
 }
 
 .hidden-lessons {
-  background: $multiple-lessons-bg;
+  background: $tooltip-bg;
   width: auto;
   position: absolute;
   z-index: 1000;
@@ -190,7 +190,7 @@ $hour-base-height: 4.75em;
     position: absolute;
     pointer-events: none;
     border-color: transparent;
-    border-bottom-color: $multiple-lessons-bg;
+    border-bottom-color: $tooltip-bg;
     border-width: 10px;
     margin-left: -10px;
   }
