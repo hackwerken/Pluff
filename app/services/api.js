@@ -1,7 +1,7 @@
 import moment from 'moment';
 import authenticatePartial from 'partials/dialog-authenticate.html';
 
-export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils) {
+export default function ($http, $auth, $q, ngDialog, SatellizerUtils) {
   // When requesting an URL without user interaction, a dialog should be shown
   // to prevent the browser from blocking the popup.
   let isFirstAuthAttempt = true;
@@ -123,7 +123,7 @@ export default function ($http, $auth, $q, $rootScope, ngDialog, SatellizerUtils
           expandTeacher: true,
           expandWeeks: true,
           start: start.format('YYYY-MM-DD'),
-          days: 7,
+          days: 6,
         },
       });
     },
