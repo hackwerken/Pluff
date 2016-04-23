@@ -68,7 +68,7 @@ export default function ($http, $auth, $q, ngDialog, SatellizerUtils) {
     }
 
     if (!isAuthenticated()) {
-      if (!isFirstAuthAttempt) {
+      if (isFirstAuthAttempt) {
         isFirstAuthAttempt = false;
         // Show dialog about why the user must authenticate.
         // TODO: Prevent that multiple dialogs are opened.
