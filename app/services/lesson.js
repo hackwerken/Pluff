@@ -96,7 +96,7 @@ export default function () {
 
           // Select the current hour and push the new lesson to it
           // Array keys are zero based, and skipping the first key results in a hell
-          week[(startDaynumber - 1)][(hourNumber - 1)].lessons.push(lessonData);
+          week[startDaynumber - 1][hourNumber - 1].lessons.push(lessonData);
         }
       }
     });

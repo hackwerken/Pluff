@@ -25,7 +25,6 @@ import ngAnimate from 'angular-animate';
 import ngTouch from 'angular-touch';
 import 'angucomplete-alt';
 import satellizer from 'satellizer';
-import 'angucomplete-alt';
 import ngLoadingBar from 'angular-loading-bar';
 import ngDialog from 'ng-dialog';
 import 'angular-translate-cookie';

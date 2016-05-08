@@ -31,9 +31,15 @@ export default function (weekService) {
     { number: 14, duration: 90 },
   ];
   // Fontys starts at 8.45
-  const dayStartTime = now.clone().hour(8).minute(45).second(0);
+  const dayStartTime = now.clone()
+    .hour(8)
+    .minute(45)
+    .second(0);
   // And ends at 21.30
-  const dayEndTime = now.clone().hour(21).minute(30).second(0);
+  const dayEndTime = now.clone()
+    .hour(21)
+    .minute(30)
+    .second(0);
 
   return {
     getHourBreaks() {
@@ -69,7 +75,7 @@ export default function (weekService) {
 
       if (dayEndTime > now && dayStartTime < now) {
         const percentageComplete = (now - dayStartTime) / (dayEndTime - dayStartTime) * 100;
-        const percentageRounded = (Math.round(percentageComplete * 100) / 100);
+        const percentageRounded = Math.round(percentageComplete * 100) / 100;
 
         return `${percentageRounded}%`;
       }

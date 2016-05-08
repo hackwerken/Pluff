@@ -61,7 +61,7 @@ export default function ($scope, apiService, $timeout, $location, lessonService)
   });
 
   $scope.isActive = function (viewLocation) {
-    const regexp = new RegExp('(\/search\/.*)');
+    const regexp = new RegExp('(/search/.*)');
     if (regexp.test($location.path())) {
       return viewLocation === '/';
     }

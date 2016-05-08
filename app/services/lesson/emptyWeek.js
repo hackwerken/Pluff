@@ -7,7 +7,7 @@ export default function () {
 
     for (let hour = 0; hour < 14; hour++) {
       week[day][hour] = {
-        number: (hour + 1),
+        number: hour + 1,
         lessons: [],
       };
     }
