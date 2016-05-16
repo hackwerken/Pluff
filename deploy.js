@@ -9,7 +9,7 @@ dotenv.load();
 var question = {type: 'confirm', name: 'continue', message: 'Are you sure you want to deploy?'};
 var USE_FTP = !!process.env.PLUFF_FTP_HOST;
 
-inquirer.prompt(question, function(answers) {
+inquirer.prompt(question).then(function(answers) {
   if (answers.continue) {
     uploadThatShit();
   } else {
