@@ -16,9 +16,9 @@ Uur 11 - 16:45 - 17:30 (45m)
 Pauze 3 - 17:30 - 18:00 (30m)  
 Uur 12 - 18:00 - 18:45 (45m)  
 Uur 13 - 18:45 - 19:30 (45m)  
-Pauze 4 - 19:30 - 20:00 (30m)  
-Uur 14 - 20:00 - 21:30 (90m)  
+Uur 14 - 19:45 - 20:30 (45m)  
+Uur 15 - 20:30 - 21:15  (45m)  
 
-Totaal pauze: 90min
+Totaal pauze: 60min
 
-Bij verandering van dit tijdschema moeten er aanpassing gedaan worden in `app/stylesheet/sections/_timetable.scss` en in `app/services/day.js`.
+Bij verandering van dit tijdschema moeten er aanpassing gedaan worden in `app/stylesheet/sections/_timetable.scss`, `app/services/day.js` en in `app/services/lesson/emptyWeek.js`.

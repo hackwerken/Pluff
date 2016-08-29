@@ -12,7 +12,7 @@ export default function (weekService) {
   updateTime();
 
   // List of the breaks and the duration. The first break is after the second hour and is 20 minutes.
-  const hourBreaks = [0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 30, 0, 30, 0];
+  const hourBreaks = [0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 30, 0, 0, 0, 0];
   // List of hours
   const hourNumbers = [
     { number: 1, duration: 45 },
@@ -28,17 +28,18 @@ export default function (weekService) {
     { number: 11, duration: 45 },
     { number: 12, duration: 45 },
     { number: 13, duration: 45 },
-    { number: 14, duration: 90 },
+    { number: 14, duration: 45 },
+    { number: 15, duration: 45 },
   ];
   // Fontys starts at 8.45
   const dayStartTime = now.clone()
     .hour(8)
     .minute(45)
     .second(0);
-  // And ends at 21.30
+  // And ends at 21.15
   const dayEndTime = now.clone()
     .hour(21)
-    .minute(30)
+    .minute(15)
     .second(0);
 
   return {
